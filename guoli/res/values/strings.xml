@@ -1,8 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">guoli</string>
+    <string name="app_name">Guoli</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    
+    <string name="back_btn">返回</string>
+    
+    <!-- 酒店搜索页面 -->
+    <string name="search_hotel_title">果粒特惠酒店</string>
+    <string name="occupancy_city">入住城市</string>
+    <string name="occupancy_date">入住日期</string>
+    <string name="leave_date">离店日期</string>
+    <string name="price">价格</string>
+    <string name="star">星级</string>
+    <string name="area">行政区域</string>
+    <string name="key_word">关键字</string>
+    <string name="unrestricted">不限</string>
+    <string name="hotel_name_and_address">酒店名称/酒店地址</string>
 
+    <!-- 日期选择页面 -->
+    <string name="select_date">选择日期</string>
+    <string name="today">今天</string>
+    <string name="tomorrow">明天</string>
+    
+    <!-- 酒店搜索结果页面 -->
+    <string name="map_mode">地图模式</string>
+    <string name="occupancy">入住 :</string>
+    <string name="leave">离店 :</string>
+    
+    <!-- 新增入住人页面 -->
+    <string name="add_user">新增入住人</string>
+    <string name="user_name">姓    名:</string>
+    <string name="default_user_name">中文或英文</string>
+    <string name="confirm_text">确认添加</string>
+    
+    <!-- 订单提交成功页面 -->
+    <string name="commit_order_sucess_title">订单提交成功</string>
+    <string name="continue_reserve">继续预定</string>
+    <string name="look_over_order">查看订单</string>
+    
+    <!-- 订单详细页面 -->
+    <string name="exit">退出</string>
+    <string name="order_detail">订单详情</string>
+    <string name="cancel_order">取消订单</string>
+    <string name="order_state">订单状态 :</string>
+    <string name="order_number">订单编号 :</string>
+    <string name="order_money">订单总额 :</string>
+    <string name="hotel_name">酒店名称 :</string>
+    <string name="hotel_adress">酒店地址 :</string>
+    <string name="hotel_phone">酒店电话 :</string>
+    <string name="room_type">入住房型 :</string>
+    <string name="room_count">预定间数 :</string>
+    <string name="period">住店日期 :</string>
+    <string name="occupancy_user">入住人 :</string>
+    <string name="contact">联系人 :</string>
+    <string name="contact_phone">联系电话 :</string>
+    <string name="order_money_content">￥%1$s</string>
+    
+    <!-- 反馈页面 -->
+    <string name="feedback">反馈</string>
+    <string name="send">发送</string>
+    <string name="feedback_prompt">请留下您的宝贵意见,我们会进一步完善.</string>
+    <string name="email_prompt">请输入您的邮箱</string>
 </resources>

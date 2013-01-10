@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="title_bar_font_color">#ffffffff</color>
+    <color name="font_grey">#B0B0B0</color>
+    <color name="bg_grey">#F3F3F3</color>
+</resources>

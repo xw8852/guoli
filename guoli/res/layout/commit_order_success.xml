@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView
+            android:id="@+id/back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:background="@drawable/shape_title_bar"
+            android:gravity="center"
+            android:text="@string/commit_order_sucess_title"
+            android:textColor="@color/title_bar_font_color" />
+
+    <TextView android:id="@+id/commit_success_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/shape_round_rect"
+        android:text="订单提交成功后服务器端返回的提示内容"/>
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <TextView android:id="@+id/continue_reserve_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:background="@drawable/shape_full_width_round_rect"
+            android:textColor="@color/title_bar_font_color"
+            android:text="@string/continue_reserve"/>
+        <TextView android:id="@+id/look_over_order_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textColor="@color/title_bar_font_color"
+            android:background="@drawable/shape_round_rect_blue"
+            android:text="@string/look_over_order"/>
+    </LinearLayout>
+</LinearLayout>

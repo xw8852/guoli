@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_grey"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+    <!-- 酒店图片 -->
+
+    <ImageView
+        android:id="@+id/hotel_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hotel_default" />
+
+    <RelativeLayout
+        android:id="@+id/hotel_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_toRightOf="@+id/hotel_img">
+
+        <!-- 酒店名称 -->
+
+        <TextView
+            android:id="@+id/hotel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="酒店名称" />
+        <!-- 酒店地址 -->
+
+        <TextView
+            android:id="@+id/hotel_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hotel_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="地址"
+            android:textColor="@color/font_grey" />
+        <!-- 酒店区域 -->
+
+        <TextView
+            android:id="@+id/hotel_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hotel_address"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="区域"
+            android:textColor="@color/font_grey" />
+        <!-- 星级 -->
+
+        <RatingBar
+            android:id="@+id/hotel_star_level"
+            style="@style/ratingbar_small"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:numStars="5"
+            android:rating="0" />
+        <!-- 价格 -->
+
+        <TextView
+            android:id="@+id/hotel_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/hotel_star_level"
+            android:layout_marginTop="8dp"
+            android:text="1067起" />
+        <!-- 折扣 -->
+
+        <TextView
+            android:id="@+id/hotel_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/hotel_price"
+            android:layout_marginTop="8dp"
+            android:text="4.6折起" />
+        <!-- 电询 -->
+
+        <TextView
+            android:id="@+id/hotel_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/hotel_star_level"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_top_return_on"
+            android:gravity="center"
+            android:text="电询"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_light"
+        android:layout_toRightOf="@+id/hotel_info"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

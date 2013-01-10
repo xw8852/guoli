@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <!-- 标题栏 -->
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@drawable/shape_title_bar" >
+
+        <!-- 返回按钮 -->
+        <TextView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_top_return_on"
+            android:gravity="center"
+            android:text="@string/back_btn"
+            android:textColor="@color/title_bar_font_color" />
+        <!-- 标题内容 -->
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/title_bar_font_color"
+            android:text="@string/add_user" />
+    </RelativeLayout>
+
+    <!-- 姓名栏 -->
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_round_rect">
+        <TextView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="@string/user_name"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            />
+        <EditText android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="@string/default_user_name"
+            android:background="#00000000"/>
+    </LinearLayout>
+    
+    <TextView android:id="@+id/commit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/confirm_text"
+        android:gravity="center"
+        android:textColor="@color/title_bar_font_color"
+        android:background="@drawable/shape_full_width_round_rect"/>
+</LinearLayout>
