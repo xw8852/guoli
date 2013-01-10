@@ -12,12 +12,13 @@ package com.guoli.hotel.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import com.guoli.hotel.utils.NetUtils;
+import com.guoli.hotel.R;
 
 /**
  * ClassName:BaseDetailActivity <br/>
- * @Description:    视图页面数据加载的基类
+ * @Description:    没有数据加载的视图基类
  * Date:     2012-12-31 上午10:46:24 <br/>
  * @author   maple
  * @version  
@@ -32,45 +33,38 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(mLayoutId);
-        initPassParams();
         findViews();
-        loadData();
     }
 
     /**
      * 
-     * loadData:加载数据. <br/>
+     * getLeftButton:获取标题栏左侧的button. <br/>
      * @author maple
+     * @return
      * @since JDK 1.6
      */
-    protected void loadData(){
-        if (!NetUtils.isNetworkWell(this)) {
-            loadLocalData();
-            initViews();
-            return;
-        }
-        showLoadingProgressBar();
-        loadNetworkData();
+    protected TextView getLeftButton(){
+        return (TextView) findViewById(R.id.left_btn);
     }
-    
     /**
      * 
-     * showLoadingProgressBar:显示数据加载loading框. <br/>
+     * getRightButton:获取标题栏右侧的button. <br/>
      * @author maple
+     * @return
      * @since JDK 1.6
      */
-    protected void showLoadingProgressBar(){
-        
+    protected TextView getRightButton(){
+        return (TextView) findViewById(R.id.right_btn);
     }
-    
     /**
      * 
-     * closeLoadingProgressBar:隐藏数据加载loading框. <br/>
+     * getTitleView:获取标题. <br/>
      * @author maple
+     * @return
      * @since JDK 1.6
      */
-    protected void closeLoadingProgressBar(){
-        
+    protected TextView getTitleView(){
+        return (TextView) findViewById(R.id.title_text);
     }
 
     /**
@@ -80,34 +74,5 @@ public abstract class BaseActivity extends Activity {
      * @since JDK 1.6
      */
     protected abstract void findViews();
-    /***
-     * 
-     * initPassParams:初始化从其他页面传递过来的参数信息. <br/>
-     * @author maple
-     * @since JDK 1.6
-     */
-    protected abstract void initPassParams();
-    /**
-     * 
-     * initViews:初始化视图信息. <br/>
-     * 在数据加载完毕后调用该方法.<br/>
-     * @author maple
-     * @since JDK 1.6
-     */
-    protected abstract void initViews();
-    /***
-     * 
-     * loadNetworkData:加载网络数据. <br/>
-     * @author maple
-     * @since JDK 1.6
-     */
-    protected abstract void loadNetworkData();
-    /**
-     * 
-     * loadLocalData:加载本地数据. <br/>
-     * @author maple
-     * @since JDK 1.6
-     */
-    protected abstract void loadLocalData();
 }
 

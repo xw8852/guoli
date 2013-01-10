@@ -18,6 +18,7 @@
     <string name="key_word">关键字</string>
     <string name="unrestricted">不限</string>
     <string name="hotel_name_and_address">酒店名称/酒店地址</string>
+    <string name="search_hotel">查找酒店</string>
 
     <!-- 日期选择页面 -->
     <string name="select_date">选择日期</string>

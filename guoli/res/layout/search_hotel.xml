@@ -6,37 +6,12 @@
 
     <!-- 标题栏 -->
 
-    <RelativeLayout
-        android:id="@+id/title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
-        android:background="@drawable/shape_title_bar" >
-
-        <!-- 标题内容 -->
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/search_hotel_title" />
-        <!-- 电话按钮 -->
-
-        <ImageButton
-            android:id="@+id/phone_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/btn_top_phone" />
-    </RelativeLayout>
+    <include android:id="@+id/title_bar" layout="@layout/title_bar"/>
 
     <!-- 搜索条件 -->
 
     <LinearLayout
-        android:id="@+id/search_criteria"
+        android:id="@+id/search_criteria_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_bar"
@@ -297,4 +272,15 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView android:id="@+id/search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/search_criteria_layout"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/search_hotel"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/title_bar_font_color"
+        android:background="@drawable/btn_commit"
+        />
 </RelativeLayout>
