@@ -1,0 +1,4 @@
+#忽略gen文件夹，忽略bin文件夹
+gen/
+bin/
+.settings/
