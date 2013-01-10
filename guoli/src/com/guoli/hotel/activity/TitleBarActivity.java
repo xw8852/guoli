@@ -15,6 +15,7 @@ import com.guoli.hotel.R;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.TextView;
 
 /**
@@ -40,6 +41,7 @@ public abstract class TitleBarActivity extends BaseActivity implements OnClickLi
     
     @Override
     protected void onCreate(Bundle arg0) {
+    	requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(arg0);
         setTitle();
     }
