@@ -300,7 +300,8 @@
                     android:drawableLeft="@drawable/back_light"
                     android:visibility="invisible" />
             </LinearLayout>
-			 <TextView android:id="@+id/search_btn"
+        </LinearLayout>
+		<TextView android:id="@+id/search_btn"
 				android:layout_width="match_parent"
 				android:layout_height="50dp"
 				android:layout_margin="20dp"
@@ -309,9 +310,7 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:textColor="@color/title_bar_font_color"
 				android:background="@drawable/btn_commit"
-				/>
-        </LinearLayout>
-		
+				/>		
     </LinearLayout>
 
     <include
