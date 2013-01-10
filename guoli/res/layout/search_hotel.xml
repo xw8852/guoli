@@ -1,286 +1,321 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchHotelActivity" >
+    android:orientation="vertical" >
 
     <!-- 标题栏 -->
 
-    <include android:id="@+id/title_bar" layout="@layout/title_bar"/>
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@drawable/shape_title_bar" >
+
+        <!-- 标题内容 -->
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/search_hotel_title"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!-- 电话按钮 -->
+
+        <ImageButton
+            android:id="@+id/phone_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/btn_top_phone" />
+    </RelativeLayout>
 
     <!-- 搜索条件 -->
 
     <LinearLayout
-        android:id="@+id/search_criteria_layout"
+        android:id="@+id/search_criteria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_bar"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/shape_round_rect"
-        android:orientation="vertical"
-        android:paddingLeft="10dp" >
-
-        <!-- 入住城市 -->
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_round_rect"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <!-- 入住城市 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/occupancy_city"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/city_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/occupancy_city"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 入住日期 -->
 
-            <Spinner
-                android:id="@+id/city_list"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:background="#00000000"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/occupancy_date"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/occupancy_date_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|center_vertical"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium" >
+                </Button>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 离店日期 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/leave_date"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/leave_date_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|center_vertical"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium" >
+                </Button>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 价格 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/price"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/price_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 星级 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/star"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/star_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 行政区域 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/area"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/area_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E4E4E4" />
+            <!-- 关键字 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="@string/occupancy_city"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/key_word"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:hint="@string/hotel_name_and_address"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light"
+                    android:visibility="invisible" />
+            </LinearLayout>
+			 <TextView android:id="@+id/search_btn"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_margin="20dp"
+				android:gravity="center"
+				android:text="@string/search_hotel"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:textColor="@color/title_bar_font_color"
+				android:background="@drawable/btn_commit"
+				/>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 入住日期 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/occupancy_date"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Button
-                android:id="@+id/occupancy_date_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="left|center_vertical"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium" >
-            </Button>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 离店日期 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/leave_date"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Button
-                android:id="@+id/leave_date_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="left|center_vertical"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium" >
-            </Button>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 价格 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/price"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/price_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:background="#00000000"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 星级 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/star"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/star_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:background="#00000000"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 行政区域 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/area"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/area_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:background="#00000000"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-        <!-- 关键字 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="@string/occupancy_city"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/key_word"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="#00000000"
-                android:hint="@string/hotel_name_and_address"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light"
-                android:visibility="invisible" />
-        </LinearLayout>
+		
     </LinearLayout>
 
-    <TextView android:id="@+id/search_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/search_criteria_layout"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="@string/search_hotel"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/title_bar_font_color"
-        android:background="@drawable/btn_commit"
-        />
-</RelativeLayout>
+    <include
+        android:layout_weight="0"
+        layout="@layout/bottom_tabbar" />
+
+</LinearLayout>
