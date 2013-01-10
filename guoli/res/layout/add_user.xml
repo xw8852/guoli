@@ -4,36 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
      <!-- 标题栏 -->
-
-    <RelativeLayout
-        android:id="@+id/title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
-        android:background="@drawable/shape_title_bar" >
-
-        <!-- 返回按钮 -->
-        <TextView
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_top_return_on"
-            android:gravity="center"
-            android:text="@string/back_btn"
-            android:textColor="@color/title_bar_font_color" />
-        <!-- 标题内容 -->
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/title_bar_font_color"
-            android:text="@string/add_user" />
-    </RelativeLayout>
+     
+     <include android:id="@+id/title_bar" layout="@layout/title_bar"/>
 
     <!-- 姓名栏 -->
     <LinearLayout android:layout_width="match_parent"
