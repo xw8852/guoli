@@ -17,6 +17,7 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.adapter.HotelAdapter;
 import com.guoli.hotel.bean.HotelInfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -130,6 +131,9 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     protected void rightBtnClickEvent() {
         super.rightBtnClickEvent();
         //TODO 进入地图模式
+        Intent intent = new Intent();
+        intent.setClass(this, HotelsMapActivity.class);
+        startActivity(intent);
     }
 
     @Override

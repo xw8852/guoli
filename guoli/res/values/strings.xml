@@ -73,4 +73,8 @@
     <string name="user_title">用户</string>
     <string name="order_title">订单</string>
     <string name="more_title">更多</string>
+    
+    <!-- 酒店列表地图模式页面 -->
+    <string name="hotels_map_title">酒店地图</string>
+    <string name="result_count_desc">%1$d个结果</string>
 </resources>
