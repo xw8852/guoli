@@ -3,13 +3,15 @@ package com.guoli.hotel.activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
 
-public class SearchHotelActivity extends TitleBarActivity {
+public class SearchHotelActivity extends BaseActivity implements OnItemSelectedListener {
     
     public SearchHotelActivity() {
         mLayoutId = R.layout.search_hotel;
@@ -43,6 +45,10 @@ public class SearchHotelActivity extends TitleBarActivity {
         occupancyBtn.setOnClickListener(this);
         leaveBtn.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
+        citySpinner.setOnItemSelectedListener(this);
+        starSpinner.setOnItemSelectedListener(this);
+        areaSpinner.setOnItemSelectedListener(this);
+        priceSpinner.setOnItemSelectedListener(this);
     }
 
     public void onClick(View v) {
@@ -69,6 +75,15 @@ public class SearchHotelActivity extends TitleBarActivity {
         default:
             break;
         }
+        
+    }
+
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        
+        
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
         
     }
 
