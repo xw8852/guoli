@@ -32,10 +32,13 @@ public class BottomTabbar {
 			throw new IllegalArgumentException(
 					"you's activity (or fragment) must be contain the layout file of bottom_tabbar");
 		if (view.getId() == R.id.bottomTabBar)
-			root = (LinearLayout)view;
+			root = (LinearLayout) view;
 		else
-			root = (LinearLayout)view.findViewById(R.id.bottomTabBar);
+			root = (LinearLayout) view.findViewById(R.id.bottomTabBar);
 		for (int i = 0; i < root.getChildCount(); i++) {
+			if (i == activeIndex) {
+				root.getChildAt(i).setSelected(true);
+			}
 			root.getChildAt(i).setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
