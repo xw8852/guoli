@@ -25,6 +25,9 @@
         <activity
             android:name=".activity.SearchHotelActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HotelSearchResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
