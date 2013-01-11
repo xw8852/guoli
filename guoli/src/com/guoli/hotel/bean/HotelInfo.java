@@ -32,7 +32,7 @@ public class HotelInfo {
     /**酒店级别*/
     private int level;
     /**酒店价格*/
-    private long price;
+    private int price;
     /**酒店折扣*/
     private float discount;
     /**酒店电话*/
@@ -73,10 +73,10 @@ public class HotelInfo {
     public void setLevel(int level) {
         this.level = level;
     }
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     public float getDiscount() {
