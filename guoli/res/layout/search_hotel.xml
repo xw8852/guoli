@@ -5,32 +5,7 @@
 
     <!-- 标题栏 -->
 
-    <RelativeLayout
-        android:id="@+id/title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
-        android:background="@drawable/shape_title_bar" >
-
-        <!-- 标题内容 -->
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/search_hotel_title"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        <!-- 电话按钮 -->
-
-        <ImageButton
-            android:id="@+id/phone_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/btn_top_phone" />
-    </RelativeLayout>
+    <include android:id="@+id/title_bar" layout="@layout/title_bar"/>
 
     <!-- 搜索条件 -->
 

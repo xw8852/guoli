@@ -1,5 +1,6 @@
 package com.guoli.hotel.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -72,10 +73,27 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         case R.id.area_list:
             //区域
             break;
+        case R.id.search_btn:
+            //搜索
+            enterHotelSearchResultActivity();
+            break;
         default:
             break;
         }
         
+    }
+    
+    /**
+     * 
+     * enterHotelSearchResultActivity:跳转到酒店查询结果页面. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void enterHotelSearchResultActivity() {
+        //跳转到酒店搜索结果页面
+        Intent intent = new Intent();
+        intent.setClass(this, HotelSearchResultActivity.class);
+        startActivity(intent);
     }
 
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

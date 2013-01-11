@@ -166,7 +166,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
      * @author maple
      * @since JDK 1.6
      */
-    private void leftBtnClickEvent(){
+    protected void leftBtnClickEvent(){
         finish();
     }
     /**
@@ -175,9 +175,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
      * @author maple
      * @since JDK 1.6
      */
-    private void rightBtnClickEvent(){
-        
-    }
+    protected void rightBtnClickEvent() {}
 
     /**
      * 
