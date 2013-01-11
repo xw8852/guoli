@@ -29,6 +29,9 @@
     <string name="map_mode">地图模式</string>
     <string name="occupancy">入住 :</string>
     <string name="leave">离店 :</string>
+    <string name="price_desc">￥%1$d起</string>
+    <string name="discount_desc">￥%1$f折起</string>
+    <string name="business_count_desc">%1$d家</string>
     
     <!-- 新增入住人页面 -->
     <string name="add_user">新增入住人</string>

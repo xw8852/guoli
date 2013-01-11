@@ -85,12 +85,13 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
     
     /**
      * 
-     * enterHotelSearchResultActivity:跳转到酒店查询结果页�? <br/>
+     * enterHotelSearchResultActivity:跳转到酒店查询结果页�? <br/>
      * @author maple
      * @since JDK 1.6
      */
     private void enterHotelSearchResultActivity() {
-        //跳转到酒店搜索结果页�?        Intent intent = new Intent();
+        //跳转到酒店搜索结果页�?        
+        Intent intent = new Intent();
         intent.setClass(this, HotelSearchResultActivity.class);
         startActivity(intent);
     }
@@ -105,4 +106,3 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
     }
 
 }
->>>>>>> maple
