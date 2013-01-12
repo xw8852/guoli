@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.widget.BottomTabbar;
 
 public class SearchHotelActivity extends BaseActivity implements OnItemSelectedListener {
     
@@ -24,6 +25,7 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showRightBtn();
+        new BottomTabbar(this, 0);
     }
 
     @Override
