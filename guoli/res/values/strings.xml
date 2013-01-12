@@ -77,4 +77,12 @@
     <!-- 酒店列表地图模式页面 -->
     <string name="hotels_map_title">酒店地图</string>
     <string name="result_count_desc">%1$d个结果</string>
+    <!-- 更多 -->
+	<string name="help_item">帮助</string>
+	<string name="about_item">关于我们</string>
+	<!-- 帮助 -->
+	<string name="ques_1">如何查询订单?</string>
+	<string name="answer_1">请登录后，选择“订单”选项或账户“酒店订单”即可看到</string>
+	<string name="ques_2">如何退款？</string>
+	<string name="answer_2">当日预定不可退款，如需退款请过两个工作日后再进行退款</string>
 </resources>

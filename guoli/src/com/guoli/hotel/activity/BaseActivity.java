@@ -13,6 +13,7 @@ package com.guoli.hotel.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle arg0) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(arg0);
         setContentView(mLayoutId);
         findViews();
