@@ -2,49 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/large_margin" >
 
-    <!-- 标题栏 -->
-
-    <RelativeLayout
-        android:id="@+id/title_bar"
+    <EditText
+        android:layout_weight="1"
+        android:id="@+id/editText1"
         android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/shape_round_rect_grey"
+        android:ems="10"
+        android:gravity="left|top"
+        android:hint="@string/feedback_prompt"
+        android:padding="@dimen/default_margin" >
+    </EditText>
+
+    <EditText
+        
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_margin"
+        android:background="@drawable/shape_round_rect_grey"
+        android:ems="10"
+        android:hint="@string/email_prompt"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/default_margin"
+        android:singleLine="true" />
+
+    <Button
+        android:layout_weight="0"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_width="fill_parent"
         android:layout_height="@dimen/title_bar_height"
-        android:background="@drawable/shape_title_bar" >
-
-        <!-- 标题内容 -->
-
-        <TextView
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_top_return_on"
-            android:gravity="center"
-            android:text="@string/back_btn"
-            android:textColor="@color/title_bar_font_color" />
-        <!-- 标题内容 -->
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/feedback"
-            android:textColor="@color/title_bar_font_color"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        <!-- 电话按钮 -->
-
-        <ImageButton
-            android:id="@+id/phone_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/btn_top_phone" />
-    </RelativeLayout>
+        android:background="@drawable/btn_commit"
+        android:layout_marginBottom="40dp"
+        android:text="@string/send" />
 
 </LinearLayout>

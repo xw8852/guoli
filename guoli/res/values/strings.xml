@@ -85,4 +85,13 @@
 	<string name="answer_1">请登录后，选择“订单”选项或账户“酒店订单”即可看到</string>
 	<string name="ques_2">如何退款？</string>
 	<string name="answer_2">当日预定不可退款，如需退款请过两个工作日后再进行退款</string>
+	<!-- 对话框 -->
+	<string name="dialog_sure">确定</string>
+	<string name="dialog_cancel">取消</string>
+	<string name="dialog_title">提示</string>
+	<string name="dialog_exit_message">你确定要退出应用？</string>
+	<!-- 关于我们 -->
+	<string name="phone">400&#8211;000&#8211;888</string>
+	<string name="service_phone">客服电话:</string>
+	<string name="version">版本号:1.0.1</string>
 </resources>

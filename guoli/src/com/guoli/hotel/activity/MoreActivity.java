@@ -3,6 +3,7 @@ package com.guoli.hotel.activity;
 import com.guoli.hotel.R;
 import com.guoli.hotel.widget.BottomTabbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,6 +16,7 @@ public class MoreActivity extends BaseActivity2 {
         findViewById(R.id.item2).setOnClickListener(mItemListener_1);
         findViewById(R.id.item3).setOnClickListener(mItemListener_2);
         new BottomTabbar(this, 4);
+        showLeftReturnBtn(true, R.string.dialog_exit_message);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class MoreActivity extends BaseActivity2 {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(new Intent(MoreActivity.this, HelpActivity.class));
         }
     };
     /**
@@ -38,7 +40,7 @@ public class MoreActivity extends BaseActivity2 {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(new Intent(MoreActivity.this, FeedBackActivity.class));
         }
     };
     /**
@@ -48,7 +50,7 @@ public class MoreActivity extends BaseActivity2 {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(new Intent(MoreActivity.this, AboutUsActivity.class));
         }
     };
 }

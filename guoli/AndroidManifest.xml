@@ -34,6 +34,15 @@
         <activity 
             android:name=".activity.MoreActivity"
             android:screenOrientation="portrait"></activity>
+        <activity 
+            android:name=".activity.HelpActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity 
+            android:name=".activity.FeedBackActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity 
+            android:name=".activity.AboutUsActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
