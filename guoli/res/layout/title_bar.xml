@@ -16,6 +16,7 @@
         android:gravity="center"
         android:textColor="@color/title_bar_font_color"
         android:background="@drawable/return_btn_bg"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone"/>
     
     <!-- 标题内容 -->
@@ -37,5 +38,6 @@
         android:gravity="center"
         android:textColor="@color/title_bar_font_color"
         android:background="@drawable/return_btn_bg"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone"/>
 </RelativeLayout>

@@ -94,4 +94,27 @@
 	<string name="phone">400&#8211;000&#8211;888</string>
 	<string name="service_phone">客服电话:</string>
 	<string name="version">版本号:1.0.1</string>
+	<!-- 账户 -->
+	<string name="account_title">我的果粒网</string>
+	<string name="nickname">昵称：jsou</string>
+	<string name="modify_password">修改密码</string>
+	<string name="account_order">酒店订单</string>
+	<string name="account_favorite">收藏夹</string>
+	<string name="commonly_used">常用入住人</string>
+	<string name="vantages">积分：200</string>
+	<!-- 登陆 -->
+	<string name="login_user">登录名 : </string>
+	<string name="login_user_tips">请输入昵称或者手机号码</string>
+	<string name="login_password">密    码 :</string>
+	<string name="login_password_tips">6&#8211;12位英文或数字</string>
+	<string name="logon_regest">免费注册&gt;&gt;</string>
+	<string name="login_reset">忘记密码&gt;&gt;</string>
+	<string name="login">登录</string>
+	<string name="login_unregest">非会员直接预订</string>
+	<!-- 忘记密码 -->
+	<string name="register_phone">手  机号  码:</string>
+	<string name="identify_code">输入验证码:</string>
+	<string name="register_phone_tips">请填写绑定的手机号码</string>
+	<string name="identify_code_tips">4位字符</string>
+	<string name="forget_password_tips">重置密码每天限制三次\n收到密码后，请在24小时登陆"我的果粒网"修改。</string>
 </resources>

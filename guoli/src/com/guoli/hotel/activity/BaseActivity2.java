@@ -27,13 +27,13 @@ public abstract class BaseActivity2 extends Activity {
         setContentView(R.layout.base_activity);
         root = (LinearLayout) findViewById(R.id.root);
         if (getContentId() > 0) {
-           getLayoutInflater().inflate(getContentId(),root,true);
+           getLayoutInflater().inflate(getContentId(),root);
         } else {
             root.addView(getContentView());
         }
-        mTitle = (TextView) root.findViewById(R.id.titleBar).findViewById(R.id.title_text);
-        mRightBtn = (TextView) root.findViewById(R.id.titleBar).findViewById(R.id.right_btn);
-        mLeftBtn = (TextView) root.findViewById(R.id.titleBar).findViewById(R.id.left_btn);
+        mTitle = (TextView) root.findViewById(R.id.title_text);
+        mRightBtn = (TextView) root.findViewById(R.id.right_btn);
+        mLeftBtn = (TextView) root.findViewById(R.id.left_btn);
         onAfterCreate(savedInstanceState);
     }
 
@@ -186,6 +186,7 @@ public abstract class BaseActivity2 extends Activity {
     public final void onBackPressed() {
         if (mCancelClickListener != null)
             mCancelClickListener.onClick(null);
+        else super.onBackPressed();
     }
 
     /**

@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.activity.AccountActivity;
+import com.guoli.hotel.activity.LoginActivity;
 import com.guoli.hotel.activity.MoreActivity;
 import com.guoli.hotel.activity.SearchHotelActivity;
 
@@ -90,7 +92,7 @@ public class BottomTabbar {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(v.getContext(), LoginActivity.class);
         }
     };
     /**
@@ -100,7 +102,7 @@ public class BottomTabbar {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(v.getContext(), AccountActivity.class);
         }
     };
     /**
@@ -118,6 +120,17 @@ public class BottomTabbar {
         c.startActivity(new Intent(c, cls));
         if(c instanceof Activity){
             ((Activity)c).finish();
+        }
+    }
+    
+    public void activeIndex(int index){
+        View v=root.getChildAt(index);
+        switch (index) {
+        case 0:onClickListener_1.onClick(v); break;
+        case 1:onClickListener_2.onClick(v); break;
+        case 2:onClickListener_3.onClick(v); break;
+        case 3:onClickListener_4.onClick(v); break;
+        case 4:onClickListener_5.onClick(v); break;
         }
     }
 }

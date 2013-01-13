@@ -43,6 +43,12 @@
         <activity 
             android:name=".activity.AboutUsActivity"
             android:screenOrientation="portrait"></activity>
+        <activity 
+            android:name=".activity.AccountActivity"
+            android:screenOrientation="portrait"></activity>
+         <activity 
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
