@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/type_base_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+
+        <!-- 房间类型 -->
+
+        <TextView
+            android:id="@+id/type_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="豪华房" />
+        <!-- 打折后的价格 -->
+
+        <TextView
+            android:id="@+id/discount_price_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="￥1607" />
+        <!-- 预定按钮 -->
+
+        <TextView
+            android:id="@+id/schedule_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/discount_price_view"
+            android:background="@drawable/btn_schedule_bg"
+            android:gravity="center"
+            android:text="预订"
+            android:textColor="@color/title_bar_font_color" />
+        <!-- 预付按钮 -->
+
+        <TextView
+            android:id="@+id/prepay_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/schedule_btn"
+            android:layout_below="@+id/discount_price_view"
+            android:layout_toLeftOf="@+id/schedule_btn"
+            android:background="@drawable/btn_prepay_bg"
+            android:padding="5dp"
+            android:text="预付"
+            android:textColor="@color/title_bar_font_color" />
+        <!-- 折扣 -->
+
+        <TextView
+            android:id="@+id/discount_desc_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/prepay_view"
+            android:padding="10dp"
+            android:text="折扣" />
+        <!-- 市场价 -->
+
+        <TextView
+            android:id="@+id/market_price_desc_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/discount_desc_view"
+            android:padding="10dp"
+            android:text="市场价" />
+        <!-- 房间类型描述 -->
+
+        <TextView
+            android:id="@+id/type_content_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/type_view"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="大/双  双早" />
+        <!-- 具体折扣 -->
+
+        <TextView
+            android:id="@+id/discount_content_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/discount_desc_view"
+            android:layout_alignRight="@+id/discount_desc_view"
+            android:layout_below="@+id/discount_desc_view"
+            android:layout_toLeftOf="@+id/prepay_view"
+            android:padding="10dp"
+            android:text="4.6" />
+        <!-- 市场价格 -->
+
+        <TextView
+            android:id="@+id/market_price_content_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/market_price_desc_view"
+            android:layout_alignRight="@+id/market_price_desc_view"
+            android:layout_below="@+id/market_price_desc_view"
+            android:layout_toLeftOf="@+id/discount_desc_view"
+            android:padding="10dp"
+            android:text="2300" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E4E4E4" />
+
+    <!-- 房间面积/楼层/可住人数/宽带/床宽等信息的布局 -->
+
+    <LinearLayout
+        android:id="@+id/room_info_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_grey"
+        android:baselineAligned="false"
+        android:visibility="gone" >
+
+        <!-- 左侧部分布局 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <!-- 建筑面积 -->
+
+            <TextView
+                android:id="@+id/dimensions_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="建筑面积 : " />
+
+            <TextView
+                android:id="@+id/dimensions_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/dimensions_view"
+                android:layout_toRightOf="@+id/dimensions_view"
+                android:text="54" />
+            <!-- 备注 -->
+
+            <TextView
+                android:id="@+id/remark_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dimensions_view"
+                android:paddingLeft="10dp"
+                android:text="该房间不可加床" />
+            <!-- 无烟房 -->
+
+            <TextView
+                android:id="@+id/smoke_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/remark_view"
+                android:padding="10dp"
+                android:text="无烟房 : " />
+
+            <TextView
+                android:id="@+id/smoke_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/smoke_view"
+                android:layout_toRightOf="@+id/smoke_view"
+                android:text="可无烟处理" />
+            <!-- 宽带 -->
+
+            <TextView
+                android:id="@+id/network_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/smoke_view"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="宽带 : " />
+
+            <TextView
+                android:id="@+id/network_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/network_view"
+                android:layout_toRightOf="@+id/network_view"
+                android:text="免费" />
+        </RelativeLayout>
+
+        <!-- 右侧部分布局 -->
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <!-- 楼层 -->
+
+            <TextView
+                android:id="@+id/floor_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="楼层: " />
+
+            <TextView
+                android:id="@+id/floor_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/floor_view"
+                android:layout_toRightOf="@+id/floor_view"
+                android:text="10-13、18" />
+            <!-- 床宽 -->
+
+            <TextView
+                android:id="@+id/bed_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/floor_view"
+                android:text="床宽: " />
+
+            <TextView
+                android:id="@+id/bed_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/bed_view"
+                android:layout_toRightOf="@+id/bed_view"
+                android:text="标准床型1.80米" />
+            <!-- 可住人数 -->
+
+            <TextView
+                android:id="@+id/people_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bed_view"
+                android:paddingTop="10dp"
+                android:text="可住人数: " />
+
+            <TextView
+                android:id="@+id/people_content_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/people_view"
+                android:layout_toRightOf="@+id/people_view"
+                android:text="2" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E4E4E4" />
+
+</LinearLayout>

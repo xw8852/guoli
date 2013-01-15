@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- android:shape="" 表示是圆角矩形还是椭圆等等 -->
+    <!-- solid填充颜色 -->
+    <solid android:color="#ffffff" />
+
+    <!-- padding 内容离边界的距离 -->
+    <padding
+        android:bottom="2dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="2dp" />
+
+    <!-- 边框属性 -->
+    <stroke
+        android:width="0.5dp"
+        android:color="#C7C7C7" />
+    <!-- 圆角 -->
+    <corners android:radius="10dp" />
+
+</shape>
