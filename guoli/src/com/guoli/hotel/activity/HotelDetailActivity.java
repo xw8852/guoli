@@ -152,8 +152,7 @@ public class HotelDetailActivity extends UpdateActivity {
             }
             RoomItemView itemView = new RoomItemView(this, info);
             Log.i("DEBUG", "itemView.width=" + itemView.getWidth() + ", itemView.height=" + itemView.getHeight());
-//            mRoomsLayout.addView(itemView);
-            mRoomsLayout.addView(itemView, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+            mRoomsLayout.addView(itemView);
         }
     }
 }

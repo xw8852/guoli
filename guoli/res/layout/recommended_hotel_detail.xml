@@ -1,8 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-</LinearLayout>
+    <!-- 标题栏 -->
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title_bar" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <RelativeLayout
+                android:id="@+id/base_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_bar"
+                android:layout_marginTop="10dp" >
+
+                <!-- 酒店名称 -->
+
+                <TextView
+                    android:id="@+id/name_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="上海香格里拉大酒店" />
+                <!-- 星级 -->
+
+                <RatingBar
+                    android:id="@+id/star_level"
+                    style="@style/ratingbar_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/name_view"
+                    android:layout_marginTop="8dp"
+                    android:numStars="0"
+                    android:rating="0" />
+                <!-- 收藏按钮 -->
+
+                <TextView
+                    android:id="@+id/collection_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/star_level"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_btn_collection"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="15dp"
+                    android:text="@string/collect"
+                    android:textColor="@color/title_bar_font_color" />
+                <!-- 酒店图片 -->
+
+                <FrameLayout
+                    android:id="@+id/pic_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" >
+
+                    <ImageView
+                        android:id="@+id/pic_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/hotel_default" />
+
+                    <TextView
+                        android:id="@+id/pic_count_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom"
+                        android:background="#30000000"
+                        android:gravity="center"
+                        android:text="8张"
+                        android:textColor="@color/title_bar_font_color" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <!-- 酒店地址/历史 -->
+
+            <LinearLayout
+                android:id="@+id/address_and_history_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/base_layout"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_rect_grey"
+                android:orientation="vertical" >
+
+                <!-- 酒店地址 -->
+
+                <RelativeLayout
+                    android:id="@+id/address_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/mark_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mark_icon" />
+
+                    <TextView
+                        android:id="@+id/address_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/mark_view"
+                        android:text="浦东新区陆家嘴富城路332号" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:drawableLeft="@drawable/back_light" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E4E4E4" />
+                <!-- 酒店历史 -->
+
+                <RelativeLayout
+                    android:id="@+id/history_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@id/mark_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mark_icon"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/history_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/mark_view"
+                        android:text="1998年开业 2008年装修" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:drawableLeft="@drawable/back_light" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- 入住/离店时间 -->
+
+            <RelativeLayout
+                android:id="@+id/occupancy_and_leave_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address_and_history_layout"
+                android:background="@drawable/shape_round_rect_grey"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" >
+
+                <ImageView
+                    android:id="@id/mark_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mark_icon"
+                    android:visibility="invisible" />
+                <!-- 入住日期 -->
+
+                <TextView
+                    android:id="@+id/occupancy_date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/mark_view"
+                    android:text="入住 : 2013-01-11" />
+                <!-- 离店日期 -->
+
+                <TextView
+                    android:id="@+id/leave_date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/occupancy_date_view"
+                    android:paddingLeft="10dp"
+                    android:text="离开 : 2013-01-11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </RelativeLayout>
+            <!-- 房型介绍 -->
+
+            <LinearLayout
+                android:id="@+id/room_type_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/occupancy_and_leave_layout"
+                android:background="@drawable/shape_round_rect_grey">
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

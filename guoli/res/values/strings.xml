@@ -117,4 +117,7 @@
 	<string name="register_phone_tips">请填写绑定的手机号码</string>
 	<string name="identify_code_tips">4位字符</string>
 	<string name="forget_password_tips">重置密码每天限制三次\n收到密码后，请在24小时登陆"我的果粒网"修改。</string>
+	<!-- 酒店详细 -->
+    <string name="collect">收藏</string>
+    <string name="hotel_detail">酒店详情</string>
 </resources>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
-     <!-- android:shape="" 表示是圆角矩形还是椭圆等�?-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <!-- android:shape="" 表示是圆角矩形还是椭圆等�? -->
     <!-- solid填充颜色 -->
     <solid android:color="@android:color/transparent" />
 
- 
-
-    <!-- 边框属�? -->
+    <!-- 边框属�? -->
     <stroke
         android:width="1dp"
         android:color="#BEBEBE" />
     <!-- 圆角 -->
     <corners android:radius="8dp" />
+
+</shape>

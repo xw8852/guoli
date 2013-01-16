@@ -138,8 +138,26 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
-        
+        if (mListAdapter == null) {
+            return;
+        }
+        HotelInfo info = mListAdapter.getItem(position);
+        if (info == null) {
+            return;
+        }
+        enterHotelDetailActivity();
     }
 
+    /**
+     * 
+     * enterHotelDetailActivity:跳转到酒店详细页面. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void enterHotelDetailActivity(){
+        Intent intent = new Intent();
+        intent.setClass(this, HotelDetailActivity.class);
+        startActivity(intent);
+    }
 }
 
