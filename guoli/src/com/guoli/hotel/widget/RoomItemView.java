@@ -11,6 +11,7 @@
 package com.guoli.hotel.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +20,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.activity.LoginActivity;
 import com.guoli.hotel.bean.RoomInfo;
 
 /**
@@ -67,6 +70,10 @@ public class RoomItemView extends View implements OnClickListener {
         }
         baseLayout.setOnClickListener(this);
         mRoomInfoLayout = (LinearLayout) view.findViewById(R.id.room_info_type);
+        TextView scheduleBtn = (TextView) view.findViewById(R.id.schedule_btn);
+        if (scheduleBtn != null) {
+            scheduleBtn.setOnClickListener(this);
+        }
         
     }
 
@@ -84,10 +91,24 @@ public class RoomItemView extends View implements OnClickListener {
                 mRoomInfoLayout.setVisibility(View.GONE);
             }
             break;
-
+        case R.id.schedule_btn:
+            enterLoginActivity();
+            break;
         default:
             break;
         }
+    }
+
+    /**
+     * 
+     * enterLoginActivity:跳转到登陆页面. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void enterLoginActivity() {
+        Intent intent = new Intent();
+        intent.setClass(mCtx, LoginActivity.class);
+        mCtx.startActivity(intent);
     }
 }
 
