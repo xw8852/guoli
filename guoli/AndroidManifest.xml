@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -49,8 +51,9 @@
          <activity 
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"></activity>
+         <activity 
+            android:name=".activity.EditOrderActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
