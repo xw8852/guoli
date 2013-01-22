@@ -49,6 +49,15 @@
          <activity 
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"></activity>
+         <activity 
+            android:name=".activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait"></activity>
+         <activity 
+            android:name=".activity.HotelDetailActivity"
+            android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

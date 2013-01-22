@@ -25,15 +25,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/forget_phone"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="@string/forget_phone_tips"
+                android:hint="@string/register_phone_tips"
                 android:singleLine="true" />
-
         </LinearLayout>
 
         <Button
@@ -42,9 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/linearlayout1"
             android:layout_alignParentRight="true"
+            android:textColor="@android:color/white"
             android:layout_marginTop="@dimen/default_margin"
             android:background="@drawable/identify_tips"
-            android:textColor="@android:color/white"
             android:padding="@dimen/small_margin"
             android:text="@string/get_indentify" />
 
@@ -66,17 +65,16 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/identify_code"
+                android:text="@string/regist_password"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
-                android:id="@+id/identify"
+                android:id="@+id/pwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="@string/identify_code_tips"
+                android:hint="@string/register_password_tips"
                 android:singleLine="true" />
-
         </LinearLayout>
 
         <View
@@ -86,17 +84,58 @@
             android:layout_below="@+id/linearlayout2"
             android:background="#BEBEBE" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearlayout3"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/title_bar_height"
             android:layout_below="@+id/view2"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="@string/forget_password_tips"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multi_password"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/multi_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/register_password_tips"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@+id/linearlayout3"
+            android:background="#BEBEBE" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout4"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:layout_below="@+id/view3"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/identify_code"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/identify"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/identify_code_tips"
+                android:singleLine="true" />
+        </LinearLayout>
     </RelativeLayout>
-
+
     <Button
         android:id="@+id/send"
         android:layout_width="fill_parent"
