@@ -52,7 +52,17 @@
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"></activity>
          <activity 
+<<<<<<< HEAD
             android:name=".activity.EditOrderActivity"
+=======
+            android:name=".activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait"></activity>
+         <activity 
+            android:name=".activity.HotelDetailActivity"
+            android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.RegisterActivity"
+>>>>>>> login_xw
             android:screenOrientation="portrait"></activity>
     </application>
 

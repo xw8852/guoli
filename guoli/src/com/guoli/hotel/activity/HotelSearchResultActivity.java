@@ -13,10 +13,6 @@ package com.guoli.hotel.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.adapter.HotelAdapter;
-import com.guoli.hotel.bean.HotelInfo;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +20,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.adapter.HotelAdapter;
+import com.guoli.hotel.bean.HotelInfo;
 
 /**
  * ClassName:HotelSearchResultActivity <br/>
