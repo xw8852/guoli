@@ -4,4 +4,5 @@
     <dimen name="default_margin">10dip</dimen>
     <dimen name="small_margin">5dip</dimen>
     <dimen name="large_margin">15dip</dimen>
+    <dimen name="max_margin">20dip</dimen>
 </resources>
