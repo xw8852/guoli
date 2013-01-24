@@ -162,4 +162,6 @@
     <string name="hotel_location_map">酒店地图</string>
     <!-- 酒店信息 -->
     <string name="hotel_info">酒店信息</string>
+    <!-- 选择日期 -->
+    <string name="date_select">选择日期</string>
 </resources>

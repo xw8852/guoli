@@ -124,7 +124,9 @@ public class HotelDetailActivity extends UpdateActivity {
             startActivity(intent);
             break;
         case R.id.occupancy_and_leave_layout:
-
+            intent = new Intent();
+            intent.setClass(this, DateSelectActivity.class);
+            startActivity(intent);
             break;
 
         default:
