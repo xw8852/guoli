@@ -13,6 +13,7 @@ package com.guoli.hotel.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,7 +113,9 @@ public class HotelDetailActivity extends UpdateActivity {
 
             break;
         case R.id.address_layout:
-
+            Intent intent = new Intent();
+            intent.setClass(this, HotelLocationActivity.class);
+            startActivity(intent);
             break;
         case R.id.history_layout:
 
