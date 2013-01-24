@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_round_rect_grey"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/hotelAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="上海浦东香格里拉大酒店" />
+
+                <TextView
+                    android:id="@+id/hotelPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="021-55555555" />
+            </RelativeLayout>
+
+            <include layout="@layout/line_grey" />
+            <!-- 特别提示 -->
+
+            <TextView
+                android:id="@+id/hotelNotice"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="特别提示内容(三部分拼接而成)" />
+
+            <include layout="@layout/line_grey" />
+            <!-- 位置交通 -->
+
+            <TextView
+                android:id="@+id/hotelTraffic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="位置交通" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/trafficStation1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="上海火车南站" />
+
+                <TextView
+                    android:id="@+id/trafficStationDistance1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="17.01公里" />
+
+                <TextView
+                    android:id="@+id/trafficStation2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/trafficStation1"
+                    android:text="上海火车站" />
+
+                <TextView
+                    android:id="@+id/trafficStationDistance2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/trafficStationDistance1"
+                    android:text="23.01公里" />
+
+                <TextView
+                    android:id="@+id/trafficStation3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/trafficStation2"
+                    android:text="上海浦东国际机场" />
+
+                <TextView
+                    android:id="@+id/trafficStationDistance3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/trafficStationDistance2"
+                    android:text="12.01公里" />
+
+                <TextView
+                    android:id="@+id/trafficStation4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/trafficStation3"
+                    android:text="上海虹桥火车站" />
+
+                <TextView
+                    android:id="@+id/trafficStationDistance4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/trafficStationDistance3"
+                    android:text="35.01公里" />
+
+                <TextView
+                    android:id="@+id/trafficStation5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/trafficStation4"
+                    android:text="人民广场" />
+
+                <TextView
+                    android:id="@+id/trafficStationDistance5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/trafficStationDistance4"
+                    android:text="22.01公里" />
+            </RelativeLayout>
+
+            <include layout="@layout/line_grey" />
+            <!-- 酒店信息 -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/hotelInfo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="酒店信息" />
+                <!-- 附加选项 -->
+
+                <TextView
+                    android:id="@+id/hotelExtra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hotelInfo"
+                    android:paddingRight="10dp"
+                    android:text="附加选项:" />
+
+                <TextView
+                    android:id="@+id/hotelExtraDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/hotelExtra"
+                    android:layout_toRightOf="@+id/hotelExtra"
+                    android:text="自助餐:RMB677" />
+                <!-- 餐饮设置 -->
+
+                <TextView
+                    android:id="@+id/hotelCater"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hotelExtraDesc"
+                    android:paddingRight="10dp"
+                    android:text="餐饮设置:" />
+
+                <TextView
+                    android:id="@+id/hotelCaterDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/hotelCater"
+                    android:layout_toRightOf="@+id/hotelCater"
+                    android:text="KTV、中餐厅、收费停车场" />
+                <!-- 娱乐健身 -->
+
+                <TextView
+                    android:id="@+id/hotelAmusument"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hotelCaterDesc"
+                    android:paddingRight="10dp"
+                    android:text="娱乐健身:" />
+
+                <TextView
+                    android:id="@+id/hotelAmusumentDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/hotelAmusument"
+                    android:layout_toRightOf="@+id/hotelAmusument"
+                    android:text="桑拿浴室、游泳池" />
+                <!-- 客房设施 -->
+
+                <TextView
+                    android:id="@+id/hotelFacilities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hotelAmusumentDesc"
+                    android:paddingRight="10dp"
+                    android:text="客房设施:" />
+
+                <TextView
+                    android:id="@+id/hotelFacilitiesDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/hotelFacilities"
+                    android:layout_toRightOf="@+id/hotelFacilities"
+                    android:text="24小时热水、吹风机、保险箱、中央空调、国内长途电话、国际长途电话" />
+                <!-- 可接受信用卡 -->
+
+                <TextView
+                    android:id="@+id/creditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/hotelFacilitiesDesc"
+                    android:paddingRight="10dp"
+                    android:text="可接受信用卡:" />
+
+                <TextView
+                    android:id="@+id/creditCardDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/creditCard"
+                    android:layout_toRightOf="@+id/creditCard"
+                    android:text="银联卡、VISA" />
+            </RelativeLayout>
+
+            <include layout="@layout/line_grey" />
+            <!-- 酒店介绍 -->
+
+            <TextView
+                android:id="@+id/hotelIntroduction"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="酒店介绍的具体内容....." />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

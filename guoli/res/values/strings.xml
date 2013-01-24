@@ -160,4 +160,6 @@
 
     <!-- 酒店位置地图 -->
     <string name="hotel_location_map">酒店地图</string>
+    <!-- 酒店信息 -->
+    <string name="hotel_info">酒店信息</string>
 </resources>

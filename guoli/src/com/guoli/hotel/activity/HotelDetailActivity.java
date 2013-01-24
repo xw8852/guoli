@@ -105,6 +105,7 @@ public class HotelDetailActivity extends UpdateActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        Intent intent = null;
         switch (v.getId()) {
         case R.id.collection_btn:
 
@@ -113,12 +114,14 @@ public class HotelDetailActivity extends UpdateActivity {
 
             break;
         case R.id.address_layout:
-            Intent intent = new Intent();
+            intent = new Intent();
             intent.setClass(this, HotelLocationActivity.class);
             startActivity(intent);
             break;
         case R.id.history_layout:
-
+            intent = new Intent();
+            intent.setClass(this, HotelInfoActivity.class);
+            startActivity(intent);
             break;
         case R.id.occupancy_and_leave_layout:
 
