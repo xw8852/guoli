@@ -16,7 +16,7 @@ import com.guoli.hotel.R;
 
 /**
  * ClassName:DateSelectActivity <br/>
- * @Description:
+ * @Description:    选择日期页面
  * Date:     2013-1-24 下午11:16:59 <br/>
  * @author   maple
  * @version  
@@ -24,6 +24,16 @@ import com.guoli.hotel.R;
  * @see 	 
  */
 public class DateSelectActivity extends BaseActivity {
+    
+    public static final String KEY_OCCUPANCY_DATE = "occupancyDate";
+    /**入住时间跳转过来的标记*/
+    public static final int FLAG_OCCUPANCY = 1;
+    /**离店时间跳转过来的标记*/
+    public static final int FLAG_LEAVE = 2;
+    
+    public static final String KEY_FLAG = "flag";
+    
+    private int mFromFlag;
     
     public DateSelectActivity(){
         mLayoutId = R.layout.select_date;
@@ -33,6 +43,7 @@ public class DateSelectActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        mFromFlag = getIntent().getIntExtra(KEY_FLAG, 0);
         showLeftBtn();
     }
 

@@ -16,10 +16,19 @@ import com.guoli.hotel.widget.BottomTabbar;
 
 public class SearchHotelActivity extends BaseActivity implements OnItemSelectedListener {
     
-    /**城市选择页面标识*/
+    /**城市标识*/
     public static final int PAGE_CITY = 0;
+    /**入住时间标识*/
+    public static final int PAGE_OCCUPANCY_DATE = 1;
+    /**离店时间标识*/
+    public static final int PAGE_LEAVE_DATE = 2;
+    
     /**入住城市*/
     private TextView mCityView;
+    /**入住日期*/
+    private TextView mOccupancyView;
+    /**离店日期*/
+    private TextView mLeaveyView;
     
     public SearchHotelActivity() {
         mLayoutId = R.layout.search_hotel;
@@ -43,16 +52,16 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
 
     @Override
     protected void findViews() {
-        Button leaveBtn = (Button) findViewById(R.id.leave_date_btn);
+        mLeaveyView = (TextView) findViewById(R.id.leave_date_btn);
         TextView searchBtn = (TextView) findViewById(R.id.search_btn);
-        Button occupancyBtn = (Button) findViewById(R.id.occupancy_date_btn);
+        mOccupancyView = (TextView) findViewById(R.id.occupancy_date_btn);
         mCityView = (TextView) findViewById(R.id.cityName);
         Spinner priceSpinner = (Spinner) findViewById(R.id.price_list);
         Spinner starSpinner = (Spinner) findViewById(R.id.star_list);
         Spinner areaSpinner = (Spinner) findViewById(R.id.area_list);
         
-        occupancyBtn.setOnClickListener(this);
-        leaveBtn.setOnClickListener(this);
+        mOccupancyView.setOnClickListener(this);
+        mLeaveyView.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
         mCityView.setOnClickListener(this);
         starSpinner.setOnItemSelectedListener(this);
@@ -72,9 +81,17 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
             break;
         case R.id.occupancy_date_btn:
             //入住日期
+            intent = new Intent();
+            intent.setClass(this, DateSelectActivity.class);
+            intent.putExtra(DateSelectActivity.KEY_FLAG, DateSelectActivity.FLAG_OCCUPANCY);
+            startActivityForResult(intent, PAGE_OCCUPANCY_DATE);
             break;
         case R.id.leave_date_btn:
             //离店时间
+            intent = new Intent();
+            intent.setClass(this, DateSelectActivity.class);
+            intent.putExtra(DateSelectActivity.KEY_FLAG, DateSelectActivity.FLAG_LEAVE);
+            startActivityForResult(intent, PAGE_OCCUPANCY_DATE);
             break;
         case R.id.price_list:
             //价格
@@ -123,12 +140,29 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         switch (resultCode) {
         case PAGE_CITY:
             String cityName = data == null ? "" : data.getStringExtra(CitySelectActivity.KEY_CITY_NAME);
-            if (mCityView != null && !TextUtils.isEmpty(cityName)) {
-                mCityView.setText(cityName);
-            }
+            setViewText(mCityView, cityName);
+            break;
+        case PAGE_OCCUPANCY_DATE:
+            String occupancyDate = data == null ? "" : data.getStringExtra(DateSelectActivity.KEY_OCCUPANCY_DATE);
+            setViewText(mOccupancyView, occupancyDate);
             break;
         default:
             break;
         }
+    }
+    
+    /**
+     * 
+     * setViewText:设置textView的值. <br/>
+     * @author maple
+     * @param view
+     * @param text
+     * @since JDK 1.6
+     */
+    private void setViewText(TextView view, String text){
+        if (view == null) {
+            return;
+        }
+        view.setText(text == null ? "" : text);
     }
 }
