@@ -161,6 +161,12 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
             break;
         }
     }
+    
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     /**
      * 

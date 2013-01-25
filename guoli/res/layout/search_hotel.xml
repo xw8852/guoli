@@ -40,13 +40,12 @@
                     android:text="@string/occupancy_city"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Spinner
-                    android:id="@+id/city_list"
+                <TextView
+                    android:id="@+id/cityName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="2"
-                    android:background="#00000000"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView

@@ -2,6 +2,7 @@ package com.guoli.hotel.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,11 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.widget.BottomTabbar;
 
 public class SearchHotelActivity extends BaseActivity implements OnItemSelectedListener {
+    
+    /**城市选择页面标识*/
+    public static final int PAGE_CITY = 0;
+    /**入住城市*/
+    private TextView mCityView;
     
     public SearchHotelActivity() {
         mLayoutId = R.layout.search_hotel;
@@ -40,7 +46,7 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         Button leaveBtn = (Button) findViewById(R.id.leave_date_btn);
         TextView searchBtn = (TextView) findViewById(R.id.search_btn);
         Button occupancyBtn = (Button) findViewById(R.id.occupancy_date_btn);
-        Spinner citySpinner = (Spinner) findViewById(R.id.city_list);
+        mCityView = (TextView) findViewById(R.id.cityName);
         Spinner priceSpinner = (Spinner) findViewById(R.id.price_list);
         Spinner starSpinner = (Spinner) findViewById(R.id.star_list);
         Spinner areaSpinner = (Spinner) findViewById(R.id.area_list);
@@ -48,7 +54,7 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         occupancyBtn.setOnClickListener(this);
         leaveBtn.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
-        citySpinner.setOnItemSelectedListener(this);
+        mCityView.setOnClickListener(this);
         starSpinner.setOnItemSelectedListener(this);
         areaSpinner.setOnItemSelectedListener(this);
         priceSpinner.setOnItemSelectedListener(this);
@@ -56,9 +62,13 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
 
     public void onClick(View v) {
         super.onClick(v);
+        Intent intent = null;
         switch (v.getId()) {
-        case R.id.city_list:
+        case R.id.cityName:
             //入住城市
+            intent = new Intent();
+            intent.setClass(this, CitySelectActivity.class);
+            startActivityForResult(intent, PAGE_CITY);
             break;
         case R.id.occupancy_date_btn:
             //入住日期
@@ -82,7 +92,6 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         default:
             break;
         }
-        
     }
     
     /**
@@ -107,4 +116,19 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         
     }
 
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+        case PAGE_CITY:
+            String cityName = data == null ? "" : data.getStringExtra(CitySelectActivity.KEY_CITY_NAME);
+            if (mCityView != null && !TextUtils.isEmpty(cityName)) {
+                mCityView.setText(cityName);
+            }
+            break;
+        default:
+            break;
+        }
+    }
 }
