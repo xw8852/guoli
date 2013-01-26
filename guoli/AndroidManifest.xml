@@ -90,6 +90,9 @@
           <activity 
             android:name=".activity.AreaListActivity"
             android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.HotelListActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

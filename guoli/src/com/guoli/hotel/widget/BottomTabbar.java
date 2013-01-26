@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.AccountActivity;
+import com.guoli.hotel.activity.HotelListActivity;
 import com.guoli.hotel.activity.LoginActivity;
 import com.guoli.hotel.activity.MoreActivity;
 import com.guoli.hotel.activity.SearchHotelActivity;
@@ -82,7 +83,7 @@ public class BottomTabbar {
         
         @Override
         public void onClick(View v) {
-            
+            startActivity(v.getContext(), HotelListActivity.class);
         }
     };
     /**

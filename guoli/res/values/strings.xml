@@ -175,4 +175,6 @@
     <string name="hotel_area">位置区域</string>
     <string name="hotel_area_admin">行政区</string>
     <string name="hotel_area_shopping">商圈</string>
+    <!-- 特别推荐 -->
+    <string name="recommend">特别推荐</string>
 </resources>
