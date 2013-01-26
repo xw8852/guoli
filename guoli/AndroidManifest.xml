@@ -87,6 +87,9 @@
           <activity 
             android:name=".activity.LevelListActivity"
             android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.AreaListActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

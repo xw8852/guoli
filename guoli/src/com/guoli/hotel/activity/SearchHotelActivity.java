@@ -117,6 +117,9 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
             break;
         case R.id.areaBtn:
             // 区域
+            intent = new Intent();
+            intent.setClass(this, AreaListActivity.class);
+            startActivityForResult(intent, PAGE_AREA);
             break;
         case R.id.search_btn:
             // 搜索
@@ -174,7 +177,8 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
             setViewText(mLevelView, level);
             break;
         case PAGE_AREA:
-
+            String area = data == null ? "" : data.getStringExtra(AreaListActivity.KEY_AREA);
+            setViewText(mAreaView, area);
             break;
 
         default:

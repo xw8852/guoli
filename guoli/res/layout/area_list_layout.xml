@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/areaAdminRadioBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_area"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/hotel_area_admin" />
+
+        <RadioButton
+            android:id="@+id/areaShoppingRadioBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_area"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/hotel_area_shopping" />
+    </RadioGroup>
+
+    <ListView
+        android:id="@+id/areaListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="@android:color/transparent" />
+
+</LinearLayout>

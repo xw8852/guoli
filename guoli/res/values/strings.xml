@@ -173,4 +173,6 @@
     <string name="hotel_level">星级</string>
     <!-- 酒店搜索-行政区域页面 -->
     <string name="hotel_area">位置区域</string>
+    <string name="hotel_area_admin">行政区</string>
+    <string name="hotel_area_shopping">商圈</string>
 </resources>
