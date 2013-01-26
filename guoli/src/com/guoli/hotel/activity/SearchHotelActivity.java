@@ -2,12 +2,10 @@ package com.guoli.hotel.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -82,16 +80,14 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         case R.id.occupancy_date_btn:
             //入住日期
             intent = new Intent();
-            intent.setClass(this, DateSelectActivity.class);
-            intent.putExtra(DateSelectActivity.KEY_FLAG, DateSelectActivity.FLAG_OCCUPANCY);
+            intent.setClass(this, OccupancyDateSelectActivity.class);
             startActivityForResult(intent, PAGE_OCCUPANCY_DATE);
             break;
         case R.id.leave_date_btn:
             //离店时间
             intent = new Intent();
-            intent.setClass(this, DateSelectActivity.class);
-            intent.putExtra(DateSelectActivity.KEY_FLAG, DateSelectActivity.FLAG_LEAVE);
-            startActivityForResult(intent, PAGE_OCCUPANCY_DATE);
+            intent.setClass(this, LeaveDateSelectActivity.class);
+            startActivityForResult(intent, PAGE_LEAVE_DATE);
             break;
         case R.id.price_list:
             //价格
