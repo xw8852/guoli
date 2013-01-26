@@ -73,6 +73,12 @@
             android:name=".activity.DateSelectActivity"
             android:screenOrientation="portrait"></activity>
           <activity 
+            android:name=".activity.OccupancyDateSelectActivity"
+            android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.LeaveDateSelectActivity"
+            android:screenOrientation="portrait"></activity>
+          <activity 
             android:name=".activity.CitySelectActivity"
             android:screenOrientation="portrait"></activity>
     </application>
