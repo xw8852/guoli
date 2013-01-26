@@ -111,6 +111,9 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
             break;
         case R.id.starBtn:
             // 星级
+            intent = new Intent();
+            intent.setClass(this, LevelListActivity.class);
+            startActivityForResult(intent, PAGE_LEVEL);
             break;
         case R.id.areaBtn:
             // 区域
@@ -167,7 +170,8 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
             setViewText(mPriceView, price);
             break;
         case PAGE_LEVEL:
-
+            String level = data == null ? "" : data.getStringExtra(LevelListActivity.KEY_LEVEL);
+            setViewText(mLevelView, level);
             break;
         case PAGE_AREA:
 

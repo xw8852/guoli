@@ -39,7 +39,7 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     
     public PriceListActivity(){
         mLayoutId = R.layout.price_list_layout;
-        mTitleTextId = R.string.hotel;
+        mTitleTextId = R.string.hotel_price;
     }
     
     @Override
