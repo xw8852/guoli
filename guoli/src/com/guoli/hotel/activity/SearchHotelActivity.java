@@ -80,6 +80,11 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
         mAreaView.setOnClickListener(this);
         mPriceView.setOnClickListener(this);
     }
+    
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
+    }
 
     public void onClick(View v) {
         super.onClick(v);

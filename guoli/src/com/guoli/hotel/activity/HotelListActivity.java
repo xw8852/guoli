@@ -15,7 +15,6 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -71,6 +70,11 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
             return;
         }
         enterHotelDetailActivity();
+    }
+    
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
     }
     
     /**

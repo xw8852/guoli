@@ -11,13 +11,15 @@
 package com.guoli.hotel.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.utils.DialogUtils;
 
 /**
  * ClassName:BaseDetailActivity <br/>
@@ -166,6 +168,24 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+    
+    private android.content.DialogInterface.OnClickListener exitListener
+        = new android.content.DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            finish();
+        }
+    }; 
+    
+    /**
+     * 
+     * showExitDialog:弹出退出应用程序的提示框. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    protected void showExitDialog(){
+        DialogUtils.showDialog(R.string.dialog_title, R.string.dialog_exit_message, exitListener, this);
     }
 
     /**
