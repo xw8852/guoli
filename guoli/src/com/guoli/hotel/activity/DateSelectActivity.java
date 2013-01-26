@@ -25,7 +25,7 @@ import com.guoli.hotel.R;
  */
 public abstract class DateSelectActivity extends BaseActivity {
 
-    public static final String KEY_OCCUPANCY_DATE = "occupancyDate";
+    public static final String KEY_DATE = "occupancyDate";
 
     public DateSelectActivity() {
         mLayoutId = R.layout.select_date;

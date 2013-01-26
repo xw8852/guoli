@@ -81,6 +81,9 @@
           <activity 
             android:name=".activity.CitySelectActivity"
             android:screenOrientation="portrait"></activity>
+          <activity 
+            android:name=".activity.PriceListActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
