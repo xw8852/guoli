@@ -135,7 +135,7 @@
                 android:singleLine="true" />
         </LinearLayout>
     </RelativeLayout>
-
+
     <Button
         android:id="@+id/send"
         android:layout_width="fill_parent"
@@ -146,6 +146,6 @@
         android:layout_marginRight="@dimen/small_margin"
         android:layout_marginTop="@dimen/large_margin"
         android:background="@drawable/btn_commit"
-        android:text="@string/send_password" />
+        android:text="@string/register_send" />
 
 </LinearLayout>

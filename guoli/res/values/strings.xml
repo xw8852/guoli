@@ -112,6 +112,7 @@
     <string name="login_reset">忘记密码&gt;&gt;</string>
     <string name="login">登录</string>
     <string name="login_unregest">非会员直接预订</string>
+    <string name="register_send">确认提交</string>
     <!-- 忘记密码 -->
     <string name="forget_phone">手机号码&#160;:&#160;</string>
     <string name="identify_code">输入验证码&#160;:&#160;</string>
@@ -125,6 +126,17 @@
     <string name="regist_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
     <string name="register_password_tips">6&#8211;12位字符</string>
     <string name="register_phone_tips">请输入手机号码作为登录名</string>
+    <!-- 订单查询 非登陆 -->
+    <string name="identify_code_2">验&#160;证&#160;码&#160;:&#160;</string>
+    <string name="identify_code_tips_2">请输入验证码</string>
+    <string name="phone_tips_2">请输入手机号码</string>
+    <string name="order_search">查询</string>
+    <string name="order_title_search">订单查询</string>
+    <!-- 酒店列表 -->
+    <string name="order_list_timedate">%1$s至\n%2$s</string>
+    <string name="order_list_timedate_0">2012&#8211;01&#8211;02至\n2012&#8211;03&#8211;04</string>
+    <string name="order_list_timedate_1">2012&#8211;01&#8211;02至2012&#8211;03&#8211;04</string>
+
     <!-- 酒店详细 -->
     <string name="collect">收藏</string>
     <string name="hotel_detail">酒店详情</string>
@@ -177,4 +189,18 @@
     <string name="hotel_area_shopping">商圈</string>
     <!-- 特别推荐 -->
     <string name="recommend">特别推荐</string>
+    <!-- 订单详情 -->
+    <string name="detail_order_state">订单状态&#160;:&#160;</string>
+    <string name="detail_order_number">订单编号&#160;:&#160;</string>
+    <string name="detail_order_total">订单总额&#160;:&#160;</string>
+    <string name="detail_hotal_name">酒店名称&#160;:&#160;</string>
+    <string name="detail_hotal_address">酒店地址&#160;:&#160;</string>
+    <string name="detail_hotal_phone">酒店电话&#160;:&#160;</string>
+    <string name="detail_hotal_type">入住房型&#160;:&#160;</string>
+    <string name="detail_hotal_book">预定间树&#160;:&#160;</string>
+    <string name="detail_hotal_date">住店日期&#160;:&#160;</string>
+    <string name="detail_hotal_people">入住人&#160;:&#160;</string>
+    <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
+    <string name="detail_hotal_contact_phone">联系电话&#160;:&#160;</string>
+	<string name="detail_hotal_cancel">取消订单</string>
 </resources>
