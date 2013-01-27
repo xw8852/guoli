@@ -99,6 +99,15 @@
            <activity 
               android:name=".activity.OrderHotelListAcivity"
               android:screenOrientation="portrait"></activity>
+            <activity 
+              android:name=".activity.FavoriteActivity"
+              android:screenOrientation="portrait"></activity>
+             <activity 
+              android:name=".activity.EditUserInfoActivity"
+              android:screenOrientation="portrait"></activity>
+              <activity 
+              android:name=".activity.EditPasswordActivity"
+              android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
