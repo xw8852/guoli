@@ -105,7 +105,6 @@
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:background="@drawable/shape_round_rect_grey"
-        android:drawableRight="@drawable/back_light"
         android:gravity="center_vertical|left"
         android:paddingBottom="@dimen/default_margin"
         android:paddingLeft="@dimen/large_margin"
