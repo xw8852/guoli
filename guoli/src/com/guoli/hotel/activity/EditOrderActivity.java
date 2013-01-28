@@ -10,6 +10,13 @@
 
 package com.guoli.hotel.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
 import com.guoli.hotel.R;
 
 /**
@@ -21,18 +28,104 @@ import com.guoli.hotel.R;
  * @since    JDK 1.6
  * @see 	 
  */
-public class EditOrderActivity extends BaseActivity {
+public class EditOrderActivity extends BaseActivity implements OnCheckedChangeListener {
+    
+    /**房间数*/
+    private TextView mRoomCountView;
+    /**更多要求*/
+    private TextView mMoreView;
+    /**发票抬头*/
+    private RadioGroup mRadioGroup;
+    
+    public static final int PAGE_ROOM_COUNT = 0;
     
     public EditOrderActivity(){
         mTitleTextId = R.string.order_edit_title;
         mLayoutId = R.layout.edit_order;
     }
-
+    
     @Override
-    protected void findViews() {
+    protected void onCreate(Bundle arg0) {
+        super.onCreate(arg0);
         showLeftBtn();
         showRightBtn();
     }
 
+    @Override
+    protected void findViews() {
+        TextView mRoomCountView = (TextView) findViewById(R.id.room_count_content_view);
+        mRoomCountView.setOnClickListener(this);
+        mMoreView = (TextView) findViewById(R.id.more_require_content_view);
+        mMoreView.setOnClickListener(this);
+        mRadioGroup = (RadioGroup) findViewById(R.id.invoice_potion_group);
+        mRadioGroup.setOnCheckedChangeListener(this);
+        //订单总额详细
+        TextView orderCostView = (TextView) findViewById(R.id.orderCostDetailView);
+        orderCostView.setOnClickListener(this);
+        TextView addUserBtn = (TextView) findViewById(R.id.add_btn);
+        addUserBtn.setOnClickListener(this);
+        TextView commitBtn = (TextView) findViewById(R.id.commitBtn);
+        commitBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        
+    }
+    
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        Intent intent = null;
+        switch (v.getId()) {
+        case R.id.room_count_content_view:
+            intent = new Intent();
+            intent.setClass(this, HotelCountActivity.class);
+            startActivityForResult(intent, PAGE_ROOM_COUNT);
+            break;
+        case R.id.more_require_content_view:
+            
+            break;
+        case R.id.orderCostDetailView:
+            
+            break;
+        case R.id.add_btn:
+            
+            break;
+        case R.id.commitBtn:
+            
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+        case PAGE_ROOM_COUNT:
+            String area = data == null ? "" : data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
+            setViewText(mRoomCountView, area);
+            break;
+        default:
+            break;
+        }
+    }
+    
+    /**
+     * 
+     * setViewText:设置textView的值. <br/>
+     * 
+     * @author maple
+     * @param view
+     * @param text
+     * @since JDK 1.6
+     */
+    private void setViewText(TextView view, String text) {
+        if (view == null) { return; }
+        view.setText(text == null ? "" : text);
+    }
 }
 

@@ -108,6 +108,9 @@
               <activity 
               android:name=".activity.EditPasswordActivity"
               android:screenOrientation="portrait"></activity>
+              <activity 
+              android:name=".activity.HotelCountActivity"
+              android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
