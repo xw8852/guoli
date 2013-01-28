@@ -31,7 +31,6 @@ public class BigPicActivity extends BaseActivity2 {
             views.add(view);
         }
         mPager.setAdapter(new PicAdapter());
-        mPager.setCurrentItem(index);
         mPager.setOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
@@ -49,6 +48,7 @@ public class BigPicActivity extends BaseActivity2 {
 
             }
         });
+        mPager.setCurrentItem(index);
     }
 
     @Override
