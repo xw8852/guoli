@@ -207,4 +207,9 @@
 	<string name="detail_hotal_cancel">取消订单</string>
 	<!-- 房间数选择页面 -->
 	<string name="room_counts">房间数</string>
+	<!-- 更多要求反馈页面 -->
+	<string name="more_require_title">更多要求</string>
+	<string name="more_require_def_content">请输入您的要求</string>
+	<string name="confirm_commit">确认提交</string>
+	
 </resources>

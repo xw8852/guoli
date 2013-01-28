@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <EditText
+        android:id="@+id/moreRequireView"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_round_rect_grey"
+        android:gravity="top|left"
+        android:hint="@string/more_require_def_content"
+        android:padding="10dp" />
+
+    <!-- 提交按钮 -->
+
+    <TextView
+        android:id="@id/commitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_commit"
+        android:gravity="center"
+        android:text="@string/confirm_commit"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/title_bar_font_color" />
+
+</LinearLayout>
