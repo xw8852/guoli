@@ -20,6 +20,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
         findViewById(R.id.textView2).setOnClickListener(this);
         findViewById(R.id.textView3).setOnClickListener(this);
         findViewById(R.id.textView4).setOnClickListener(this);
+        findViewById(R.id.textView5).setOnClickListener(this);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
             startActivity(new Intent(this, FavoriteActivity.class));
             break;
         case R.id.textView5:
-            startActivity(new Intent(this, FavoriteActivity.class));
+            startActivity(new Intent(this, UserSelectActivity.class));
             break;
         default:
             break;

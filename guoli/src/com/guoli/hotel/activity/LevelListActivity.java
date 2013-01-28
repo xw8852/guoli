@@ -15,7 +15,7 @@ import com.guoli.hotel.R;
  * Package Name:
  * Date:2013-1-26下午12:08:04
  * Copyright (c) 2013
- * Company:苏州海客科技有限公司
+ * Company:maple&&json&&abel
  *
  */
 

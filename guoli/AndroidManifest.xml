@@ -157,6 +157,10 @@
             android:name=".activity.BigPicActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.UserSelectActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
  * Package Name:com.guoli.hotel.activity
  * Date:2013-1-10下午3:30:27
  * Copyright (c) 2013
- * Company:苏州海客科技有限公司
+ * Company:maple&&json&&abel
  *
 */
 

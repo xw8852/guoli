@@ -4,7 +4,7 @@
  * Package Name:com.guoli.hotel.activity
  * Date:2013-1-22下午12:15:03
  * Copyright (c) 2013
- * Company:苏州海客科技有限公司
+ * Company:maple&&json&&abel
  *
 */
 
@@ -40,6 +40,7 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
     public static final int PAGE_ROOM_COUNT = 0;
     public static final int PAGE_MORE_REQUIRE = 1;
     public static final int PAGE_CHECK_LIST = 2;
+    public static final int PAGE_USER_ADD = 3;
     
     public EditOrderActivity(){
         mTitleTextId = R.string.order_edit_title;
@@ -97,6 +98,9 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
             startActivity(intent);
             break;
         case R.id.add_btn:
+            intent = new Intent();
+            intent.setClass(this, UserSelectActivity.class);
+            startActivityForResult(intent, PAGE_USER_ADD);
             break;
         case R.id.commitBtn:
             

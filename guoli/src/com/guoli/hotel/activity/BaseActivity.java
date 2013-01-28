@@ -4,7 +4,7 @@
  * Package Name:com.yhiker.playmate.ui.citytour.scenicshops
  * Date:2012-12-31上午10:46:24
  * Copyright (c) 2012
- * Company:苏州海客科技有限公司
+ * Company:maple&&json&&abel
  *
 */
 
