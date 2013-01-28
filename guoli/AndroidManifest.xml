@@ -117,6 +117,12 @@
            <activity 
               android:name=".activity.OrderHotelDetailActivity"
               android:screenOrientation="portrait"></activity>
+           <activity 
+              android:name=".activity.PicGridActivity"
+              android:screenOrientation="portrait"></activity>
+           <activity 
+              android:name=".activity.BigPicActivity"
+              android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

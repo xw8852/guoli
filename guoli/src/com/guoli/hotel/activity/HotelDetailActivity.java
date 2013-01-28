@@ -90,7 +90,7 @@ public class HotelDetailActivity extends UpdateActivity {
     protected void findViews() {
         TextView collectBtn = (TextView) findViewById(R.id.collection_btn);
         // TODO framelayout布局
-        View picLayout = findViewById(R.id.pic_layout);
+        View picLayout = findViewById(R.id.pic_view);
         View addressLayout =  findViewById(R.id.address_layout);
         View historyLayout =  findViewById(R.id.history_layout);
         RelativeLayout dateLayout = (RelativeLayout) findViewById(R.id.occupancy_and_leave_layout);
@@ -108,10 +108,11 @@ public class HotelDetailActivity extends UpdateActivity {
         Intent intent = null;
         switch (v.getId()) {
         case R.id.collection_btn:
-
+            
             break;
-        case R.id.pic_layout:
-
+        case R.id.pic_view:
+            intent=new Intent(this, PicGridActivity.class);
+            startActivity(intent);
             break;
         case R.id.address_layout:
             intent = new Intent();
