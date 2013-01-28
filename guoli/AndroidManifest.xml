@@ -102,17 +102,20 @@
            <activity 
               android:name=".activity.OrderHotelListAcivity"
               android:screenOrientation="portrait"></activity>
-             <activity 
+           <activity 
               android:name=".activity.EditUserInfoActivity"
               android:screenOrientation="portrait"></activity>
-              <activity 
+           <activity 
               android:name=".activity.EditPasswordActivity"
               android:screenOrientation="portrait"></activity>
-              <activity 
+           <activity 
               android:name=".activity.HotelCountActivity"
               android:screenOrientation="portrait"></activity>
-              <activity 
+           <activity 
               android:name=".activity.MoreRequireActivity"
+              android:screenOrientation="portrait"></activity>
+           <activity 
+              android:name=".activity.OrderHotelDetailActivity"
               android:screenOrientation="portrait"></activity>
     </application>
 
