@@ -16,9 +16,11 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -209,7 +211,7 @@ public class HotelDetailActivity extends UpdateActivity {
                 Holder holder=new Holder();
                 holder.simple = view.findViewById(R.id.simple_room);
                 holder.more = view.findViewById(R.id.more_room);
-               
+                holder.button = (Button) view.findViewById(R.id.scheduleBtn);
                 view.setTag(holder);
             }
             Holder holder = (Holder)view.getTag();
@@ -217,9 +219,18 @@ public class HotelDetailActivity extends UpdateActivity {
                 holder.more.setVisibility(View.VISIBLE);
             } else 
                 holder.more.setVisibility(View.GONE);
+            holder.button.setOnClickListener(scheduleListener);
             return view;
         }
         
+        private OnClickListener scheduleListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
+                startActivity(intent);
+            }
+        };
     }
     
     static class RoomModel{
@@ -229,5 +240,6 @@ public class HotelDetailActivity extends UpdateActivity {
     static class Holder{
         View simple;
         View more;
+        Button button;
     }
 }

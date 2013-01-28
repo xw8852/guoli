@@ -38,10 +38,13 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
     private RadioGroup mRadioGroup;
     
     public static final int PAGE_ROOM_COUNT = 0;
+    public static final int PAGE_MORE_REQUIRE = 1;
+    public static final int PAGE_CHECK_LIST = 2;
     
     public EditOrderActivity(){
         mTitleTextId = R.string.order_edit_title;
         mLayoutId = R.layout.edit_order;
+        mRightDrawableId = R.drawable.btn_top_phone;
     }
     
     @Override
@@ -53,7 +56,7 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
 
     @Override
     protected void findViews() {
-        TextView mRoomCountView = (TextView) findViewById(R.id.room_count_content_view);
+        mRoomCountView = (TextView) findViewById(R.id.room_count_content_view);
         mRoomCountView.setOnClickListener(this);
         mMoreView = (TextView) findViewById(R.id.more_require_content_view);
         mMoreView.setOnClickListener(this);
@@ -84,13 +87,16 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
             startActivityForResult(intent, PAGE_ROOM_COUNT);
             break;
         case R.id.more_require_content_view:
-            
+            intent = new Intent();
+            intent.setClass(this, MoreRequireActivity.class);
+            startActivityForResult(intent, PAGE_MORE_REQUIRE);
             break;
         case R.id.orderCostDetailView:
-            
+            intent = new Intent();
+            intent.setClass(this, CheckListActivity.class);
+            startActivity(intent);
             break;
         case R.id.add_btn:
-            
             break;
         case R.id.commitBtn:
             
@@ -108,6 +114,10 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
         case PAGE_ROOM_COUNT:
             String area = data == null ? "" : data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
             setViewText(mRoomCountView, area);
+            break;
+        case PAGE_MORE_REQUIRE:
+            String content = data == null ? "" : data.getStringExtra(MoreRequireActivity.KEY_MORE_REQUIRE);
+            setViewText(mMoreView, content);
             break;
         default:
             break;

@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,8 @@ import com.guoli.hotel.R;
  * @see 	 
  */
 public class MoreRequireActivity extends BaseActivity implements OnClickListener {
+    
+    public static final String KEY_MORE_REQUIRE = "require";
     
     private EditText mRequireText;
     
@@ -54,7 +57,11 @@ public class MoreRequireActivity extends BaseActivity implements OnClickListener
         super.onClick(v);
         switch (v.getId()) {
         case R.id.commitBtn:
-            
+            Intent intent = new Intent();
+            String content = mRequireText.getText().toString();
+            intent.putExtra(KEY_MORE_REQUIRE, content.trim());
+            setResult(EditOrderActivity.PAGE_MORE_REQUIRE, intent);
+            finish();
             break;
         default:
             break;

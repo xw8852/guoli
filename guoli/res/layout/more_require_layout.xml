@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical" >
 
     <include layout="@layout/title_bar" />
@@ -11,6 +10,9 @@
         android:id="@+id/moreRequireView"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/shape_round_rect_grey"
         android:gravity="top|left"
         android:hint="@string/more_require_def_content"
@@ -24,6 +26,8 @@
         android:layout_height="50dp"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/btn_commit"
         android:gravity="center"
         android:text="@string/confirm_commit"
