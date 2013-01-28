@@ -114,6 +114,9 @@
               <activity 
               android:name=".activity.MoreRequireActivity"
               android:screenOrientation="portrait"></activity>
+              <activity 
+              android:name=".activity.CheckListActivity"
+              android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
