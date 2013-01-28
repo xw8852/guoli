@@ -7,12 +7,15 @@ import com.guoli.hotel.widget.AbstractAdapter;
 import com.guoli.hotel.widget.BottomTabbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class OrderHotelListAcivity extends BaseActivity2 {
+public class OrderHotelListAcivity extends BaseActivity2 implements OnItemClickListener{
 
     ListView mListView;
 
@@ -21,7 +24,7 @@ public class OrderHotelListAcivity extends BaseActivity2 {
         new BottomTabbar(this, 2);
         mListView = (ListView) findViewById(R.id.listView1);
         mListView.setAdapter(new OrderAdapter(this, null));
-
+        mListView.setOnItemClickListener(this);
     }
 
     @Override
@@ -53,5 +56,10 @@ public class OrderHotelListAcivity extends BaseActivity2 {
             return convertView;
         }
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        startActivity(new Intent(this, OrderHotelDetailActivity.class));
     }
 }
