@@ -9,10 +9,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
-import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
-public class SearchHotelActivity extends BaseActivity implements OnItemSelectedListener {
+public class SearchHotelActivity extends CallActivity implements OnItemSelectedListener {
 
     /** 城市标识 */
     public static final int PAGE_CITY = 0;
@@ -85,15 +84,6 @@ public class SearchHotelActivity extends BaseActivity implements OnItemSelectedL
     @Override
     public void onBackPressed() {
         showExitDialog();
-    }
-    
-    @Override
-    protected void rightBtnClickEvent() {
-        super.rightBtnClickEvent();
-        String phoneNumber = "12345678901";
-        String msg = getResources().getString(R.string.dialog_call_notice);
-        msg = String.format(msg, phoneNumber);
-        DialogUtils.showDialog(this, "", msg, new CallOnClickListener(phoneNumber));
     }
 
     public void onClick(View v) {

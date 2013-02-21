@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.adapter;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import com.guoli.hotel.R;
@@ -107,8 +108,9 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
      * @since JDK 1.6
      */
     private String formatDiscount(float discount) {
+        String dis = new DecimalFormat("0.##").format(discount);
         String desc = getResources().getString(R.string.discount_desc);
-        return String.format(desc, discount);
+        return String.format(desc, dis);
     }
 
     /**

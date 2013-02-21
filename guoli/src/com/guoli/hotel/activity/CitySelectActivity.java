@@ -32,7 +32,7 @@ import android.widget.AdapterView.OnItemClickListener;
  * @since    JDK 1.6
  * @see 	 
  */
-public class CitySelectActivity extends BaseActivity implements OnItemClickListener {
+public class CitySelectActivity extends CallActivity implements OnItemClickListener {
     /**城市名称关键字*/
     public final static String KEY_CITY_NAME = "cityName";
     
