@@ -193,7 +193,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/occupancy_and_leave_layout"
             android:padding="@dimen/small_margin"
-            android:background="@drawable/shape_round_rect_grey" >
+            android:background="@drawable/shape_round_rect_grey"
+            android:layout_marginBottom="15dp">
         </ListView>
     </RelativeLayout>
 

@@ -23,7 +23,7 @@ import com.guoli.hotel.R;
  * @since JDK 1.6
  * @see
  */
-public abstract class DateSelectActivity extends BaseActivity {
+public class DateSelectActivity extends BaseActivity {
 
     public static final String KEY_DATE = "occupancyDate";
 
@@ -61,5 +61,7 @@ public abstract class DateSelectActivity extends BaseActivity {
      * @author maple
      * @since JDK 1.6
      */
-    protected abstract void commit();
+    protected void commit(){
+        //TODO
+    }
 }

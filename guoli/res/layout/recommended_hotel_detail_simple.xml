@@ -28,26 +28,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_marginRight="@dimen/small_margin"
-        android:layout_toLeftOf="@+id/textView1"
-        android:background="@drawable/btn_prepay_bg"
-        android:paddingLeft="@dimen/small_margin"
-        android:paddingRight="@dimen/default_margin"
-        android:text="预付"
-        android:textColor="@android:color/white" />
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/small_margin"
-        android:layout_toLeftOf="@+id/textView2" >
+        android:paddingRight="10dp"
+        android:layout_toLeftOf="@+id/textView1" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,6 +48,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textSize="16sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
                 android:text="豪华房（浦江楼） " />
 
             <TextView
@@ -69,36 +59,15 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textSize="14sp"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
                 android:text="大/双     双早"/>
         </LinearLayout>
-
-        <LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="市场价"
-                 />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2300"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_weight="1"
             android:layout_marginLeft="@dimen/small_margin"
             android:orientation="vertical" >
 

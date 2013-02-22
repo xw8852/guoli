@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.RoomInfo;
+import com.guoli.hotel.utils.NetUtils;
 
 /**
  * ClassName:HotelDetailActivity <br/>
@@ -37,7 +38,7 @@ import com.guoli.hotel.bean.RoomInfo;
  * @since JDK 1.6
  * @see
  */
-public class HotelDetailActivity extends UpdateActivity {
+public class HotelDetailActivity extends CallActivity {
     
     private ListView mRoomsListView;
     private RoomAdapter mAdapter;
@@ -50,20 +51,23 @@ public class HotelDetailActivity extends UpdateActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        loadData();
         showLeftBtn();
         showRightBtn();
-        
+    }
+    
+    private void loadData(){
+        //TODO 有本地缓存的情况下,合理的逻辑应该是先查询本地数据,如果本地数据没有查询到再判断网络是否可用
+        //网络如果可以用则查询网络数据
+        if (!NetUtils.isNetworkWell(this)) {
+            loadLocalData();
+            initViews();
+            return;
+        }
+        loadNetworkData();
     }
 
-    @Override
-    protected void initPassParams() {
-
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void initViews() {
+    private void initViews() {
         //TODO 根据接口返回的酒店房间类型数据初始化房间类型信息
         List<RoomInfo> list = new ArrayList<RoomInfo>();
         for (int index = 0 ; index < 5 ; index++) {
@@ -73,19 +77,12 @@ public class HotelDetailActivity extends UpdateActivity {
         initRoomsTypeViews(list);
     }
 
-    @Override
     protected void loadNetworkData() {
-
-        // TODO Auto-generated method stub
-        
         initViews();
     }
 
-    @Override
     protected void loadLocalData() {
-
         // TODO Auto-generated method stub
-
     }
 
     @Override
