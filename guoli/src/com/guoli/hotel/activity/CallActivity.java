@@ -10,8 +10,8 @@
 
 package com.guoli.hotel.activity;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.CallUtils;
+
 
 /**
  * ClassName:CallActivity <br/>
@@ -27,10 +27,8 @@ public abstract class CallActivity extends BaseActivity {
     @Override
     protected void rightBtnClickEvent() {
         super.rightBtnClickEvent();
-        String phoneNumber = "12345678901";
-        String msg = getResources().getString(R.string.dialog_call_notice);
-        msg = String.format(msg, phoneNumber);
-        DialogUtils.showDialog(this, "", msg, new CallOnClickListener(phoneNumber));
+        CallUtils utils = new CallUtils(this);
+        utils.callServer();
     }
 }
 

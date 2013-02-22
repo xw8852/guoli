@@ -12,10 +12,7 @@ package com.guoli.hotel.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -199,31 +196,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
      */
     protected void leftBtnClickEvent(){
         finish();
-    }
-    
-    /**拨打电话的事件*/
-    protected class CallOnClickListener implements android.content.DialogInterface.OnClickListener{
-
-        private String phoneNumber;
-        
-        /**
-         * 
-         * Creates a new instance of CallOnClickListener.
-         *
-         * @param phoneNumber   要拨打的电话号码,不能为空
-         */
-        public CallOnClickListener(String phoneNumber){
-            if (!TextUtils.isEmpty(phoneNumber)) {
-                this.phoneNumber = phoneNumber;
-            }
-        }
-        
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            Uri uri = Uri.parse("tel:" + phoneNumber);
-            Intent intent = new Intent(Intent.ACTION_DIAL, uri);
-            startActivity(intent);
-        }
     }
     
     /**

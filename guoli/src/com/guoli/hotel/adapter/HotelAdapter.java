@@ -15,11 +15,13 @@ import java.util.List;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.StringUtils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -81,6 +83,13 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
         holder.priceView.setVisibility(View.GONE);
         holder.discountView.setVisibility(View.GONE);
         holder.callView.setVisibility(View.VISIBLE);
+        holder.callView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               CallUtils callUtils = new CallUtils(context);
+               callUtils.callServer();
+            }
+        });
         return convertView;
     }
 
