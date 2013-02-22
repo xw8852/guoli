@@ -12,6 +12,7 @@
         android:id="@+id/condition_and_result_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="#FFFFFF"
         android:layout_below="@+id/title_bar" >
 
         <!-- 城市 -->
@@ -86,20 +87,29 @@
         android:layout_below="@+id/condition_and_result_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp">
-        <Spinner android:id="@+id/sort_type"
+        <TextView android:id="@+id/sort_type"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:drawableRight="@drawable/filter_ull"
+            android:text="@string/default_sort"
+            android:gravity="center"
             android:layout_weight="1"/>
-        <Spinner android:id="@+id/price_filter"
+        <TextView android:id="@+id/price_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:drawableRight="@drawable/filter_ull"
+            android:text="@string/price_filter"
+            android:gravity="center"
             android:layout_weight="1"/>
-        <Spinner android:id="@+id/area_filter"
+        <TextView android:id="@+id/area_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:drawableRight="@drawable/filter_ull"
+            android:text="@string/location_filter"
+            android:gravity="center"
             android:layout_weight="1"/>
     </LinearLayout>
     

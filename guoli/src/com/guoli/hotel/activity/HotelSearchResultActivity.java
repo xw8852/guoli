@@ -45,8 +45,16 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private TextView mCountView;
     /**商家列表*/
     private ListView mListView;
+    /**排序按钮*/
+    private TextView mSortFilterView;
+    /**价格过滤按钮*/
+    private TextView mPriceFilterView;
+    /**位置过滤按钮*/
+    private TextView mLocationFilterView;
     /**商家列表适配器*/
     private HotelAdapter<HotelInfo> mListAdapter;
+    /**区域过滤标记*/
+    private static final int LOCATION_FILTER = 5;
     
     public HotelSearchResultActivity(){
         mLayoutId = R.layout.hotel_search_result;
@@ -125,6 +133,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         mCountView = (TextView) findViewById(R.id.count_view);
         mListView = (ListView) findViewById(R.id.hotel_list);
         mListView.setOnItemClickListener(this);
+        mSortFilterView = (TextView) findViewById(R.id.sort_type);
+        mPriceFilterView = (TextView) findViewById(R.id.price_filter);
+        mLocationFilterView = (TextView) findViewById(R.id.area_filter);
+        mSortFilterView.setOnClickListener(this);
+        mPriceFilterView.setOnClickListener(this);
+        mLocationFilterView.setOnClickListener(this);
     }
     
     @Override
@@ -146,6 +160,39 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             return;
         }
         enterHotelDetailActivity();
+    }
+    
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+        case R.id.sort_type:
+            
+            break;
+        case R.id.price_filter:
+            
+            break;
+        case R.id.area_filter:
+            Intent intent = new Intent();
+            intent.setClass(this, AreaListActivity.class);
+            startActivityForResult(intent, LOCATION_FILTER);
+            break;
+        default:
+            break;
+        }
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+        case LOCATION_FILTER:
+            String area = data == null ? "" : data.getStringExtra(AreaListActivity.KEY_AREA);
+            mLocationFilterView.setText(area);
+            break;
+        default:
+            break;
+        }
     }
 
     /**

@@ -33,6 +33,9 @@
     <string name="price_desc">￥%1$d起</string>
     <string name="discount_desc">￥%1$s折起</string>
     <string name="business_count_desc">%1$d家</string>
+    <string name="default_sort">默认排序</string>
+    <string name="price_filter">价格筛选</string>
+    <string name="location_filter">位置筛选</string>
 
     <!-- 新增入住人页面 -->
     <string name="add_user">新增入住人</string>

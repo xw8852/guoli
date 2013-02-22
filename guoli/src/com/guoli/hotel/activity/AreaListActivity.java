@@ -17,6 +17,7 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -59,6 +60,8 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         super.onCreate(bundle);
         showLeftBtn();
         updateListView(mAreaAdmins);
+        Intent intent = getIntent();
+        Log.i("AreaListActivity", "intent.getClass=" + intent.getClass());
     }
 
     @Override
