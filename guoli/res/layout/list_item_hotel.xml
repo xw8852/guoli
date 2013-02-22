@@ -31,15 +31,28 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="酒店名称" />
+        
+         <!-- 星级 -->
+
+        <RatingBar
+            android:id="@+id/hotel_star_level"
+            style="@style/ratingbar_small"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@+id/hotel_name"
+            android:layout_alignLeft="@+id/hotel_name"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:numStars="5"
+            android:rating="0" />
         <!-- 酒店地址 -->
 
         <TextView
             android:id="@+id/hotel_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/hotel_name"
+            android:layout_below="@+id/hotel_star_level"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:text="地址"
             android:textColor="@color/font_grey" />
         <!-- 酒店区域 -->
@@ -50,20 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotel_address"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="区域"
             android:textColor="@color/font_grey" />
-        <!-- 星级 -->
-
-        <RatingBar
-            android:id="@+id/hotel_star_level"
-            style="@style/ratingbar_small"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="8dp"
-            android:numStars="5"
-            android:rating="0" />
+       
         <!-- 价格 -->
 
         <TextView
@@ -71,8 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/hotel_star_level"
-            android:layout_marginTop="8dp"
+            android:layout_alignTop="@+id/hotel_address"
             android:text="1067起" />
         <!-- 折扣 -->
 
@@ -82,19 +84,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/hotel_price"
-            android:layout_marginTop="8dp"
+            android:layout_alignTop="@+id/hotel_area"
             android:text="4.6折起" />
         <!-- 电询 -->
 
         <TextView
             android:id="@+id/hotel_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/hotel_star_level"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_top_return_on"
             android:gravity="center"
+            android:layout_centerVertical="true"
             android:text="电询"
             android:visibility="gone" />
     </RelativeLayout>

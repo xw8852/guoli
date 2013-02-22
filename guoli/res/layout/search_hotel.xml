@@ -235,7 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#E4E4E4" />
-            <!-- 关键�?-->
+            <!-- 关键字-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
-                    android:text="@string/occupancy_city"
+                    android:text="@string/key_word"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -255,6 +255,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textSize="16sp"
                     android:background="#00000000"
                     android:hint="@string/hotel_name_and_address"
                     android:textAppearance="?android:attr/textAppearanceMedium" />

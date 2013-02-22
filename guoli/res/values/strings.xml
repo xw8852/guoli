@@ -74,7 +74,7 @@
     <!-- 标题 -->
     <string name="special_title">推荐</string>
     <string name="search_title">查找</string>
-    <string name="user_title">用户</string>
+    <string name="user_title">账户</string>
     <string name="order_title">订单</string>
     <string name="more_title">更多</string>
 
