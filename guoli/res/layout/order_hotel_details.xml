@@ -279,13 +279,36 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-
+
     <Button
         android:id="@+id/button1"
-        android:layout_margin="@dimen/default_margin"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/title_bar_height"
+        android:layout_margin="@dimen/default_margin"
         android:background="@drawable/btn_commit"
-        android:text="Button" />
+        android:text="@string/detail_hotal_order_cancel" />
+
+    <LinearLayout
+        android:id="@+id/btn_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_order_btn"
+            android:text="@string/detail_hotal_pay" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cancel_order_btn"
+            android:text="@string/detail_hotal_cancel" />
+
+    </LinearLayout>
 
 </LinearLayout>

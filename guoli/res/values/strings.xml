@@ -65,7 +65,7 @@
     <string name="contact">联系人 :</string>
     <string name="contact_phone">联系电话 :</string>
     <string name="order_money_content">￥%1$s</string>
-
+	<string name="order_list_title">酒店订单</string>
     <!-- 反馈页面 -->
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
@@ -210,6 +210,8 @@
     <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
     <string name="detail_hotal_contact_phone">联系电话&#160;:&#160;</string>
 	<string name="detail_hotal_cancel">取消订单</string>
+	<string name="detail_hotal_order_cancel">退订</string>
+	<string name="detail_hotal_pay">去付款</string>
 	<!-- 房间数选择页面 -->
 	<string name="room_counts">房间数</string>
 	<!-- 更多要求反馈页面 -->

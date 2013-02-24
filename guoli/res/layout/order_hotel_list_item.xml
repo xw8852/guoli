@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/small_margin"
     android:gravity="center_vertical"
+    android:padding="@dimen/small_margin"
     android:orientation="horizontal" >
 
     <RelativeLayout
@@ -79,7 +79,7 @@
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content"   
         android:layout_marginLeft="@dimen/small_margin"
         android:text="￥1056"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -91,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_margin"
         android:text="待确认"
+         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
