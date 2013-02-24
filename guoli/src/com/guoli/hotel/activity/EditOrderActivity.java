@@ -28,7 +28,7 @@ import com.guoli.hotel.R;
  * @since    JDK 1.6
  * @see 	 
  */
-public class EditOrderActivity extends BaseActivity implements OnCheckedChangeListener {
+public class EditOrderActivity extends CallActivity implements OnCheckedChangeListener {
     
     /**房间数*/
     private TextView mRoomCountView;
@@ -103,7 +103,7 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
             startActivityForResult(intent, PAGE_USER_ADD);
             break;
         case R.id.commitBtn:
-            
+            commitOrder();
             break;
 
         default:
@@ -111,7 +111,18 @@ public class EditOrderActivity extends BaseActivity implements OnCheckedChangeLi
         }
     }
 
-    
+    /**
+     * 
+     * commitOrder:提交订单. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void commitOrder() {
+        Intent intent = new Intent();
+        intent.setClass(this, CommitOrderSuccessActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode) {

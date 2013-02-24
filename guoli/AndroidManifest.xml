@@ -161,6 +161,10 @@
             android:name=".activity.UserSelectActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.CommitOrderSuccessActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -134,12 +134,6 @@ public class HotelDetailActivity extends CallActivity {
         }
     }
 
-    @Override
-    protected void rightBtnClickEvent() {
-        super.rightBtnClickEvent();
-        //TODO 拨号
-    }
-    
     /**
      * 
      * initRoomsTypeViews:初始化房间类型视图. <br/>
@@ -220,6 +214,7 @@ public class HotelDetailActivity extends CallActivity {
             return view;
         }
         
+        /**预定按钮事件*/
         private OnClickListener scheduleListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
