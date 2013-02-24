@@ -73,7 +73,7 @@ public abstract class BaseActivity2 extends Activity {
      * @author xiaowei
      * @date 2013-1-11 下午4:29:51
      */
-    public void setTitle(String title) {
+    public void setTitle(CharSequence title) {
         mTitle.setText(title);
     }
 
