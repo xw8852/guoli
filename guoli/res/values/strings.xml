@@ -226,4 +226,12 @@
 	<string name="user_select">选择入住人</string>
 	<string name="user_new">新增入住人</string>
 	<string name="confirm">确认</string>
+	
+	<!-- 订单确认页面 -->
+    <string name="order_confirm">订单确认</string>
+    <string name="order_total">订单总额 :</string>
+    <string name="credit_card_pay">信用卡直接支付</string>
+    <string name="tenpay">财付通网页支付</string>
+    <string name="money_pay">线下转账支付</string>
+    <string name="confirm_pay">确认支付</string>
 </resources>

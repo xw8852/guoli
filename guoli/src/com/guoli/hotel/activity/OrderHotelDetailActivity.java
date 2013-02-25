@@ -2,6 +2,7 @@ package com.guoli.hotel.activity;
 
 import com.guoli.hotel.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements OnClickLi
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.order_detail);
-        int status = getIntent().getIntExtra(Status, 0);
+        int status = getIntent().getIntExtra(Status, 1);
         setLeftTitleBtn(R.string.back_btn, this);
         setRightTitleBtn(R.string.exit, this);
         setTitle(R.string.order_detail);
@@ -25,6 +26,8 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements OnClickLi
         findViewById(R.id.btn_view).setVisibility(View.GONE);
         pay_btn = (Button) findViewById(R.id.button2);
         cancel_btn = (Button) findViewById(R.id.button1);
+        pay_btn.setOnClickListener(this);
+        cancel_btn.setOnClickListener(this);
         switch (status) {
         case 0:
             tv.setText("待确认");
@@ -59,6 +62,15 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements OnClickLi
             break;
         case R.id.right_btn:
             //TODO
+            break;
+        case R.id.button1:
+            //TODO
+            break;
+        case R.id.button2:
+            //TODO 跳转到订单确认页面
+            Intent intent = new Intent();
+            intent.setClass(this, OrderConfirmActivity.class);
+            startActivity(intent);
             break;
         default:
             break;

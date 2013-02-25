@@ -165,6 +165,10 @@
             android:name=".activity.CommitOrderSuccessActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.OrderConfirmActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
