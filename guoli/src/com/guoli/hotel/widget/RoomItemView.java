@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
-import com.guoli.hotel.activity.LoginActivity;
+import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.bean.RoomInfo;
 
 /**

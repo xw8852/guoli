@@ -9,11 +9,11 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 import com.guoli.hotel.R;
-import com.guoli.hotel.activity.AccountActivity;
-import com.guoli.hotel.activity.HotelListActivity;
 import com.guoli.hotel.activity.MoreActivity;
-import com.guoli.hotel.activity.OrderAuthenticActivity;
-import com.guoli.hotel.activity.SearchHotelActivity;
+import com.guoli.hotel.activity.hotel.HotelListActivity;
+import com.guoli.hotel.activity.hotel.SearchHotelActivity;
+import com.guoli.hotel.activity.order.OrderAuthenticActivity;
+import com.guoli.hotel.activity.user.AccountActivity;
 
 /**
  * 

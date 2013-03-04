@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.activity.order.EditOrderActivity;
 
 /**
  * ClassName:MoreRequireActivity <br/>
