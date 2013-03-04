@@ -1,0 +1,11 @@
+request={
+    "action": "system_loading",
+    "platformType": "android",
+    "version": ""
+}
+resp={
+    "param": "",
+    "sysdate": "2013-03-04",
+    "curver": "1.0",
+    "success": "1"
+}

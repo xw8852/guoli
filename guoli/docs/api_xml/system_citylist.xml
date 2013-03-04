@@ -1,0 +1,21 @@
+request={
+    "action": "system_citylist",
+    "Citycode": "",
+    "platformType": "android"
+}
+resp={
+    "param": "",
+    "result": [
+        {
+            "name": "上海",
+            "code": "310000",
+            "py": "S"
+        },
+        {
+            "name": "北京",
+            "code": "110000",
+            "py": "B"
+        }
+    ],
+    "success": "1"
+}
