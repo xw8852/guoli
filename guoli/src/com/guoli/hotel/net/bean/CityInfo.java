@@ -9,6 +9,9 @@
 */
 
 package com.guoli.hotel.net.bean;
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * ClassName:CityInfo <br/>
  * @Description:    城市对象
@@ -20,12 +23,15 @@ package com.guoli.hotel.net.bean;
  */
 public class CityInfo {
     /**城市名称*/
+    @SerializedName("name")
     private String cityName;
     
     /**城市编码*/
+    @SerializedName("code")
     private String cityCode;
     
     /**城市首字母*/
+    @SerializedName("py")
     private String firstChar;
     
     /**是否是当前所选城市*/

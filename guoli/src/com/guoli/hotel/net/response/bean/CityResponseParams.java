@@ -12,6 +12,7 @@ package com.guoli.hotel.net.response.bean;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
 import com.guoli.hotel.net.bean.CityInfo;
 
 /**
@@ -26,6 +27,7 @@ import com.guoli.hotel.net.bean.CityInfo;
 public class CityResponseParams implements IResponseParams {
 
     /**城市数据集合*/
+    @SerializedName("result")
     private List<CityInfo> list;
     
     private int cityCount;

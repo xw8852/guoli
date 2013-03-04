@@ -10,19 +10,31 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.activity.CallActivity;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.activity.CallActivity;
+import com.guoli.hotel.adapter.CityInfoListAdapter;
+import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.net.bean.CityInfo;
+import com.guoli.hotel.net.request.bean.CityRequestParams;
+import com.guoli.hotel.net.response.bean.CityResponseParams;
+import com.guoli.hotel.parse.CitysParse;
+import com.msx7.core.Manager;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
+import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:CitySelectActivity <br/>
@@ -36,9 +48,6 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CitySelectActivity extends CallActivity implements OnItemClickListener {
     /**城市名称关键字*/
     public final static String KEY_CITY_NAME = "cityName";
-    
-    private String[] citys = new String[]{"上海","北京","广州","深圳","香港","东京","三亚","厦门","青岛","杭州","大连","成都"};
-    
     private ListView mListView;
     private EditText mKeyWordView;
     
@@ -54,6 +63,22 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         super.onCreate(bundle);
         showLeftBtn();
         showRightBtn();
+        loadCityData();
+    }
+
+    /***
+     * 
+     * loadCityData:. 从服务器端读取城市列表数据<br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void loadCityData() {
+        showLoadingDialog(R.string.loading_msg);
+        CityRequestParams cityParams = new CityRequestParams();
+        cityParams.setCityCode("");
+        Request request = new GuoliRequest("system_citylist", cityParams);
+        Log.i("CitySelectActivity", "request=" + request.Params.toParams());
+        Manager.getInstance().executePoset(request, mLoadListener);
     }
 
     @Override
@@ -65,19 +90,24 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         deleteBtn.setOnClickListener(this);
         searchBtn.setOnClickListener(this);
         mListView.setOnItemClickListener(this);
-        
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, citys);
-        mListView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String name = citys[position];
-        if (TextUtils.isEmpty(name)) {
+        if (parent == null) {
+            return;
+        }
+        Adapter adapter = parent.getAdapter();
+        if (!(adapter instanceof CityInfoListAdapter)) {
+            return;
+        }
+        CityInfoListAdapter listAdapter = (CityInfoListAdapter) adapter;
+        CityInfo info = listAdapter.getItem(position);
+        if (info == null) {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(KEY_CITY_NAME, name);
+        intent.putExtra(KEY_CITY_NAME, info.getCityName());
         setResult(SearchHotelActivity.PAGE_CITY, intent);
         finish();
     }
@@ -96,5 +126,58 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             break;
         }
     }
+    
+    /**
+     * 
+     * isEmpty:检测数组是否为空. <br/>
+     * @author maple
+     * @param citys
+     * @return
+     * @since JDK 1.6
+     */
+    private boolean isEmpty(List<CityInfo> citys){
+        return citys == null || citys.size() < 1;
+    }
+    
+    /**
+     * 
+     * refreshListView:刷新listView. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void refreshListView(List<CityInfo> citys){
+        if (mListView == null || isEmpty(citys)) {
+            return;
+        }
+        CityInfoListAdapter adapter = (CityInfoListAdapter) mListView.getAdapter();
+        if (adapter == null) {
+            adapter = new CityInfoListAdapter(citys, this);
+            mListView.setAdapter(adapter);
+            return;
+        }
+        adapter.changeData(citys);
+    }
+    
+    IResponseListener mLoadListener = new IResponseListener() {
+        
+        @Override
+        public void onSuccess(Response resp) {
+            Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+            dismissLoadingDialog();
+            //解析服务器返回结果为数组类型
+            CityResponseParams respParams = new CitysParse().parseResponse(resp);
+            if (respParams == null) {
+                return;
+            }
+            List<CityInfo> list = respParams.getList();
+            //刷新listView
+            refreshListView(list);
+        }
+        
+        @Override
+        public void onError(Response resp) {
+            dismissLoadingDialog();
+        }
+    };
 }
 

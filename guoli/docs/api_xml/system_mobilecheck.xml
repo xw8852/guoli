@@ -1,0 +1,9 @@
+request={
+    "action": "system_mobilecheck",
+    "glkey": "",
+    "mobile": "18621018080",
+    "platformType": "android"
+}
+resp={
+    "success": "1"
+}

@@ -91,4 +91,5 @@ public abstract class AbstractAdapter<T> extends BaseAdapter {
 		data.clear();
 		notifyDataSetChanged();
 	}
+	
 }

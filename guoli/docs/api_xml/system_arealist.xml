@@ -1,0 +1,11 @@
+request={
+    "action": "system_arealist",
+    "Citycode": "310000",
+    "platformType": "android"
+}
+resp={
+    "param": "",
+    "zoneresult": "",
+    "bussresult": "",
+    "success": "1"
+}

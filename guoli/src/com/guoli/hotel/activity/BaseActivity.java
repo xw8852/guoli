@@ -11,6 +11,7 @@
 package com.guoli.hotel.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +44,8 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
     protected int mLeftDrawableId;
     /**右侧的button背景*/
     protected int mRightDrawableId;
+    
+    private ProgressDialog mProgressDialog;
     
     /**
      * 
@@ -177,6 +180,35 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
             finish();
         }
     }; 
+    
+    /**
+     * 
+     * showLoadingDialog:显示数据加载框. <br/>
+     * 
+     * @author maple
+     * @since JDK 1.6
+     */
+    protected void showLoadingDialog(int msgId) {
+        dismissLoadingDialog();
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getString(msgId));
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.show();
+    }
+    
+    /***
+     * 
+     * dismissDialog:关闭数据加载弹出框. <br/>
+     * 
+     * @author maple
+     * @since JDK 1.6
+     */
+    protected void dismissLoadingDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
+    }
     
     /**
      * 
