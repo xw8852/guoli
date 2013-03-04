@@ -128,7 +128,7 @@
     <string name="get_indentify">获得验证码</string>
     <!-- 注册用户 -->
     <string name="multi_password">确认密码&#160;:&#160;</string>
-    <string name="regist_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
+    <string name="regist_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
     <string name="register_password_tips">6&#8211;12位字符</string>
     <string name="register_phone_tips">请输入手机号码作为登录名</string>
     <!-- 订单查询 非登陆 -->
