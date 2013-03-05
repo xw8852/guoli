@@ -79,7 +79,7 @@
             android:layout_alignBaseline="@+id/layout"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/small_margin"
-            android:text="@string/get_indentify" />
+            android:text="@string/get_identify" />
     </RelativeLayout>
 
     <Button

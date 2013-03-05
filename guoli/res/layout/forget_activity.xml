@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/get_indentify"
+            android:id="@+id/get_identify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/linearlayout1"
@@ -46,7 +46,7 @@
             android:background="@drawable/identify_tips"
             android:textColor="@android:color/white"
             android:padding="@dimen/small_margin"
-            android:text="@string/get_indentify" />
+            android:text="@string/get_identify" />
 
         <View
             android:id="@+id/view1"
