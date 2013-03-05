@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="#F1EBDF">
+        android:background="#F8F2E6">
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="40dp">
             <!-- 入住日期 -->
@@ -51,6 +51,8 @@
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#8EB5BC"
+            android:layout_marginBottom="10dp"
              />
 
     </LinearLayout>

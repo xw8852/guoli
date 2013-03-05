@@ -135,7 +135,7 @@
                 android:singleLine="true" />
         </LinearLayout>
     </RelativeLayout>
-
+
     <Button
         android:id="@+id/send"
         android:layout_width="fill_parent"

@@ -41,7 +41,6 @@ public class DateSelectActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-
     }
 
     @Override

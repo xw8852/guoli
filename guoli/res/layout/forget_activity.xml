@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/forget_phone"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="fill_parent"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/identify_code"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
                 android:id="@+id/identify"
                 android:layout_width="fill_parent"
@@ -96,7 +96,7 @@
             android:text="@string/forget_password_tips"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
-
+
     <Button
         android:id="@+id/send"
         android:layout_width="fill_parent"

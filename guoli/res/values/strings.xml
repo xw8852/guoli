@@ -7,6 +7,7 @@
     <string name="back_btn">返回</string>
     <string name="text_true">是</string>
     <string name="text_false">否</string>
+    <string name="loading_msg">数据加载中...</string>
 
     <!-- 酒店搜索页面 -->
     <string name="search_hotel_title">果粒特惠酒店</string>
