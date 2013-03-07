@@ -1,5 +1,7 @@
 package com.guoli.hotel.activity.hotel;
 
+import java.util.Arrays;
+
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -12,11 +14,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
-import com.guoli.hotel.net.response.bean.AreaInfo;
+import com.guoli.hotel.bean.AreaInfo;
+import com.guoli.hotel.bean.SearchInfo;
+import com.guoli.hotel.bean.ZoneInfo;
+import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
@@ -40,6 +46,8 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     private static final int DIALOG_DATEPICKER_LEAVE = 2;
     
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
+    
+    private static final String TAG = SearchHotelActivity.class.getSimpleName();
 
     /** 入住城市 */
     private TextView mCityView;
@@ -53,7 +61,8 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     private TextView mLevelView;
     /** 行政区域 */
     private TextView mAreaView;
-
+    /**搜索关键字*/
+    private EditText mKeyWordView;
     /***/
     /***/
 
@@ -85,6 +94,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         mPriceView = (TextView) findViewById(R.id.priceBtn);
         mLevelView = (TextView) findViewById(R.id.starBtn);
         mAreaView = (TextView) findViewById(R.id.areaBtn);
+        mKeyWordView = (EditText) findViewById(R.id.key_word);
 
         mOccupancyView.setOnClickListener(this);
         mLeaveView.setOnClickListener(this);
@@ -112,18 +122,10 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             break;
         case R.id.occupancy_date_btn:
             // 入住日期
-            /*
-             * intent = new Intent(); intent.setClass(this, OccupancyDateSelectActivity.class);
-             * startActivityForResult(intent, PAGE_OCCUPANCY_DATE);
-             */
             showDialog(DIALOG_DATEPICKER_OCCUPANCY);
             break;
         case R.id.leave_date_btn:
             // 离店时间
-            /*
-             * intent = new Intent(); intent.setClass(this, LeaveDateSelectActivity.class);
-             * startActivityForResult(intent, PAGE_LEAVE_DATE);
-             */
             showDialog(DIALOG_DATEPICKER_LEAVE);
             break;
         case R.id.priceBtn:
@@ -152,7 +154,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             break;
         }
     }
-
+    
     /**
      * 
      * enterHotelSearchResultActivity:跳转到酒店查询结果页�? <br/>
@@ -161,8 +163,16 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      * @since JDK 1.6
      */
     private void enterHotelSearchResultActivity() {
+        SearchInfo info = getSearchInfo();
+        if (info == null) {
+            Log.i(TAG, "enterHotelSearchResultActivity()--->搜索条件对象不能为空.....");
+            return;
+        }
         // 跳转到酒店搜索结果页�?
         Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(HotelSearchResultActivity.KEY_SEARCHINFO, getSearchInfo());
+        intent.putExtras(bundle);
         intent.setClass(this, HotelSearchResultActivity.class);
         startActivity(intent);
     }
@@ -174,14 +184,30 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     public void onNothingSelected(AdapterView<?> arg0) {
 
     }
+    
+    /**
+     * 
+     * getObject:获取intent中bundle内指定key对应的值. <br/>
+     * @author maple
+     * @param intent
+     * @param key
+     * @return
+     * @since JDK 1.6
+     */
+    private Object getObject(Intent intent, String key){
+        if (TextUtils.isEmpty(key) || intent == null) {
+            return null;
+        }
+        Bundle bundle = intent.getExtras();
+        return bundle == null ? null : bundle.get(key);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
         case PAGE_CITY:
-            String cityName = data == null ? "" : data.getStringExtra(CitySelectActivity.KEY_CITY_NAME);
-            setViewText(mCityView, cityName);
+            setCityView(data);
             break;
         case PAGE_OCCUPANCY_DATE:
             String date = data == null ? "" : data.getStringExtra(DateSelectActivity.KEY_DATE);
@@ -200,12 +226,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             setViewText(mLevelView, level);
             break;
         case PAGE_AREA:
-            Bundle bundle = data == null ? null : data.getExtras();
-            AreaInfo info = bundle == null ? null : (AreaInfo)bundle.get(AreaListActivity.KEY_AREA);
-            if (info != null) {
-                setViewText(mAreaView, info.getName());
-                mAreaView.setTag(info);
-            }
+            setAreaView(data);
             break;
 
         default:
@@ -225,6 +246,42 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     private void setViewText(TextView view, String text) {
         if (view == null) { return; }
         view.setText(text == null ? "" : text);
+    }
+    
+    /**
+     * 
+     * setCityView:设置城市视图的值. <br/>
+     * @author maple
+     * @param intent
+     * @since JDK 1.6
+     */
+    private void setCityView(Intent intent){
+        Object obj = getObject(intent, CitySelectActivity.KEY_CITYINFO);
+        if (!(obj instanceof CityInfo)) {
+            mCityView.setText("");
+            return;
+        }
+        CityInfo info = (CityInfo) obj;
+        setViewText(mCityView, info.getCityName());
+        mCityView.setTag(info);
+    }
+    
+    /**
+     * 
+     * setAreaView:设置区域视图的值. <br/>
+     * @author maple
+     * @param intent
+     * @since JDK 1.6
+     */
+    private void setAreaView(Intent intent){
+        Object obj = getObject(intent, AreaListActivity.KEY_AREA);
+        if (!(obj instanceof AreaInfo)) {
+            mCityView.setText("");
+            return;
+        }
+        AreaInfo info = (AreaInfo) obj;
+        setViewText(mAreaView, info.getName());
+        mAreaView.setTag(info);
     }
 
     @Override
@@ -356,5 +413,97 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         int year;
         int month;
         int day;
+    }
+    
+    /**
+     * 
+     * getSearchInfo:获取搜索条件对象. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private SearchInfo getSearchInfo(){
+        CityInfo cityInfo = (CityInfo) mCityView.getTag();
+        //接口文档中规定城市编码/入住/离开时间为必填
+        if (cityInfo == null) {
+            return null;
+        }
+        CharSequence startDate = mOccupancyView.getText();
+        if (TextUtils.isEmpty(startDate)) {
+            return null;
+        }
+        CharSequence endDate = mLeaveView.getText();
+        if (TextUtils.isEmpty(endDate)) {
+            return null;
+        }
+        SearchInfo info = new SearchInfo();
+        info.setCityCode(cityInfo.getCityCode());
+        info.setStartDate((String) startDate);
+        info.setEndDate((String) endDate);
+        info.setPrice(getPrice());
+        info.setLevel(getLevel());
+        info.setKeyWord(mKeyWordView.getText().toString());
+        //排序默认为果粒推荐
+        info.setOrderKey(getResources().getStringArray(R.array.order_key)[0]);
+        
+        Object obj = mAreaView.getTag();
+        if (!(obj instanceof AreaInfo)) {
+            return info;
+        }
+        AreaInfo areaInfo = (AreaInfo) obj;
+        int type = areaInfo instanceof ZoneInfo ? 1 : 2;
+        info.setAreaType(String.valueOf(type));
+        info.setArea(areaInfo.getCode());
+        return info;
+    }
+    
+    /***
+     * 
+     * getKey:获取指定value对应的key. <br/>
+     * @author maple
+     * @param keyArrayId
+     * @param valueArrayId
+     * @param value
+     * @return
+     * @since JDK 1.6
+     */
+    private String getKey(int keyArrayId, int valueArrayId, String value){
+        String[] values = getResources().getStringArray(valueArrayId);
+        String[] keys = getResources().getStringArray(keyArrayId);
+        if (values == null || keys == null) {
+            return "";
+        }
+        int index = Arrays.binarySearch(values, value);
+        if (index < 0) {
+            return "";
+        }
+        if (index < keys.length) {
+            return keys[index];
+        }
+        return "";
+    }
+    
+    /**
+     * 
+     * getPrice:获取价格区域. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private String getPrice(){
+        CharSequence priceChar = mPriceView.getText();
+        return getKey(R.array.price_key, R.array.price_value, (String)priceChar);
+    }
+    
+    /**
+     * 
+     * getLevel:获取酒店级别. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private String getLevel(){
+        CharSequence level = mLeaveView.getText();
+        return getKey(R.array.level_key, R.array.level_value, (String) level);
     }
 }

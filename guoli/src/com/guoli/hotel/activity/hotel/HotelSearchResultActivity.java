@@ -15,6 +15,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,6 +26,7 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
 import com.guoli.hotel.adapter.HotelAdapter;
 import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.bean.SearchInfo;
 
 /**
  * ClassName:HotelSearchResultActivity <br/>
@@ -56,6 +58,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private HotelAdapter<HotelInfo> mListAdapter;
     /**区域过滤标记*/
     private static final int LOCATION_FILTER = 5;
+    /**搜索条件对象*/
+    public static final String KEY_SEARCHINFO = "searchInfo";
+    
+    private static final String TAG = HotelSearchResultActivity.class.getSimpleName();
+    
+    private SearchInfo mSearchInfo;
     
     public HotelSearchResultActivity(){
         mLayoutId = R.layout.hotel_search_result;
@@ -67,8 +75,33 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        mSearchInfo = getSearchInfo();
+        Log.i(TAG, "onCreate()---> mSearchInfo=" + (mSearchInfo == null ? null : mSearchInfo));
         showLeftBtn();
         showRightBtn();
+    }
+    
+    /**
+     * 
+     * getSearchInfo:获取搜索页面传递过来的搜索参数对象. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private SearchInfo getSearchInfo(){
+        Intent intent = getIntent();
+        if (intent == null) {
+            return null;
+        }
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) {
+            return null;
+        }
+        Object obj =  bundle.get(KEY_SEARCHINFO);
+        if (!(obj instanceof SearchInfo)) {
+            return null;
+        }
+        return (SearchInfo) obj;
     }
 
     @Override

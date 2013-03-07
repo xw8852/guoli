@@ -29,7 +29,7 @@
             android:name=".activity.hotel.SearchHotelActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HotelSearchResultActivity"
+            android:name=".activity.hotel.HotelSearchResultActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HotelsMapActivity"

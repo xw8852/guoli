@@ -24,10 +24,10 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.bean.AreaInfo;
+import com.guoli.hotel.bean.LocationInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.CityRequestParams;
-import com.guoli.hotel.net.response.bean.AreaInfo;
-import com.guoli.hotel.net.response.bean.LocationResponse;
 import com.guoli.hotel.parse.AreaParase;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
@@ -50,7 +50,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     private RadioGroup mTabBar;
     private ArrayAdapter<AreaInfo> mAdapter;
     /**行政区域数据*/
-    private List<AreaInfo> mBarrioInfos;
+    private List<AreaInfo> mZoneInfos;
     /**商圈数据*/
     private List<AreaInfo> mBusinessInfos;
     
@@ -74,10 +74,10 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         AreaInfo info = null;
         switch (checkedId) {
         case R.id.areaAdminRadioBtn:
-            if (mBarrioInfos == null || !(mBarrioInfos.size() > position)) {
+            if (mZoneInfos == null || !(mZoneInfos.size() > position)) {
                 break;
             }
-            info = mBarrioInfos.get(position);
+            info = mZoneInfos.get(position);
             break;
         case R.id.areaShoppingRadioBtn:
             if (mBusinessInfos == null || !(mBusinessInfos.size() > position)) {
@@ -109,7 +109,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
         case R.id.areaAdminRadioBtn:
-            updateListView(mBarrioInfos);
+            updateListView(mZoneInfos);
             break;
         case R.id.areaShoppingRadioBtn:
             updateListView(mBusinessInfos);
@@ -163,13 +163,13 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         @Override
         public void onSuccess(Response resp) {
             dismissLoadingDialog();
-            LocationResponse locationResp = new AreaParase().parseResponse(resp);
-            if (locationResp == null) {
+            LocationInfo info = new AreaParase().parseResponse(resp);
+            if (info == null) {
                 return;
             }
-            mBarrioInfos = locationResp.getBarrioInfos();
-            mBusinessInfos = locationResp.getBusinessInfos();
-            updateListView(mBarrioInfos);
+            mZoneInfos = info.getZoneInfos();
+            mBusinessInfos = info.getBusinessInfos();
+            updateListView(mZoneInfos);
         }
         
         @Override

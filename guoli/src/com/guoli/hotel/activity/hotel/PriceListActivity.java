@@ -53,7 +53,7 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.priceListView);
         mListView.setOnItemClickListener(this);
-        mPrices = getResources().getStringArray(R.array.price_key);
+        mPrices = getResources().getStringArray(R.array.price_value);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mPrices);
         mListView.setAdapter(adapter);
     }

@@ -52,7 +52,7 @@ public class LevelListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.levelListView);
         mListView.setOnItemClickListener(this);
-        mLevels = getResources().getStringArray(R.array.level_key);
+        mLevels = getResources().getStringArray(R.array.level_value);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mLevels);
         mListView.setAdapter(adapter);
     }

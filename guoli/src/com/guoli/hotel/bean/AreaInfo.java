@@ -8,7 +8,7 @@
  *
 */
 
-package com.guoli.hotel.net.response.bean;
+package com.guoli.hotel.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

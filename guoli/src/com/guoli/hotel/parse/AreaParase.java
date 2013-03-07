@@ -10,7 +10,7 @@
 
 package com.guoli.hotel.parse;
 
-import com.guoli.hotel.net.response.bean.LocationResponse;
+import com.guoli.hotel.bean.LocationInfo;
 import com.msx7.core.command.model.Response;
 
 /**
@@ -22,7 +22,7 @@ import com.msx7.core.command.model.Response;
  * @since    JDK 1.6
  * @see 	 
  */
-public class AreaParase extends BaseParse<LocationResponse> {
+public class AreaParase extends BaseParse<LocationInfo> {
 
     /**
      * 
@@ -32,8 +32,8 @@ public class AreaParase extends BaseParse<LocationResponse> {
      * @return
      * @since JDK 1.6
      */
-    public LocationResponse parseResponse(Response resp){
-        return parse(resp, LocationResponse.class);
+    public LocationInfo parseResponse(Response resp){
+        return parse(resp, LocationInfo.class);
     }
 }
 

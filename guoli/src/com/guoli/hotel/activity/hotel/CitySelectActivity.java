@@ -47,7 +47,7 @@ import com.msx7.core.command.model.Response;
  */
 public class CitySelectActivity extends CallActivity implements OnItemClickListener {
     /** 城市名称关键字 */
-    public final static String KEY_CITY_NAME = "cityName";
+    public final static String KEY_CITYINFO = "cityInfo";
     private ListView mListView;
     private EditText mKeyWordView;
 
@@ -101,7 +101,9 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         CityInfo info = listAdapter.getItem(position);
         if (info == null) { return; }
         Intent intent = new Intent();
-        intent.putExtra(KEY_CITY_NAME, info.getCityName());
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_CITYINFO, info);
+        intent.putExtras(bundle);
         setResult(SearchHotelActivity.PAGE_CITY, intent);
         finish();
     }
