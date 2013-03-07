@@ -35,7 +35,7 @@ public class LevelListActivity extends BaseActivity implements OnItemClickListen
     
     private ListView mListView;
     
-    private String[] mLevels = new String[]{"一星级","两星级","三星级","四星级","五星级"};
+    private String[] mLevels;
     
     public LevelListActivity(){
         mTitleTextId = R.string.hotel_level;
@@ -52,7 +52,8 @@ public class LevelListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.levelListView);
         mListView.setOnItemClickListener(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mLevels);
+        mLevels = getResources().getStringArray(R.array.level_key);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mLevels);
         mListView.setAdapter(adapter);
     }
 

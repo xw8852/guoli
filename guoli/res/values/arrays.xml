@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="price_key">
+        <item>不限</item>
+        <item>￥500以下</item>
+        <item>￥500~￥800</item>
+        <item>￥800~￥1200</item>
+        <item>￥1200以上</item>
+    </string-array>
+    
+    <string-array name="level_key">
+        <item >不限</item>
+        <item >五星</item>
+        <item >四星</item>
+        <item >三星以下</item>
+    </string-array>
+</resources>

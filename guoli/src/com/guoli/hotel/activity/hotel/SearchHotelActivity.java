@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
+import com.guoli.hotel.net.response.bean.AreaInfo;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
@@ -199,8 +200,12 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             setViewText(mLevelView, level);
             break;
         case PAGE_AREA:
-            String area = data == null ? "" : data.getStringExtra(AreaListActivity.KEY_AREA);
-            setViewText(mAreaView, area);
+            Bundle bundle = data == null ? null : data.getExtras();
+            AreaInfo info = bundle == null ? null : (AreaInfo)bundle.get(AreaListActivity.KEY_AREA);
+            if (info != null) {
+                setViewText(mAreaView, info.getName());
+                mAreaView.setTag(info);
+            }
             break;
 
         default:

@@ -99,11 +99,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PriceListActivity"
+            android:name=".activity.hotel.PriceListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.LevelListActivity"
+            android:name=".activity.hotel.LevelListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -111,7 +111,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.HotelListActivity"
+            android:name=".activity.hotel.HotelListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
