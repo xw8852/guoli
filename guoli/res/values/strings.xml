@@ -195,6 +195,8 @@
     <string name="hotel_area_shopping">商圈</string>
     <!-- 特别推荐 -->
     <string name="recommend">特别推荐</string>
+    <string name="date_period">入住有效期&#160;:%1$s</string>
+    <string name="recommend_reason">推荐理由&#160;:%1$s</string>
     <!-- 收藏夹页面 -->
     <string name="my_favorite">我的收藏</string>
     <!-- 订单详情 -->

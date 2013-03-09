@@ -129,6 +129,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     @Override
     protected void loadNetworkData() {
         //从网络服务器拉取数据并加载显示
+        showLoadingDialog(R.string.loading_msg);
         GuoliRequest request = new GuoliRequest("hotel_qry", mSearchInfo);
         Log.i("CitySelectActivity", "request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mListener);
@@ -249,11 +250,13 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         
         @Override
         public void onSuccess(Response resp) {
+            dismissLoadingDialog();
             Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
         }
         
         @Override
         public void onError(Response resp) {
+            dismissLoadingDialog();
             Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
             
         }

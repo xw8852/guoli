@@ -10,11 +10,11 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,9 +22,16 @@ import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
-import com.guoli.hotel.adapter.HotelAdapter;
+import com.guoli.hotel.adapter.RecommondHotelAdapter;
 import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.bean.RecommendHotelInfo;
+import com.guoli.hotel.bean.RecommendsInfo;
+import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.parse.RecommandHotelParse;
 import com.guoli.hotel.widget.BottomTabbar;
+import com.msx7.core.Manager;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:HotelListActivity <br/>
@@ -38,6 +45,9 @@ import com.guoli.hotel.widget.BottomTabbar;
 public class HotelListActivity extends BaseActivity implements OnItemClickListener {
     
     private ListView mListView;
+    private RecommondHotelAdapter mAdapter;
+    
+    private static final String TAG = HotelListActivity.class.getSimpleName();
     
     public HotelListActivity(){
         mTitleTextId = R.string.recommend;
@@ -51,7 +61,7 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
         new BottomTabbar(this, 1);
         showLeftBtn();
         showRightBtn();
-        updateListView(getList());
+        syncData();
     }
 
     @Override
@@ -90,18 +100,16 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
      * @param list
      * @since JDK 1.6
      */
-    private void updateListView(List<HotelInfo> list){
+    private void updateListView(List<RecommendHotelInfo> list){
         if (list == null || list.size() < 1) {
             return;
         }
-        @SuppressWarnings("unchecked")
-        HotelAdapter<HotelInfo> adapter = (HotelAdapter<HotelInfo>) mListView.getAdapter();
-        if (adapter == null) {
-            adapter = new HotelAdapter<HotelInfo>(list, this);
-            mListView.setAdapter(adapter);
+        if (mAdapter == null) {
+            mAdapter = new RecommondHotelAdapter(list, this);
+            mListView.setAdapter(mAdapter);
         } else {
-            adapter.clear();
-            adapter.addMore(list);
+            mAdapter.clear();
+            mAdapter.addMore(list);
         }
     }
     
@@ -117,21 +125,34 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
         startActivity(intent);
     }
 
-    //模拟的数据
-    private List<HotelInfo> getList(){
-        List<HotelInfo> infoList = new ArrayList<HotelInfo>();
-        for (int index = 0 ; index < 20 ; index++) {
-            HotelInfo info = new HotelInfo();
-            info.setName("酒店" + index);
-            info.setAddress("地址" + index);
-            info.setArea("区域" + index);
-            info.setLevel((3+index)%5);
-            info.setPrice(0 + index);
-            info.setDiscount((float) (1.2 + index * 0.1));
-            info.setPhoneNumber("10201110" + index);
-            infoList.add(info);
-        }
-        return infoList;
+    /**
+     * 
+     * syncData:(这里用一句话描述这个方法的作用). <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void syncData(){
+        showLoadingDialog(R.string.loading_msg);
+        GuoliRequest request = new GuoliRequest("hotel_recommen", null);
+        Log.i(TAG, "request=" + request.Params.toParams());
+        Manager.getInstance().executePoset(request, mSyncLisenter);
     }
+    
+    private IResponseListener mSyncLisenter = new IResponseListener() {
+        
+        @Override
+        public void onSuccess(Response resp) {
+            dismissLoadingDialog();
+            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
+            RecommendsInfo info = new RecommandHotelParse().parseResponse(resp);
+            updateListView(info == null ? null : info.getList());
+        }
+        
+        @Override
+        public void onError(Response resp) {
+            dismissLoadingDialog();
+            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
+        }
+    };
 }
 
