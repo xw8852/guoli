@@ -28,6 +28,7 @@ public abstract class UpdateActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        initPassParams();
         loadData();
     }
 

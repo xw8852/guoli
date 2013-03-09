@@ -503,7 +503,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      * @since JDK 1.6
      */
     private String getLevel(){
-        CharSequence level = mLeaveView.getText();
+        CharSequence level = mLevelView.getText();
         return getKey(R.array.level_key, R.array.level_value, (String) level);
     }
 }
