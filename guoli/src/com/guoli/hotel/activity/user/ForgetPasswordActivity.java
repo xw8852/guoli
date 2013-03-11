@@ -18,16 +18,16 @@ import com.msx7.core.command.model.Response;
 
 public class ForgetPasswordActivity extends BaseActivity2 {
 
-	private EditText phone;
-	private String mPhone;
-	private EditText identify;
-	private String mIdentify;
+	private EditText phoneView;
+	private String phone;
+	private EditText identifyView;
+	private String identify;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		showLeftReturnBtn(false, -1);
-		phone = (EditText) findViewById(R.id.phone);
-		identify = (EditText) findViewById(R.id.identify);
+		phoneView = (EditText) findViewById(R.id.phone);
+		identifyView = (EditText) findViewById(R.id.identify);
 		findViewById(R.id.send).setOnClickListener(onSendClickListener);
 	}
 
@@ -40,15 +40,15 @@ public class ForgetPasswordActivity extends BaseActivity2 {
 
 		@Override
 		public void onClick(View v) {
-			mPhone = phone.getText().toString();
-			mIdentify = identify.getText().toString();
+			phone = phoneView.getText().toString();
+			identify = identifyView.getText().toString();
 
-			if (TextUtils.isEmpty(mPhone) || TextUtils.isEmpty(mIdentify)) {
+			if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(identify)) {
 				Toast.makeText(ForgetPasswordActivity.this, "null", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			Request request = new GuoliRequest("userreg", new UserRegisterBean(mPhone, null, mIdentify));
+			Request request = new GuoliRequest("userreg", new UserRegisterBean(phone, null, identify));
 			Manager.getInstance().executePoset(request, sendResponseListener);
 
 			setResult(RESULT_OK);

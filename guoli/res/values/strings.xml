@@ -103,7 +103,7 @@
     <string name="version">版本号:1.0.1</string>
     <!-- 账户 -->
     <string name="account_title">我的果粒网</string>
-    <string name="nickname">昵称：jsou</string>
+    <string name="nickname_title">昵称：</string>
     <string name="modify_password">修改密码</string>
     <string name="account_order">酒店订单</string>
     <string name="account_favorite">收藏夹</string>

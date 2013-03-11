@@ -3,6 +3,7 @@ package com.guoli.hotel.activity.user;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,28 +18,51 @@ public class EditUserInfoActivity extends BaseActivity2 {
 
 	private static final int DATE_PICKER_ID = 1;
 	private RadioGroup rgGender;
-	private TextView birthday;
+	private TextView birthdayView;
+	private TextView nicknameView;
+	private String nickname;
 	private String[] nDate;
 	private int mYear;
 	private int mMonth;
 	private int mDay;
 
-	
-	  
-	    @Override
-	    public int getContentId() {
-	        return R.layout.edit_user_info;
-	    };
-	    
+	@Override
+	public int getContentId() {
+		return R.layout.edit_user_info;
+	};
+
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
-		birthday = (TextView) findViewById(R.id.birthdayValue);
-		nDate = birthday.getText().toString().split("-");
+		initBirthdayView();
+		nicknameView = (TextView) findViewById(R.id.nickname);
+		nickname = getIntent().getStringExtra("nickname");
+		nicknameView.setText(nickname);
+
+		findViewById(R.id.confirm).setOnClickListener(confirmOnClickListener);
+	}
+
+	View.OnClickListener confirmOnClickListener = new View.OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			String newNickname = nicknameView.getText().toString();
+			if (!newNickname.equalsIgnoreCase(nickname)) {
+				Intent intent = new Intent();
+				intent.putExtra("newNickname", newNickname);
+				setResult(RESULT_OK, intent);
+				finish();
+			}
+		}
+	};
+
+	private void initBirthdayView() {
+		birthdayView = (TextView) findViewById(R.id.birthday);
+		nDate = birthdayView.getText().toString().split("-");
 		mYear = Integer.parseInt(nDate[0]);
 		mMonth = Integer.parseInt(nDate[1]);
 		mDay = Integer.parseInt(nDate[2]);
 
-		birthday.setOnClickListener(new OnClickListener() {
+		birthdayView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -46,7 +70,7 @@ public class EditUserInfoActivity extends BaseActivity2 {
 			}
 		});
 
-		rgGender = (RadioGroup) findViewById(R.id.genderValue);
+		rgGender = (RadioGroup) findViewById(R.id.gender);
 		rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
 			@Override
@@ -63,28 +87,23 @@ public class EditUserInfoActivity extends BaseActivity2 {
 				}
 			}
 		});
-
 	}
 
 	private DatePickerDialog.OnDateSetListener onDateSetListener = new OnDateSetListener() {
 
 		@Override
-		public void onDateSet(DatePicker view, int year, int monthOfYear,
-				int dayOfMonth) {
-			birthday.setText(year + "-" + (monthOfYear + 101 + "").substring(1)
-					+ "-" + (dayOfMonth + 100 + "").substring(1));
+		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+			birthdayView.setText(year + "-" + (monthOfYear + 101 + "").substring(1) + "-"
+					+ (dayOfMonth + 100 + "").substring(1));
 		}
 	};
 
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DATE_PICKER_ID:
-			return new DatePickerDialog(this, onDateSetListener, mYear,
-					mMonth - 1, mDay); // 显示的默认时间
+			return new DatePickerDialog(this, onDateSetListener, mYear, mMonth - 1, mDay); // 显示的默认时间
 		}
 		return null;
 	}
-
-  
 
 }

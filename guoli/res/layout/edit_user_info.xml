@@ -1,273 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:background="@drawable/shape_round_rect_grey"
-        android:gravity="center_vertical" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="昵  称："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="Joypull"
+            android:layout_margin="@dimen/default_margin"
+            android:background="@drawable/shape_round_rect_grey"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="昵  称："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/nickname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@drawable/shape_round_rect_grey" >
+
+            <TextView
+                android:id="@+id/nameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="姓    名："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/nameId"
+                android:paddingTop="@dimen/large_margin"
+                android:text="*"
+                android:textColor="#ff0000" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_toRightOf="@+id/view1"
+                android:background="@android:color/transparent"
+                android:paddingTop="@dimen/large_margin"
+                android:text="张三"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_grey" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/nameId"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/genderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line1"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="性    别："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/genderId"
+                android:layout_alignLeft="@+id/name"
+                android:layout_alignTop="@+id/genderId"
+                android:layout_toRightOf="@+id/genderId"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/gender_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="男" />
+
+                <RadioButton
+                    android:id="@+id/gender_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:text="女" />
+            </RadioGroup>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/genderId"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/birthdayId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line2"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="生    日："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/birthday"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/line2"
+                android:layout_toRightOf="@+id/birthdayId"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="1970-01-01"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_grey" >
+            </TextView>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/birthdayId"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/phoneId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line3"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="手    机："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line3"
+                android:layout_toRightOf="@+id/phoneId"
+                android:paddingTop="@dimen/large_margin"
+                android:text="*"
+                android:textColor="#ff0000" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/line3"
+                android:layout_toRightOf="@+id/view2"
+                android:background="@android:color/transparent"
+                android:inputType="phone"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="15000000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_grey" />
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/phoneId"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/adressId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line4"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="地    址："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/adress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/line4"
+                android:layout_toRightOf="@+id/adressId"
+                android:background="@android:color/transparent"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="上海"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_grey" />
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/adressId"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/postcodeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line5"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="邮    编："
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/postcode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/line5"
+                android:layout_toRightOf="@+id/postcodeId"
+                android:background="@android:color/transparent"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingTop="@dimen/large_margin"
+                android:text="200000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_grey" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:gravity="center"
+            android:text="确认修改"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:layout_marginRight="@dimen/default_margin"
-        android:background="@drawable/shape_round_rect_grey" >
-
-        <TextView
-            android:id="@+id/nameId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="姓    名："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/view1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/nameId"
-            android:paddingTop="@dimen/large_margin"
-            android:text="*"
-            android:textColor="#ff0000" />
-
-        <EditText
-            android:id="@+id/nameValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_margin"
-            android:layout_toRightOf="@+id/view1"
-            android:background="@android:color/transparent"
-            android:paddingTop="@dimen/large_margin"
-            android:text="张三"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_grey" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/nameId"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="@drawable/divider" />
-
-        <TextView
-            android:id="@+id/genderId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line1"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="性    别："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <RadioGroup
-            android:id="@+id/genderValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/genderId"
-            android:layout_alignLeft="@+id/nameValue"
-            android:layout_alignTop="@+id/genderId"
-            android:layout_toRightOf="@+id/genderId"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/gender_man"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="男" />
-
-            <RadioButton
-                android:id="@+id/gender_woman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/large_margin"
-                android:text="女" />
-        </RadioGroup>
-
-        <View
-            android:id="@+id/line2"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/genderId"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="@drawable/divider" />
-
-        <TextView
-            android:id="@+id/birthdayId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line2"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="生    日："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/birthdayValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nameValue"
-            android:layout_below="@+id/line2"
-            android:layout_toRightOf="@+id/birthdayId"
-            android:gravity="center_vertical"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="1970-01-01"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_grey" >
-        </TextView>
-
-        <View
-            android:id="@+id/line3"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/birthdayId"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="@drawable/divider" />
-
-        <TextView
-            android:id="@+id/phoneId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line3"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="手    机："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/view2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line3"
-            android:layout_toRightOf="@+id/phoneId"
-            android:paddingTop="@dimen/large_margin"
-            android:text="*"
-            android:textColor="#ff0000" />
-
-        <EditText
-            android:id="@+id/phoneValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nameValue"
-            android:layout_below="@+id/line3"
-            android:layout_toRightOf="@+id/view2"
-            android:background="@android:color/transparent"
-            android:inputType="phone"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="15000000000"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_grey" />
-
-        <View
-            android:id="@+id/line4"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/phoneId"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="@drawable/divider" />
-
-        <TextView
-            android:id="@+id/adressId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line4"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="地    址："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/adressValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nameValue"
-            android:layout_below="@+id/line4"
-            android:layout_toRightOf="@+id/adressId"
-            android:background="@android:color/transparent"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="上海"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_grey" />
-
-        <View
-            android:id="@+id/line5"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/adressId"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="@drawable/divider" />
-
-        <TextView
-            android:id="@+id/postcodeId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line5"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingLeft="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="邮    编："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/postcodeValue"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nameValue"
-            android:layout_below="@+id/line5"
-            android:layout_toRightOf="@+id/postcodeId"
-            android:background="@android:color/transparent"
-            android:paddingBottom="@dimen/large_margin"
-            android:paddingTop="@dimen/large_margin"
-            android:text="200000"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_grey" />
-    </RelativeLayout>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:gravity="center"
-        android:text="确认修改"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-</LinearLayout>
+</ScrollView>

@@ -21,7 +21,6 @@
             android:paddingLeft="@dimen/large_margin"
             android:paddingRight="@dimen/large_margin"
             android:paddingTop="@dimen/default_margin"
-            android:text="@string/nickname"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <View

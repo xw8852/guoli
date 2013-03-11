@@ -22,10 +22,10 @@ public class LoginActivity extends BaseActivity2 {
 	public static final int RESULT_LOGIN_OK = 0x0001;
 	public static final int RESULT_UN_LOGIN = 0x0002;
 
-	private EditText password;
-	private String mPassword;
-	private EditText userID;
-	private String mUserID;
+	private EditText passwordView;
+	private String password;
+	private EditText idView;
+	private String id;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
@@ -35,8 +35,8 @@ public class LoginActivity extends BaseActivity2 {
 		findViewById(R.id.button2).setOnClickListener(onLoginListener);
 		findViewById(R.id.button1).setOnClickListener(onUnLogClickListener);
 
-		password = (EditText) findViewById(R.id.textView5);
-		userID = (EditText) findViewById(R.id.textView3);
+		passwordView = (EditText) findViewById(R.id.textView5);
+		idView = (EditText) findViewById(R.id.textView3);
 	}
 
 	@Override
@@ -75,15 +75,15 @@ public class LoginActivity extends BaseActivity2 {
 
 		@Override
 		public void onClick(View v) {
-			mPassword = password.getText().toString();
-			mUserID = userID.getText().toString();
+			password = passwordView.getText().toString();
+			id = idView.getText().toString();
 
-			if (TextUtils.isEmpty(mPassword) || TextUtils.isEmpty(mUserID)) {
+			if (TextUtils.isEmpty(password) || TextUtils.isEmpty(id)) {
 				Toast.makeText(LoginActivity.this, "null", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			Request request = new GuoliRequest("userlogin", new UserRegisterBean(mUserID, mPassword, null));
+			Request request = new GuoliRequest("userlogin", new UserRegisterBean(id, password, null));
 			Manager.getInstance().executePoset(request, loginResponseListener);
 
 			setResult(RESULT_LOGIN_OK);

@@ -29,10 +29,10 @@
             android:name=".activity.hotel.SearchHotelActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HotelSearchResultActivity"
+            android:name=".activity.hotel.HotelSearchResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HotelsMapActivity"
+            android:name=".activity.hotel.HotelsMapActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MoreActivity"
@@ -75,11 +75,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.HotelLocationActivity"
+            android:name=".activity.hotel.HotelLocationActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.HotelInfoActivity"
+            android:name=".activity.hotel.HotelInfoActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -99,11 +99,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PriceListActivity"
+            android:name=".activity.hotel.PriceListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.LevelListActivity"
+            android:name=".activity.hotel.LevelListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -111,7 +111,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.HotelListActivity"
+            android:name=".activity.hotel.HotelListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -135,7 +135,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.hotel.HotelCountActivityty"
+            android:name=".activity.hotel.HotelCountActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -150,7 +150,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PicGridActivity"
+            android:name=".activity.hotel.PicGridActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -158,7 +158,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.UserSelectActivity"
+            android:name=".activity.user.UserSelectActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activity.user.AddUserActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity

@@ -19,21 +19,21 @@ import com.msx7.core.command.model.Response;
 
 public class RegisterActivity extends BaseActivity2 {
 
-	private EditText phone;
-	private String mPhone;
-	private EditText pwd;
-	private String mPwd;
-	private EditText multiPwd;
-	private String mMultiPwd;
-	private EditText identify;
-	private String mIdentify;
+	private EditText phoneView;
+	private String phone;
+	private EditText passwordView;
+	private String password;
+	private EditText multiPwdView;
+	private String multiPwd;
+	private EditText identifyView;
+	private String identify;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
-		pwd = (EditText) findViewById(R.id.pwd);
-		phone = (EditText) findViewById(R.id.phone);
-		multiPwd = (EditText) findViewById(R.id.multi_pwd);
-		identify = (EditText) findViewById(R.id.identify);
+		passwordView = (EditText) findViewById(R.id.pwd);
+		phoneView = (EditText) findViewById(R.id.phone);
+		multiPwdView = (EditText) findViewById(R.id.multi_pwd);
+		identifyView = (EditText) findViewById(R.id.identify);
 		findViewById(R.id.send).setOnClickListener(onRegisterClickListener);
 		findViewById(R.id.get_identify).setOnClickListener(getIdentifyClickListener);
 	}
@@ -47,9 +47,9 @@ public class RegisterActivity extends BaseActivity2 {
 
 		@Override
 		public void onClick(View v) {
-			mPhone = phone.getText().toString().trim();
-			if (!TextUtils.isEmpty(mPhone)) {
-				Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(mPhone, null));
+			phone = phoneView.getText().toString().trim();
+			if (!TextUtils.isEmpty(phone)) {
+				Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
 				Manager.getInstance().executePoset(request, getResponseListener);
 			} else {
 				Toast.makeText(RegisterActivity.this, "null", Toast.LENGTH_SHORT).show();
@@ -76,33 +76,33 @@ public class RegisterActivity extends BaseActivity2 {
 
 		@Override
 		public void onClick(View v) {
-			mIdentify = identify.getText().toString();
-			mMultiPwd = multiPwd.getText().toString();
-			mPhone = phone.getText().toString();
-			mPwd = pwd.getText().toString();
+			identify = identifyView.getText().toString();
+			multiPwd = multiPwdView.getText().toString();
+			phone = phoneView.getText().toString();
+			password = passwordView.getText().toString();
 
-			if (TextUtils.isEmpty(mPhone) || TextUtils.isEmpty(mPwd) || TextUtils.isEmpty(mMultiPwd)
-					|| TextUtils.isEmpty(mIdentify)) {
+			if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(multiPwd)
+					|| TextUtils.isEmpty(identify)) {
 				Toast.makeText(RegisterActivity.this, "null", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if (mPwd.length() < 6 || mPwd.length() > 12) {
+			if (password.length() < 6 || password.length() > 12) {
 				Toast.makeText(RegisterActivity.this, "pwd is error", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if (mMultiPwd.length() < 6 || mMultiPwd.length() > 12) {
+			if (multiPwd.length() < 6 || multiPwd.length() > 12) {
 				Toast.makeText(RegisterActivity.this, "multiPwd is error", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if (!mPwd.equalsIgnoreCase(mMultiPwd)) {
+			if (!password.equalsIgnoreCase(multiPwd)) {
 				Toast.makeText(RegisterActivity.this, "pwd is different", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			Request request = new GuoliRequest("userreg", new UserRegisterBean(mPhone, mPwd, mIdentify));
+			Request request = new GuoliRequest("userreg", new UserRegisterBean(phone, password, identify));
 			Manager.getInstance().executePoset(request, registerResponseListener);
 			setResult(RESULT_OK);
 			finish();

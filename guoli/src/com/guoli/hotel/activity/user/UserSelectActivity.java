@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.activity.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class UserSelectActivity extends BaseActivity {
             
             break;
         case R.id.addNewUserView:
-            
+            startActivity(new Intent(this, AddUserActivity.class));
             break;
         default:
             break;
