@@ -1,0 +1,40 @@
+request={
+    "action": "hotel_room",
+    "param": {
+        "indate": "2013-1-11",
+        "Outdate": "2013-1-31",
+        "shopid": "89727"
+    },
+    "platformType": "android"
+}
+
+resp={
+    "param": {
+        "indate": "2013-1-11",
+        "Outdate": "2013-1-31",
+        "shopid": "89727"
+    },
+    "hotelinfo": {
+        "shopname": "上海威斯汀大饭店",
+        "address": "河南中路88号   ",
+        "picpath": "1110/89727/",
+        "introduce": "【酒店简介】 &nbsp;&nbsp;&nbsp; 酒店拥有顶级餐饮和娱乐设施，汇集全球各地美食，为您提供典雅、舒适的用餐环境。享誉全球的BANYAN TREE SPA（悦榕泉浴）首次登陆中国大陆，将带来与众不同的水疗理念。此外，酒店2楼和3楼设有12个多功能厅，包括1间高科技会议室，会议设施一应俱全。会议厅与宴会厅总面积达1410平方米，最大的一间宴会厅可供700人同时用餐。 &nbsp;&nbsp;&nbsp; 酒店星级：五星 2002年10月开业 &nbsp;&nbsp;&nbsp; 酒店设施：停车场 出租车 会议厅 商务中心 外币兑换服务 商场 理发美容室 票务服务 洗衣服务 残疾人客房 &nbsp;&nbsp;&nbsp; 餐饮设施：中餐厅 西餐厅 咖啡厅 酒吧 全天送餐服务 &nbsp;&nbsp;&nbsp; 康体娱乐：健身室 室内游泳池 按摩室 桑拿浴室 &nbsp;&nbsp;&nbsp; 地址：上海市河南中路88号
+&nbsp;
+&nbsp;【交通信息】&nbsp;&nbsp;&nbsp;&nbsp; 上海虹桥机场 14.5 公里&nbsp;&nbsp;&nbsp;&nbsp; 上海浦东国际机场 47 公里 &nbsp;&nbsp;&nbsp; 市中心人民广场 1.5 公里 &nbsp;&nbsp;&nbsp; 火车站上海火车站 5 公里 &nbsp;&nbsp;&nbsp; 外滩 0.5 公里 
+&nbsp;",
+        "star": "02",
+        "opendate": "2002",
+        "decorationdate": "0",
+        "mapx": "121.493447",
+        "mapy": "31.23811",
+        "trafficinfo": "{"shizhongxin":["\u4eba\u6c11\u5e7f\u573a\u8ddd\u79bb\u9152\u5e971.91\u516c\u91cc"],"jichang":["\u4e0a\u6d77\u8679\u6865\u673a\u573a\uff08\u4e8c\u53f7\u822a\u7ad9\u697c\uff09\u8ddd\u79bb\u9152\u5e9719.98\u516c\u91cc","\u4e0a\u6d77\u6d66\u4e1c\u56fd\u9645\u673a\u573a\u8ddd\u79bb\u9152\u5e9739.62\u516c\u91cc","\u4e0a\u6d77\u8679\u6865\u673a\u573a\uff08\u4e00\u53f7\u822a\u7ad9\u697c\uff09\u8ddd\u79bb\u9152\u5e9716.38\u516c\u91cc"],"huochezhan":["\u4e0a\u6d77\u706b\u8f66\u7ad9\u8ddd\u79bb\u9152\u5e974.86\u516c\u91cc","\u8679\u6865\u706b\u8f66\u7ad9\u8ddd\u79bb\u9152\u5e9720.43\u516c\u91cc","\u4e0a\u6d77\u706b\u8f66\u5357\u7ad9\u8ddd\u79bb\u9152\u5e9712.47\u516c\u91cc"]}",
+        "roomfacility": "国内长途电话 国际长途电话 中央空调 24小时热水 免费洗漱用品 浴衣 吹风机 拖鞋 独立写字台 多种规格电源插座 保险箱 电热水壶 免费瓶装水",
+        "diningfacility": "中餐厅 西餐厅 咖啡厅 酒吧 全天送餐服务",
+        "creditcard": "境外发行信用卡 -- 万事达(Master)  境外发行信用卡 -- 威士(VISA)  境外发行信用卡 -- 运通(AMEX)  境外发行信用卡 -- 大来(Diners Club)  境外发行信用卡 -- JCB  国内发行银联卡"
+    },
+    "piccount": "11",
+    "result": [
+        
+    ],
+    "success": "1"
+}
