@@ -36,7 +36,7 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     
     private ListView mListView;
     
-    private String[] mPrices = new String[]{"不限","￥1000以下","￥1000-1500","￥1500-2000","￥2000以上"};
+    private String[] mPrices;
     
     public PriceListActivity(){
         mLayoutId = R.layout.price_list_layout;
@@ -53,8 +53,8 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.priceListView);
         mListView.setOnItemClickListener(this);
-        
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mPrices);
+        mPrices = getResources().getStringArray(R.array.price_value);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mPrices);
         mListView.setAdapter(adapter);
     }
 

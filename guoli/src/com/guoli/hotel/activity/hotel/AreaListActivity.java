@@ -10,14 +10,10 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,6 +24,15 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.bean.AreaInfo;
+import com.guoli.hotel.bean.LocationInfo;
+import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.net.request.bean.CityRequestParams;
+import com.guoli.hotel.parse.AreaParase;
+import com.msx7.core.Manager;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
+import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:AreaListActivity <br/>
@@ -40,14 +45,14 @@ import com.guoli.hotel.activity.BaseActivity;
  */
 public class AreaListActivity extends BaseActivity implements OnItemClickListener, OnCheckedChangeListener {
     
+    private String mCityCode;
     private ListView mListView;
     private RadioGroup mTabBar;
-    /**行政区数据*/
-    private String[] mAreaAdmins = new String[]{"不限","黄浦区","浦东新区","徐汇区","杨浦区","长宁区","虹口区"};
+    private ArrayAdapter<AreaInfo> mAdapter;
+    /**行政区域数据*/
+    private List<AreaInfo> mZoneInfos;
     /**商圈数据*/
-    private String[] mAreaShoppings = new String[]{"不限","七浦路商圈","彭浦新村商圈","浦东八佰伴商圈","徐家汇商圈","人民广场"};
-    
-    private ArrayAdapter<String> mAdapter;
+    private List<AreaInfo> mBusinessInfos;
     
     public static final String KEY_AREA = "area";
     
@@ -60,33 +65,33 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         showLeftBtn();
-        updateListView(mAreaAdmins);
-        Intent intent = getIntent();
-        Log.i("AreaListActivity", "intent.getClass=" + intent.getClass());
+        loadData();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int checkedId = mTabBar.getCheckedRadioButtonId();
-        String area = "";
+        AreaInfo info = null;
         switch (checkedId) {
         case R.id.areaAdminRadioBtn:
-            if (mAreaAdmins == null || !(mAreaAdmins.length > position)) {
+            if (mZoneInfos == null || !(mZoneInfos.size() > position)) {
                 break;
             }
-            area = mAreaAdmins[position];
+            info = mZoneInfos.get(position);
             break;
         case R.id.areaShoppingRadioBtn:
-            if (mAreaShoppings == null || !(mAreaShoppings.length > position)) {
+            if (mBusinessInfos == null || !(mBusinessInfos.size() > position)) {
                 break;
             }
-            area = mAreaShoppings[position];
+            info = mBusinessInfos.get(position);
             break;
         default:
             break;
         }
         Intent intent = new Intent();
-        intent.putExtra(KEY_AREA, area);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_AREA, info);
+        intent.putExtras(bundle);
         setResult(SearchHotelActivity.PAGE_AREA, intent);
         finish();
     }
@@ -104,10 +109,10 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
         case R.id.areaAdminRadioBtn:
-            updateListView(mAreaAdmins);
+            updateListView(mZoneInfos);
             break;
         case R.id.areaShoppingRadioBtn:
-            updateListView(mAreaShoppings);
+            updateListView(mBusinessInfos);
             break;
         default:
             break;
@@ -121,25 +126,56 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
      * @param array
      * @since JDK 1.6
      */
-    private void updateListView(String[] array){
-        if (array == null || array.length < 1) {
+    private void updateListView(List<AreaInfo> list){
+        if (list == null) {
             return;
         }
         if (mAdapter == null) {
-            List<String> list = new ArrayList<String>();
-            list.addAll(Arrays.asList(array));
-            mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+            mAdapter = new ArrayAdapter<AreaInfo>(this, R.layout.item_single_layout, list);
             mListView.setAdapter(mAdapter);
             return;
         }
         mAdapter.clear();
-        for (String str : array) {
-            if (TextUtils.isEmpty(str)) {
+        for (AreaInfo info : list) {
+            if (info == null) {
                 continue;
             }
-            mAdapter.add(str);
+            mAdapter.add(info);
         }
         mAdapter.notifyDataSetChanged();
     }
+    
+    /**
+     * 
+     * loadData:从服务器端加载数据. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void loadData(){
+        showLoadingDialog(R.string.loading_msg);
+        CityRequestParams params = new CityRequestParams();
+        params.setCityCode(mCityCode);
+        Request request = new GuoliRequest("system_arealist", params);
+        Manager.getInstance().executePoset(request, mLoadListener);
+    }
+    
+    private IResponseListener mLoadListener = new IResponseListener() {
+        @Override
+        public void onSuccess(Response resp) {
+            dismissLoadingDialog();
+            LocationInfo info = new AreaParase().parseResponse(resp);
+            if (info == null) {
+                return;
+            }
+            mZoneInfos = info.getZoneInfos();
+            mBusinessInfos = info.getBusinessInfos();
+            updateListView(mZoneInfos);
+        }
+        
+        @Override
+        public void onError(Response resp) {
+            dismissLoadingDialog();
+        }
+    };
 }
 

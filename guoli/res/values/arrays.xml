@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="price_value">
+        <item>不限</item>
+        <item>￥500以下</item>
+        <item>￥500~￥800</item>
+        <item>￥800~￥1200</item>
+        <item>￥1200以上</item>
+    </string-array>
+    <string-array name="price_key">
+        <item></item>
+        <item>2</item>
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
+    </string-array>
+    
+    <string-array name="level_value">
+        <item >不限</item>
+        <item >五星</item>
+        <item >四星</item>
+        <item >三星以下</item>
+    </string-array>
+    <string-array name="level_key">
+        <item ></item>
+        <item >02</item>
+        <item >03</item>
+        <item >04</item>
+    </string-array>
+    
+    <string-array name="order_value">
+        <item >果粒推荐</item>
+        <item >价格由高到低</item>
+        <item >价格由低到高</item>
+        <item >折扣由高到低</item>
+    </string-array>
+    <string-array name="order_key">
+        <item >guoli</item>
+        <item >price_desc</item>
+        <item >price_asc</item>
+        <item >discount_asc</item>
+    </string-array>
+</resources>

@@ -1,0 +1,103 @@
+request={
+    "action": "hotel_recommen",
+    "platformType": "android"
+}
+
+//zone、pid、filename分别表示什么？返回值中没有表示星级的字段,建议把"p_91624": {中的key去掉,多余
+
+response={
+    "param": "",
+    "result": {
+        "p_91624": {
+            "shopid": "91624",
+            "date_desc": "2013-2-1到2013-2-28",
+            "recommend_reason": "",
+            "shopname": "溧阳南山花园度假酒店",
+            "address": "溧阳 天目湖南山竹海旅游景区溧戴路",
+            "picpath": "",
+            "shangquan": "",
+            "zone": "320481",
+            "mapx": "119.516279",
+            "mapy": "31.262448",
+            "price": "561.00",
+            "guoliprice": "1852.00",
+            "zheke": "0.5929",
+            "pic": "1359709502.jpg",
+            "pid": "91624",
+            "filename": "1355905610.jpg"
+        },
+        "p_89936": {
+            "shopid": "89936",
+            "date_desc": "从2013-1-11到2013-1-31",
+            "recommend_reason": "",
+            "shopname": "杭州索菲特西湖大酒店",
+            "address": "区西湖大道333号",
+            "picpath": "1207/89936/",
+            "shangquan": "330608",
+            "zone": "330102",
+            "mapx": "120.169029",
+            "mapy": "30.251137",
+            "price": "1166.00",
+            "guoliprice": "1833.00",
+            "zheke": "0.7141",
+            "pic": "1357885199.jpg",
+            "pid": "89936",
+            "filename": "134370398577245.jpg"
+        },
+        "p_89727": {
+            "shopid": "89727",
+            "date_desc": "2013-1-11到2013-1-31",
+            "recommend_reason": "",
+            "shopname": "上海威斯汀大饭店",
+            "address": "河南中路88号   ",
+            "picpath": "1110/89727/",
+            "shangquan": "310018",
+            "zone": "310101",
+            "mapx": "121.493447",
+            "mapy": "31.23811",
+            "price": "1155.00",
+            "guoliprice": "2530.00",
+            "zheke": "0.4565",
+            "pic": "1357892485.jpg",
+            "pid": "89727",
+            "filename": "20111017175136370.jpg"
+        },
+        "p_89934": {
+            "shopid": "89934",
+            "date_desc": "2013-2-1到2013-2-28",
+            "recommend_reason": "",
+            "shopname": "绿城千岛湖喜来登度假酒店",
+            "address": "淳安 千岛湖镇新安北路( 近千岛湖主湖区) ",
+            "picpath": "1207/89934/",
+            "shangquan": "",
+            "zone": "330108",
+            "mapx": "119.052503",
+            "mapy": "29.609736",
+            "price": "688.00",
+            "guoliprice": "2012.00",
+            "zheke": "0.3419",
+            "pic": "1359708688.jpg",
+            "pid": "89934",
+            "filename": "134370319436562.jpg"
+        },
+        "p_90336": {
+            "shopid": "90336",
+            "date_desc": "从2013-1-4到2013-1-31",
+            "recommend_reason": "每个房间都可从不同角度享受城市美景；场紧邻人民公园，人民广场，拥有无与伦比的优越地理位置；泳池畔”风格简洁而时尚，四季恒温。",
+            "shopname": "上海明天广场JW万豪酒店",
+            "address": "南京西路399号",
+            "picpath": "",
+            "shangquan": "310018",
+            "zone": "310101",
+            "mapx": "121.47623",
+            "mapy": "31.236388",
+            "price": "1529.00",
+            "guoliprice": "2852.00",
+            "zheke": "0.5361",
+            "pic": "1357882224.jpg",
+            "pid": "90336",
+            "filename": "1356588881.jpg"
+        }
+    },
+    "success": "1"
+}

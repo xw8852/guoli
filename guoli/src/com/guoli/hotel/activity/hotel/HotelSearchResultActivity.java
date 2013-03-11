@@ -10,11 +10,11 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,6 +25,11 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
 import com.guoli.hotel.adapter.HotelAdapter;
 import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.bean.SearchInfo;
+import com.guoli.hotel.net.GuoliRequest;
+import com.msx7.core.Manager;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:HotelSearchResultActivity <br/>
@@ -56,6 +61,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private HotelAdapter<HotelInfo> mListAdapter;
     /**区域过滤标记*/
     private static final int LOCATION_FILTER = 5;
+    /**搜索条件对象*/
+    public static final String KEY_SEARCHINFO = "searchInfo";
+    
+    private static final String TAG = HotelSearchResultActivity.class.getSimpleName();
+    
+    private SearchInfo mSearchInfo;
     
     public HotelSearchResultActivity(){
         mLayoutId = R.layout.hotel_search_result;
@@ -70,12 +81,34 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         showLeftBtn();
         showRightBtn();
     }
+    
+    /**
+     * 
+     * getSearchInfo:获取搜索页面传递过来的搜索参数对象. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private SearchInfo getSearchInfo(){
+        Intent intent = getIntent();
+        if (intent == null) {
+            return null;
+        }
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) {
+            return null;
+        }
+        Object obj =  bundle.get(KEY_SEARCHINFO);
+        if (!(obj instanceof SearchInfo)) {
+            return null;
+        }
+        return (SearchInfo) obj;
+    }
 
     @Override
     protected void initPassParams() {
-
-        // TODO Auto-generated method stub
-
+        mSearchInfo = getSearchInfo();
+        Log.i(TAG, "onCreate()---> mSearchInfo=" + (mSearchInfo == null ? null : mSearchInfo));
     }
 
     @Override
@@ -95,28 +128,11 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
     @Override
     protected void loadNetworkData() {
-        //TODO 从网络服务器拉取数据并加载显示
-        //虚拟的数据,仅供演示使用
-        List<HotelInfo> infoList = new ArrayList<HotelInfo>();
-        for (int index = 0 ; index < 20 ; index++) {
-            HotelInfo info = new HotelInfo();
-            info.setName("酒店" + index);
-            info.setAddress("地址" + index);
-            info.setArea("区域" + index);
-            info.setLevel((3+index)%5);
-            info.setPrice(0 + index);
-            info.setDiscount((float) (1.2 + index * 0.1));
-            info.setPhoneNumber("10201110" + index);
-            infoList.add(info);
-        }
-        if (mListAdapter == null) {
-            mListAdapter = new HotelAdapter<HotelInfo>(infoList, this);
-            mListView.setAdapter(mListAdapter);
-        } else {
-            mListAdapter.clear();
-            mListAdapter.addMore(infoList);
-        }
-        initViews();
+        //从网络服务器拉取数据并加载显示
+        showLoadingDialog(R.string.loading_msg);
+        GuoliRequest request = new GuoliRequest("hotel_qry", mSearchInfo);
+        Log.i("CitySelectActivity", "request=" + request.Params.toParams());
+        Manager.getInstance().executePoset(request, mListener);
     }
 
     @Override
@@ -207,5 +223,43 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         intent.setClass(this, HotelDetailActivity.class);
         startActivity(intent);
     }
+    
+    /**
+     * 
+     * updateListView:刷新酒店列表. <br/>
+     * @author maple
+     * @param list
+     * @since JDK 1.6
+     */
+    private void updateListView(List<HotelInfo> list){
+        if (list == null) {
+            return;
+        }
+        if (mListAdapter == null) {
+            mListAdapter = new HotelAdapter<HotelInfo>(list, this);
+            mListView.setAdapter(mListAdapter);
+        } else {
+            mListAdapter.clear();
+            mListAdapter.addMore(list);
+        }
+        initViews();
+    }
+    
+    /**数据同步监听*/
+    private IResponseListener mListener = new IResponseListener() {
+        
+        @Override
+        public void onSuccess(Response resp) {
+            dismissLoadingDialog();
+            Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+        }
+        
+        @Override
+        public void onError(Response resp) {
+            dismissLoadingDialog();
+            Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+            
+        }
+    };
 }
 

@@ -6,7 +6,7 @@
  * Copyright (c) 2013
  * Company:maple&&json&&abel
  *
-*/
+ */
 
 package com.guoli.hotel.activity.hotel;
 
@@ -38,26 +38,25 @@ import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:CitySelectActivity <br/>
- * @Description:    城市选择页面
- * Date:     2013-1-25 下午7:21:11 <br/>
- * @author   maple
- * @version  
- * @since    JDK 1.6
- * @see 	 
+ * 
+ * @Description: 城市选择页面 Date: 2013-1-25 下午7:21:11 <br/>
+ * @author maple
+ * @version
+ * @since JDK 1.6
+ * @see
  */
 public class CitySelectActivity extends CallActivity implements OnItemClickListener {
-    /**城市名称关键字*/
-    public final static String KEY_CITY_NAME = "cityName";
+    /** 城市名称关键字 */
+    public final static String KEY_CITYINFO = "cityInfo";
     private ListView mListView;
     private EditText mKeyWordView;
-    
-    
+
     public CitySelectActivity() {
         mLayoutId = R.layout.city_select_layout;
         mTitleTextId = R.string.city_select;
         mRightDrawableId = R.drawable.btn_top_phone;
     }
-    
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -69,6 +68,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
     /***
      * 
      * loadCityData:. 从服务器端读取城市列表数据<br/>
+     * 
      * @author maple
      * @since JDK 1.6
      */
@@ -94,20 +94,16 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (parent == null) {
-            return;
-        }
+        if (parent == null) { return; }
         Adapter adapter = parent.getAdapter();
-        if (!(adapter instanceof CityInfoListAdapter)) {
-            return;
-        }
+        if (!(adapter instanceof CityInfoListAdapter)) { return; }
         CityInfoListAdapter listAdapter = (CityInfoListAdapter) adapter;
         CityInfo info = listAdapter.getItem(position);
-        if (info == null) {
-            return;
-        }
+        if (info == null) { return; }
         Intent intent = new Intent();
-        intent.putExtra(KEY_CITY_NAME, info.getCityName());
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_CITYINFO, info);
+        intent.putExtras(bundle);
         setResult(SearchHotelActivity.PAGE_CITY, intent);
         finish();
     }
@@ -117,7 +113,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         super.onClick(v);
         switch (v.getId()) {
         case R.id.searchBtn:
-            
+
             break;
         case R.id.deleteBtn:
             mKeyWordView.setText("");
@@ -126,29 +122,16 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             break;
         }
     }
-    
-    /**
-     * 
-     * isEmpty:检测数组是否为空. <br/>
-     * @author maple
-     * @param citys
-     * @return
-     * @since JDK 1.6
-     */
-    private boolean isEmpty(List<CityInfo> citys){
-        return citys == null || citys.size() < 1;
-    }
-    
+
     /**
      * 
      * refreshListView:刷新listView. <br/>
+     * 
      * @author maple
      * @since JDK 1.6
      */
-    private void refreshListView(List<CityInfo> citys){
-        if (mListView == null || isEmpty(citys)) {
-            return;
-        }
+    private void refreshListView(List<CityInfo> citys) {
+        if (mListView == null) { return; }
         CityInfoListAdapter adapter = (CityInfoListAdapter) mListView.getAdapter();
         if (adapter == null) {
             adapter = new CityInfoListAdapter(citys, this);
@@ -157,27 +140,26 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         }
         adapter.changeData(citys);
     }
-    
+
     IResponseListener mLoadListener = new IResponseListener() {
-        
+
         @Override
         public void onSuccess(Response resp) {
             Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
-            //解析服务器返回结果为数组类型
+            // 解析服务器返回结果为数组类型
             CityResponseParams respParams = new CitysParse().parseResponse(resp);
             if (respParams == null) {
-                return;
+            return;
             }
             List<CityInfo> list = respParams.getList();
-            //刷新listView
+            // 刷新listView
             refreshListView(list);
         }
-        
+
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
         }
     };
 }
-

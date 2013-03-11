@@ -10,6 +10,9 @@
 
 package com.guoli.hotel.net.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -21,7 +24,7 @@ import com.google.gson.annotations.SerializedName;
  * @since    JDK 1.6
  * @see 	 
  */
-public class CityInfo {
+public class CityInfo implements Parcelable {
     /**城市名称*/
     @SerializedName("name")
     private String cityName;
@@ -74,5 +77,34 @@ public class CityInfo {
         return "{cityName:"+ cityName + ", cityCode:" + cityCode + ", firstChar:" + firstChar
                 + ", isChecked:" + isChecked + "}";
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(cityName);
+        dest.writeString(cityCode);
+        dest.writeString(firstChar);
+    }
+    
+    public static final Parcelable.Creator<CityInfo> CREATOR = new Creator<CityInfo>() {
+        
+        @Override
+        public CityInfo[] newArray(int size) {
+            return new CityInfo[size];
+        }
+        
+        @Override
+        public CityInfo createFromParcel(Parcel source) {
+            CityInfo info = new CityInfo();
+            info.cityName = source.readString();
+            info.cityCode = source.readString();
+            info.firstChar = source.readString();
+            return info;
+        }
+    };
 }
 
