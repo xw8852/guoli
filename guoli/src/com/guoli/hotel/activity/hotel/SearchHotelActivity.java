@@ -142,9 +142,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             break;
         case R.id.areaBtn:
             // 区域
-            intent = new Intent();
-            intent.setClass(this, AreaListActivity.class);
-            startActivityForResult(intent, PAGE_AREA);
+            enterToAreaListActivity();
             break;
         case R.id.search_btn:
             // 搜索
@@ -153,6 +151,17 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         default:
             break;
         }
+    }
+    
+    private void enterToAreaListActivity(){
+        Intent intent = new Intent();
+        intent.setClass(this, AreaListActivity.class);
+        CityInfo info = (CityInfo) mCityView.getTag();
+        //接口文档中规定城市编码/入住/离开时间为必填
+        if (info != null && !TextUtils.isEmpty(info.getCityCode())) {
+            intent.putExtra(AreaListActivity.KEY_CITY_CODE, info.getCityCode());
+        }
+        startActivityForResult(intent, PAGE_AREA);
     }
     
     /**

@@ -14,16 +14,17 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.adapter.AreaInfoAdapter;
 import com.guoli.hotel.bean.AreaInfo;
 import com.guoli.hotel.bean.LocationInfo;
 import com.guoli.hotel.net.GuoliRequest;
@@ -48,13 +49,14 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     private String mCityCode;
     private ListView mListView;
     private RadioGroup mTabBar;
-    private ArrayAdapter<AreaInfo> mAdapter;
+    private AreaInfoAdapter mAdapter;
     /**行政区域数据*/
     private List<AreaInfo> mZoneInfos;
     /**商圈数据*/
     private List<AreaInfo> mBusinessInfos;
     
     public static final String KEY_AREA = "area";
+    public static final String KEY_CITY_CODE = "areaCityCode";
     
     public AreaListActivity(){
         mTitleTextId = R.string.hotel_area;
@@ -64,6 +66,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        mCityCode = getIntent().getStringExtra(KEY_CITY_CODE);
         showLeftBtn();
         loadData();
     }
@@ -130,19 +133,8 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         if (list == null) {
             return;
         }
-        if (mAdapter == null) {
-            mAdapter = new ArrayAdapter<AreaInfo>(this, R.layout.item_single_layout, list);
-            mListView.setAdapter(mAdapter);
-            return;
-        }
-        mAdapter.clear();
-        for (AreaInfo info : list) {
-            if (info == null) {
-                continue;
-            }
-            mAdapter.add(info);
-        }
-        mAdapter.notifyDataSetChanged();
+        mAdapter = new AreaInfoAdapter(list, this);
+        mListView.setAdapter(mAdapter);
     }
     
     /**
@@ -156,12 +148,14 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         CityRequestParams params = new CityRequestParams();
         params.setCityCode(mCityCode);
         Request request = new GuoliRequest("system_arealist", params);
+        Log.i("AreaListActivity", "request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mLoadListener);
     }
     
     private IResponseListener mLoadListener = new IResponseListener() {
         @Override
         public void onSuccess(Response resp) {
+            Log.i("AreaListActivity", "response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
             LocationInfo info = new AreaParase().parseResponse(resp);
             if (info == null) {

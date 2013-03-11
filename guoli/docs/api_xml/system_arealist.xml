@@ -4,7 +4,8 @@ request={
         "citycode": "310000"
     },
     "platformType": "android"
-}resp={
+}
+resp={
     "param": {
         "citycode": "310000"
     },

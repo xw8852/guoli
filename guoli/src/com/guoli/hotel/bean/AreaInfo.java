@@ -28,10 +28,10 @@ public class AreaInfo implements Parcelable {
 
     
     @SerializedName("name")
-    private String name;
+    protected String name;
 
     @SerializedName("code")
-    private String code;
+    protected String code;
 
     public String getName() {
         return name;
@@ -65,7 +65,7 @@ public class AreaInfo implements Parcelable {
         dest.writeString(code);
     }
 
-    public static final Parcelable.Creator<AreaInfo> CREATER = new Creator<AreaInfo>() {
+    public static final Parcelable.Creator<AreaInfo> CREATOR = new Creator<AreaInfo>() {
         @Override
         public AreaInfo[] newArray(int size) {
             return new AreaInfo[size];

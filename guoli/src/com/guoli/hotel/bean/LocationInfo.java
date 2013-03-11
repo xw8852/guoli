@@ -10,7 +10,6 @@
 
 package com.guoli.hotel.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
@@ -28,34 +27,24 @@ public class LocationInfo {
 
     /** 行政区域集合 */
     @SerializedName("zoneresult")
-    private List<ZoneInfo> zoneInfos;
+    private List<AreaInfo> zoneInfos;
     /** 商圈集合 */
     @SerializedName("bussresult")
-    private List<BussinessInfo> businessInfos;
+    private List<AreaInfo> businessInfos;
 
     public List<AreaInfo> getZoneInfos() {
-        if (zoneInfos == null) {
-            return null;
-        }
-        List<AreaInfo> list = new ArrayList<AreaInfo>();
-        list.addAll(zoneInfos);
-        return list;
+        return zoneInfos;
     }
 
-    public void setZoneInfos(List<ZoneInfo> zoneInfos) {
+    public void setZoneInfos(List<AreaInfo> zoneInfos) {
         this.zoneInfos = zoneInfos;
     }
 
     public List<AreaInfo> getBusinessInfos() {
-        if (businessInfos == null) {
-            return null;
-        }
-        List<AreaInfo> list = new ArrayList<AreaInfo>();
-        list.addAll(businessInfos);
-        return list;
+        return businessInfos;
     }
 
-    public void setBusinessInfos(List<BussinessInfo> businessInfos) {
+    public void setBusinessInfos(List<AreaInfo> businessInfos) {
         this.businessInfos = businessInfos;
     }
 
