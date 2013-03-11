@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * ClassName:RecommendHotelInfo <br/>
- * @Description:    推荐酒店信息
+ * @Description:    推荐/搜索结果酒店信息
  * Date:     2013-3-9 下午2:22:51 <br/>
  * @author   maple
  * @version  

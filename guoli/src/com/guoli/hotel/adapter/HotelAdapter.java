@@ -13,11 +13,6 @@ package com.guoli.hotel.adapter;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.bean.HotelInfo;
-import com.guoli.hotel.utils.CallUtils;
-import com.guoli.hotel.utils.StringUtils;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +21,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.utils.CallUtils;
+import com.guoli.hotel.utils.StringUtils;
 
 /**
  * ClassName:HotelAdapter <br/>
@@ -68,10 +68,10 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
         HotelInfo info = (HotelInfo) obj;
         holder.nameView.setText(info.getName());
         holder.addressView.setText(info.getAddress());
-        holder.areaView.setText(info.getArea());
-        holder.levelView.setNumStars(info.getLevel());
+        holder.areaView.setText(info.getDistrict());
+        setStarLevelView(holder.levelView, info.getStarLavel());
         loadHotelImg(info.getPicPath(), holder.imgView);
-        int price = info.getPrice();
+        int price = formatPrice(info.getPrice());
         if (price != 0) {
             holder.callView.setVisibility(View.GONE);
             holder.priceView.setVisibility(View.VISIBLE);
@@ -91,6 +91,43 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
             }
         });
         return convertView;
+    }
+    /**
+     * 
+     * formatPrice:价格转换. <br/>
+     * @author maple
+     * @param price
+     * @return
+     * @since JDK 1.6
+     */
+    private int formatPrice(String price){
+        try {
+            return Integer.parseInt(price);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    /**
+     * 
+     * setStarLevelView:设置酒店星级. <br/>
+     * @author maple
+     * @param ratingBar
+     * @param starLevel
+     * @since JDK 1.6
+     */
+    private void setStarLevelView(RatingBar ratingBar, String starLevel){
+        if (ratingBar == null) {
+            return;
+        }
+        int num = 0;
+        try {
+            num = Integer.parseInt(starLevel);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        ratingBar.setNumStars(num);
     }
 
     /**
@@ -116,8 +153,14 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
      * @return
      * @since JDK 1.6
      */
-    private String formatDiscount(float discount) {
-        String dis = new DecimalFormat("0.##").format(discount);
+    private String formatDiscount(String discount) {
+        float tmpDiscount = 0;
+        try {
+            tmpDiscount = Float.parseFloat(discount);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        String dis = new DecimalFormat("0.##").format(tmpDiscount);
         String desc = getResources().getString(R.string.discount_desc);
         return String.format(desc, dis);
     }

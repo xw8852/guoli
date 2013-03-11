@@ -31,11 +31,11 @@ public class SearchInfo implements Parcelable {
     private String cityCode;
 
     /** 入住时间 yyyy-MM-dd */
-    @SerializedName("Indate")
+    @SerializedName("indate")
     private String startDate;
 
     /** 离店时间 yyyy-MM-dd */
-    @SerializedName("Outdate")
+    @SerializedName("outdate")
     private String endDate;
 
     /** 价格区间 2-500以下,5-500至800,8-800至1200,10-1200以上*/
@@ -51,7 +51,7 @@ public class SearchInfo implements Parcelable {
     private String areaType;
     
     /**行政区域编码*/
-    @SerializedName("Area")
+    @SerializedName("area")
     private String area;
 
     /** 搜索关键字 */
@@ -59,12 +59,12 @@ public class SearchInfo implements Parcelable {
     private String keyWord;
 
     /** 排序类型：'guoli'-果粒推荐,'price_desc'-价格由高到低,'price_asc'-价格由低到高,'discount_asc'-折扣由高到低 */
-    @SerializedName("Orderkey")
+    @SerializedName("orderkey")
     private String orderKey;
     
     /**当前页码,默认由1开始*/
-    @SerializedName("Pageno")
-    private String pageNum;
+    @SerializedName("pageno")
+    private String pageNum = "1";
 
     public String getCityCode() {
         return cityCode;
@@ -166,6 +166,7 @@ public class SearchInfo implements Parcelable {
         dest.writeString(endDate);
         dest.writeString(price);
         dest.writeString(level);
+        dest.writeString(areaType);
         dest.writeString(keyWord);
         dest.writeString(orderKey);
         dest.writeString(pageNum);

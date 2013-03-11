@@ -84,17 +84,17 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
     // 模拟的数据
     private List<HotelInfo> getList() {
         List<HotelInfo> infoList = new ArrayList<HotelInfo>();
-        for (int index = 0; index < 20; index++) {
+        /*for (int index = 0; index < 20; index++) {
             HotelInfo info = new HotelInfo();
             info.setName("酒店" + index);
             info.setAddress("地址" + index);
-            info.setArea("区域" + index);
+            info.setDistrict("区域" + index);
             info.setLevel((3 + index) % 5);
             info.setPrice(0 + index);
             info.setDiscount((float) (1.2 + index * 0.1));
             info.setPhoneNumber("10201110" + index);
             infoList.add(info);
-        }
+        }*/
         return infoList;
     }
 }

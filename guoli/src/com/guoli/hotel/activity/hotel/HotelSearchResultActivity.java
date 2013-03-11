@@ -25,8 +25,10 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
 import com.guoli.hotel.adapter.HotelAdapter;
 import com.guoli.hotel.bean.HotelInfo;
+import com.guoli.hotel.bean.HotelListInfo;
 import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.parse.HotelListInfoParse;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -252,6 +254,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         public void onSuccess(Response resp) {
             dismissLoadingDialog();
             Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+            HotelListInfo info = new HotelListInfoParse().parseResponse(resp);
+            if (info == null) {
+                return;
+            }
+            List<HotelInfo> list = info.getList();
+            updateListView(list);
         }
         
         @Override
