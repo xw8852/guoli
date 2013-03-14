@@ -447,6 +447,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         }
         SearchInfo info = new SearchInfo();
         info.setCityCode(cityInfo.getCityCode());
+        info.setCityName(cityInfo.getCityName());
         info.setStartDate((String) startDate);
         info.setEndDate((String) endDate);
         info.setPrice(getPrice());

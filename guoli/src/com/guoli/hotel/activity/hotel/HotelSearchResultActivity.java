@@ -60,7 +60,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     /**位置过滤按钮*/
     private TextView mLocationFilterView;
     /**商家列表适配器*/
-    private HotelAdapter<HotelInfo> mListAdapter;
+    private HotelAdapter mListAdapter;
     /**区域过滤标记*/
     private static final int LOCATION_FILTER = 5;
     /**搜索条件对象*/
@@ -115,11 +115,6 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
     @Override
     protected void initViews() {
-        // TODO 模拟数据
-        mCityView.setText("上海");
-        mOccupancyView.setText("2013-01-11");
-        mLeaveView.setText("2013-01-21");
-        initBusinessCountView(1098);
     }
     
     private void initBusinessCountView(int count){
@@ -133,7 +128,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         //从网络服务器拉取数据并加载显示
         showLoadingDialog(R.string.loading_msg);
         GuoliRequest request = new GuoliRequest("hotel_qry", mSearchInfo);
-        Log.i("CitySelectActivity", "request=" + request.Params.toParams());
+        Log.i(TAG, "request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mListener);
     }
 
@@ -238,13 +233,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             return;
         }
         if (mListAdapter == null) {
-            mListAdapter = new HotelAdapter<HotelInfo>(list, this);
+            mListAdapter = new HotelAdapter(list, this);
             mListView.setAdapter(mListAdapter);
         } else {
             mListAdapter.clear();
             mListAdapter.addMore(list);
         }
-        initViews();
     }
     
     /**数据同步监听*/
@@ -253,19 +247,23 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         @Override
         public void onSuccess(Response resp) {
             dismissLoadingDialog();
-            Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             HotelListInfo info = new HotelListInfoParse().parseResponse(resp);
             if (info == null) {
                 return;
             }
             List<HotelInfo> list = info.getList();
             updateListView(list);
+            mCityView.setText(mSearchInfo.getCityName());
+            mOccupancyView.setText(mSearchInfo.getStartDate());
+            mLeaveView.setText(mSearchInfo.getEndDate());
+            initBusinessCountView(list == null ? 0 : list.size());
         }
         
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
-            Log.i("CitySelectActivity", "response=" + (resp == null ? null : resp.result));
+            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             
         }
     };

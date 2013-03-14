@@ -37,13 +37,12 @@ import com.guoli.hotel.utils.StringUtils;
  * @since JDK 1.6
  * @see
  */
-public class HotelAdapter<T> extends AbstractAdapter<T> {
+public class HotelAdapter extends AbstractAdapter<HotelInfo> {
 
-    public HotelAdapter(List<T> data, Context context) {
+    public HotelAdapter(List<HotelInfo> data, Context context) {
         super(data, context);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public View createView(int position, View convertView, ViewGroup parent, LayoutInflater inflater) {
         if (data == null || data.size() < 1) { return null; }
@@ -63,15 +62,14 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Object obj = data.get(position);
-        if (!(obj instanceof HotelInfo)) { return null; }
-        HotelInfo info = (HotelInfo) obj;
+        HotelInfo info = getItem(position);
         holder.nameView.setText(info.getName());
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getDistrict());
         setStarLevelView(holder.levelView, info.getStarLavel());
+//        holder.levelView.setNumStars(info.getStarLavel());
         loadHotelImg(info.getPicPath(), holder.imgView);
-        int price = formatPrice(info.getPrice());
+        int price = info.getPrice();
         if (price != 0) {
             holder.callView.setVisibility(View.GONE);
             holder.priceView.setVisibility(View.VISIBLE);
@@ -91,22 +89,6 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
             }
         });
         return convertView;
-    }
-    /**
-     * 
-     * formatPrice:价格转换. <br/>
-     * @author maple
-     * @param price
-     * @return
-     * @since JDK 1.6
-     */
-    private int formatPrice(String price){
-        try {
-            return Integer.parseInt(price);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return 0;
-        }
     }
     
     /**
@@ -153,14 +135,8 @@ public class HotelAdapter<T> extends AbstractAdapter<T> {
      * @return
      * @since JDK 1.6
      */
-    private String formatDiscount(String discount) {
-        float tmpDiscount = 0;
-        try {
-            tmpDiscount = Float.parseFloat(discount);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        String dis = new DecimalFormat("0.##").format(tmpDiscount);
+    private String formatDiscount(double discount) {
+        String dis = new DecimalFormat("0.##").format(discount);
         String desc = getResources().getString(R.string.discount_desc);
         return String.format(desc, dis);
     }

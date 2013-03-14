@@ -52,7 +52,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotel_star_level"
+            android:layout_toLeftOf="@+id/hotel_price"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="地址"
             android:textColor="@color/font_grey" />
         <!-- 酒店区域 -->
@@ -64,6 +68,10 @@
             android:layout_below="@+id/hotel_address"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/hotel_discount"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="区域"
             android:textColor="@color/font_grey" />
        

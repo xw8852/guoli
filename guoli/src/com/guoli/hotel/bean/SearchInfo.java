@@ -29,6 +29,9 @@ public class SearchInfo implements Parcelable {
     /** 城市编码 */
     @SerializedName("citycode")
     private String cityCode;
+    
+    /**城市名称*/
+    private String cityName;
 
     /** 入住时间 yyyy-MM-dd */
     @SerializedName("indate")
@@ -146,11 +149,19 @@ public class SearchInfo implements Parcelable {
         this.pageNum = pageNum;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
     @Override
     public String toString() {
         return "{cityCode=" + cityCode + ", startDate=" + startDate + ", endDate=" + endDate
                 + ", price=" + price + ", level=" + level + ", areaType=" + areaType
-                + ", area=" + area
+                + ", area=" + area + ", cityName=" + cityName
                 + ", keyWord=" + keyWord + ", orderKey=" + orderKey + ", pageNum=" + pageNum + "}";
     }
 
@@ -171,6 +182,7 @@ public class SearchInfo implements Parcelable {
         dest.writeString(orderKey);
         dest.writeString(pageNum);
         dest.writeString(area);
+        dest.writeString(cityName);
     }
     
     public static final Parcelable.Creator<SearchInfo> CREATOR = new Creator<SearchInfo>() {
@@ -193,6 +205,7 @@ public class SearchInfo implements Parcelable {
             info.orderKey = source.readString();
             info.pageNum = source.readString();
             info.area = source.readString();
+            info.cityName = source.readString();
             return info;
         }
     };
