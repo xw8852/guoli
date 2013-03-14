@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -67,7 +66,7 @@
     <string name="contact">联系人 :</string>
     <string name="contact_phone">联系电话 :</string>
     <string name="order_money_content">￥%1$s</string>
-	<string name="order_list_title">酒店订单</string>
+    <string name="order_list_title">酒店订单</string>
     <!-- 反馈页面 -->
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
@@ -97,7 +96,7 @@
     <string name="dialog_title">提示</string>
     <string name="dialog_exit_message">你确定要退出应用？</string>
     <string name="dialog_call_notice">是否确认拨打%1$s号码?</string>
-    
+
     <!-- 关于我们 -->
     <string name="phone">400&#8211;000&#8211;888</string>
     <string name="service_phone">客服电话:</string>
@@ -105,244 +104,6 @@
     <!-- 账户 -->
     <string name="account_title">我的果粒网</string>
     <string name="nickname_title">昵称：</string>
-    <string name="modify_password">修改密码</string>
-    <string name="account_order">酒店订单</string>
-    <string name="account_favorite">收藏夹</string>
-    <string name="commonly_used">常用入住人</string>
-    <string name="vantages">积分：200</string>
-    <!-- 登陆 -->
-    <string name="login_user">登&#160;录&#160;名&#160;:&#160;</string>
-    <string name="login_user_tips">请输入昵称或者手机号码</string>
-    <string name="login_password">密&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
-    <string name="login_password_tips">6&#8211;12位英文或数字</string>
-    <string name="logon_regest">免费注册&gt;&gt;</string>
-    <string name="login_reset">忘记密码&gt;&gt;</string>
-    <string name="login">登录</string>
-    <string name="login_unregest">非会员直接预订</string>
-    <string name="register_send">确认提交</string>
-    <!-- 忘记密码 -->
-    <string name="forget_phone">手机号码&#160;:&#160;</string>
-    <string name="identify_code">输入验证码&#160;:&#160;</string>
-    <string name="forget_phone_tips">请填写绑定的手机号码</string>
-    <string name="identify_code_tips">4位字符</string>
-    <string name="forget_password_tips">重置密码每天限制三次\n收到密码后，请在24小时登陆"我的果粒网"修改。</string>
-    <string name="send_password">发送密码至手机</string>
-    <string name="get_identify">获得验证码</string>
-    <!-- 注册用户 -->
-    <string name="multi_password">确认密码&#160;:&#160;</string>
-    <string name="regist_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
-    <string name="register_password_tips">6&#8211;12位字符</string>
-    <string name="register_phone_tips">请输入手机号码作为登录名</string>
-    <!-- 订单查询 非登陆 -->
-    <string name="identify_code_2">验&#160;证&#160;码&#160;:&#160;</string>
-    <string name="identify_code_tips_2">请输入验证码</string>
-    <string name="phone_tips_2">请输入手机号码</string>
-    <string name="order_search">查询</string>
-    <string name="order_title_search">订单查询</string>
-    <!-- 酒店列表 -->
-    <string name="order_list_timedate">%1$s至\n%2$s</string>
-    <string name="order_list_timedate_0">2012&#8211;01&#8211;02至\n2012&#8211;03&#8211;04</string>
-    <string name="order_list_timedate_1">2012&#8211;01&#8211;02至2012&#8211;03&#8211;04</string>
-
-    <!-- 酒店详细 -->
-    <string name="collect">收藏</string>
-    <string name="hotel_detail">酒店详情</string>
-
-    <!-- 填写订单页面 -->
-    <string name="order_edit_title">填写订单</string>
-    <string name="order_date">日期 :</string>
-    <string name="order_room_type">房型 :</string>
-    <string name="order_room_count">间数 :</string>
-    <string name="order_more_require">更多要求 :</string>
-    <string name="order_cost">订单总额 :</string>
-    <string name="order_detail_btn">详细</string>
-    <string name="order_guest">入住人</string>
-    <string name="order_guest_name">姓名</string>
-    <string name="order_contact">联系人</string>
-    <string name="order_contact_name">姓名</string>
-    <string name="order_contact_phone">联系电话</string>
-    <string name="order_special_notice">特别提示</string>
-    <string name="order_ivvoice_title">抬头 :</string>
-    <string name="order_ivvoice_title_notice">客户姓名或公司名称为抬头</string>
-    <string name="order_receiver_name">收件人名称 :</string>
-    <string name="order_receiver_name_notice">请输入姓名</string>
-    <string name="order_receiver_phone">收件人手机号码 :</string>
-    <string name="order_receiver_phone_notice">请输入手机号码</string>
-    <string name="order_mail_address">邮寄地址 :</string>
-    <string name="order_mail_address_notice">请输入详细地址</string>
-    <string name="order_post_code">邮编 :</string>
-    <string name="order_post_code_notice">请输入邮编</string>
-    <string name="order_notice">一经付款,不可取消或者修改订单,否则酒店则会扣除您的全部房费.</string>
-    <string name="order_commit">提交订单</string>
-    <string name="recommended_hotel_detail_more_exp_0">建筑面积：54\n盖房型不可加床\n无烟房：该房可无烟处理\n宽带：免费</string>
-    <string name="recommended_hotel_detail_more_exp_1">楼层：10&#8211;13、18\n床宽：标准床型1.80米\n可住人数：2</string>
-
-    <!-- 酒店位置地图 -->
-    <string name="hotel_location_map">酒店地图</string>
-    <!-- 酒店信息 -->
-    <string name="hotel_info">酒店信息</string>
-    <!-- 选择日期 -->
-    <string name="date_select">选择日期</string>
-    <!-- 城市选择 -->
-    <string name="city_select">选择城市</string>
-    <string name="city_hot">热门城市</string>
-    <!-- 酒店搜索-价格页面 -->
-    <string name="hotel_price">价格</string>
-    <!-- 酒店搜索-星级页面 -->
-    <string name="hotel_level">星级</string>
-    <!-- 酒店搜索-行政区域页面 -->
-    <string name="hotel_area">位置区域</string>
-    <string name="hotel_area_admin">行政区</string>
-    <string name="hotel_area_shopping">商圈</string>
-    <!-- 特别推荐 -->
-    <string name="recommend">特别推荐</string>
-    <!-- 收藏夹页面 -->
-    <string name="my_favorite">我的收藏</string>
-    <!-- 订单详情 -->
-    <string name="detail_order_state">订单状态&#160;:&#160;</string>
-    <string name="detail_order_number">订单编号&#160;:&#160;</string>
-    <string name="detail_order_total">订单总额&#160;:&#160;</string>
-    <string name="detail_hotal_name">酒店名称&#160;:&#160;</string>
-    <string name="detail_hotal_address">酒店地址&#160;:&#160;</string>
-    <string name="detail_hotal_phone">酒店电话&#160;:&#160;</string>
-    <string name="detail_hotal_type">入住房型&#160;:&#160;</string>
-    <string name="detail_hotal_book">预定间树&#160;:&#160;</string>
-    <string name="detail_hotal_date">住店日期&#160;:&#160;</string>
-    <string name="detail_hotal_people">入住人&#160;:&#160;</string>
-    <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
-    <string name="detail_hotal_contact_phone">联系电话&#160;:&#160;</string>
-	<string name="detail_hotal_cancel">取消订单</string>
-	<string name="detail_hotal_order_cancel">退订</string>
-	<string name="detail_hotal_pay">去付款</string>
-	<!-- 房间数选择页面 -->
-	<string name="room_counts">房间数</string>
-	<!-- 更多要求反馈页面 -->
-	<string name="more_require_title">更多要求</string>
-	<string name="more_require_def_content">请输入您的要求</string>
-	<string name="confirm_commit">确认提交</string>
-	<!-- 入住清单页面 -->
-	<string name="occupancy_list">入住日期清单</string>
-	<string name="date">日期</string>
-	<string name="breakfast">早餐</string>
-	<!-- 选择入住人页面 -->
-	<string name="user_select">选择入住人</string>
-	<string name="user_new">新增入住人</string>
-	<string name="confirm">确认</string>
-	
-	<!-- 订单确认页面 -->
-    <string name="order_confirm">订单确认</string>
-    <string name="order_total">订单总额 :</string>
-    <string name="credit_card_pay">信用卡直接支付</string>
-    <string name="tenpay">财付通网页支付</string>
-    <string name="money_pay">线下转账支付</string>
-    <string name="confirm_pay">确认支付</string>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">Guoli</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="back_btn">返回</string>
-    <string name="text_true">是</string>
-    <string name="text_false">否</string>
-    <string name="loading_msg">数据加载中...</string>
-
-    <!-- 酒店搜索页面 -->
-    <string name="search_hotel_title">果粒特惠酒店</string>
-    <string name="occupancy_city">入住城市</string>
-    <string name="occupancy_date">入住日期</string>
-    <string name="leave_date">离店日期</string>
-    <string name="price">价格</string>
-    <string name="star">星级</string>
-    <string name="area">行政区域</string>
-    <string name="key_word">关键字</string>
-    <string name="unrestricted">不限</string>
-    <string name="hotel_name_and_address">酒店名称/酒店地址</string>
-    <string name="search_hotel">查找酒店</string>
-
-    <!-- 日期选择页面 -->
-    <string name="select_date">选择日期</string>
-    <string name="today">今天</string>
-    <string name="tomorrow">明天</string>
-
-    <!-- 酒店搜索结果页面 -->
-    <string name="map_mode">地图模式</string>
-    <string name="occupancy">入住:</string>
-    <string name="leave">离店:</string>
-    <string name="price_desc">￥%1$d起</string>
-    <string name="discount_desc">￥%1$s折起</string>
-    <string name="business_count_desc">%1$d家</string>
-    <string name="default_sort">默认排序</string>
-    <string name="price_filter">价格筛选</string>
-    <string name="location_filter">位置筛选</string>
-
-    <!-- 新增入住人页面 -->
-    <string name="add_user">新增入住人</string>
-    <string name="user_name">姓    名:</string>
-    <string name="default_user_name">中文或英文</string>
-    <string name="confirm_text">确认添加</string>
-
-    <!-- 订单提交成功页面 -->
-    <string name="commit_order_sucess_title">订单提交成功</string>
-    <string name="continue_reserve">继续预定</string>
-    <string name="look_over_order">查看订单</string>
-
-    <!-- 订单详细页面 -->
-    <string name="exit">退出</string>
-    <string name="order_detail">订单详情</string>
-    <string name="cancel_order">取消订单</string>
-    <string name="order_state">订单状态 :</string>
-    <string name="order_number">订单编号 :</string>
-    <string name="order_money">订单总额 :</string>
-    <string name="hotel_name">酒店名称 :</string>
-    <string name="hotel_adress">酒店地址 :</string>
-    <string name="hotel_phone">酒店电话 :</string>
-    <string name="room_type">入住房型 :</string>
-    <string name="room_count">预定间数 :</string>
-    <string name="period">住店日期 :</string>
-    <string name="occupancy_user">入住人 :</string>
-    <string name="contact">联系人 :</string>
-    <string name="contact_phone">联系电话 :</string>
-    <string name="order_money_content">￥%1$s</string>
-	<string name="order_list_title">酒店订单</string>
-    <!-- 反馈页面 -->
-    <string name="feedback">反馈</string>
-    <string name="send">发送</string>
-    <string name="feedback_prompt">请留下您的宝贵意见,我们会进一步完善.</string>
-    <string name="email_prompt">请输入您的邮箱</string>
-    <!-- 标题 -->
-    <string name="special_title">推荐</string>
-    <string name="search_title">查找</string>
-    <string name="user_title">账户</string>
-    <string name="order_title">订单</string>
-    <string name="more_title">更多</string>
-
-    <!-- 酒店列表地图模式页面 -->
-    <string name="hotels_map_title">酒店地图</string>
-    <string name="result_count_desc">%1$d个结果</string>
-    <!-- 更多 -->
-    <string name="help_item">帮助</string>
-    <string name="about_item">关于我们</string>
-    <!-- 帮助 -->
-    <string name="ques_1">如何查询订单?</string>
-    <string name="answer_1">请登录后，选择“订单”选项或账户“酒店订单”即可看到</string>
-    <string name="ques_2">如何退款？</string>
-    <string name="answer_2">当日预定不可退款，如需退款请过两个工作日后再进行退款</string>
-    <!-- 对话框 -->
-    <string name="dialog_sure">确定</string>
-    <string name="dialog_cancel">取消</string>
-    <string name="dialog_title">提示</string>
-    <string name="dialog_exit_message">你确定要退出应用？</string>
-    <string name="dialog_call_notice">是否确认拨打%1$s号码?</string>
-    
-    <!-- 关于我们 -->
-    <string name="phone">400&#8211;000&#8211;888</string>
-    <string name="service_phone">客服电话:</string>
-    <string name="version">版本号:1.0.1</string>
-    <!-- 账户 -->
-    <string name="account_title">我的果粒网</string>
-    <string name="nickname">昵称：jsou</string>
     <string name="modify_password">修改密码</string>
     <string name="account_order">酒店订单</string>
     <string name="account_favorite">收藏夹</string>
@@ -451,30 +212,30 @@
     <string name="detail_hotal_people">入住人&#160;:&#160;</string>
     <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
     <string name="detail_hotal_contact_phone">联系电话&#160;:&#160;</string>
-	<string name="detail_hotal_cancel">取消订单</string>
-	<string name="detail_hotal_order_cancel">退订</string>
-	<string name="detail_hotal_pay">去付款</string>
-	<!-- 房间数选择页面 -->
-	<string name="room_counts">房间数</string>
-	<!-- 更多要求反馈页面 -->
-	<string name="more_require_title">更多要求</string>
-	<string name="more_require_def_content">请输入您的要求</string>
-	<string name="confirm_commit">确认提交</string>
-	<!-- 入住清单页面 -->
-	<string name="occupancy_list">入住日期清单</string>
-	<string name="date">日期</string>
-	<string name="breakfast">早餐</string>
-	<!-- 选择入住人页面 -->
-	<string name="user_select">选择入住人</string>
-	<string name="user_new">新增入住人</string>
-	<string name="confirm">确认</string>
-	
-	<!-- 订单确认页面 -->
+    <string name="detail_hotal_cancel">取消订单</string>
+    <string name="detail_hotal_order_cancel">退订</string>
+    <string name="detail_hotal_pay">去付款</string>
+    <!-- 房间数选择页面 -->
+    <string name="room_counts">房间数</string>
+    <!-- 更多要求反馈页面 -->
+    <string name="more_require_title">更多要求</string>
+    <string name="more_require_def_content">请输入您的要求</string>
+    <string name="confirm_commit">确认提交</string>
+    <!-- 入住清单页面 -->
+    <string name="occupancy_list">入住日期清单</string>
+    <string name="date">日期</string>
+    <string name="breakfast">早餐</string>
+    <!-- 选择入住人页面 -->
+    <string name="user_select">选择入住人</string>
+    <string name="user_new">新增入住人</string>
+    <string name="confirm">确认</string>
+
+    <!-- 订单确认页面 -->
     <string name="order_confirm">订单确认</string>
     <string name="order_total">订单总额 :</string>
     <string name="credit_card_pay">信用卡直接支付</string>
     <string name="tenpay">财付通网页支付</string>
     <string name="money_pay">线下转账支付</string>
     <string name="confirm_pay">确认支付</string>
->>>>>>> 066df33037a44b42c3bb56b856a19a636baecb1d
+
 </resources>
