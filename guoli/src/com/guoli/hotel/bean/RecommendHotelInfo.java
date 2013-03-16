@@ -49,19 +49,19 @@ public class RecommendHotelInfo {
     private String zone;
     /**经度*/
     @SerializedName("mapx")
-    private String longitude;
+    private double longitude;
     /**纬度*/
     @SerializedName("mapy")
-    private String latitude;
+    private double latitude;
     /**市场价格*/
-    @SerializedName("price")
-    private String price;
+    @SerializedName("actprice")
+    private double price;
     /**果粒价格*/
     @SerializedName("guoliprice")
-    private String guoliPrice;
+    private double guoliPrice;
     /**折扣*/
     @SerializedName("zheke")
-    private String discount;
+    private double discount;
     /**图片名称*/
     @SerializedName("pic")
     private String picName;
@@ -72,8 +72,8 @@ public class RecommendHotelInfo {
     @SerializedName("filename")
     private String filename;
     /**星级*/
-    @SerializedName("")
-    private String level;
+    @SerializedName("star")
+    private int level;
     
     
     public String getId() {
@@ -124,34 +124,34 @@ public class RecommendHotelInfo {
     public void setZone(String zone) {
         this.zone = zone;
     }
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
-    public String getGuoliPrice() {
+    public double getGuoliPrice() {
         return guoliPrice;
     }
-    public void setGuoliPrice(String guoliPrice) {
+    public void setGuoliPrice(double guoliPrice) {
         this.guoliPrice = guoliPrice;
     }
-    public String getDiscount() {
+    public double getDiscount() {
         return discount;
     }
-    public void setDiscount(String discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
     public String getPicName() {
@@ -173,10 +173,10 @@ public class RecommendHotelInfo {
         this.filename = filename;
     }
     
-    public String getLevel() {
+    public int getLevel() {
         return level;
     }
-    public void setLevel(String level) {
+    public void setLevel(int level) {
         this.level = level;
     }
     @Override

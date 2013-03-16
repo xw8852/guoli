@@ -34,20 +34,19 @@
          <!-- 星级 -->
 
         <RatingBar
-            android:id="@+id/hotel_star_level"
+            android:id="@+id/starLevelView"
             style="@style/ratingbar_small"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_below="@+id/hotel_name"
             android:layout_alignLeft="@+id/hotel_name"
-            android:numStars="5"
             android:rating="0" />
         <!-- 入住有效期 -->
         <TextView
             android:id="@+id/hotelDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/hotel_star_level"
+            android:layout_below="@+id/starLevelView"
             android:layout_marginLeft="10dp"
             android:text="入住有效期"
             android:textColor="@color/font_grey" />
@@ -57,7 +56,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotelDate"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/hotelPriceView"
             android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="推荐理由"
             android:textColor="@color/font_grey" />
         <!-- 酒店地址 -->
@@ -68,12 +71,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotelReason"
             android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/hotel_discount"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="地址"
             android:textColor="@color/font_grey" />
         <!-- 酒店区域 -->
 
         <TextView
-            android:id="@+id/hotel_area"
+            android:id="@+id/hotelAreaView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotel_address"
@@ -84,7 +91,7 @@
         <!-- 价格 -->
 
         <TextView
-            android:id="@+id/hotel_price"
+            android:id="@+id/hotelPriceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -98,7 +105,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/hotel_price"
+            android:layout_below="@+id/hotelPriceView"
+            android:gravity="right"
+            android:layout_toRightOf="@+id/hotelReason"
             android:text="4.6折起" />
         <!-- 电询 -->
 

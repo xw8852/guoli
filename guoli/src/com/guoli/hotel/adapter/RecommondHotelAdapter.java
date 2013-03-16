@@ -13,9 +13,6 @@ package com.guoli.hotel.adapter;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.bean.RecommendHotelInfo;
-
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -24,6 +21,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.bean.RecommendHotelInfo;
 
 /**
  * ClassName:RecommondHotelAdapter <br/>
@@ -56,13 +56,13 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item_recommend_hotel, null);
             holder.imgView = (ImageView) convertView.findViewById(R.id.hotel_img);
-            holder.ratingBar = (RatingBar) convertView.findViewById(R.id.hotel_star_level);
+            holder.ratingBar = (RatingBar) convertView.findViewById(R.id.starLevelView);
             holder.nameView = (TextView) convertView.findViewById(R.id.hotel_name);
             holder.dateView = (TextView) convertView.findViewById(R.id.hotelDate);
             holder.addressView = (TextView) convertView.findViewById(R.id.hotel_address);
             holder.reasonView = (TextView) convertView.findViewById(R.id.hotelReason);
-            holder.areaView = (TextView) convertView.findViewById(R.id.hotel_area);
-            holder.priceView = (TextView) convertView.findViewById(R.id.hotel_price);
+            holder.areaView = (TextView) convertView.findViewById(R.id.hotelAreaView);
+            holder.priceView = (TextView) convertView.findViewById(R.id.hotelPriceView);
             holder.discountView = (TextView) convertView.findViewById(R.id.hotel_discount);
             convertView.setTag(holder);
         } else {
@@ -81,55 +81,11 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
         holder.nameView.setText(info.getName());
         initDateView(holder.dateView, info.getDate());
         initRecommandReasonView(holder.reasonView, info.getReason());
-        initStarLevelView(holder.ratingBar, info.getLevel());
-        initPriceView(holder.priceView, info.getPrice());
+        holder.ratingBar.setNumStars(info.getLevel());
+        holder.priceView.setText(info.getPrice() + "");
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getZone());
         holder.discountView.setText(formatDiscount(info.getDiscount()));
-    }
-    
-    /**
-     * 
-     * initPriceView:设置酒店价格. <br/>
-     * @author maple
-     * @param priceView
-     * @param price
-     * @since JDK 1.6
-     */
-    private void initPriceView(TextView priceView, String price) {
-        if (priceView == null) {
-            return;
-        }
-        if (TextUtils.isEmpty(price)) {
-            priceView.setText("");
-            return;
-        }
-        priceView.setText(price);
-    }
-
-    /**
-     * 
-     * initStarLevelView:设置酒店星级. <br/>
-     * @author maple
-     * @param ratingBar
-     * @param level
-     * @since JDK 1.6
-     */
-    private void initStarLevelView(RatingBar ratingBar, String level) {
-        if (ratingBar == null) {
-            return;
-        }
-        if (TextUtils.isEmpty(level)) {
-            ratingBar.setNumStars(0);
-            return;
-        }
-        int starNum = 0;
-        try {
-            starNum = Integer.parseInt(level);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        ratingBar.setNumStars(starNum);
     }
 
     /**
@@ -173,18 +129,8 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
      * @return
      * @since JDK 1.6
      */
-    private String formatDiscount(String discount) {
-        if (TextUtils.isEmpty(discount)) {
-            return "";
-        }
-        float tempDiscount = 0;
-        try {
-            tempDiscount = Float.parseFloat(discount);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return "";
-        }
-        String dis = new DecimalFormat("0.##").format(tempDiscount);
+    private String formatDiscount(double discount) {
+        String dis = new DecimalFormat("0.##").format(discount);
         String desc = getResources().getString(R.string.discount_desc);
         return String.format(desc, dis);
     }
