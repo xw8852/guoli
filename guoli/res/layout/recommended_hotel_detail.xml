@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="上海香格里拉大酒店" />
+                android:text="" />
             <!-- 星级 -->
 
             <RatingBar
@@ -77,7 +77,7 @@
                     android:layout_gravity="bottom"
                     android:background="#30000000"
                     android:gravity="center"
-                    android:text="8张"
+                    android:text=""
                     android:textColor="@color/title_bar_font_color" />
             </FrameLayout>
         </RelativeLayout>
@@ -111,7 +111,7 @@
                     android:drawableRight="@drawable/back_light"
                     android:gravity="center_vertical"
                     android:paddingRight="@dimen/small_margin"
-                    android:text="浦东新区陆家嘴富城路332号" />
+                    android:text="" />
                 <View
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="@dimen/max_margin"
                     android:paddingRight="@dimen/small_margin"
-                    android:text="浦东新区陆家嘴富城路332号" />
+                    android:text="" />
                 <!-- 酒店历史 -->
 
             </RelativeLayout>
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/mark_view"
-                android:text="入住 : 2013-01-11" />
+                android:text="" />
             <!-- 离店日期 -->
 
             <TextView
@@ -174,7 +174,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/occupancy_date_view"
                 android:paddingLeft="10dp"
-                android:text="离开 : 2013-01-11" />
+                android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"

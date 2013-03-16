@@ -28,6 +28,7 @@ import com.guoli.hotel.bean.HotelInfo;
 import com.guoli.hotel.bean.HotelListInfo;
 import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.parse.HotelListInfoParse;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
@@ -173,7 +174,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         if (info == null) {
             return;
         }
-        enterHotelDetailActivity();
+        enterHotelDetailActivity(info.getId());
     }
     
     @Override
@@ -215,8 +216,15 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
      * @author maple
      * @since JDK 1.6
      */
-    private void enterHotelDetailActivity(){
+    private void enterHotelDetailActivity(String id){
         Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        HotelRoom room = new HotelRoom();
+        room.setId(id);
+        room.setStartDate(mSearchInfo.getStartDate());
+        room.setEndDate(mSearchInfo.getEndDate());
+        bundle.putParcelable(HotelDetailActivity.KEY_REQUEST, room);
+        intent.putExtras(bundle);
         intent.setClass(this, HotelDetailActivity.class);
         startActivity(intent);
     }

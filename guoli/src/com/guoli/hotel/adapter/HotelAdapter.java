@@ -67,7 +67,6 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getDistrict());
         setStarLevelView(holder.levelView, info.getStarLavel());
-//        holder.levelView.setNumStars(info.getStarLavel());
         loadHotelImg(info.getPicPath(), holder.imgView);
         int price = info.getPrice();
         if (price != 0) {

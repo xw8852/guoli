@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:background="@color/bg_grey"
         android:baselineAligned="false"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <!-- 左侧部分布局 -->
 

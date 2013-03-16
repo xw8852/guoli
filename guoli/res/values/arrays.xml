@@ -23,9 +23,9 @@
     </string-array>
     <string-array name="level_key">
         <item ></item>
-        <item >02</item>
-        <item >03</item>
-        <item >04</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
     </string-array>
     
     <string-array name="order_value">
@@ -39,5 +39,23 @@
         <item >price_desc</item>
         <item >price_asc</item>
         <item >discount_asc</item>
+    </string-array>
+    <string-array name="room_breakfast">
+        <item >无</item>
+        <item >单早</item>
+        <item >双早</item>
+    </string-array>
+    <string-array name="room_bed">
+        <item >大床</item>
+        <item >双床</item>
+        <item >床型不定</item>
+    </string-array>
+    <string-array name="add_bed">
+        <item >否</item>
+        <item >是</item>
+    </string-array>
+    <string-array name="network">
+        <item >免费</item>
+        <item >付费</item>
     </string-array>
 </resources>
