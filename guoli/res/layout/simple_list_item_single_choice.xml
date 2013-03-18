@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:gravity="center_vertical"
+    android:paddingLeft="6dip"
+    android:textColor="@android:color/black"
+    android:paddingRight="6dip"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+<!--     android:background="@drawable/city_guide_filter_selector"
+ -->    

@@ -67,8 +67,6 @@
     <string name="contact_phone">联系电话 :</string>
     <string name="order_money_content">￥%1$s</string>
     <string name="order_list_title">酒店订单</string>
-    <string name="book">预订</string>
-    <string name="guoli_notice">果粒网提醒您&#160;:</string>
     <!-- 反馈页面 -->
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
@@ -148,6 +146,21 @@
     <!-- 酒店详细 -->
     <string name="collect">收藏</string>
     <string name="hotel_detail">酒店详情</string>
+    <string name="start_date">入住&#160;:%1$s</string>
+    <string name="end_date">离店&#160;:%1$s</string>
+    <string name="pic_count">%1$d张</string>
+    <string name="discount">折扣</string>
+    <string name="book">预订</string>
+    <string name="bed_and_breakfast">%1$s&#160;&#160;&#160;&#160;%2$s</string>
+    <string name="history">%1$s年开业&#160;&#160;%2$s年装修</string>
+    <string name="room_area">建筑面积&#160;:%1$s</string>
+    <string name="add_bed">该房间是否可加床&#160;:%1$s</string>
+    <string name="allow_smoking">是否允许抽烟&#160;:%1$s</string>
+    <string name="have_net">宽带&#160;:%1$s</string>
+    <string name="floor_num">楼层&#160;:%1$s</string>
+    <string name="bed_width">床宽&#160;:%1$s</string>
+    <string name="pople_num">可住人数&#160;:%1$s</string>
+    <string name="call">电询</string>
 
     <!-- 填写订单页面 -->
     <string name="order_edit_title">填写订单</string>
@@ -197,8 +210,12 @@
     <string name="hotel_area_shopping">商圈</string>
     <!-- 特别推荐 -->
     <string name="recommend">特别推荐</string>
-    <string name="date_period">入住有效期&#160;:%1$s</string>
+    <string name="date_period">时效&#160;:%1$s</string>
     <string name="recommend_reason">推荐理由&#160;:%1$s</string>
+    <!-- 特别推荐详情 -->
+    <string name="address">地址&#160;:%1$s&#160;</string>
+    <string name="period_date">入住有效期&#160;:%1$s&#160;</string>
+    <string name="guoli_notice">果粒网提醒您&#160;:</string>
     <!-- 收藏夹页面 -->
     <string name="my_favorite">我的收藏</string>
     <!-- 订单详情 -->
