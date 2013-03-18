@@ -1,6 +1,7 @@
 package com.guoli.hotel.net;
 
 public final class Action {
+<<<<<<< HEAD
 
 	
 	/**
@@ -18,13 +19,28 @@ public final class Action {
 		 */
 		public static final String USER_ORDER_LIST="order_userorder";
         
+=======
+    /**
+     * 订单相关
+     * @author John
+     *
+     */
+    public static final class Order {
+        /** 非会员订单列表 */
+        public static final String unLoginMobile = "order_mobileorder";
+>>>>>>> InterfaceOrder
         /** 10. 入住价格清单 */
         public static final String OrderPriceList="order_ordprice";
         /** 11. 订单价格计算 */
         public static final String OrderPriceCount="order_ordsumpri";
         /** 12. 订单提交 */
         public static final String OrderSubmit="order_submit";
+<<<<<<< HEAD
 
+=======
+        /** 13. 会员订单列表 */
+        public static final String OrderUser="order_userorder";
+>>>>>>> InterfaceOrder
         /** 15. 订单详情 */
         public static final String OrderDetail="order_details";
         /** 16. 取消订单 */
