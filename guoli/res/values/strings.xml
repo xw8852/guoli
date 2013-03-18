@@ -67,6 +67,8 @@
     <string name="contact_phone">联系电话 :</string>
     <string name="order_money_content">￥%1$s</string>
     <string name="order_list_title">酒店订单</string>
+    <string name="book">预订</string>
+    <string name="guoli_notice">果粒网提醒您&#160;:</string>
     <!-- 反馈页面 -->
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
