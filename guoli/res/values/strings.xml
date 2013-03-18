@@ -195,6 +195,14 @@
     <string name="hotel_location_map">酒店地图</string>
     <!-- 酒店信息 -->
     <string name="hotel_info">酒店信息</string>
+    <string name="special_notice">特别提示</string>
+    <string name="traffic_location">位置交通</string>
+    <string name="hotel_introduce">酒店介绍</string>
+    <string name="attached_operations">附加选项&#160;:</string>
+    <string name="repast_facility">餐饮设置&#160;:</string>
+    <string name="entertainment_facility">娱乐健身&#160;:</string>
+    <string name="room_facility">客房设施&#160;:</string>
+    <string name="allow_creditcard">可接受信用卡&#160;:</string>
     <!-- 选择日期 -->
     <string name="date_select">选择日期</string>
     <!-- 城市选择 -->

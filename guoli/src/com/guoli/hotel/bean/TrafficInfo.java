@@ -6,62 +6,59 @@
  * Copyright (c) 2013
  * Company:苏州海客科技有限公司
  *
-*/
+ */
 
 package com.guoli.hotel.bean;
+
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * ClassName:TrafficInfo <br/>
- * @Description:    酒店详情中的交通
- * Date:     2013-3-15 上午10:32:54 <br/>
- * @author   maple
- * @version  
- * @since    JDK 1.6
- * @see 	 
+ * 
+ * @Description: 酒店详情中的交通 Date: 2013-3-15 上午10:32:54 <br/>
+ * @author maple
+ * @version
+ * @since JDK 1.6
+ * @see
  */
 public class TrafficInfo {
 
-    /**市中心*/
+    /** 市中心 */
     @SerializedName("shizhongxin")
-    private String cityCenter;
-    
-    /**机场*/
-    @SerializedName("jichang")
-    private String airPort;
-    
-    /**火车站*/
-    @SerializedName("huochezhan")
-    private String railwayStation;
+    private List<String> cityCenter;
 
-    public String getCityCenter() {
+    /** 机场 */
+    @SerializedName("jichang")
+    private List<String> airPorts;
+
+    /** 火车站 */
+    @SerializedName("huochezhan")
+    private List<String> railwayStations;
+
+    public List<String> getCityCenter() {
         return cityCenter;
     }
 
-    public void setCityCenter(String cityCenter) {
+    public void setCityCenter(List<String> cityCenter) {
         this.cityCenter = cityCenter;
     }
 
-    public String getAirPort() {
-        return airPort;
+    public List<String> getAirPorts() {
+        return airPorts;
     }
 
-    public void setAirPort(String airPort) {
-        this.airPort = airPort;
+    public void setAirPorts(List<String> airPorts) {
+        this.airPorts = airPorts;
     }
 
-    public String getRailwayStation() {
-        return railwayStation;
+    public List<String> getRailwayStations() {
+        return railwayStations;
     }
 
-    public void setRailwayStation(String railwayStation) {
-        this.railwayStation = railwayStation;
+    public void setRailwayStations(List<String> railwayStations) {
+        this.railwayStations = railwayStations;
     }
-    
-    @Override
-    public String toString() {
-        return "{cityCenter=" + cityCenter + ", airPort=" + airPort + ", railwayStation=" + railwayStation +"}";
-    }
+
 }
-

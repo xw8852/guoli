@@ -66,6 +66,34 @@ public class HotelDetailInfo {
     @SerializedName("trafficinfo")
     private TrafficInfo trafficInfo;
     
+    /**客房设施*/
+    @SerializedName("roomfacility")
+    private String roomFacility;
+    
+    /**餐饮设施*/
+    @SerializedName("diningfacility")
+    private String diningFacility;
+    
+    /**娱乐设施*/
+    @SerializedName("entertainmentfacility")
+    private String entertainmentFacility;
+    
+    /**可接受信用课*/
+    @SerializedName("creditcard")
+    private String creditCard;
+    
+    /***/
+    @SerializedName("isbrand")
+    private int isBrand;
+    
+    /***/
+    @SerializedName("ispark")
+    private int isPark;
+    
+    /**电话*/
+    @SerializedName("phone")
+    private String phone;
+    
     public String getId() {
         return id;
     }
@@ -154,6 +182,62 @@ public class HotelDetailInfo {
         this.trafficInfo = trafficInfo;
     }
 
+    public String getRoomFacility() {
+        return roomFacility;
+    }
+
+    public void setRoomFacility(String roomFacility) {
+        this.roomFacility = roomFacility;
+    }
+
+    public String getDiningFacility() {
+        return diningFacility;
+    }
+
+    public void setDiningFacility(String diningFacility) {
+        this.diningFacility = diningFacility;
+    }
+
+    public String getEntertainmentFacility() {
+        return entertainmentFacility;
+    }
+
+    public void setEntertainmentFacility(String entertainmentFacility) {
+        this.entertainmentFacility = entertainmentFacility;
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public int getIsBrand() {
+        return isBrand;
+    }
+
+    public void setIsBrand(int isBrand) {
+        this.isBrand = isBrand;
+    }
+
+    public int getIsPark() {
+        return isPark;
+    }
+
+    public void setIsPark(int isPark) {
+        this.isPark = isPark;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
    /* @Override
     public String toString() {
         return "{id=" + id + ", name=" + name + ", address=" + address + ", picPath=" + picPath

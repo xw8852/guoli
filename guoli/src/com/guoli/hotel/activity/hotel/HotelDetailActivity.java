@@ -150,6 +150,8 @@ public class HotelDetailActivity extends CallActivity {
             break;
         case R.id.history_layout:
             intent = new Intent();
+            HotelRoom room = getHotelRoom();
+            intent.putExtra(HotelInfoActivity.KEY_HOTEL_SHOPINFO_ID, room == null ? "" : room.getId());
             intent.setClass(this, HotelInfoActivity.class);
             startActivity(intent);
             break;
