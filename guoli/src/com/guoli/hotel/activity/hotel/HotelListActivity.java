@@ -76,11 +76,11 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
         if (mListView.getAdapter() == null) {
             return;
         }
-        HotelInfo info = (HotelInfo) mListView.getAdapter().getItem(position);
+        RecommendHotelInfo info = (RecommendHotelInfo) mAdapter.getItem(position);
         if (info == null) {
             return;
         }
-        enterHotelDetailActivity();
+        enterHotelDetailActivity(info.getId());
     }
     
     @Override
@@ -115,13 +115,14 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
     
     /**
      * 
-     * enterHotelDetailActivity:跳转到酒店详细页面. <br/>
+     * enterHotelDetailActivity:跳转到推荐酒店详细页面. <br/>
      * @author maple
      * @since JDK 1.6
      */
-    private void enterHotelDetailActivity(){
+    private void enterHotelDetailActivity(String id){
         Intent intent = new Intent();
-        intent.setClass(this, HotelDetailActivity.class);
+        intent.putExtra(RecommendDetailActivity.KEY_HOTEL_ID, id);
+        intent.setClass(this, RecommendDetailActivity.class);
         startActivity(intent);
     }
 

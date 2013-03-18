@@ -1,0 +1,33 @@
+request={
+    "action": "hotel_rechotel",
+    "param": {
+        "shopid": "89936"
+    },
+    "platformType": "android"
+}
+resp={
+    "param": {
+        "shopid": "89936"
+    },
+    "hotelinfo": {
+        "shopid": "89936",
+        "date_desc": "从2013-1-11到2013-1-31",
+        "recommend_reason": "",
+        "abstract": "ART6梦幻湖景露台与俱乐部酒廊露台拥有全杭州最美丽的西湖景致，在此可尽情享受休闲时光！",
+        "shopname": "杭州索菲特西湖大酒店",
+        "address": "区西湖大道333号",
+        "phone": "",
+        "star": "2",
+        "picpath": "1207/89936/",
+        "shangquan": "330608",
+        "zone": "330102",
+        "mapx": "120.169029",
+        "mapy": "30.251137",
+        "pid": "51597",
+        "actprice": "1166.00",
+        "guoliprice": "1440.00",
+        "zheke": "0.9090",
+        "pic": "1357885199.jpg"
+    },
+    "success": "1"
+}

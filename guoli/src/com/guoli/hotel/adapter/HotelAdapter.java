@@ -10,7 +10,6 @@
 
 package com.guoli.hotel.adapter;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -74,7 +73,8 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
             holder.priceView.setVisibility(View.VISIBLE);
             holder.discountView.setVisibility(View.VISIBLE);
             holder.priceView.setText(formatPrice(price));
-            holder.discountView.setText(formatDiscount(info.getDiscount()));
+            String desc = getResources().getString(R.string.discount_desc);
+            holder.discountView.setText(String.format(desc, info.getDiscount()));
             return convertView;
         }
         holder.priceView.setVisibility(View.GONE);
@@ -123,21 +123,6 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
     private String formatPrice(int price) {
         String desc = getResources().getString(R.string.price_desc);
         return String.format(desc, price);
-    }
-
-    /**
-     * 
-     * formatDiscount:格式化折扣. <br/>
-     * 
-     * @author maple
-     * @param discount
-     * @return
-     * @since JDK 1.6
-     */
-    private String formatDiscount(double discount) {
-        String dis = new DecimalFormat("0.##").format(discount);
-        String desc = getResources().getString(R.string.discount_desc);
-        return String.format(desc, dis);
     }
 
     /**

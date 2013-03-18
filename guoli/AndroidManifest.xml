@@ -115,6 +115,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".activity.hotel.RecommendDetailActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".activity.FavoriteActivity"
             android:screenOrientation="portrait" >
         </activity>
