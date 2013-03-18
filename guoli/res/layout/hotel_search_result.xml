@@ -5,17 +5,21 @@
 
     <!-- 标题栏 -->
 
-    <include android:id="@+id/title_bar" layout="@layout/title_bar"/>
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar" />
 
     <!-- 搜索条件及结果布局 -->
+
     <RelativeLayout
         android:id="@+id/condition_and_result_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:layout_below="@+id/title_bar" >
+        android:layout_below="@+id/title_bar"
+        android:background="#FFFFFF" >
 
         <!-- 城市 -->
+
         <TextView
             android:id="@+id/city_text"
             android:layout_width="wrap_content"
@@ -28,17 +32,17 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/city_text"
             android:layout_toLeftOf="@+id/count_view"
+            android:layout_toRightOf="@+id/city_text"
             android:baselineAligned="false"
             android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-             >
+            android:paddingRight="5dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -46,76 +50,95 @@
                     android:text="@string/occupancy" />
 
                 <!-- 入住日期 -->
+
                 <TextView
                     android:id="@+id/occupancy_date"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/leave" />
                 <!-- 离开日期 -->
+
                 <TextView
                     android:id="@+id/leave_date"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
         <!-- 商家数 -->
-        <TextView android:id="@+id/count_view"
+
+        <TextView
+            android:id="@+id/count_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dp"
             android:gravity="center"
-            />
+            android:paddingRight="10dp" />
     </RelativeLayout>
 
     <!-- 排序过滤控件布局 -->
+
     <LinearLayout
         android:id="@+id/filter_layout"
-        android:layout_below="@+id/condition_and_result_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView android:id="@+id/sort_type"
+        android:layout_height="40dp"
+        android:layout_below="@+id/condition_and_result_layout" >
+
+        <TextView
+            android:id="@+id/sort_type"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/filter_ull"
-            android:text="@string/default_sort"
             android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView android:id="@+id/price_filter"
+            android:text="@string/default_sort" />
+
+        <TextView
+            android:id="@+id/price_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/filter_ull"
-            android:text="@string/price_filter"
             android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView android:id="@+id/area_filter"
+            android:text="@string/price_filter" />
+
+        <TextView
+            android:id="@+id/area_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/filter_ull"
-            android:text="@string/location_filter"
             android:gravity="center"
-            android:layout_weight="1"/>
+            android:text="@string/location_filter" />
     </LinearLayout>
-    
-    <!-- 酒店列表 -->
-    <ListView android:id="@+id/hotel_list"
-        android:layout_below="@+id/filter_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/filter_layout" >
+
+        <!-- 酒店列表 -->
+
+        <ListView
+            android:id="@+id/hotel_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+    </FrameLayout>
+
 </RelativeLayout>

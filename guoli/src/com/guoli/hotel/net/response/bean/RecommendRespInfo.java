@@ -23,6 +23,18 @@ import com.guoli.hotel.bean.RecommendInfo;
  * @see 	 
  */
 public class RecommendRespInfo {
+    
+    /**酒店图片张数*/
+    @SerializedName("pictotal")
+    private int count;
+    
+    /**入住时间*/
+    @SerializedName("indate")
+    private String startDate;
+    
+    /**离店时间*/
+    @SerializedName("outdate")
+    private String endDate;
 
     /**推荐酒店的详情*/
     @SerializedName("hotelinfo")
@@ -34,6 +46,30 @@ public class RecommendRespInfo {
 
     public void setRecommendInfo(RecommendInfo recommendInfo) {
         this.recommendInfo = recommendInfo;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }
 

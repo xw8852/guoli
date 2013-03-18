@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="0dip"
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -77,12 +78,27 @@
                         android:textSize="18sp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/hotelImgView"
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/hotel_default" />
+                    android:layout_alignParentRight="true" >
+
+                    <ImageView
+                        android:id="@+id/hotelImgView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/hotel_default" />
+
+                    <TextView
+                        android:id="@+id/picCountView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom"
+                        android:background="#30000000"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/title_bar_font_color" />
+                </FrameLayout>
             </RelativeLayout>
 
             <TextView
@@ -107,13 +123,25 @@
                 android:text="@string/guoli_notice"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/hotelNoticeView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
-                android:text=""/>
+                android:text="" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/nowBookBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_commit"
+        android:gravity="center"
+        android:text="@string/now_book"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/title_bar_font_color" />
 
 </LinearLayout>

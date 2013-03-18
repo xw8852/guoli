@@ -10,8 +10,11 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.bean.RecommendInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRecommendInfo;
+import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RecommendRespInfo;
 import com.guoli.hotel.parse.RecommendRespParase;
 import com.guoli.hotel.utils.NumberUtils;
@@ -38,6 +42,7 @@ import com.msx7.core.command.model.Response;
  */
 public class RecommendDetailActivity extends CallActivity {
 
+    private  RecommendRespInfo mRespInfo;
     public static final String KEY_HOTEL_ID = "hotelId";
     private static final String TAG = RecommendDetailActivity.class.getSimpleName();
 
@@ -67,8 +72,24 @@ public class RecommendDetailActivity extends CallActivity {
 
     @Override
     protected void findViews() {
-        // TODO Auto-generated method stub
+        findViewById(R.id.nowBookBtn).setOnClickListener(mBookLisenter);
     }
+    
+    private OnClickListener mBookLisenter = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            HotelRoom room = new HotelRoom();
+            room.setId(getIntent().getStringExtra(KEY_HOTEL_ID));
+            room.setStartDate(mRespInfo == null ? "" : mRespInfo.getStartDate());
+            room.setEndDate(mRespInfo == null ? "" : mRespInfo.getEndDate());
+            bundle.putParcelable(HotelDetailActivity.KEY_REQUEST, room);
+            intent.putExtras(bundle);
+            intent.setClass(RecommendDetailActivity.this, HotelDetailActivity.class);
+            startActivity(intent);
+        }
+    };
 
     private IResponseListener mSyncLisenter = new IResponseListener() {
 
@@ -76,11 +97,11 @@ public class RecommendDetailActivity extends CallActivity {
         public void onSuccess(Response resp) {
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
-            RecommendRespInfo respInfo = new RecommendRespParase().parseResponse(resp);
-            if (respInfo == null) {
+             mRespInfo = new RecommendRespParase().parseResponse(resp);
+            if (mRespInfo == null) {
                 return;
             }
-            initViews(respInfo.getRecommendInfo());
+            initViews(mRespInfo.getRecommendInfo());
         }
 
         @Override
@@ -105,7 +126,13 @@ public class RecommendDetailActivity extends CallActivity {
         ((TextView)findViewById(R.id.hotelBriefView)).setText(info.getBrief());
         ((TextView)findViewById(R.id.hotelNoticeView)).setText("sfdfsfsdfsdf");
         ((TextView)findViewById(R.id.dateLifeView)).setText(String.format(res, info.getDate()));
+        String countText = "";
+        if (mRespInfo != null) {
+            res = getResources().getString(R.string.pic_count);
+            countText = String.format(res, mRespInfo.getCount());
+        }
+        ((TextView)findViewById(R.id.picCountView)).setText(countText);
         ((RatingBar)findViewById(R.id.hotelLevelView)).setNumStars(info.getLevel());
-        
+        res = null;
     }
 }
