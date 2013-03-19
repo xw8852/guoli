@@ -59,7 +59,7 @@ public class UserSelectActivity extends BaseActivity {
 
 			break;
 		case R.id.add_new_user:
-			startActivityForResult(new Intent(this, AddUserActivity.class), requestCode);
+			startActivityForResult(new Intent(this, AddUserActivity.class), ACTIVITY_CREATE);
 			break;
 		default:
 			break;
