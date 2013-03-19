@@ -14,8 +14,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,9 +27,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
@@ -39,6 +43,7 @@ import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RoomRespInfo;
 import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
+import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.NetUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
@@ -53,12 +58,17 @@ import com.msx7.core.command.model.Response;
  * @since JDK 1.6
  * @see
  */
-public class HotelDetailActivity extends CallActivity {
+public class HotelDetailActivity extends CallActivity implements OnClickListener {
 
     private ListView mRoomsListView;
     private RoomAdapter mAdapter;
     private HotelRoom mHotelRoom;
-    /**酒店房型关键字*/
+    private TextView mInDateView;
+    private TextView mOutDateView;
+    private static final int DIALOG_IN_DATE = 1;
+    private static final int DIALOG_OUT_DATE = 2;
+    private static final String FORMAT_STYLE = "yyyy-MM-dd";
+    /** 酒店房型关键字 */
     public static final String KEY_REQUEST = "hotel_room";
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
@@ -77,26 +87,20 @@ public class HotelDetailActivity extends CallActivity {
         showLeftBtn();
         showRightBtn();
     }
-    
-    private HotelRoom getHotelRoom(){
+
+    private HotelRoom getHotelRoom() {
         Intent intent = getIntent();
-        if (intent == null) {
-            return null;
-        }
+        if (intent == null) { return null; }
         Bundle bundle = intent.getExtras();
-        if (bundle == null) {
-            return null;
-        }
-        Object obj =  bundle.get(KEY_REQUEST);
-        if (!(obj instanceof HotelRoom)) {
-            return null;
-        }
+        if (bundle == null) { return null; }
+        Object obj = bundle.get(KEY_REQUEST);
+        if (!(obj instanceof HotelRoom)) { return null; }
         return (HotelRoom) obj;
     }
-    
-    private void loadData(){
-        //TODO 有本地缓存的情况下,合理的逻辑应该是先查询本地数据,如果本地数据没有查询到再判断网络是否可用
-        //网络如果可以用则查询网络数据
+
+    private void loadData() {
+        // TODO 有本地缓存的情况下,合理的逻辑应该是先查询本地数据,如果本地数据没有查询到再判断网络是否可用
+        // 网络如果可以用则查询网络数据
         if (!NetUtils.isNetworkWell(this)) {
             loadLocalData();
             return;
@@ -120,15 +124,17 @@ public class HotelDetailActivity extends CallActivity {
         TextView collectBtn = (TextView) findViewById(R.id.collection_btn);
         // TODO framelayout布局
         View picLayout = findViewById(R.id.pic_view);
-        View addressLayout =  findViewById(R.id.address_layout);
-        View historyLayout =  findViewById(R.id.history_layout);
-        RelativeLayout dateLayout = (RelativeLayout) findViewById(R.id.occupancy_and_leave_layout);
-        mRoomsListView = (ListView)findViewById(R.id.listView1);
+        View addressLayout = findViewById(R.id.address_layout);
+        View historyLayout = findViewById(R.id.history_layout);
+        mInDateView = ((TextView) findViewById(R.id.inDateView));
+        mOutDateView = ((TextView) findViewById(R.id.outDateView));
+        mRoomsListView = (ListView) findViewById(R.id.listView1);
         collectBtn.setOnClickListener(this);
         picLayout.setOnClickListener(this);
         addressLayout.setOnClickListener(this);
         historyLayout.setOnClickListener(this);
-        dateLayout.setOnClickListener(this);
+        mInDateView.setOnClickListener(this);
+        mOutDateView.setOnClickListener(this);
     }
 
     @Override
@@ -137,10 +143,10 @@ public class HotelDetailActivity extends CallActivity {
         Intent intent = null;
         switch (v.getId()) {
         case R.id.collection_btn:
-            
+
             break;
         case R.id.pic_view:
-            intent=new Intent(this, PicGridActivity.class);
+            intent = new Intent(this, PicGridActivity.class);
             startActivity(intent);
             break;
         case R.id.address_layout:
@@ -155,12 +161,12 @@ public class HotelDetailActivity extends CallActivity {
             intent.setClass(this, HotelInfoActivity.class);
             startActivity(intent);
             break;
-        case R.id.occupancy_and_leave_layout:
-            intent = new Intent();
-            intent.setClass(this, DateSelectActivity.class);
-            startActivity(intent);
+        case R.id.inDateView:
+            showDialog(DIALOG_IN_DATE);
             break;
-
+        case R.id.outDateView:
+            showDialog(DIALOG_OUT_DATE);
+            break;
         default:
             break;
         }
@@ -169,53 +175,51 @@ public class HotelDetailActivity extends CallActivity {
     /**
      * 
      * initRoomsTypeViews:初始化房间类型视图. <br/>
+     * 
      * @author maple
      * @param roomInfos
      * @since JDK 1.6
      */
-    private void initRoomsTypeViews(List<RoomTypeInfo> roomInfos){
-        if (roomInfos == null || roomInfos.size() < 1) {
-            return;
-        }
-       mAdapter=new RoomAdapter(roomInfos);
-       mRoomsListView.setAdapter(mAdapter);
-       mRoomsListView.setOnItemClickListener(mRoomOnItemClickListener);
+    private void initRoomsTypeViews(List<RoomTypeInfo> roomInfos) {
+        if (roomInfos == null || roomInfos.size() < 1) { return; }
+        mAdapter = new RoomAdapter(roomInfos);
+        mRoomsListView.setAdapter(mAdapter);
+        mRoomsListView.setOnItemClickListener(mRoomOnItemClickListener);
     }
-    
-    AdapterView.OnItemClickListener mRoomOnItemClickListener=new AdapterView.OnItemClickListener() {
+
+    AdapterView.OnItemClickListener mRoomOnItemClickListener = new AdapterView.OnItemClickListener() {
 
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            Holder holder=(Holder)arg1.getTag();
-            RoomModel model=mAdapter.getItem(arg2);
-            if(model.isShowMore){
+            Holder holder = (Holder) arg1.getTag();
+            RoomModel model = mAdapter.getItem(arg2);
+            if (model.isShowMore) {
                 holder.more.setVisibility(View.GONE);
-                model.isShowMore=false;
-            }else{
+                model.isShowMore = false;
+            } else {
                 holder.more.setVisibility(View.VISIBLE);
-                model.isShowMore=true;
+                model.isShowMore = true;
             }
         }
     };
-    
-    
-    private class RoomAdapter extends BaseAdapter{
+
+    private class RoomAdapter extends BaseAdapter {
         private List<RoomModel> models;
         private String[] bedTypes;
         private String[] breakfastTypes;
         private String[] addBed;
         private String[] netwrok;
-        
+
         public RoomAdapter(List<RoomTypeInfo> roomInfos) {
             super();
             bedTypes = getResources().getStringArray(R.array.room_bed);
             breakfastTypes = getResources().getStringArray(R.array.room_breakfast);
             addBed = getResources().getStringArray(R.array.add_bed);
             netwrok = getResources().getStringArray(R.array.network);
-            models=new ArrayList<HotelDetailActivity.RoomModel>();
+            models = new ArrayList<HotelDetailActivity.RoomModel>();
             for (RoomTypeInfo roomInfo : roomInfos) {
-                RoomModel model=new RoomModel();
-                model.mInfo= roomInfo;
+                RoomModel model = new RoomModel();
+                model.mInfo = roomInfo;
                 models.add(model);
             }
         }
@@ -238,13 +242,11 @@ public class HotelDetailActivity extends CallActivity {
         @Override
         public View getView(int position, View view, ViewGroup parent) {
             RoomModel model = getItem(position);
-            if (model == null) {
-                return null;
-            }
+            if (model == null) { return null; }
             Holder holder = null;
-            if(view==null){
-                view=getLayoutInflater().inflate(R.layout.hotel_detail_room_item, null);
-                holder=new Holder();
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.hotel_detail_room_item, null);
+                holder = new Holder();
                 holder.simple = view.findViewById(R.id.simple_room);
                 holder.more = view.findViewById(R.id.more_room);
                 holder.button = (Button) view.findViewById(R.id.scheduleBtn);
@@ -259,17 +261,17 @@ public class HotelDetailActivity extends CallActivity {
                 holder.floorView = (TextView) view.findViewById(R.id.floorView);
                 holder.bedWithView = (TextView) view.findViewById(R.id.bedWidthView);
                 holder.numView = (TextView) view.findViewById(R.id.numView);
-                
+
                 view.setTag(holder);
             } else {
-                holder = (Holder)view.getTag();
+                holder = (Holder) view.getTag();
             }
             initItemViews(model, holder);
             holder.button.setOnClickListener(btnListener);
             return view;
         }
-        
-        /**预定、电询按钮事件*/
+
+        /** 预定、电询按钮事件 */
         private OnClickListener btnListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,35 +280,34 @@ public class HotelDetailActivity extends CallActivity {
                 if (obj instanceof Float) {
                     price = (Float) obj;
                 }
-                if (price > 1) {    //预订
+                if (price > 1) { // 预订
                     Intent intent = new Intent();
                     intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
                     startActivity(intent);
                     return;
                 }
-                //电询
+                // 电询
                 CallUtils utils = new CallUtils(HotelDetailActivity.this);
                 utils.callServer();
             }
         };
-        
+
         /**
          * 
          * initItemViews:初始化listView item. <br/>
+         * 
          * @author maple
          * @param model
          * @param holder
          * @since JDK 1.6
          */
-        private void initItemViews(RoomModel model, Holder holder){
-            if (model == null || holder == null || model.mInfo == null) {
-                return;
-            }
+        private void initItemViews(RoomModel model, Holder holder) {
+            if (model == null || holder == null || model.mInfo == null) { return; }
             RoomTypeInfo info = model.mInfo;
             holder.more.setVisibility(model.isShowMore ? View.VISIBLE : View.GONE);
             holder.typeNameView.setText(info.getName() + "");
             holder.discountView.setText(formatDiscount(info.getDiscount()));
-            holder.priceView.setText("￥" + (int)info.getPrice());
+            holder.priceView.setText("￥" + (int) info.getPrice());
             int bebType = info.getBedType();
             String bedContent = "";
             if (bebType - 1 > 0 && bebType - 1 < bedTypes.length) {
@@ -314,13 +315,13 @@ public class HotelDetailActivity extends CallActivity {
             }
             int breakfastType = info.getBreakfastType();
             String breakfastContent = "";
-            if (breakfastType -1 > 0 && breakfastType - 1 < breakfastTypes.length) {
+            if (breakfastType - 1 > 0 && breakfastType - 1 < breakfastTypes.length) {
                 breakfastContent = breakfastTypes[breakfastType - 1];
             }
             String bedBreakfast = getResources().getString(R.string.bed_and_breakfast);
             bedBreakfast = String.format(bedBreakfast, bedContent, breakfastContent);
             holder.bedBreakfastView.setText(bedBreakfast);
-            //初始化隐藏视图内容
+            // 初始化隐藏视图内容
             holder.areaView.setText(formatContent(R.string.room_area, info.getArea() + ""));
             holder.addBedView.setText(formatContent(R.string.add_bed, addBed[info.getIsAddBed()]));
             holder.allowSmokingView.setText(formatContent(R.string.allow_smoking, "否"));
@@ -328,13 +329,13 @@ public class HotelDetailActivity extends CallActivity {
             holder.floorView.setText(formatContent(R.string.floor_num, "8"));
             holder.bedWithView.setText(formatContent(R.string.bed_width, "1.8"));
             holder.numView.setText(formatContent(R.string.pople_num, info.getCheckNum() + ""));
-            
+
             String btnTex = getResources().getString(info.getActprice() < 1 ? R.string.call : R.string.book);
             holder.button.setText(btnTex);
             holder.button.setTag(info.getActprice());
         }
 
-        private String formatContent(int resId, String value){
+        private String formatContent(int resId, String value) {
             String content = getResources().getString(resId);
             return String.format(content, value);
         }
@@ -352,12 +353,13 @@ public class HotelDetailActivity extends CallActivity {
             return new DecimalFormat("0.##").format(discount);
         }
     }
-    
-    static class RoomModel{
+
+    static class RoomModel {
         RoomTypeInfo mInfo;
         boolean isShowMore;
     }
-    private class Holder{
+
+    private class Holder {
         TextView typeNameView;
         TextView discountView;
         TextView priceView;
@@ -374,20 +376,20 @@ public class HotelDetailActivity extends CallActivity {
         View more;
         Button button;
     }
-    
+
     private IResponseListener mListener = new IResponseListener() {
-        
+
         @Override
         public void onSuccess(Response response) {
             dismissLoadingDialog();
             Log.i(TAG, "response=" + (response == null ? null : response.result));
             if (response == null) {
-                return;
+            return;
             }
             RoomRespInfo info = new HotelRoomParse().parseResponse(response);
             initViews(info);
         }
-        
+
         @Override
         public void onError(Response response) {
             dismissLoadingDialog();
@@ -397,35 +399,151 @@ public class HotelDetailActivity extends CallActivity {
     /**
      * 
      * initViews:初始化视图. <br/>
+     * 
      * @author maple
      * @param respInfo
      * @since JDK 1.6
      */
-    private void initViews(RoomRespInfo respInfo){
-        if (respInfo == null) {
-            return;
-        }
+    private void initViews(RoomRespInfo respInfo) {
+        if (respInfo == null) { return; }
         HotelDetailInfo info = respInfo.getHotelInfo();
         if (info != null) {
-            ((TextView)findViewById(R.id.name_view)).setText(info.getName());
-            ((RatingBar)findViewById(R.id.star_level)).setNumStars(info.getStar());
-            ((TextView)findViewById(R.id.address_textview)).setText(info.getAddress());
+            ((TextView) findViewById(R.id.name_view)).setText(info.getName());
+            ((RatingBar) findViewById(R.id.star_level)).setNumStars(info.getStar());
+            ((TextView) findViewById(R.id.address_textview)).setText(info.getAddress());
             String count = getResources().getString(R.string.pic_count);
             count = String.format(count, respInfo.getPicCount());
-            ((TextView)findViewById(R.id.pic_count_view)).setText(count);
-            String history = getResources().getString(R.string.history);
-            history = String.format(history, info.getOpendate(), info.getDecorationdate());
-            ((TextView)findViewById(R.id.history_layout)).setText(history);
+            ((TextView) findViewById(R.id.pic_count_view)).setText(count);
+            // 酒店历史
+            initHistoryViews(info);
         }
         HotelParamsInfo paramsInfo = respInfo.getParamsInfo();
         if (paramsInfo != null) {
-            String startDate = getResources().getString(R.string.start_date);
-            startDate = String.format(startDate, paramsInfo.getStartDate());
-            ((TextView)findViewById(R.id.occupancy_date_view)).setText(startDate);
-            String endDate = getResources().getString(R.string.end_date);
-            endDate = String.format(endDate, paramsInfo.getEndDate());
-            ((TextView)findViewById(R.id.leave_date_view)).setText(endDate);
+            // 入住日期
+            mInDateView.setText(paramsInfo.getStartDate());
+            // 离店日期
+            mOutDateView.setText(paramsInfo.getEndDate());
         }
         initRoomsTypeViews(respInfo.getRoomTypeInfos());
+    }
+
+    private void initHistoryViews(HotelDetailInfo info) {
+        if (info == null) { return; }
+        String history = getResources().getString(R.string.history);
+        history = String.format(history, info.getOpendate(), info.getDecorationdate());
+        ((TextView) findViewById(R.id.history_layout)).setText(history);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        Log.i("SearchHotelActivity", "onCreateDialog()--->.....");
+        switch (id) {
+        case DIALOG_IN_DATE:
+            DateInfo info = getInDateInfo();
+            return new DatePickerDialog(this, mInDateListener, info.year, info.month, info.day);
+        case DIALOG_OUT_DATE:
+            DateInfo leaveInfo = getOutDateInfo();
+            return new DatePickerDialog(this, mOutDateListener, leaveInfo.year, leaveInfo.month, leaveInfo.day);
+        default:
+            break;
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        Log.i("SearchHotelActivity", "onPrepareDialog()--->.....");
+        switch (id) {
+        case DIALOG_IN_DATE:
+            DateInfo info = getInDateInfo();
+            if (info != null) {
+                ((DatePickerDialog) dialog).updateDate(info.year, info.month, info.day);
+            }
+            break;
+        case DIALOG_OUT_DATE:
+            DateInfo leaveInfo = getOutDateInfo();
+            if (leaveInfo != null) {
+                ((DatePickerDialog) dialog).updateDate(leaveInfo.year, leaveInfo.month, leaveInfo.day);
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * 
+     * getOccupancyDateInfo:获取入住时间对象. <br/>
+     * 
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private DateInfo getInDateInfo() {
+        CharSequence dateChar = mInDateView.getText();
+        String date = (TextUtils.isEmpty(dateChar) ? DateUtils.getCurrentDate(FORMAT_STYLE)
+                : (String) dateChar);
+        return convertToDateInfo(date);
+    }
+
+    /**
+     * 
+     * getLeaveDateInfo:获取离店日期对象. <br/>
+     * 
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private DateInfo getOutDateInfo() {
+        CharSequence startDate = mInDateView.getText();
+        CharSequence endDate = mOutDateView.getText();
+        String date = null;
+        if (TextUtils.isEmpty(startDate) && TextUtils.isEmpty(endDate)) {
+            date = DateUtils.getCurrentDate(FORMAT_STYLE);
+            return convertToDateInfo(date);
+        }
+        if (TextUtils.isEmpty(endDate) && !TextUtils.isEmpty(startDate)) { return convertToDateInfo((String) startDate); }
+        return convertToDateInfo((String) endDate);
+    }
+
+    /**
+     * 
+     * convertToDateInfo:把yyyy-MM-dd格式的日子字符串转换为一个DateInfo对象. <br/>
+     * 
+     * @author maple
+     * @param date
+     *            yyyy-MM-dd
+     * @return
+     * @since JDK 1.6
+     */
+    private DateInfo convertToDateInfo(String date) {
+        if (TextUtils.isEmpty(date)) { return null; }
+        DateInfo info = new DateInfo();
+        info.year = DateUtils.getYearFromString(date, FORMAT_STYLE);
+        info.month = DateUtils.getMonthFromString(date, FORMAT_STYLE);
+        info.day = DateUtils.getDayFromString(date, FORMAT_STYLE);
+        return info;
+    }
+
+    private OnDateSetListener mInDateListener = new OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
+            mInDateView.setText(date);
+        }
+    };
+
+    private OnDateSetListener mOutDateListener = new OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
+            mOutDateView.setText(date);
+        }
+    };
+
+    private class DateInfo {
+        int year;
+        int month;
+        int day;
     }
 }

@@ -139,7 +139,7 @@
 
         <!-- 入住/离店时间 -->
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/occupancy_and_leave_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -159,32 +159,40 @@
             <!-- 入住日期 -->
 
             <TextView
-                android:id="@+id/occupancy_date_view"
+                android:id="@+id/inDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/mark_view"
+                android:text="@string/start_date" />
+            <TextView
+                android:id="@+id/inDateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="" />
             <!-- 离店日期 -->
 
             <TextView
-                android:id="@+id/leave_date_view"
+                android:id="@+id/outDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/occupancy_date_view"
+                android:paddingLeft="10dp"
+                android:text="@string/end_date" />
+
+            <TextView
+                android:id="@+id/outDateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:drawableLeft="@drawable/back_light" />
-        </RelativeLayout>
+        </LinearLayout>
         <!-- 房型介绍 -->
 
         <ListView
