@@ -3,7 +3,9 @@ package com.guoli.hotel.activity.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.GuoliResponse;
 import com.guoli.hotel.net.request.bean.UserOderListBean;
+import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.AbstractAdapter;
 import com.guoli.hotel.widget.BottomTabbar;
@@ -35,12 +38,17 @@ import com.msx7.core.command.model.Response;
 public class OrderHotelListAcivity extends BaseActivity2 implements
 		OnItemClickListener {
 	public static final String PARAMS_LOGIN = "login";
-
+	public static final String PARAMS_MOBILE = "mobile";
+	public static final String PARAMS_RESULT = "result";
 	ListView mListView;
 	OrderAdapter mAdapter;
-	public boolean isLogin;
 	List<OrderItemInfo> mOrderItemInfos;
-
+	Dialog mDialog;
+	
+	boolean isLogin;
+	String mobile;
+	String result;
+	
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		new BottomTabbar(this, 2);
@@ -53,6 +61,10 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 					new UserOderListBean(LoginUtils.getUUID(this)));
 			Manager.getInstance().executePoset(request,
 					mUserOrderListResponseListener);
+			mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
+		}else{
+			mobile=getIntent().getStringExtra(PARAMS_MOBILE);
+			result=getIntent().getStringExtra(PARAMS_RESULT);
 		}
 	}
 
@@ -101,7 +113,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 			if ("0".equals(getItem(position).tradestatus)) {
 				holder.status
 						.setBackgroundResource(R.drawable.order_detail_pay_btn);
-				holder.status.setText("付款");
+				holder.status.setText("未付款");
 			} else {
 				holder.status.setBackgroundColor(Color.TRANSPARENT);
 			}
@@ -114,9 +126,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 				holder.status.setText("交易关闭");
 			} else if ("4".equals(getItem(position).tradestatus)) {
 				holder.status.setText("已退款");
-			} else if ("5".equals(getItem(position).tradestatus)) {
-				holder.status.setText("付款");
-			} else if ("6".equals(getItem(position).tradestatus)) {
+			}  else if ("6".equals(getItem(position).tradestatus)) {
 				holder.status.setText("退款中");
 			} else if ("8".equals(getItem(position).tradestatus)) {
 				holder.status.setText("交易成功");
@@ -128,7 +138,12 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
+		Intent intent=new Intent(this, OrderHotelDetailActivity.class);
+		intent.putExtra(OrderHotelDetailActivity.PARAM_LOGIN, isLogin);
+		intent.putExtra(OrderHotelDetailActivity.PARAM_ORDER_NO, mAdapter.getItem(arg2).pid);
+		if(!isLogin)
+			intent.putExtra(OrderHotelDetailActivity.PARAM_MOBILE, mobile);
+		startActivity(intent);
 	}
 
 	public List<Orderstatus> getListData(boolean isLogin) {
@@ -161,6 +176,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 
 		@Override
 		public void onSuccess(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
 			GuoliResponse<List<OrderItemInfo>> infos = null;
 			infos = new Gson().fromJson(arg0.result.toString(),
 					new TypeToken<GuoliResponse<List<OrderItemInfo>>>() {
@@ -174,6 +190,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 
 		@Override
 		public void onError(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
 			Toast.makeText(OrderHotelListAcivity.this,
 					ErrorCode.getErrorCodeString(arg0.errorCode),
 					Toast.LENGTH_SHORT).show();

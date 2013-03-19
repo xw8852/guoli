@@ -6,6 +6,9 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public final class JsonUtils {
 	
 	@SuppressWarnings("rawtypes")
@@ -24,4 +27,9 @@ public final class JsonUtils {
 
 		return map;
 	}
+	
+	public static final HashMap<String, Object> convertToMap(String json) {
+		return new Gson().fromJson(json.toString(), new TypeToken<HashMap<String,Object>>(){}.getType());
+	}
+
 }
