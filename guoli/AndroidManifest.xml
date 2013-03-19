@@ -103,6 +103,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".activity.hotel.SortListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".activity.hotel.LevelListActivity"
             android:screenOrientation="portrait" >
         </activity>

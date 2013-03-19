@@ -265,5 +265,6 @@
     <string name="tenpay">财付通网页支付</string>
     <string name="money_pay">线下转账支付</string>
     <string name="confirm_pay">确认支付</string>
-
+    <!-- 排序页面 -->
+    <string name="sort_title">过滤排序</string>
 </resources>

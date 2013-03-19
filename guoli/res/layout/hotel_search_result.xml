@@ -127,18 +127,12 @@
             android:text="@string/location_filter" />
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/filter_layout" >
+    <!-- 酒店列表 -->
 
-        <!-- 酒店列表 -->
-
-        <ListView
-            android:id="@+id/hotel_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             />
-    </FrameLayout>
+    <ListView
+        android:id="@+id/hotel_list"
+        android:layout_below="@+id/filter_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

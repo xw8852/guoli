@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -31,7 +32,7 @@ import com.guoli.hotel.utils.DialogUtils;
  * @since    JDK 1.6
  * @see 	 
  */
-public abstract class BaseActivity extends Activity implements OnClickListener {
+public abstract class BaseActivity extends FragmentActivity implements OnClickListener {
     /**布局文件Id*/
     protected int mLayoutId;
     /**左侧button的文字*/

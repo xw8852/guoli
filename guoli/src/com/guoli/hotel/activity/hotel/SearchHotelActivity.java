@@ -1,7 +1,5 @@
 package com.guoli.hotel.activity.hotel;
 
-import java.util.Arrays;
-
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -24,6 +22,7 @@ import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.bean.ZoneInfo;
 import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.ResourceUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
 public class SearchHotelActivity extends CallActivity implements OnItemSelectedListener {
@@ -467,32 +466,6 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         return info;
     }
     
-    /***
-     * 
-     * getKey:获取指定value对应的key. <br/>
-     * @author maple
-     * @param keyArrayId
-     * @param valueArrayId
-     * @param value
-     * @return
-     * @since JDK 1.6
-     */
-    private String getKey(int keyArrayId, int valueArrayId, String value){
-        String[] values = getResources().getStringArray(valueArrayId);
-        String[] keys = getResources().getStringArray(keyArrayId);
-        if (values == null || keys == null) {
-            return "";
-        }
-        int index = Arrays.binarySearch(values, value);
-        if (index < 0) {
-            return "";
-        }
-        if (index < keys.length) {
-            return keys[index];
-        }
-        return "";
-    }
-    
     /**
      * 
      * getPrice:获取价格区域. <br/>
@@ -502,7 +475,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      */
     private String getPrice(){
         CharSequence priceChar = mPriceView.getText();
-        return getKey(R.array.price_key, R.array.price_value, (String)priceChar);
+        return ResourceUtils.getInstance(this).getKey(R.array.price_key, R.array.price_value, (String)priceChar);
     }
     
     /**
@@ -514,6 +487,6 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      */
     private String getLevel(){
         CharSequence level = mLevelView.getText();
-        return getKey(R.array.level_key, R.array.level_value, (String) level);
+        return ResourceUtils.getInstance(this).getKey(R.array.level_key, R.array.level_value, (String) level);
     }
 }
