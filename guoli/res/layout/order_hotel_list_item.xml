@@ -91,7 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_margin"
         android:text="待确认"
-         android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView

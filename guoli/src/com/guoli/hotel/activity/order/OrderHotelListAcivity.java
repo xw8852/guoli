@@ -140,7 +140,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent=new Intent(this, OrderHotelDetailActivity.class);
 		intent.putExtra(OrderHotelDetailActivity.PARAM_LOGIN, isLogin);
-		intent.putExtra(OrderHotelDetailActivity.PARAM_ORDER_NO, mAdapter.getItem(arg2).pid);
+		intent.putExtra(OrderHotelDetailActivity.PARAM_ORDER_NO, mAdapter.getItem(arg2).orderno);
 		if(!isLogin)
 			intent.putExtra(OrderHotelDetailActivity.PARAM_MOBILE, mobile);
 		startActivity(intent);

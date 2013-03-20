@@ -27,6 +27,7 @@ public class OrderInfo {
 	public String buynum;
 	public String linkman;
 	public String mobile;
+	public String ispay;
 	public String shopid;
 	public String shopname;
 	public String address;

@@ -38,6 +38,10 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 	Button pay_btn;
 	Dialog mDialog;
 	OrderInfo mOrderIndo;
+	
+	boolean isLogin;
+	String mobile;
+	String orderno;
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.order_detail);
@@ -51,9 +55,16 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		pay_btn.setOnClickListener(this);
 		cancel_btn.setOnClickListener(this);
 		findViewById(R.id.scrollView1).setVisibility(View.GONE);
-		Manager.getInstance().executePoset(
-				new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(
-						"13633281542487320", LoginUtils.uid)), mOrderDetailIResponseListener);
+		isLogin=getIntent().getBooleanExtra(PARAM_LOGIN, false);
+		orderno=getIntent().getStringExtra(PARAM_ORDER_NO);
+		GuoliRequest request=null;
+		if(isLogin){
+			request=new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(orderno, LoginUtils.uid));
+		}else{
+			mobile=getIntent().getStringExtra(PARAM_MOBILE);
+			request=new GuoliRequest(Action.Order.OrderDetail, OrderDetailBean.buildBean(orderno, mobile));
+		}
+		Manager.getInstance().executePoset(request, mOrderDetailIResponseListener);
 		mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
 	}
 
@@ -69,7 +80,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			finish();
 			break;
 		case R.id.right_btn:
-			// TODO
+			
 			break;
 		case R.id.button1:
 			// TODO
@@ -112,12 +123,12 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		tv.setText("￥"+info.paymentmoney);
 		//TODO:酒店名称
 		tv=(TextView)findViewById(R.id.textView09);
-		tv.setText("￥"+info.shopname);
+		tv.setText(info.shopname);
 		//TODO:酒店地址
 		tv=(TextView)findViewById(R.id.textView11);
 		tv.setText(info.address);
 		//TODO:酒店电话w
-		tv=(TextView)findViewById(R.id.textView11);
+		tv=(TextView)findViewById(R.id.textView13);
 		tv.setText(info.phone);	
 		//TODO:房间类型
 		tv=(TextView)findViewById(R.id.textView15);
@@ -137,15 +148,27 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		//TODO:联系人号码
 		tv=(TextView)findViewById(R.id.textView26);
 		tv.setText(info.mobile);	
-		findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
+//		未付款-可以显示“付款”、取消订单；已付款-“退订”；交易关闭、已退款、退款中、交易成功-则什么都不显示 
+		/**
+		 * 0-未付款（未成交） 1-已付款（成交） 2-取消（放弃） 3-交易关闭4-已退款，6-退款中，8-交易成功)
+		 */
+		if("0".equals(info.tradestatus)){
+			findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
+			if(!"1".equals(info.ispay)){
+				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.GONE);
+			}
+		}else if("1".equals(info.tradestatus)){
+			findViewById(R.id.button1).setVisibility(View.VISIBLE);
+		}
+		findViewById(R.id.scrollView1).setVisibility(View.VISIBLE);
 	}
 
 	IResponseListener mOrderDetailIResponseListener = new IResponseListener() {
 
 		@Override
 		public void onSuccess(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
 			Log.d("MSG", arg0.result.toString());
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
 			HashMap<String, Object> map=new Gson().fromJson(arg0.result.toString(), new TypeToken<HashMap<String,Object>>(){}.getType());
 			mOrderIndo=new Gson().fromJson(new Gson().toJson(map.get("orderinfo")),OrderInfo.class);
 			showInfo(mOrderIndo);
