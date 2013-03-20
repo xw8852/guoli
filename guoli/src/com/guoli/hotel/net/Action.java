@@ -37,7 +37,7 @@ public final class Action {
      */
     public static final class General{
         /**手机验证码*/
-        public static final String MobileValidate="";
+        public static final String MobileValidate="system_mobilecheck";
         
     }
     
@@ -53,5 +53,10 @@ public final class Action {
     public static final class User{
         /**个人信息编辑接口*/
         public static final String USER_UPDATE_INFO = "user_updateinfo";
+
+        /**
+         * 非会员登录
+         */
+        public static final String USER_UNLOGIN="user_mblogin";
     }
 }

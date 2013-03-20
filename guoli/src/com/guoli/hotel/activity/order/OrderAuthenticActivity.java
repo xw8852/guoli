@@ -1,7 +1,13 @@
 package com.guoli.hotel.activity.order;
 
+import java.util.HashMap;
+import java.util.regex.Pattern;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,7 +17,8 @@ import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
-import com.guoli.hotel.net.request.bean.UnLoginBean;
+import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 import com.msx7.core.Manager;
@@ -20,81 +27,131 @@ import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
 public class OrderAuthenticActivity extends BaseActivity2 {
-	EditText mPhoneEditText;
-	EditText mValidateEditText;
+    EditText mPhoneEditText;
+    EditText mValidateEditText;
+    Dialog mDialog;
+    @Override
+    public void onAfterCreate(Bundle savedInstanceState) {
+        setTitle(R.string.order_title_search);
+        // 检查是否已经登录
+        if (0 == LoginUtils.isLogin)
+            startActivityForResult(new Intent(this, LoginActivity.class), 0);
+        else
+            onLoginSuccess();
+        new BottomTabbar(this, 2);
+        findViewById(R.id.search_btn).setOnClickListener(mSearchListener);
+        mPhoneEditText = (EditText) findViewById(R.id.editText1);
+        mValidateEditText = (EditText) findViewById(R.id.editText2);
+        findViewById(R.id.button1).setOnClickListener(mGetValidateListener);
+    }
 
-	@Override
-	public void onAfterCreate(Bundle savedInstanceState) {
-		setTitle(R.string.order_title_search);
-		//检查是否已经登录
-		if (0==LoginUtils.isLogin)
-			startActivityForResult(new Intent(this, LoginActivity.class), 0);
-		else
-			onLoginSuccess();
-		new BottomTabbar(this, 2);
-		findViewById(R.id.search_btn).setOnClickListener(mSearchListener);
-		mPhoneEditText = (EditText) findViewById(R.id.editText1);
-		mValidateEditText = (EditText) findViewById(R.id.editText2);
-	}
+    @Override
+    public int getContentId() {
+        return R.layout.order_authentic_activity;
+    }
 
-	@Override
-	public int getContentId() {
-		return R.layout.order_authentic_activity;
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == LoginActivity.RESULT_LOGIN_OK) {
+            onLoginSuccess();
+        }
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == LoginActivity.RESULT_LOGIN_OK) {
-			onLoginSuccess();
-		}
-	}
-	/**
-	 * 登录成功之后的操作
-	 */
-	public void onLoginSuccess() {
-		Intent intent = new Intent(this, OrderHotelListAcivity.class);
-		intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, true);
-		startActivity(intent);
-		finish();
-	}
-	/**
-	 * 非注册用户查询成功之后的切换
-	 * @param bundle
-	 */
-	public void onSuccessSwitchOrderList(Bundle bundle) {
-		Intent intent = new Intent(OrderAuthenticActivity.this,
-				OrderHotelListAcivity.class);
-		intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, false);
-		intent.putExtras(bundle);
-		startActivity(intent);
-	}
+    /**
+     * 登录成功之后的操作
+     */
+    public void onLoginSuccess() {
+        Intent intent = new Intent(this, OrderHotelListAcivity.class);
+        intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, true);
+        startActivity(intent);
+        finish();
+    }
 
-	View.OnClickListener mSearchListener = new View.OnClickListener() {
+    /**
+     * 非注册用户查询成功之后的切换
+     * 
+     * @param bundle
+     */
+    public void onSuccessSwitchOrderList(Bundle bundle) {
+        Intent intent = new Intent(OrderAuthenticActivity.this, OrderHotelListAcivity.class);
+        intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, false);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
-		@Override
-		public void onClick(View v) {
-			Manager.getInstance().executePoset(
-					new GuoliRequest(Action.Order.UNLOGIN_SEARCH,
-							new UnLoginBean(mPhoneEditText.getText()
-									.toString())), mUnLoginResponseListener);
+    View.OnClickListener mSearchListener = new View.OnClickListener() {
 
-		}
-	};
+        @Override
+        public void onClick(View v) {
+            if(!validatePhone(mPhoneEditText.getText().toString())){
+                DialogUtils.showDialog("提示", "请输入正确的手机号码", v.getContext());
+                return ;
+            }
+            if(TextUtils.isEmpty(mValidateEditText.getText().toString())){
+                Toast.makeText(OrderAuthenticActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            mDialog=DialogUtils.showProgressDialog(v.getContext(), "正在登录中...");
+            HashMap<String, String> map=new HashMap<String, String>();
+            map.put("mobile", mPhoneEditText.getText().toString());
+            map.put("authcode", mValidateEditText.getText().toString());
+            Manager.getInstance().executePoset(new GuoliRequest(Action.User.USER_UNLOGIN, map),
+                    mUnLoginResponseListener);
+        }
+    };
+    View.OnClickListener mGetValidateListener = new View.OnClickListener() {
 
-	IResponseListener mUnLoginResponseListener = new IResponseListener() {
+        @Override
+        public void onClick(View v) {
+            if(!validatePhone(mPhoneEditText.getText().toString())){
+                DialogUtils.showDialog("提示", "请输入正确的手机号码", v.getContext());
+                return ;
+            }
+            HashMap<String, String> map=new HashMap<String, String>();
+            map.put("mobile", mPhoneEditText.getText().toString());
+            Manager.getInstance().executePoset(new GuoliRequest(Action.General.MobileValidate, map), mValidateResponseListener);
+        }
+    };
+    IResponseListener mUnLoginResponseListener = new IResponseListener() {
 
-		@Override
-		public void onSuccess(Response arg0) {
+        @Override
+        public void onSuccess(Response arg0) {
+          HashMap<String, String> map=  JsonUtils.convertJsonToHashMap(arg0.result.toString());
+          if(map.containsKey("message")&&map.containsKey("success")&&"1".equals(map.get("success"))){
+              Toast.makeText(OrderAuthenticActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
+              LoginUtils.isLogin=1;
+              LoginUtils.mobile=mPhoneEditText.getText().toString();
+              onLoginSuccess();
+          }else{
+              Toast.makeText(OrderAuthenticActivity.this, "您输入的验证码有误", Toast.LENGTH_SHORT).show();
+          }
+          if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+        }
 
-		}
+        @Override
+        public void onError(Response arg0) {
+            if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+            Toast.makeText(OrderAuthenticActivity.this, ErrorCode.getErrorCodeString(arg0.errorCode), Toast.LENGTH_SHORT).show();
+        }
+    };
 
-		@Override
-		public void onError(Response arg0) {
-			Toast.makeText(OrderAuthenticActivity.this,
-					ErrorCode.getErrorCodeString(arg0.errorCode),
-					Toast.LENGTH_SHORT).show();
-		}
-	};
+    IResponseListener mValidateResponseListener = new IResponseListener() {
 
+        @Override
+        public void onSuccess(Response arg0) {
+            Log.d("MSG", arg0.result.toString());
+        }
+
+        @Override
+        public void onError(Response arg0) {
+            Toast.makeText(OrderAuthenticActivity.this, ErrorCode.getErrorCodeString(arg0.errorCode), Toast.LENGTH_SHORT).show();
+        }
+    };
+    public boolean validatePhone(String phone) {
+        if (!TextUtils.isEmpty(phone)&&Pattern.matches("[1]{1}[0-9]{10}", phone)) {            
+                return true;
+        }
+        return false;
+    }
 }

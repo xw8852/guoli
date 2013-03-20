@@ -77,7 +77,10 @@ public class CommitOrderSuccessActivity extends BaseActivity {
      * @since JDK 1.6
      */
     private void enterToOrderDetailActivity() {
-        startActivity(OrderHotelDetailActivity.class, this);
+        // Jonh@2013/03/20 DEL START
+        //startActivity(OrderHotelDetailActivity.class, this);
+        // Jonh@2013/03/20 DEL END
+        startActivity(OrderAuthenticActivity.class, this);
     }
     
     /**

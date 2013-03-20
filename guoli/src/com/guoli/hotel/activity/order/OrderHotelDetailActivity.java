@@ -52,6 +52,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		findViewById(R.id.button1).setVisibility(View.GONE);
 		pay_btn = (Button) findViewById(R.id.button2);
 		cancel_btn = (Button) findViewById(R.id.button1);
+		findViewById(R.id.button3).setOnClickListener(this);
 		pay_btn.setOnClickListener(this);
 		cancel_btn.setOnClickListener(this);
 		findViewById(R.id.scrollView1).setVisibility(View.GONE);
@@ -83,7 +84,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			
 			break;
 		case R.id.button1:
-			// TODO
+			// TODO 退订
 			break;
 		case R.id.button2:
 			// TODO 跳转到订单确认页面
@@ -91,6 +92,9 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			intent.setClass(this, OrderConfirmActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.button3:
+		 // TODO: 取消订单
+		    break;
 		default:
 			break;
 		}
@@ -141,7 +145,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		tv.setText(getResources().getString(R.string.order_list_timedate, info.checkintime,info.checkoutime));
 		//TODO:入住人
 		tv=(TextView)findViewById(R.id.textView24);
-		tv.setText(info.linkman);
+		tv.setText(info.checkinpeople);
 		//TODO：联系人
 		tv=(TextView)findViewById(R.id.textView25);
 		tv.setText(info.linkman);
