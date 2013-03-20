@@ -267,4 +267,7 @@
     <string name="confirm_pay">确认支付</string>
     <!-- 排序页面 -->
     <string name="sort_title">过滤排序</string>
+    
+    <!-- 编辑个人信息页面 -->
+    <string name="edit_user_info">编辑个人信息</string>
 </resources>

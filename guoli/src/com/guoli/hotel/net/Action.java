@@ -40,4 +40,18 @@ public final class Action {
         public static final String MobileValidate="";
         
     }
+    
+    /**
+     * 
+     * ClassName: User <br/>
+     * date: 2013-3-20 下午3:20:08 <br/>
+     * @Description:用户接口
+     * @author maple
+     * @version Action
+     * @since JDK 1.6
+     */
+    public static final class User{
+        /**个人信息编辑接口*/
+        public static final String USER_UPDATE_INFO = "user_updateinfo";
+    }
 }
