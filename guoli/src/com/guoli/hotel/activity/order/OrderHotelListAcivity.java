@@ -58,7 +58,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 		setTitle(R.string.order_list_title);
 		if (isLogin) {
 			Request request = new GuoliRequest(Action.Order.USER_ORDER_LIST,
-					new UserOderListBean(LoginUtils.getUUID(this)));
+					new UserOderListBean(LoginUtils.uid));
 			Manager.getInstance().executePoset(request,
 					mUserOrderListResponseListener);
 			mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");

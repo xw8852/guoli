@@ -27,7 +27,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.order_title_search);
 		//检查是否已经登录
-		if (!LoginUtils.IsLogin(this))
+		if (LoginUtils.isLogin)
 			startActivityForResult(new Intent(this, LoginActivity.class), 0);
 		else
 			onLoginSuccess();

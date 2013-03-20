@@ -45,15 +45,15 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		setRightTitleBtn(R.string.exit, this);
 		setTitle(R.string.order_detail);
 		findViewById(R.id.btn_view).setVisibility(View.GONE);
+		findViewById(R.id.button1).setVisibility(View.GONE);
 		pay_btn = (Button) findViewById(R.id.button2);
 		cancel_btn = (Button) findViewById(R.id.button1);
 		pay_btn.setOnClickListener(this);
 		cancel_btn.setOnClickListener(this);
-	
-
+		findViewById(R.id.scrollView1).setVisibility(View.GONE);
 		Manager.getInstance().executePoset(
 				new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(
-						"13633281542487320", LoginUtils.getUUID(this))), mOrderDetailIResponseListener);
+						"13633281542487320", LoginUtils.uid)), mOrderDetailIResponseListener);
 		mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
 	}
 
@@ -127,7 +127,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		tv.setText(info.buynum+"间");
 		//TODO:签入-签出
 		tv=(TextView)findViewById(R.id.textView19);
-		tv.setText(getResources().getString(R.string.order_list_timedate, info.checkintime,info.creationdate));
+		tv.setText(getResources().getString(R.string.order_list_timedate, info.checkintime,info.checkoutime));
 		//TODO:入住人
 		tv=(TextView)findViewById(R.id.textView24);
 		tv.setText(info.linkman);
@@ -137,6 +137,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		//TODO:联系人号码
 		tv=(TextView)findViewById(R.id.textView26);
 		tv.setText(info.mobile);	
+		findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
 	}
 
 	IResponseListener mOrderDetailIResponseListener = new IResponseListener() {

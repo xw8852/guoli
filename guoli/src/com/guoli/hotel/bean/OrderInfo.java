@@ -33,6 +33,7 @@ public class OrderInfo {
 	public String phone;
 	public String productcode;
 	public String name;
+	public String checkoutime;
 	/**
 	 * 0-未付款（未成交） 1-已付款（成交） 2-取消（放弃） 3-交易关闭4-已退款，6-退款中，8-交易成功)
 	 */
