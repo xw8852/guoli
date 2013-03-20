@@ -24,6 +24,7 @@ import com.guoli.hotel.bean.OrderItemInfo;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.GuoliResponse;
+import com.guoli.hotel.net.request.bean.UnLoginBean;
 import com.guoli.hotel.net.request.bean.UserOderListBean;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.LoginUtils;
@@ -32,7 +33,6 @@ import com.guoli.hotel.widget.BottomTabbar;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
-import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
 
 public class OrderHotelListAcivity extends BaseActivity2 implements
@@ -48,7 +48,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 	boolean isLogin;
 	String mobile;
 	String result;
-	
+	GuoliRequest request;
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		new BottomTabbar(this, 2);
@@ -57,15 +57,21 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 
 		setTitle(R.string.order_list_title);
 		if (isLogin) {
-			Request request = new GuoliRequest(Action.Order.USER_ORDER_LIST,
+			 request = new GuoliRequest(Action.Order.USER_ORDER_LIST,
 					new UserOderListBean(LoginUtils.uid));
-			Manager.getInstance().executePoset(request,
-					mUserOrderListResponseListener);
-			mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
 		}else{
 			mobile=getIntent().getStringExtra(PARAMS_MOBILE);
 			result=getIntent().getStringExtra(PARAMS_RESULT);
+			request=new GuoliRequest(Action.Order.UNLOGIN_SEARCH, new UnLoginBean(mobile));
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Manager.getInstance().executePoset(request,
+				mUserOrderListResponseListener);
+		mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
 	}
 
 	@Override
