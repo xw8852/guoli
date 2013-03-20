@@ -2,9 +2,6 @@ package com.guoli.hotel.activity.user;
 
 import java.util.List;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.activity.user.UserSelectActivity.UserName;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.activity.user.UserSelectActivity.UserName;
 
 public class UserListAdapter extends BaseAdapter {
 
@@ -43,14 +43,18 @@ public class UserListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = null;
-		if (null == holder) {
+		ViewHolder holder;
+		if (null == convertView) {
 			holder = new ViewHolder();
 			convertView = LayoutInflater.from(context).inflate(R.layout.user_select_item, null);
 			holder.deleteBtn = (ImageView) convertView.findViewById(R.id.deleteBtn);
 			holder.selectBtn = (ImageView) convertView.findViewById(R.id.selectBtn);
 			holder.nameView = (TextView) convertView.findViewById(R.id.name);
+			holder.selectBtn.setTag(UserSelectActivity.TAG_IS_INVISIBLE);
+
+			convertView.setTag(holder);
 		}
+		holder = (ViewHolder) convertView.getTag();
 		if (names != null) {
 			holder.nameView.setText(names.get(position).name);
 		}
