@@ -18,7 +18,8 @@
             android:id="@+id/selectBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/user_checked" />
+            android:background="@drawable/user_checked"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/name"
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:background="@drawable/delete_user" />
+            android:background="@drawable/selector_del_user_btn" />
     </LinearLayout>
 
 </LinearLayout>

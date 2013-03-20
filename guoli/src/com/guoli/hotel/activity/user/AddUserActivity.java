@@ -10,7 +10,11 @@
 
 package com.guoli.hotel.activity.user;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
@@ -24,17 +28,35 @@ import com.guoli.hotel.activity.BaseActivity2;
  * @since JDK 1.6
  * @see
  */
-public class AddUserActivity extends BaseActivity2 {
+public class AddUserActivity extends BaseActivity2 implements OnClickListener {
+
+	private EditText nameView;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-
+		findViewById(R.id.commit_btn).setOnClickListener(this);
+		nameView = (EditText) findViewById(R.id.user_name);
+		setTitle(R.string.user_new);
 	}
 
 	@Override
 	public int getContentId() {
 		return R.layout.add_user;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.commit_btn:
+			String name = nameView.getText().toString().trim();
+			Intent data = new Intent();
+			data.putExtra("name", name);
+			setResult(RESULT_OK, data);
+			finish();
+			break;
+		default:
+			break;
+		}
 	}
 
 }
