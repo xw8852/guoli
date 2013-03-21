@@ -1,15 +1,37 @@
 package com.guoli.hotel.activity;
 
-import com.guoli.hotel.R;
-
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.guoli.hotel.R;
+import com.guoli.hotel.bean.FeedbackInfo;
+import com.guoli.hotel.utils.DialogUtils;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Response;
+
+/**
+ * 
+ * ClassName: FeedBackActivity <br/>
+ * date: 2013-3-21 下午2:41:46 <br/>
+ * 
+ * @Description:    反馈页面
+ * @author maple
+ * @version 
+ * @since JDK 1.6
+ */
 public class FeedBackActivity extends BaseActivity2{
-
+    
+    private Dialog mProgressDialog;
+    
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.feedback);
         showLeftReturnBtn(false, -1);
+        ((Button)findViewById(R.id.feedbackBtn)).setOnClickListener(mFeedbackListener);
     }
 
     @Override
@@ -17,4 +39,67 @@ public class FeedBackActivity extends BaseActivity2{
         return R.layout.feedback;
     }
 
+    /**
+     * 
+     * feedbackCommit:提交意见反馈内容. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void feedbackCommit(){
+        showDialog();
+        FeedbackInfo info = new FeedbackInfo();
+        info.setContent(getFeedbackContent());
+        info.setAddress(info.getAddress());
+        /*GuoliRequest request = new GuoliRequest(Action.General.FEEDBACK, info);
+        Manager.getInstance().executePoset(request, mFeedbackCommitListener);*/
+    }
+    
+    private String getFeedbackContent(){
+        return ((EditText)findViewById(R.id.feedbackContentView)).getText().toString();
+    }
+    
+    /**
+     * 
+     * getFromMailAddress:获取发件人的邮箱地址. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private String getMailAddress(){
+        return ((EditText)findViewById(R.id.feedbackMailAddressView)).getText().toString();
+    }
+    
+    /**反馈按钮监听*/
+    private OnClickListener mFeedbackListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            feedbackCommit();
+        }
+    };
+    
+    /**意见反馈提交到服务器的监听*/
+    private IResponseListener mFeedbackCommitListener = new IResponseListener() {
+        
+        @Override
+        public void onSuccess(Response arg0) {
+            dismissDialog();
+        }
+        
+        @Override
+        public void onError(Response arg0) {
+            dismissDialog();
+            String msg = getResources().getString(R.string.dialog_msg_commit_failed);
+            DialogUtils.showDialog("", msg, FeedBackActivity.this);
+        }
+    };
+    
+    private Dialog showDialog(){
+        return mProgressDialog = mProgressDialog == null ? DialogUtils.showProgressDialog(this, R.string.loading_msg_commit) : mProgressDialog;
+     }
+     
+     private void dismissDialog(){
+         if (mProgressDialog != null) {
+             mProgressDialog.dismiss();
+         }
+     }
 }
