@@ -63,7 +63,6 @@ public class OrderAuthenticActivity extends BaseActivity2 {
      */
     public void onLoginSuccess() {
         Intent intent = new Intent(this, OrderHotelListAcivity.class);
-        intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, true);
         startActivity(intent);
         finish();
     }
@@ -75,7 +74,6 @@ public class OrderAuthenticActivity extends BaseActivity2 {
      */
     public void onSuccessSwitchOrderList(Bundle bundle) {
         Intent intent = new Intent(OrderAuthenticActivity.this, OrderHotelListAcivity.class);
-        intent.putExtra(OrderHotelListAcivity.PARAMS_LOGIN, false);
         intent.putExtras(bundle);
         startActivity(intent);
     }

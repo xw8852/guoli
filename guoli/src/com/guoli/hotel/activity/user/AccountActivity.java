@@ -61,7 +61,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 			startActivity(new Intent(this, EditPasswordActivity.class));
 			break;
 		case R.id.textView3:
-			startActivity(new Intent(this, OrderHotelListAcivity.class).putExtra(OrderHotelListAcivity.PARAMS_LOGIN, true));
+			startActivity(new Intent(this, OrderHotelListAcivity.class));
 			break;
 		case R.id.textView4:
 			startActivity(new Intent(this, FavoriteActivity.class));
