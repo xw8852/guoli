@@ -7,8 +7,8 @@
     android:padding="@dimen/large_margin" >
 
     <EditText
+        android:id="@+id/feedbackContentView"
         android:layout_weight="1"
-        android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/shape_round_rect_grey"
@@ -20,7 +20,7 @@
 
     <EditText
         
-        android:id="@+id/editText2"
+        android:id="@+id/feedbackMailAddressView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_margin"
@@ -32,6 +32,7 @@
         android:singleLine="true" />
 
     <Button
+        android:id="@+id/feedbackBtn"
         android:layout_weight="0"
         android:layout_marginTop="@dimen/large_margin"
         android:layout_width="fill_parent"

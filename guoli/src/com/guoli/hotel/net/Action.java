@@ -38,7 +38,8 @@ public final class Action {
     public static final class General{
         /**手机验证码*/
         public static final String MobileValidate="system_mobilecheck";
-        
+        /**意见反馈*/
+        public static final String FEEDBACK="";
     }
     
     /**
