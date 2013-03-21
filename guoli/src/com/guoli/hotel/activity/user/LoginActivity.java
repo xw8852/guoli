@@ -1,5 +1,7 @@
 package com.guoli.hotel.activity.user;
 
+import java.util.HashMap;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.net.GuoliRequest;
@@ -83,7 +87,7 @@ public class LoginActivity extends BaseActivity2 {
 				return;
 			}
 
-			Request request = new GuoliRequest("userlogin", new UserRegisterBean(id, password, null));
+			Request request = new GuoliRequest("user_login", new UserRegisterBean(id, password, null));
 			Manager.getInstance().executePoset(request, loginResponseListener);
 
 			setResult(RESULT_LOGIN_OK);
@@ -95,7 +99,20 @@ public class LoginActivity extends BaseActivity2 {
 
 		@Override
 		public void onSuccess(Response response) {
+			if (null == response) {
+				return;
+			}
+
 			Log.d("MSG", "onSuccess:" + response.getData().toString());
+			HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
+					new TypeToken<HashMap<String, Object>>() {
+					}.getType());
+			String success = map.get("success").toString();
+			if ("1".equalsIgnoreCase(success)) {
+				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")),
+						LoginUserInfo.class);
+				
+			}
 		}
 
 		@Override

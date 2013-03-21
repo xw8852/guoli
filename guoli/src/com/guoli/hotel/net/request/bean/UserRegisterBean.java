@@ -3,17 +3,17 @@ package com.guoli.hotel.net.request.bean;
 public class UserRegisterBean {
 
 	// 用户名
-	public String mobile;
+	public String username;
 	// 密码
 	public String password;
 	// 短信验证码
-	public String checkcode;
+	public String authcode;
 
-	public UserRegisterBean(String mobile, String password, String checkcode) {
+	public UserRegisterBean(String username, String password, String authcode) {
 		super();
-		this.mobile = mobile;
+		this.username = username;
 		this.password = password;
-		this.checkcode = checkcode;
+		this.authcode = authcode;
 	}
 
 }

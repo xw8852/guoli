@@ -11,28 +11,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
-import com.guoli.hotel.activity.user.UserSelectActivity.UserName;
 
 public class UserListAdapter extends BaseAdapter {
 
 	private Context context;
-	private List<UserName> names;
+	private List<UserInfo> infos;
 
-	public UserListAdapter(Context context, List<UserName> names) {
+	public UserListAdapter(Context context, List<UserInfo> infos) {
 		this.context = context;
-		this.names = names;
+		this.infos = infos;
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return names.size();
+		return infos.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return names.get(position);
+		return infos.get(position);
 	}
 
 	@Override
@@ -55,8 +54,8 @@ public class UserListAdapter extends BaseAdapter {
 			convertView.setTag(holder);
 		}
 		holder = (ViewHolder) convertView.getTag();
-		if (names != null) {
-			holder.nameView.setText(names.get(position).name);
+		if (infos != null) {
+			holder.nameView.setText(infos.get(position).personname);
 		}
 		return convertView;
 	}
