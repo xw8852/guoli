@@ -18,7 +18,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	private String nicknameTitle;
 	private String nickname = "Jason";
 
-	public static final int DEFAULT_REQUEST_CODE = 1;
+	public static final int INDEX_USER_EDIT = 1;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 			Intent intent = new Intent();
 			intent.putExtra("nickname", nickname);
 			intent.setClass(AccountActivity.this, EditUserInfoActivity.class);
-			startActivityForResult(intent, DEFAULT_REQUEST_CODE);
+			startActivityForResult(intent, INDEX_USER_EDIT);
 			break;
 		case R.id.textView2:
 			startActivity(new Intent(this, EditPasswordActivity.class));
@@ -71,10 +71,17 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == DEFAULT_REQUEST_CODE && resultCode == RESULT_OK) {
-			String newNickname = data.getStringExtra("newNickname");
-			nickNameView.setText(nicknameTitle + newNickname);
-		}
+		switch (requestCode) {
+        case INDEX_USER_EDIT:
+            if (data == null) {
+                break;
+            }
+            String newNickname = data.getStringExtra("newNickname");
+            nickNameView.setText(nicknameTitle + newNickname);
+            break;
+        default:
+            break;
+        }
 	}
 
 }

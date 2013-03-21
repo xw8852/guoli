@@ -213,17 +213,13 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode) {
+        switch (requestCode) {
         case PAGE_CITY:
             setCityView(data);
             break;
         case PAGE_OCCUPANCY_DATE:
-            String date = data == null ? "" : data.getStringExtra(DateSelectActivity.KEY_DATE);
-            setViewText(mOccupancyView, date);
             break;
         case PAGE_LEAVE_DATE:
-            String leaveDate = data == null ? "" : data.getStringExtra(DateSelectActivity.KEY_DATE);
-            setViewText(mLeaveView, leaveDate);
             break;
         case PAGE_PRICE:
             String price = data == null ? "" : data.getStringExtra(PriceListActivity.KEY_PRICE);

@@ -3,6 +3,7 @@ package com.guoli.hotel.activity.user;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +17,7 @@ import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.bean.UserInfo;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.utils.DialogUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -35,6 +37,7 @@ public class EditUserInfoActivity extends BaseActivity2 {
 	private int mYear;
 	private int mMonth;
 	private int mDay;
+	private Dialog mProgressDialog;
 
 	@Override
 	public int getContentId() {
@@ -59,13 +62,6 @@ public class EditUserInfoActivity extends BaseActivity2 {
 
 		@Override
 		public void onClick(View v) {
-			/*String newNickname = nicknameView.getText().toString();
-			if (!newNickname.equalsIgnoreCase(nickname)) {
-				Intent intent = new Intent();
-				intent.putExtra("newNickname", newNickname);
-				setResult(RESULT_OK, intent);
-				finish();
-			}*/
 		    commit();
 		}
 	};
@@ -138,26 +134,35 @@ public class EditUserInfoActivity extends BaseActivity2 {
 	    info.setAddress(addressView.getText().toString());
 	    info.setPostcode(postCodeView.getText().toString());
 	    
+	    //TODO 弹出数据加载框
+	    showDialog();
 	    GuoliRequest request = new GuoliRequest(Action.User.USER_UPDATE_INFO, info);
 	    Manager.getInstance().executePoset(request, mCommitLisenter);
-	    //TODO 弹出数据加载框
 	}
 	
 	private IResponseListener mCommitLisenter = new IResponseListener() {
         @Override
         public void onSuccess(Response arg0) {
             //TODO 数据提交成功时
-            //如果该页面是订单编辑中跳转来的则,返回到订单编辑页面
-            //如果该页面是用户管理中跳转来的,则关闭当前页面
-//            EditUserInfoActivity.this.finish();
+            dismissDialog();
+            backToLastPage();
         }
         
         @Override
         public void onError(Response arg0) {
-            
+            dismissDialog();
+            String msg = getResources().getString(R.string.dialog_msg_commit_failed);
+            DialogUtils.showDialog("", msg, EditUserInfoActivity.this);
         }
     };
     
+    /***
+     * 
+     * getGender:获取性别字段. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
     private String getGender(){
         int id = rgGender.getCheckedRadioButtonId();
         if (R.id.gender_man == id) {
@@ -167,5 +172,31 @@ public class EditUserInfoActivity extends BaseActivity2 {
             return "1";
         }
         return "";
+    }
+    
+    private Dialog showDialog(){
+       return mProgressDialog = mProgressDialog == null ? DialogUtils.showProgressDialog(this, R.string.loading_msg_commit) : mProgressDialog;
+    }
+    
+    private void dismissDialog(){
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+    }
+    
+    /***
+     * 
+     * backToLastPage:返回用户管理页面. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void backToLastPage(){
+        String newNickname = nicknameView.getText().toString();
+        if (!newNickname.equalsIgnoreCase(nickname)) {
+            Intent intent = new Intent();
+            intent.putExtra("newNickname", newNickname);
+            setResult(AccountActivity.INDEX_USER_EDIT, intent);
+        }
+        finish();
     }
 }

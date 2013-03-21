@@ -270,4 +270,6 @@
     
     <!-- 编辑个人信息页面 -->
     <string name="edit_user_info">编辑个人信息</string>
+    <string name="loading_msg_commit">数据正在提交...</string>
+    <string name="dialog_msg_commit_failed">数据提交失败,请重新尝试!</string>
 </resources>
