@@ -3,6 +3,7 @@ package com.guoli.hotel.activity.order;
 import java.util.HashMap;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,14 +26,12 @@ import com.guoli.hotel.utils.LoginUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
 
 public class OrderHotelDetailActivity extends BaseActivity2 implements
 		OnClickListener {
-	public static final String PARAM_LOGIN = "login";
-	public static final String PARAM_MOBILE = "mobile";
 	public static final String PARAM_ORDER_NO = "orderno";
-	public static final String Status = "status";
 
 	Button cancel_btn;
 	Button pay_btn;
@@ -56,13 +55,12 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		pay_btn.setOnClickListener(this);
 		cancel_btn.setOnClickListener(this);
 		findViewById(R.id.scrollView1).setVisibility(View.GONE);
-		isLogin=getIntent().getBooleanExtra(PARAM_LOGIN, false);
 		orderno=getIntent().getStringExtra(PARAM_ORDER_NO);
 		GuoliRequest request=null;
-		if(isLogin){
+		if(LoginUtils.isLogin==2){
 			request=new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(orderno, LoginUtils.uid));
 		}else{
-			mobile=getIntent().getStringExtra(PARAM_MOBILE);
+			mobile=LoginUtils.mobile;
 			request=new GuoliRequest(Action.Order.OrderDetail, OrderDetailBean.buildBean(orderno, mobile));
 		}
 		Manager.getInstance().executePoset(request, mOrderDetailIResponseListener);
@@ -85,6 +83,25 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			break;
 		case R.id.button1:
 			// TODO 退订
+			DialogUtils.showDialog("", "确认退订？", new  DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					HashMap<String,String> map=new HashMap<String, String>();
+					map.put("orderno", orderno);
+					if(isLogin&&LoginUtils.isLogin==1){
+						map.put("uid", "0");
+						map.put("mobile", LoginUtils.mobile);
+					}else {
+						map.put("uid", LoginUtils.uid);
+						map.put("mobile", LoginUtils.mobile);
+					}
+					map.put("content", "");
+					Request request=new GuoliRequest(Action.Order.OrderUnSubScribe, map);
+					mDialog=DialogUtils.showProgressDialog(OrderHotelDetailActivity.this, "正在退订..");
+					Manager.getInstance().executePoset(request, mOrderCacelResponseListener);
+				}
+			}, this);
 			break;
 		case R.id.button2:
 			// TODO 跳转到订单确认页面
@@ -94,6 +111,25 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			break;
 		case R.id.button3:
 		 // TODO: 取消订单
+			DialogUtils.showDialog("", "确认取消订单？", new  DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					HashMap<String,String> map=new HashMap<String, String>();
+					map.put("orderno", orderno);
+					if(isLogin&&LoginUtils.isLogin==1){
+						map.put("uid", "0");
+						map.put("mobile", LoginUtils.mobile);
+					}else {
+						map.put("uid", LoginUtils.uid);
+						map.put("mobile", LoginUtils.mobile);
+					}
+					map.put("content", "");
+					Request request=new GuoliRequest(Action.Order.Ordercancel, map);
+					mDialog=DialogUtils.showProgressDialog(OrderHotelDetailActivity.this, "正在取消订单..");
+					Manager.getInstance().executePoset(request, mOrderCacelResponseListener);
+				}
+			}, this);
 		    break;
 		default:
 			break;
@@ -117,7 +153,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		}  else if ("6".equals(info.tradestatus)) {
 			tv.setText("退款中");
 		} else if ("8".equals(info.tradestatus)) {
-			tv.setText("交易成功");
+			tv.setText("已入住");
 		}
 		//TODO:订单编号
 		tv=(TextView)findViewById(R.id.textView5);
@@ -186,5 +222,30 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 					Toast.LENGTH_SHORT).show();
 		}
 	};
-
+	
+	IResponseListener mOrderCacelResponseListener=new IResponseListener() {
+		
+		@Override
+		public void onSuccess(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+		}
+		
+		@Override
+		public void onError(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+		}
+	};
+	
+	IResponseListener mUnsubResponseListener=new IResponseListener() {
+		
+		@Override
+		public void onSuccess(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+		}
+		
+		@Override
+		public void onError(Response arg0) {
+			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+		}
+	};
 }

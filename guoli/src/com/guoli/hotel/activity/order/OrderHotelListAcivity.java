@@ -37,32 +37,25 @@ import com.msx7.core.command.model.Response;
 
 public class OrderHotelListAcivity extends BaseActivity2 implements
 		OnItemClickListener {
-	public static final String PARAMS_LOGIN = "login";
-	public static final String PARAMS_MOBILE = "mobile";
-	public static final String PARAMS_RESULT = "result";
+
 	ListView mListView;
 	OrderAdapter mAdapter;
 	List<OrderItemInfo> mOrderItemInfos;
 	Dialog mDialog;
 	
-	boolean isLogin;
-	String mobile;
-	String result;
+
 	GuoliRequest request;
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		new BottomTabbar(this, 2);
-		isLogin = getIntent().getBooleanExtra(PARAMS_LOGIN, false);
 		mListView = (ListView) findViewById(R.id.listView1);
 
 		setTitle(R.string.order_list_title);
-		if (isLogin) {
+		if (LoginUtils.isLogin==2) {
 			 request = new GuoliRequest(Action.Order.USER_ORDER_LIST,
 					new UserOderListBean(LoginUtils.uid));
-		}else{
-			mobile=getIntent().getStringExtra(PARAMS_MOBILE);
-			result=getIntent().getStringExtra(PARAMS_RESULT);
-			request=new GuoliRequest(Action.Order.UNLOGIN_SEARCH, new UnLoginBean(mobile));
+		}else if(LoginUtils.isLogin==1){
+			request=new GuoliRequest(Action.Order.UNLOGIN_SEARCH, new UnLoginBean(LoginUtils.mobile));
 		}
 	}
 
@@ -135,7 +128,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 			}  else if ("6".equals(getItem(position).tradestatus)) {
 				holder.status.setText("退款中");
 			} else if ("8".equals(getItem(position).tradestatus)) {
-				holder.status.setText("交易成功");
+				holder.status.setText("已入住");
 			}
 			return convertView;
 		}
@@ -145,10 +138,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent=new Intent(this, OrderHotelDetailActivity.class);
-		intent.putExtra(OrderHotelDetailActivity.PARAM_LOGIN, isLogin);
 		intent.putExtra(OrderHotelDetailActivity.PARAM_ORDER_NO, mAdapter.getItem(arg2).orderno);
-		if(!isLogin)
-			intent.putExtra(OrderHotelDetailActivity.PARAM_MOBILE, mobile);
 		startActivity(intent);
 	}
 
