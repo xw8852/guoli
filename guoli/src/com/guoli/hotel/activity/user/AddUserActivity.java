@@ -48,9 +48,9 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.commit_btn:
-			String name = nameView.getText().toString().trim();
+			String personname = nameView.getText().toString().trim();
 			Intent data = new Intent();
-			data.putExtra("name", name);
+			data.putExtra("personname", personname);
 			setResult(RESULT_OK, data);
 			finish();
 			break;

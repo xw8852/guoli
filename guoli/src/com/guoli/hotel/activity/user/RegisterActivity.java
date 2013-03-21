@@ -1,5 +1,7 @@
 package com.guoli.hotel.activity.user;
 
+import java.util.HashMap;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.net.GuoliRequest;
@@ -61,7 +65,17 @@ public class RegisterActivity extends BaseActivity2 {
 
 		@Override
 		public void onSuccess(Response response) {
+			if (null == response) {
+				return;
+			}
 			Log.d("MSG", "onSuccess:" + response.getData().toString());
+			HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
+					new TypeToken<HashMap<String, Object>>() {
+					}.getType());
+			String success = map.get("success").toString();
+			if ("1".equalsIgnoreCase(success)) {
+				Toast.makeText(RegisterActivity.this, "短信已发送", Toast.LENGTH_SHORT).show();
+			}
 		}
 
 		@Override
@@ -102,10 +116,8 @@ public class RegisterActivity extends BaseActivity2 {
 				return;
 			}
 
-			Request request = new GuoliRequest("userreg", new UserRegisterBean(phone, password, identify));
+			Request request = new GuoliRequest("user_reg", new UserRegisterBean(phone, password, identify));
 			Manager.getInstance().executePoset(request, registerResponseListener);
-			setResult(RESULT_OK);
-			finish();
 		}
 	};
 
@@ -113,7 +125,20 @@ public class RegisterActivity extends BaseActivity2 {
 
 		@Override
 		public void onSuccess(Response response) {
+			if (null == response) {
+				return;
+			}
 			Log.d("MSG", "onSuccess:" + response.getData().toString());
+			HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
+					new TypeToken<HashMap<String, Object>>() {
+					}.getType());
+			String success = map.get("success").toString();
+			if ("1".equals(success)) {
+				RegisterUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")),
+						RegisterUserInfo.class);
+				setResult(RESULT_OK);
+				finish();
+			}
 		}
 
 		@Override

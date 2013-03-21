@@ -9,6 +9,7 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.activity.FavoriteActivity;
 import com.guoli.hotel.activity.order.OrderHotelListAcivity;
+import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
 public class AccountActivity extends BaseActivity2 implements View.OnClickListener {
@@ -23,6 +24,11 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.account_title);
+		
+		if (!LoginUtils.IsLogin(this)) {
+			startActivityForResult(new Intent(this, LoginActivity.class), 0);
+		}
+		
 		mTabbar = new BottomTabbar(this, 3);
 		showLeftReturnBtn(true, R.string.dialog_exit_message);
 		setRightTitleBtn(R.string.exit, null);

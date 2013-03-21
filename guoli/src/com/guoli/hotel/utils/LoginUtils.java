@@ -13,7 +13,7 @@ public final class LoginUtils {
 	 */
 	public static final boolean IsLogin(Context ctx){
 //		return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(IS_LOGIN, false);
-		return true;
+		return false;
 	}
 	/**
 	 * 注销登录，溢出sharepreferece中的值
