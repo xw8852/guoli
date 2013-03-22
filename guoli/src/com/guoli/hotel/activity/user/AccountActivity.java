@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.activity.FavoriteActivity;
-import com.guoli.hotel.activity.order.OrderHotelListAcivity;
+import com.guoli.hotel.activity.order.OrderAuthenticActivity;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
@@ -24,11 +24,11 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.account_title);
-		
-		if (LoginUtils.isLogin!=2) {
+
+		if (LoginUtils.isLogin != 2) {
 			startActivityForResult(new Intent(this, LoginActivity.class), 0);
 		}
-		
+
 		mTabbar = new BottomTabbar(this, 3);
 		showLeftReturnBtn(true, R.string.dialog_exit_message);
 		setRightTitleBtn(R.string.exit, null);
@@ -61,7 +61,8 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 			startActivity(new Intent(this, EditPasswordActivity.class));
 			break;
 		case R.id.textView3:
-			startActivity(new Intent(this, OrderHotelListAcivity.class));
+			startActivity(new Intent(this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
 			break;
 		case R.id.textView4:
 			startActivity(new Intent(this, FavoriteActivity.class));
@@ -78,16 +79,16 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-        case INDEX_USER_EDIT:
-            if (data == null) {
-                break;
-            }
-            String newNickname = data.getStringExtra("newNickname");
-            nickNameView.setText(nicknameTitle + newNickname);
-            break;
-        default:
-            break;
-        }
+		case INDEX_USER_EDIT:
+			if (data == null) {
+				break;
+			}
+			String newNickname = data.getStringExtra("newNickname");
+			nickNameView.setText(nicknameTitle + newNickname);
+			break;
+		default:
+			break;
+		}
 	}
 
 }

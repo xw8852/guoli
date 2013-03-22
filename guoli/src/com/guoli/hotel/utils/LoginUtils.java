@@ -13,6 +13,14 @@ public final class LoginUtils {
 	 */
 	public static String uid = "";
 	/**
+	 * 会员用户登录之后保存的username
+	 */
+	public static String username = "";
+	/**
+	 * 会员用户登录之后保存的moblie
+	 */
+	public static String memberMobile = "";
+	/**
 	 * 非会员登录的之后，保存的手机号码
 	 */
 	public static String mobile = null;

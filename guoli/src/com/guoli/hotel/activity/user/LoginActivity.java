@@ -2,6 +2,7 @@ package com.guoli.hotel.activity.user;
 
 import java.util.HashMap;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,8 +15,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
+import com.guoli.hotel.bean.LoginUserInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.UserRegisterBean;
+import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.LoginUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
@@ -30,6 +34,7 @@ public class LoginActivity extends BaseActivity2 {
 	private String password;
 	private EditText idView;
 	private String id;
+	private Dialog dialog;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
@@ -90,8 +95,7 @@ public class LoginActivity extends BaseActivity2 {
 			Request request = new GuoliRequest("user_login", new UserRegisterBean(id, password, null));
 			Manager.getInstance().executePoset(request, loginResponseListener);
 
-			setResult(RESULT_LOGIN_OK);
-			finish();
+			dialog = DialogUtils.showProgressDialog(LoginActivity.this, "登陆中...");
 		}
 	};
 
@@ -99,6 +103,10 @@ public class LoginActivity extends BaseActivity2 {
 
 		@Override
 		public void onSuccess(Response response) {
+			if (null != dialog && dialog.isShowing()) {
+				dialog.cancel();
+			}
+
 			if (null == response) {
 				return;
 			}
@@ -107,17 +115,24 @@ public class LoginActivity extends BaseActivity2 {
 			HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
 					new TypeToken<HashMap<String, Object>>() {
 					}.getType());
-			String success = map.get("success").toString();
-			if ("1".equalsIgnoreCase(success)) {
-				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")),
-						LoginUserInfo.class);
-				
+
+			if ("1".equalsIgnoreCase(map.get("success").toString())) {
+				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")), LoginUserInfo.class);
+				saveLogin(info.uid, info.username, info.mobile);
+				setResult(RESULT_LOGIN_OK);
+				finish();
 			}
+
+			Toast.makeText(LoginActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onError(Response response) {
-			if (!(response.result instanceof Exception)) {
+			if (null != dialog && dialog.isShowing()) {
+				dialog.cancel();
+			}
+
+			if (response != null) {
 				Log.d("MSG", "onError:" + response.getData().toString());
 			}
 		}
@@ -134,5 +149,12 @@ public class LoginActivity extends BaseActivity2 {
 			finish();
 		}
 	};
+
+	private void saveLogin(String uid, String username, String mobile) {
+		LoginUtils.isLogin = 2;
+		LoginUtils.uid = uid;
+		LoginUtils.username = username;
+		LoginUtils.memberMobile = mobile;
+	}
 
 }
