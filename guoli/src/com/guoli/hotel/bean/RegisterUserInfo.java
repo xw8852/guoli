@@ -1,4 +1,4 @@
-package com.guoli.hotel.activity.user;
+package com.guoli.hotel.bean;
 
 import com.google.gson.annotations.SerializedName;
 

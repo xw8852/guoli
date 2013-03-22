@@ -28,7 +28,6 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="张三"
             android:textSize="18sp" />
 
         <ImageView

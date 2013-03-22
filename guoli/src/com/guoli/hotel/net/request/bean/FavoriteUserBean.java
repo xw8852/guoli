@@ -18,6 +18,11 @@ public class FavoriteUserBean {
 	public String pname;
 
 	/**
+	 * 常用用户id
+	 */
+	public String id;
+
+	/**
 	 * 
 	 * @Description: 获取常用入住人bean
 	 * @param uid
@@ -32,13 +37,14 @@ public class FavoriteUserBean {
 
 	/**
 	 * 
-	 * @Description: 新增常用入住人bean
+	 * @Description: 新增/删除常用入住人bean
 	 * @param uid
 	 * @param pname
 	 * @return
 	 */
-	public FavoriteUserBean(String uid, String pname) {
+	public FavoriteUserBean(String uid, String pname, String id) {
 		super();
+		this.id = id;
 		this.uid = uid;
 		this.pname = pname;
 	}

@@ -13,7 +13,7 @@ package com.guoli.hotel.activity.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +29,7 @@ import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
 import com.guoli.hotel.activity.user.UserListAdapter.ViewHolder;
+import com.guoli.hotel.bean.FavoriteUserInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.GuoliResponse;
 import com.guoli.hotel.net.request.bean.FavoriteUserBean;
@@ -50,14 +51,14 @@ import com.msx7.core.command.model.Response;
  */
 public class UserSelectActivity extends BaseActivity implements OnItemClickListener {
 
-	private List<UserInfo> names = new ArrayList<UserInfo>();
-	private List<UserName> selectNames = new ArrayList<UserName>();
+	private List<FavoriteUserInfo> favoriteInfos = new ArrayList<FavoriteUserInfo>();
+	private List<String> selectNames = new ArrayList<String>();
 	public static final String KEY_USERS = "users";
 	private static final int ACTIVITY_CREATE = 0;
 	private UserListAdapter adapter;
 	private ListView userListView;
-	private UserName name = new UserName();
-
+	private String name;
+	private Dialog dialog;
 	public static final int TAG_IS_INVISIBLE = 1;
 	public static final int TAG_IS_VISIBLE = 2;
 
@@ -87,23 +88,36 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 	private void getUser() {
 		Request request = new GuoliRequest("user_myperson", new FavoriteUserBean(LoginUtils.uid, 1));
 		Manager.getInstance().executePoset(request, getUserlistener);
+
+		dialog = DialogUtils.showProgressDialog(UserSelectActivity.this, "获取中...");
 	}
 
 	IResponseListener getUserlistener = new IResponseListener() {
 
 		@Override
 		public void onSuccess(Response response) {
+			if (null != dialog && dialog.isShowing()) {
+				dialog.cancel();
+			}
+
+			if (null == response) {
+				return;
+			}
+
 			Log.d("MSG", "onSuccess:" + response.getData().toString());
-			GuoliResponse<List<UserInfo>> infos = new Gson().fromJson(response.result.toString(),
-					new TypeToken<GuoliResponse<List<UserInfo>>>() {
+			GuoliResponse<List<FavoriteUserInfo>> infos = new Gson().fromJson(response.result.toString(),
+					new TypeToken<GuoliResponse<List<FavoriteUserInfo>>>() {
 					}.getType());
-			names = infos.result;
-			adapter = new UserListAdapter(UserSelectActivity.this, names);
+			favoriteInfos = infos.result;
+			adapter = new UserListAdapter(UserSelectActivity.this, favoriteInfos);
 			userListView.setAdapter(adapter);
 		}
 
 		@Override
 		public void onError(Response response) {
+			if (null != dialog && dialog.isShowing()) {
+				dialog.cancel();
+			}
 			Log.d("MSG", "onError:" + response.getData().toString());
 		}
 	};
@@ -113,9 +127,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.commitBtn:
-			Request request = new GuoliRequest("user_addperson", new FavoriteUserBean(LoginUtils.uid,
-					name2.personname));
-			Manager.getInstance().executePoset(request, addUserListener);
+
 			break;
 		case R.id.add_new_user:
 			startActivityForResult(new Intent(this, AddUserActivity.class), ACTIVITY_CREATE);
@@ -125,39 +137,22 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 		}
 	}
 
-	IResponseListener addUserListener = new IResponseListener() {
-
-		@Override
-		public void onSuccess(Response response) {
-			Log.d("MSG", "onSuccess:" + response.getData().toString());
-		}
-
-		@Override
-		public void onError(Response response) {
-			Log.d("MSG", "onError:" + response.getData().toString());
-		}
-	};
-
-	UserInfo name2 = new UserInfo();
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == ACTIVITY_CREATE && resultCode == RESULT_OK) {
-			name2.personname = data.getExtras().getString("personname");
-			names.add(name2);
+			FavoriteUserInfo info = new FavoriteUserInfo();
+			info.personname = data.getExtras().getString("personname");
+			info.id = data.getExtras().getString("id");
+			favoriteInfos.add(info);
 			adapter.notifyDataSetChanged();
 		}
 	}
 
-	public class UserName {
-		String name;
-	}
-
 	@Override
-	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+	public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg0) {
 		ViewHolder holder = (ViewHolder) view.getTag();
-		name.name = holder.nameView.getText().toString();
+		name = holder.nameView.getText().toString();
 
 		if (holder.selectBtn.getVisibility() == View.INVISIBLE
 				&& (Integer) holder.selectBtn.getTag() == TAG_IS_INVISIBLE) {
@@ -171,23 +166,6 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 
 			selectNames.remove(name);
 		}
-
-		final int _position = position;
-		holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				DialogUtils.showDialog(UserSelectActivity.this, "", "are you sure ?",
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								names.remove(names.get(_position));
-								adapter.notifyDataSetChanged();
-							}
-						});
-			}
-		});
 	}
 
 }
