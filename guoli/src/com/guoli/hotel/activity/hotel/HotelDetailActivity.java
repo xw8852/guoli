@@ -31,7 +31,9 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
@@ -70,6 +72,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
     /** 酒店房型关键字 */
     public static final String KEY_REQUEST = "hotel_room";
+    RoomRespInfo info;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
 
@@ -267,12 +270,19 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                 holder = (Holder) view.getTag();
             }
             initItemViews(model, holder);
-            holder.button.setOnClickListener(btnListener);
+            holder.button.setOnClickListener(new ButtonOnClickListene(position));
             return view;
         }
 
         /** 预定、电询按钮事件 */
-        private OnClickListener btnListener = new OnClickListener() {
+        private class ButtonOnClickListene implements View.OnClickListener {
+            int position;
+            
+            public ButtonOnClickListene(int position) {
+                super();
+                this.position = position;
+            }
+
             @Override
             public void onClick(View v) {
                 Object obj = v.getTag();
@@ -281,8 +291,17 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                     price = (Float) obj;
                 }
                 if (price > 1) { // 预订
+                    if(mHotelRoom==null||getItem(position)==null||info==null){
+                        Toast.makeText(HotelDetailActivity.this,
+                                "操作无效",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     Intent intent = new Intent();
                     intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
+                    intent.putExtra("HOTEL_NAME", info.getHotelInfo().getName());
+                    intent.putExtra(EditOrderActivity.HOTEL_ROOM, new Gson().toJson(mHotelRoom));
+                    intent.putExtra(EditOrderActivity.ROOMI_TYPE, new Gson().toJson(getItem(position)));
                     startActivity(intent);
                     return;
                 }
@@ -386,7 +405,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             if (response == null) {
             return;
             }
-            RoomRespInfo info = new HotelRoomParse().parseResponse(response);
+             info = new HotelRoomParse().parseResponse(response);
+            
             initViews(info);
         }
 

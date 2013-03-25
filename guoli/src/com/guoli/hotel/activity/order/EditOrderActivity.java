@@ -17,12 +17,15 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.MoreRequireActivity;
 import com.guoli.hotel.activity.hotel.CheckListActivity;
 import com.guoli.hotel.activity.hotel.HotelCountActivity;
 import com.guoli.hotel.activity.user.UserSelectActivity;
+import com.guoli.hotel.bean.RoomTypeInfo;
+import com.guoli.hotel.net.request.bean.HotelRoom;
 
 /**
  * ClassName:EditOrderActivity <br/>
@@ -34,6 +37,8 @@ import com.guoli.hotel.activity.user.UserSelectActivity;
  * @see 	 
  */
 public class EditOrderActivity extends CallActivity implements OnCheckedChangeListener {
+    public static final String HOTEL_ROOM="HOTELROOM";
+    public static final String ROOMI_TYPE="ROOMTYPE";
     
     /**房间数*/
     private TextView mRoomCountView;
@@ -41,6 +46,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     private TextView mMoreView;
     /**发票抬头*/
     private RadioGroup mRadioGroup;
+    private HotelRoom mHotelRoom;
+    private RoomTypeInfo mRoomTypeInfo;
     
     public static final int PAGE_ROOM_COUNT = 0;
     public static final int PAGE_MORE_REQUIRE = 1;
@@ -58,10 +65,14 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         super.onCreate(arg0);
         showLeftBtn();
         showRightBtn();
+        mHotelRoom=new Gson().fromJson(getIntent().getStringExtra(HOTEL_ROOM), HotelRoom.class);
+        mRoomTypeInfo=new Gson().fromJson(getIntent().getStringExtra(ROOMI_TYPE), RoomTypeInfo.class);
     }
 
     @Override
     protected void findViews() {
+        TextView tv=(TextView)findViewById(R.id.hotel_name);
+        tv.setText(getIntent().getStringExtra("HOTEL_NAME"));
         mRoomCountView = (TextView) findViewById(R.id.room_count_content_view);
         mRoomCountView.setOnClickListener(this);
         mMoreView = (TextView) findViewById(R.id.more_require_content_view);
