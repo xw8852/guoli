@@ -30,6 +30,8 @@ import com.guoli.hotel.activity.hotel.HotelDetailActivity;
  */
 public class CommitOrderSuccessActivity extends BaseActivity {
     
+    public static final String KEY_RESPONSE_NOTICE = "responseNotice";
+    
     public CommitOrderSuccessActivity(){
         mLayoutId = R.layout.commit_order_success;
         mTitleTextId = R.string.commit_order_sucess_title;

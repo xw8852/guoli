@@ -37,6 +37,8 @@ import com.google.gson.Gson;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
+import com.guoli.hotel.activity.order.OrderHotelListAcivity;
+import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.bean.HotelDetailInfo;
 import com.guoli.hotel.bean.HotelParamsInfo;
 import com.guoli.hotel.bean.RoomTypeInfo;
@@ -46,6 +48,7 @@ import com.guoli.hotel.net.response.bean.RoomRespInfo;
 import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.NetUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
@@ -72,7 +75,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
     /** 酒店房型关键字 */
     public static final String KEY_REQUEST = "hotel_room";
-    RoomRespInfo info;
+    private RoomRespInfo info;
+    private RoomTypeInfo mRoomInfo;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
 
@@ -286,10 +290,11 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             @Override
             public void onClick(View v) {
                 Object obj = v.getTag();
-                float price = 0;
-                if (obj instanceof Float) {
-                    price = (Float) obj;
+                if (!(obj instanceof RoomTypeInfo)) {
+                    return;
                 }
+                mRoomInfo = (RoomTypeInfo) obj;
+                float price = mRoomInfo.getActprice();
                 if (price > 1) { // 预订
                     if(mHotelRoom==null||getItem(position)==null||info==null){
                         Toast.makeText(HotelDetailActivity.this,
@@ -297,12 +302,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Intent intent = new Intent();
-                    intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
-                    intent.putExtra("HOTEL_NAME", info.getHotelInfo().getName());
-                    intent.putExtra(EditOrderActivity.HOTEL_ROOM, new Gson().toJson(mHotelRoom));
-                    intent.putExtra(EditOrderActivity.ROOMI_TYPE, new Gson().toJson(getItem(position)));
-                    startActivity(intent);
+                    //判断用户是否登录
+//                    if (LoginUtils.isLogin == 0) {  //未登录
+//                        startActivityForResult(new Intent(HotelDetailActivity.this, LoginActivity.class), 0);
+//                        return;
+//                    }
+                    onLoginSuccess();
                     return;
                 }
                 // 电询
@@ -351,7 +356,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
 
             String btnTex = getResources().getString(info.getActprice() < 1 ? R.string.call : R.string.book);
             holder.button.setText(btnTex);
-            holder.button.setTag(info.getActprice());
+            holder.button.setTag(info);
         }
 
         private String formatContent(int resId, String value) {
@@ -565,5 +570,26 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         int year;
         int month;
         int day;
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == LoginActivity.RESULT_LOGIN_OK) {
+            onLoginSuccess();
+        }
+    }
+    
+    /**
+     * 登录成功之后的操作
+     */
+    private void onLoginSuccess() {
+        Intent intent = new Intent();
+        intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
+        intent.putExtra("HOTEL_NAME", info.getHotelInfo().getName());
+        intent.putExtra(EditOrderActivity.HOTEL_ROOM, new Gson().toJson(mHotelRoom));
+        intent.putExtra(EditOrderActivity.ROOMI_TYPE, new Gson().toJson(mRoomInfo));
+        startActivity(intent);
+        finish();
     }
 }
