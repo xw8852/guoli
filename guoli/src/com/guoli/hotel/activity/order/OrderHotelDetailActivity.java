@@ -22,6 +22,7 @@ import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.OrderDetailBean;
 import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
@@ -104,9 +105,16 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			}, this);
 			break;
 		case R.id.button2:
+		    if(mOrderIndo==null){
+		        Toast.makeText(OrderHotelDetailActivity.this,
+                        "无效订单",
+                        Toast.LENGTH_SHORT).show();
+		        return;
+		    }
 			// TODO 跳转到订单确认页面
 			Intent intent = new Intent();
 			intent.setClass(this, OrderConfirmActivity.class);
+			intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
 			startActivity(intent);
 			break;
 		case R.id.button3:
@@ -228,11 +236,29 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		@Override
 		public void onSuccess(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			if(arg0.result!=null){
+			    HashMap<String, String> maps=JsonUtils.convertJsonToHashMap(arg0.result.toString());
+			    if("1".equals(maps.get("success"))){
+			        Toast.makeText(OrderHotelDetailActivity.this,
+	                        "操作成功",
+	                        Toast.LENGTH_SHORT).show();
+			        startActivity(new Intent(OrderHotelDetailActivity.this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			        finish();
+			        return;
+			    }
+			}
+			
+			    Toast.makeText(OrderHotelDetailActivity.this,
+	                    "未知网络异常",
+	                    Toast.LENGTH_SHORT).show();
 		}
 		
 		@Override
 		public void onError(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			Toast.makeText(OrderHotelDetailActivity.this,
+                    ErrorCode.getErrorCodeString(arg0.errorCode),
+                    Toast.LENGTH_SHORT).show();
 		}
 	};
 	
@@ -241,11 +267,29 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		@Override
 		public void onSuccess(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			if(arg0.result!=null){
+                HashMap<String, String> maps=JsonUtils.convertJsonToHashMap(arg0.result.toString());
+                if("1".equals(maps.get("success"))){
+                    Toast.makeText(OrderHotelDetailActivity.this,
+                            "操作成功",
+                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(OrderHotelDetailActivity.this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    finish();
+                    return;
+                }
+            }
+            
+                Toast.makeText(OrderHotelDetailActivity.this,
+                        "未知网络异常",
+                        Toast.LENGTH_SHORT).show();
 		}
 		
 		@Override
 		public void onError(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			Toast.makeText(OrderHotelDetailActivity.this,
+                    ErrorCode.getErrorCodeString(arg0.errorCode),
+                    Toast.LENGTH_SHORT).show();
 		}
 	};
 }
