@@ -99,29 +99,36 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/orange" />
     </RelativeLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/large_margin"
-        android:background="@drawable/line" />
-
-    <TextView
-        android:id="@+id/textView1"
+    
+    <LinearLayout
+        android:id="@+id/unregestLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/small_margin"
-        android:text="@string/login_unregest_prompt"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#BEBEBE" />
+        android:orientation="vertical" >
+        
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/large_margin"
+            android:background="@drawable/line" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_btn"
-        android:text="@string/login_unregest"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/small_margin"
+            android:text="@string/login_unregest_prompt"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#BEBEBE" />
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_btn"
+            android:text="@string/login_unregest"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
 </LinearLayout>
