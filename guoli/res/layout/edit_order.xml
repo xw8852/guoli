@@ -29,7 +29,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:text="上海香格里拉大酒店" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_toRightOf="@+id/date_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:text="2013-01-21至2013-02-09" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -81,21 +81,13 @@
                     android:layout_toRightOf="@+id/room_type_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:text="平日房" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/room_type_view"
                     android:background="#E4E4E4" />
-                
-                <LinearLayout android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-                    
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/room_count_view"
@@ -115,6 +107,7 @@
                     android:layout_toRightOf="@+id/room_count_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
+                    android:text=""
                     />
 
                 <TextView
@@ -150,7 +143,7 @@
                     android:layout_toRightOf="@+id/more_require_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:text="无" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -185,7 +178,7 @@
                     android:layout_toRightOf="@+id/order_cost_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:text="￥1067" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/orderCostDetailView"
@@ -213,6 +206,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:text=""
                     android:drawableLeft="@drawable/btn_add_bg" />
                 <TextView
                     android:id="@+id/guest_view"
@@ -253,19 +247,22 @@
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
                     android:text="@string/order_contact"/>
-                <TextView android:id="@+id/contact_name_view"
+                <EditText android:id="@+id/contact_name_view"
                     android:layout_alignBaseline="@+id/contact_view"
                     android:layout_toRightOf="@+id/contact_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_contact_name"/>
-                <TextView android:id="@+id/contact_phone_view"
-                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/order_contact_name"/>
+                <EditText android:id="@+id/contact_phone_view"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:layout_below="@+id/contact_view"
                     android:layout_alignLeft="@+id/contact_name_view"
-                    android:text="@string/order_contact_phone"/>
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:hint="@string/order_contact_phone"/>
             </RelativeLayout>
             <!-- 发票(invoice)相关 -->
             <RelativeLayout android:layout_width="fill_parent"
@@ -278,13 +275,13 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="horizontal"
                     >
-                    <RadioButton android:id="@+id/invoice_true_btn"
+                    <RadioButton android:id="@+id/invoice_false_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:text="@string/text_false"
                         style="@style/radiobutton"/>
-                    <RadioButton android:id="@+id/invoice_false_btn"
+                    <RadioButton android:id="@+id/invoice_true_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
@@ -293,105 +290,122 @@
                         />
                 </RadioGroup>
                 <TextView
+                    android:id="@+id/divider001"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/invoice_potion_group"
                     android:background="#E4E4E4" />
                 <TextView android:id="@+id/invoice_title_view"
-                    android:layout_below="@+id/invoice_potion_group"
+                    android:layout_below="@+id/divider001"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/order_ivvoice_title"/>
-                <TextView android:id="@+id/invoice_title_content_view"
+                <EditText android:id="@+id/invoice_title_content_view"
                     android:layout_toRightOf="@+id/invoice_title_view"
-                    android:layout_alignBaseline="@+id/invoice_title_view"
+                    android:layout_alignTop="@+id/invoice_title_view"
+                    android:layout_alignBottom="@+id/invoice_title_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_ivvoice_title_notice"/>
+                    android:background="@null"
+                    android:hint="@string/order_ivvoice_title_notice"
+                    />
                 <TextView
+                    android:id="@+id/divider002"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/invoice_title_view"
                     android:background="#E4E4E4" />
                 <TextView android:id="@+id/invoice_receiver_view"
-                    android:layout_below="@+id/invoice_title_view"
+                    android:layout_below="@+id/divider002"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/order_receiver_name"/>
-                <TextView android:id="@+id/invoice_receiver_content_view"
+                <EditText android:id="@+id/invoice_receiver_content_view"
                     android:layout_toRightOf="@+id/invoice_receiver_view"
-                    android:layout_alignBaseline="@+id/invoice_receiver_view"
+                    android:layout_alignTop="@+id/invoice_receiver_view"
+                    android:layout_alignBottom="@+id/invoice_receiver_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_receiver_name_notice"/>
+                    android:background="@null"
+                    android:hint="@string/order_receiver_name_notice"/>
                 <TextView
+                    android:id="@+id/divider003"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/invoice_receiver_view"
                     android:background="#E4E4E4" />
                 <TextView android:id="@+id/invoice_receiver_phone_view"
-                    android:layout_below="@+id/invoice_receiver_view"
+                    android:layout_below="@+id/divider003"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/order_receiver_phone"/>
-                <TextView android:id="@+id/invoice_receiver_phone_content_view"
+                <EditText android:id="@+id/invoice_receiver_phone_content_view"
                     android:layout_toRightOf="@+id/invoice_receiver_phone_view"
-                    android:layout_alignBaseline="@+id/invoice_receiver_phone_view"
+                    android:layout_alignTop="@+id/invoice_receiver_phone_view"
+                    android:layout_alignBottom="@+id/invoice_receiver_phone_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_receiver_phone_notice"/>
+                    android:inputType="phone"
+                    android:background="@null"
+                    android:hint="@string/order_receiver_phone_notice"/>
                 <TextView
+                    android:id="@+id/divider004"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/invoice_receiver_phone_view"
                     android:background="#E4E4E4" />
                 <TextView android:id="@+id/invoice_mail_address_view"
-                    android:layout_below="@+id/invoice_receiver_phone_view"
+                    android:layout_below="@+id/divider004"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/order_mail_address"/>
-                <TextView android:id="@+id/invoice_mail_address_content_view"
+                <EditText android:id="@+id/invoice_mail_address_content_view"
                     android:layout_toRightOf="@+id/invoice_mail_address_view"
-                    android:layout_alignBaseline="@+id/invoice_mail_address_view"
+                    android:layout_alignTop="@+id/invoice_mail_address_view"
+                    android:layout_alignBottom="@+id/invoice_mail_address_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_mail_address_notice"/>
+                    android:background="@null"
+                    android:hint="@string/order_mail_address_notice"/>
                 <TextView
+                     android:id="@+id/divider005"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/invoice_mail_address_view"
                     android:background="#E4E4E4" />
                 <TextView android:id="@+id/invoice_post_code_view"
-                    android:layout_below="@+id/invoice_mail_address_view"
+                    android:layout_below="@+id/divider005"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/order_post_code"/>
-                <TextView android:id="@+id/invoice_post_code_content_view"
+                <EditText android:id="@+id/invoice_post_code_content_view"
                     android:layout_toRightOf="@+id/invoice_post_code_view"
-                    android:layout_alignBaseline="@+id/invoice_post_code_view"
+                    android:layout_alignTop="@+id/invoice_post_code_view"
+                    android:layout_alignBottom="@+id/invoice_post_code_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_post_code_notice"/>
+                    android:background="@null"
+                    android:hint="@string/order_post_code_notice"/>
             </RelativeLayout>
             <!-- 特别提示(notice) -->
             <TextView android:layout_width="wrap_content"
@@ -401,7 +415,9 @@
                 android:paddingBottom="10dp"
                 android:text="@string/order_special_notice"
                 />
-            <TextView android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/specialNoticeView"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/shape_round_rect_grey"
