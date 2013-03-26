@@ -22,32 +22,35 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	private String nicknameTitle;
 
 	public static final int ACCOUNT_LOGIN = 3;
-	public static final int INDEX_USER_EDIT = 1;
 	public static final int HIDE_LAYOUT_LOGIN = 5;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.account_title);
-
-		if (LoginUtils.isLogin != 2) {
-			Intent intent = new Intent();
-			intent.putExtra("loginType", HIDE_LAYOUT_LOGIN);
-			intent.setClass(this, LoginActivity.class);
-			startActivityForResult(intent, ACCOUNT_LOGIN);
-		}
-
 		mTabbar = new BottomTabbar(this, 3);
 		showLeftReturnBtn(true, R.string.dialog_exit_message);
 		setRightTitleBtn(R.string.exit, logoutListener);
 
 		nicknameTitle = getResources().getString(R.string.nickname_title);
 		nickNameView = (TextView) findViewById(R.id.textView1);
-		nickNameView.setText(nicknameTitle + LoginUtils.username);
 		nickNameView.setOnClickListener(this);
 		findViewById(R.id.textView2).setOnClickListener(this);
 		findViewById(R.id.textView3).setOnClickListener(this);
 		findViewById(R.id.textView4).setOnClickListener(this);
 		findViewById(R.id.textView5).setOnClickListener(this);
+		
+		if (LoginUtils.isLogin != 2) {
+			Intent intent = new Intent();
+			intent.putExtra("loginType", HIDE_LAYOUT_LOGIN);
+			intent.setClass(this, LoginActivity.class);
+			startActivityForResult(intent,0);
+		}
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		nickNameView.setText(nicknameTitle + LoginUtils.username);
 	}
 
 	@Override
@@ -59,10 +62,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.textView1:
-			Intent intent = new Intent();
-			intent.putExtra("nickname", LoginUtils.username);
-			intent.setClass(AccountActivity.this, EditUserInfoActivity.class);
-			startActivityForResult(intent, INDEX_USER_EDIT);
+			startActivity(new Intent(AccountActivity.this, EditUserInfoActivity.class));
 			break;
 		case R.id.textView2:
 			startActivity(new Intent(this, EditPasswordActivity.class));
@@ -76,29 +76,6 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 			break;
 		case R.id.textView5:
 			startActivity(new Intent(this, UserSelectActivity.class));
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) {
-		case INDEX_USER_EDIT:
-			if (data == null) {
-				break;
-			}
-			String newNickname = data.getStringExtra("newNickname");
-			nickNameView.setText(nicknameTitle + newNickname);
-			break;
-		case ACCOUNT_LOGIN:
-			if (data == null) {
-				break;
-			}
-			LoginUtils.username = data.getStringExtra("username");
-			nickNameView.setText(nicknameTitle + LoginUtils.username);
 			break;
 		default:
 			break;

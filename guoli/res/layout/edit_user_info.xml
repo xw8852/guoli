@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true" >
@@ -26,7 +25,7 @@
                 android:text="昵  称："
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+            <TextView
                 android:id="@+id/nickname"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +107,6 @@
                     android:id="@+id/gender_man"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="男" />
 
                 <RadioButton
@@ -149,7 +147,6 @@
                 android:gravity="center_vertical"
                 android:paddingBottom="@dimen/large_margin"
                 android:paddingTop="@dimen/large_margin"
-                android:text="1970-01-01"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/color_grey" >
             </TextView>
@@ -184,7 +181,7 @@
                 android:text="*"
                 android:textColor="#ff0000" />
 
-            <EditText
+            <TextView
                 android:id="@+id/phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -192,10 +189,8 @@
                 android:layout_below="@+id/line3"
                 android:layout_toRightOf="@+id/view2"
                 android:background="@android:color/transparent"
-                android:inputType="phone"
                 android:paddingBottom="@dimen/large_margin"
                 android:paddingTop="@dimen/large_margin"
-                android:text="15000000000"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/color_grey" />
 
@@ -271,11 +266,13 @@
         <Button
             android:id="@+id/confirm"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/title_bar_height"
             android:layout_margin="@dimen/default_margin"
+            android:background="@drawable/btn_commit"
             android:gravity="center"
             android:text="确认修改"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </ScrollView>

@@ -128,7 +128,6 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 			if (response == null || response.getData() == null) {
 			    return;
 			}
-			Log.d("MSG", "onError:" + response.getData().toString());
 		}
 	};
 

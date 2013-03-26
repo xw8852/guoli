@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/register_phone_tips"
+                android:inputType="phone"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -41,11 +42,11 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/linearlayout1"
             android:layout_alignParentRight="true"
-            android:textColor="@android:color/white"
             android:layout_marginTop="@dimen/default_margin"
             android:background="@drawable/identify_tips"
             android:padding="@dimen/small_margin"
-            android:text="@string/get_identify" />
+            android:text="@string/get_identify"
+            android:textColor="@android:color/white" />
 
         <View
             android:id="@+id/view1"
@@ -74,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/register_password_tips"
+                android:inputType="textPassword"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -103,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/register_password_tips"
+                android:inputType="textPassword"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -132,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/identify_code_tips"
+                android:inputType="number"
                 android:singleLine="true" />
         </LinearLayout>
     </RelativeLayout>

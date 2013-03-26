@@ -94,7 +94,7 @@ public class RegisterActivity extends BaseActivity2 {
 			}
 			
 			if (!(response.result instanceof Exception)) {
-				Log.d("MSG", "onError:" + response.getData().toString());
+				Log.d("MSG", "onError:" + response.toString());
 			}
 		}
 	};
@@ -156,7 +156,7 @@ public class RegisterActivity extends BaseActivity2 {
 		@Override
 		public void onError(Response response) {
 			if (!(response.result instanceof Exception)) {
-				Log.d("MSG", "onError:" + response.getData().toString());
+				Log.d("MSG", "onError:" + response.toString());
 			}
 		}
 	};

@@ -124,8 +124,6 @@ public class LoginActivity extends BaseActivity2 {
 				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")), LoginUserInfo.class);
 				saveLogin(info.uid, info.username, info.mobile);
 				Intent data = new Intent();
-				data.putExtra("uid", info.uid);
-				data.putExtra("mobile", info.mobile);
 				data.putExtra("username", info.username);
 				setResult(AccountActivity.ACCOUNT_LOGIN, data);
 				finish();
@@ -141,7 +139,7 @@ public class LoginActivity extends BaseActivity2 {
 			}
 
 			if (response != null) {
-				Log.d("MSG", "onError:" + response.getData().toString());
+				Log.d("MSG", "onError:" + response.toString());
 			}
 		}
 	};
@@ -163,6 +161,7 @@ public class LoginActivity extends BaseActivity2 {
 		LoginUtils.uid = uid;
 		LoginUtils.username = username;
 		LoginUtils.memberMobile = mobile;
+		Log.w("login mobile", mobile);
 	}
 	
 	/**

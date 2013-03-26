@@ -136,7 +136,8 @@
         </activity>
         <activity
             android:name=".activity.user.EditUserInfoActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
             android:name=".activity.user.EditPasswordActivity"

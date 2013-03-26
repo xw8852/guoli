@@ -66,7 +66,7 @@ public class ForgetPasswordActivity extends BaseActivity2 {
 		@Override
 		public void onError(Response response) {
 			if (!(response.result instanceof Exception)) {
-				Log.d("MSG", "onError:" + response.getData().toString());
+				Log.d("MSG", "onError:" + response.toString());
 			}
 		}
 	};

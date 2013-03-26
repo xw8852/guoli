@@ -116,7 +116,7 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-			Log.d("MSG", "onError:" + response.getData().toString());
+			Log.d("MSG", "onError:" + response.toString());
 		}
 	};
 

@@ -23,11 +23,11 @@ import com.google.gson.annotations.SerializedName;
  */
 public class UserInfo {
     
-    /**姓名*/
-//    @SerializedName("")
-//    private String name;
-    
     /**昵称*/
+    @SerializedName("username")
+    private String username;
+    
+    /**真实姓名*/
     @SerializedName("nickname")
     private String nickname;
     
@@ -48,20 +48,20 @@ public class UserInfo {
     private String postcode;
     
     /**手机*/
-//    @SerializedName("")
-//    private String phone;
+    @SerializedName("mobile")
+    private String mobile;
     
     /**登录用户UUID*/
     @SerializedName("uid")
     private String uid;
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
+    public String getuserName() {
+        return username;
+    }
+
+    public void setuserName(String username) {
+        this.username = username;
+    }
 
     public String getNickname() {
         return nickname;
@@ -103,13 +103,13 @@ public class UserInfo {
         this.postcode = postcode;
     }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getUid() {
         return uid;
@@ -123,7 +123,7 @@ public class UserInfo {
     public String toString() {
         return "{name=" + ", nickname=" + nickname + ", uid=" + uid
                 + ", gender=" + gender + ", birthday=" + birthday + ", address=" + address
-                + ", postcode=" + postcode + ", phone="  + "}";
+                + ", postcode=" + postcode + ", mobile=" + mobile + ", username" + username + "}";
     }
 }
 
