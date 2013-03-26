@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ public class LoginActivity extends BaseActivity2 {
 	private EditText idView;
 	private String id;
 	private Dialog dialog;
+	private LinearLayout unregestLayout;
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
@@ -44,8 +46,10 @@ public class LoginActivity extends BaseActivity2 {
 		findViewById(R.id.button2).setOnClickListener(onLoginListener);
 		findViewById(R.id.button1).setOnClickListener(onUnLogClickListener);
 
+		unregestLayout = (LinearLayout) findViewById(R.id.unregestLayout);
 		passwordView = (EditText) findViewById(R.id.textView5);
 		idView = (EditText) findViewById(R.id.textView3);
+		hideLayout();
 	}
 
 	@Override
@@ -119,7 +123,11 @@ public class LoginActivity extends BaseActivity2 {
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")), LoginUserInfo.class);
 				saveLogin(info.uid, info.username, info.mobile);
-				setResult(RESULT_LOGIN_OK);
+				Intent data = new Intent();
+				data.putExtra("uid", info.uid);
+				data.putExtra("mobile", info.mobile);
+				data.putExtra("username", info.username);
+				setResult(AccountActivity.ACCOUNT_LOGIN, data);
 				finish();
 			}
 
@@ -155,6 +163,16 @@ public class LoginActivity extends BaseActivity2 {
 		LoginUtils.uid = uid;
 		LoginUtils.username = username;
 		LoginUtils.memberMobile = mobile;
+	}
+	
+	/**
+	 * 隐藏非会员登陆
+	 */
+	private void hideLayout() {
+		int loginType = getIntent().getIntExtra("loginType", 0);
+		if (loginType == AccountActivity.HIDE_LAYOUT_LOGIN) {
+			unregestLayout.setVisibility(View.GONE);
+		}
 	}
 
 }
