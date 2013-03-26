@@ -247,19 +247,22 @@
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
                     android:text="@string/order_contact"/>
-                <TextView android:id="@+id/contact_name_view"
+                <EditText android:id="@+id/contact_name_view"
                     android:layout_alignBaseline="@+id/contact_view"
                     android:layout_toRightOf="@+id/contact_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_contact_name"/>
-                <TextView android:id="@+id/contact_phone_view"
-                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/order_contact_name"/>
+                <EditText android:id="@+id/contact_phone_view"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:layout_below="@+id/contact_view"
                     android:layout_alignLeft="@+id/contact_name_view"
-                    android:text="@string/order_contact_phone"/>
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:hint="@string/order_contact_phone"/>
             </RelativeLayout>
             <!-- 发票(invoice)相关 -->
             <RelativeLayout android:layout_width="fill_parent"
@@ -272,13 +275,13 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="horizontal"
                     >
-                    <RadioButton android:id="@+id/invoice_true_btn"
+                    <RadioButton android:id="@+id/invoice_false_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
                         android:text="@string/text_false"
                         style="@style/radiobutton"/>
-                    <RadioButton android:id="@+id/invoice_false_btn"
+                    <RadioButton android:id="@+id/invoice_true_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
@@ -305,7 +308,7 @@
                     android:layout_alignTop="@+id/invoice_title_view"
                     android:layout_alignBottom="@+id/invoice_title_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/order_ivvoice_title_notice"
@@ -329,7 +332,7 @@
                     android:layout_alignTop="@+id/invoice_receiver_view"
                     android:layout_alignBottom="@+id/invoice_receiver_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/order_receiver_name_notice"/>
@@ -352,7 +355,7 @@
                     android:layout_alignTop="@+id/invoice_receiver_phone_view"
                     android:layout_alignBottom="@+id/invoice_receiver_phone_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:background="@null"
@@ -376,7 +379,7 @@
                     android:layout_alignTop="@+id/invoice_mail_address_view"
                     android:layout_alignBottom="@+id/invoice_mail_address_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/order_mail_address_notice"/>
@@ -399,7 +402,7 @@
                     android:layout_alignTop="@+id/invoice_post_code_view"
                     android:layout_alignBottom="@+id/invoice_post_code_view"
                     android:paddingLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/order_post_code_notice"/>

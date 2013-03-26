@@ -60,12 +60,12 @@ public class OrderSubmitInfo {
     private String contactPhone;
     
     /***/
-    @SerializedName("")
+    @SerializedName("uid")
     private String uid;
     
-    /**是否需要发票*/
+    /**是否需要发票0-不需要1-需要*/
     @SerializedName("isinvoice")
-    private String isInvoice;
+    private int isInvoice;
     
     /**发票抬头*/
     @SerializedName("invoicetitle")
@@ -76,8 +76,8 @@ public class OrderSubmitInfo {
     private String recipientName;
     
     /**收件人电话*/
-//    @SerializedName("")
-//    private String recipientPhone;
+    @SerializedName("ivmobile")
+    private String recipientPhone;
     
     /**收件人地址*/
     @SerializedName("address")
@@ -167,11 +167,11 @@ public class OrderSubmitInfo {
         this.uid = uid;
     }
 
-    public String getIsInvoice() {
+    public int getIsInvoice() {
         return isInvoice;
     }
 
-    public void setIsInvoice(String isInvoice) {
+    public void setIsInvoice(int isInvoice) {
         this.isInvoice = isInvoice;
     }
 
@@ -205,6 +205,14 @@ public class OrderSubmitInfo {
 
     public void setRecipientPostCode(String recipientPostCode) {
         this.recipientPostCode = recipientPostCode;
+    }
+
+    public String getRecipientPhone() {
+        return recipientPhone;
+    }
+
+    public void setRecipientPhone(String recipientPhone) {
+        this.recipientPhone = recipientPhone;
     }
 }
 

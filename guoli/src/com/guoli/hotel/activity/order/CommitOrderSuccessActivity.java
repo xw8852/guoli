@@ -43,6 +43,10 @@ public class CommitOrderSuccessActivity extends BaseActivity {
         TextView lookBtn = (TextView) findViewById(R.id.look_over_order_btn);
         continueBtn.setOnClickListener(this);
         lookBtn.setOnClickListener(this);
+        
+        TextView noticeView = (TextView) findViewById(R.id.commit_success_prompt);
+        String notice = getIntent().getStringExtra(KEY_RESPONSE_NOTICE);
+        noticeView.setText(notice);
     }
 
     @Override

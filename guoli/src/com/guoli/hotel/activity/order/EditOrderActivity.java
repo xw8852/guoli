@@ -10,9 +10,14 @@
 
 package com.guoli.hotel.activity.order;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -32,6 +37,8 @@ import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.utils.DigitalUtils;
+import com.guoli.hotel.utils.JsonUtils;
+import com.guoli.hotel.utils.LoginUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -60,7 +67,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     /**订单总额*/
     private TextView mTotalCostView;
     /**入住人*/
-    private TextView mUserNameView;
+    private TextView mCheckInUserView;
     /**联系人*/
     /**是否开发票*/
     private RadioGroup mRadioGroup;
@@ -113,7 +120,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         mMoreRequireView = (TextView) findViewById(R.id.more_require_content_view);
         mTotalCostView = (TextView) findViewById(R.id.order_cost_cost_view);
         
-        mUserNameView = (TextView) findViewById(R.id.guest_content_view);
+        mCheckInUserView = (TextView) findViewById(R.id.guest_content_view);
         
         mRadioGroup = (RadioGroup) findViewById(R.id.invoice_potion_group);
         mInvoiceTitleView = (EditText) findViewById(R.id.invoice_title_content_view);
@@ -172,6 +179,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         case R.id.add_btn:
             intent = new Intent();
             intent.setClass(this, UserSelectActivity.class);
+            intent.putExtra(UserSelectActivity.KEY_FROM_PAGE, UserSelectActivity.FROM_PAGE_EDIT_ORDER);
             startActivityForResult(intent, PAGE_USER_ADD);
             break;
         case R.id.commitBtn:
@@ -211,23 +219,55 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             String content = data == null ? "" : data.getStringExtra(MoreRequireActivity.KEY_MORE_REQUIRE);
             setViewText(mMoreRequireView, content);
             break;
+        case PAGE_USER_ADD:
+            ArrayList<String> list = data == null ? null : data.getStringArrayListExtra(UserSelectActivity.KEY_CHECK_IN_USER);
+            setCheckInUsersView(list);
+            break;
         default:
             break;
         }
     }
     
-    private void setTotalCostView(){
+    private int getRoomCount(){
         String text = (String) mRoomCountView.getText();
         if (TextUtils.isEmpty(text)) {
-            return;
+            return -1;
         }
         text = text.substring(0, text.length() - 1);
-        int count = DigitalUtils.convertToInt(text);
+        return DigitalUtils.convertToInt(text);
+    }
+    
+    private void setTotalCostView(){
+        int count = getRoomCount();
         if (count < 0) {
             return;
         }
-        int cost = (int) (count * (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getActprice()));
+        float actPrice = mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getActprice();
+        Log.i(TAG, "setTotalCostView()---> actPrice=" + actPrice + ", price=" + (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getPrice()));
+        int cost = (int) (count * actPrice);
         mTotalCostView.setText(cost + "");
+    }
+    
+    /**
+     * 
+     * setCheckInUsersView:设置入住人信息. <br/>
+     * @author maple
+     * @param list
+     * @since JDK 1.6
+     */
+    private void setCheckInUsersView(List<String> list){
+        if (list == null || list.size() < 1) {
+            return;
+        }
+        int size = list.size();
+        StringBuilder buffer = new StringBuilder();
+        for (int index = 0 ; index < size ; index++) {
+            buffer.append(list.get(index));
+            if (index < size - 1) {
+                buffer.append("\n");
+            }
+        }
+        mCheckInUserView.setText(buffer.toString());
     }
     
     /**
@@ -244,6 +284,23 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         view.setText(text == null ? "" : text);
     }
     
+    /***
+     * 
+     * getInvoiceState:是否需要开发票. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private int getInvoiceState(){
+        if (mRadioGroup.getCheckedRadioButtonId() == R.id.invoice_true_btn) {
+            return 1;
+        }
+        if (mRadioGroup.getCheckedRadioButtonId() == R.id.invoice_false_btn) {
+            return 0;
+        }
+        return -1;
+    }
+    
     private OrderSubmitInfo getOrderSubmitInfo(){
         if (mHotelRoom == null || mRoomTypeInfo == null) {
             return null;
@@ -253,22 +310,27 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         info.setStartDate(mHotelRoom.getStartDate());
         info.setEndDate(mHotelRoom.getEndDate());
         info.setRoomId(mRoomTypeInfo.getPid());
-        info.setCount(DigitalUtils.convertToInt((String) mRoomCountView.getText()));
+        info.setCount(DigitalUtils.convertToInt(getRoomCount()+""));
         info.setMoreRequire((String) mMoreRequireView.getText());
-        //TODO 入住人
-//        info.setInPeople(inPeople);
+        info.setInPeople(getCheckInUsers());
         TextView contactNameView = (TextView) findViewById(R.id.contact_name_view);
-        info.setContactName((String) contactNameView.getText());
+        info.setContactName(contactNameView.getText().toString());
         TextView contactPhoneView = (TextView) findViewById(R.id.contact_phone_view);
-        info.setContactPhone((String) contactPhoneView.getText());
-        //TODO 是否需要发票
-//        info.setIsInvoice(isInvoice);
+        info.setContactPhone(contactPhoneView.getText().toString());
+        info.setIsInvoice(getInvoiceState());
         info.setInvoiceTitle(mInvoiceTitleView.getText().toString());
         info.setRecipientName(mRecipientNameView.getText().toString());
+        info.setRecipientPhone(mRecipientPoneView.getText().toString());
         info.setRecipientAddress(mRecipientAddessView.getText().toString());
         info.setRecipientPostCode(mRecipientPostCodeView.getText().toString());
-        //TODO 收件人电话
+        info.setUid(LoginUtils.uid);
         return info;
+    }
+    
+    private String getCheckInUsers(){
+        String userNames = mCheckInUserView.getText().toString();
+        userNames.replaceAll("\n", ",");
+        return userNames;
     }
     
     private IResponseListener mCommitLisenter = new IResponseListener() {
@@ -276,15 +338,23 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         @Override
         public void onSuccess(Response response) {
             dismissLoadingDialog();
+            Log.i(TAG, "onSuccess()---->" + (response == null ? null : response.getData().toString()));
+            if (response == null || response.getData() == null) {
+                return;
+            }
             Intent intent = new Intent();
-            //TODO
-//            intent.putExtra(CommitOrderSuccessActivity.KEY_RESPONSE_NOTICE, value);
+            HashMap<String, String> map = JsonUtils.convertJsonToHashMap(response.getData().toString());
+            String notice = map.get("orderno");
+            intent.putExtra(CommitOrderSuccessActivity.KEY_RESPONSE_NOTICE, notice);
+            Log.i(TAG, "onSuccess()----> notice=" + notice);
             intent.setClass(EditOrderActivity.this, CommitOrderSuccessActivity.class);
             startActivity(intent);
+            finish();
         }
         
         @Override
         public void onError(Response response) {
+            Log.i(TAG, "onError()---->");
             dismissLoadingDialog();
         }
     };

@@ -37,7 +37,6 @@ import com.google.gson.Gson;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
-import com.guoli.hotel.activity.order.OrderHotelListAcivity;
 import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.bean.HotelDetailInfo;
 import com.guoli.hotel.bean.HotelParamsInfo;
@@ -303,10 +302,10 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                         return;
                     }
                     //判断用户是否登录
-//                    if (LoginUtils.isLogin == 0) {  //未登录
-//                        startActivityForResult(new Intent(HotelDetailActivity.this, LoginActivity.class), 0);
-//                        return;
-//                    }
+                    if (LoginUtils.isLogin == 0) {  //未登录
+                        startActivityForResult(new Intent(HotelDetailActivity.this, LoginActivity.class), 0);
+                        return;
+                    }
                     onLoginSuccess();
                     return;
                 }
