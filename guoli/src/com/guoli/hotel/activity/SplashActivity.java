@@ -13,6 +13,7 @@ package com.guoli.hotel.activity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.hotel.SearchHotelActivity;
 
@@ -38,6 +39,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
         delayToNextPage();
+        ((GuoliApplication)getApplication()).startTimer();
     }
 
     private void delayToNextPage(){
