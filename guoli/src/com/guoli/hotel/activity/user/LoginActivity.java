@@ -137,10 +137,6 @@ public class LoginActivity extends BaseActivity2 {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-
-			if (response != null) {
-				Log.d("MSG", "onError:" + response.toString());
-			}
 		}
 	};
 
