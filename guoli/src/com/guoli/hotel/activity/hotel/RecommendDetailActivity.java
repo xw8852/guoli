@@ -27,7 +27,11 @@ import com.guoli.hotel.net.request.bean.HotelRecommendInfo;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RecommendRespInfo;
 import com.guoli.hotel.parse.RecommendRespParase;
+<<<<<<< HEAD
 import com.guoli.hotel.utils.ImageUtil;
+=======
+import com.guoli.hotel.utils.DiscountUtils;
+>>>>>>> favoritelist
 import com.guoli.hotel.utils.NumberUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Controller;
@@ -126,7 +130,9 @@ public class RecommendDetailActivity extends CallActivity {
         ((TextView)findViewById(R.id.hotelPriceView)).setText(String.format(res, info.getGuoliPrice()));
         res = getResources().getString(R.string.discount_desc);
         String discount = NumberUtils.formatDiscount(info.getDiscount(), this);
-        ((TextView)findViewById(R.id.hotelDiscountView)).setText(String.format(res, discount));
+//        ((TextView)findViewById(R.id.hotelDiscountView)).setText(String.format(res, discount));
+        ((TextView)findViewById(R.id.hotelDiscountView)).setText(
+        		DiscountUtils.formatDiscount(res, discount));
         res = getResources().getString(R.string.period_date);
         ((TextView)findViewById(R.id.hotelBriefView)).setText(info.getBrief());
         ((TextView)findViewById(R.id.hotelNoticeView)).setText("sfdfsfsdfsdf");

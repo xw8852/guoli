@@ -27,10 +27,15 @@ import com.guoli.hotel.bean.RecommendHotelInfo;
 import com.guoli.hotel.bean.RecommendsInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.parse.RecommandHotelParse;
+<<<<<<< HEAD
 import com.guoli.hotel.utils.ToastUtil;
 import com.guoli.hotel.widget.BottomTabbar;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
+=======
+import com.guoli.hotel.widget.BottomTabbar;
+import com.msx7.core.Manager;
+>>>>>>> favoritelist
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -154,7 +159,10 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
         public void onError(Response resp) {
             dismissLoadingDialog();
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
+<<<<<<< HEAD
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
+=======
+>>>>>>> favoritelist
         }
     };
 }

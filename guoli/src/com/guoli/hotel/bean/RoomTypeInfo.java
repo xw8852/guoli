@@ -41,7 +41,7 @@ public class RoomTypeInfo {
     
     /**折扣*/
     @SerializedName("zheke")
-    private float discount;
+    private String discount;
     
     /**减少的价格*/
     @SerializedName("reduceprice")
@@ -111,11 +111,11 @@ public class RoomTypeInfo {
         this.price = price;
     }
 
-    public float getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(float discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 

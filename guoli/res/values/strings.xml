@@ -32,7 +32,7 @@
     <string name="occupancy">入住:</string>
     <string name="leave">离店:</string>
     <string name="price_desc">￥%1$d起</string>
-    <string name="discount_desc">￥%1$s折起</string>
+    <string name="discount_desc">%1$s折起</string>
     <string name="business_count_desc">%1$d家</string>
     <string name="default_sort">默认排序</string>
     <string name="price_filter">价格筛选</string>

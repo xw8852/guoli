@@ -10,9 +10,13 @@
 
 package com.guoli.hotel.activity.hotel;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.text.DecimalFormat;
+=======
+>>>>>>> favoritelist
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.DatePickerDialog;
@@ -36,7 +40,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+<<<<<<< HEAD
 import com.guoli.hotel.GuoliApplication;
+=======
+import com.google.gson.reflect.TypeToken;
+>>>>>>> favoritelist
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
@@ -50,6 +58,7 @@ import com.guoli.hotel.net.response.bean.RoomRespInfo;
 import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.DiscountUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.NetUtils;
 import com.guoli.hotel.utils.ToastUtil;
@@ -57,6 +66,7 @@ import com.msx7.core.Controller;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
 
 /**
@@ -83,6 +93,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     public static final String KEY_REQUEST = "hotel_room";
     private RoomRespInfo info;
     private RoomTypeInfo mRoomInfo;
+    
+    String shopid;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
 
@@ -157,7 +169,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         Intent intent = null;
         switch (v.getId()) {
         case R.id.collection_btn:
-
+        	HashMap<String, String> map = new HashMap<String, String>();
+        	map.put("uid", LoginUtils.uid);
+        	map.put("shopid", shopid);
+        	Request request = new GuoliRequest("user_favorite", map);
+        	Manager.getInstance().executePoset(request, collectListener);
+        	showLoadingDialog(R.string.loading_msg);
             break;
         case R.id.pic_view:
             intent = new Intent(this, PicGridActivity.class);
@@ -186,6 +203,34 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         }
     }
 
+    /**
+     * 收藏请求
+     */
+    IResponseListener collectListener = new IResponseListener() {
+		
+		@Override
+		public void onSuccess(Response response) {
+			dismissLoadingDialog();
+			
+            Log.i(TAG, "response=" + (response == null ? null : response.result));
+            if (response == null) {
+            	return;
+            }
+            HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
+					new TypeToken<HashMap<String, Object>>() {
+					}.getType());
+            if ("1".equalsIgnoreCase(map.get("success").toString())) {
+				Toast.makeText(HotelDetailActivity.this, map.get("message").toString(),
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+		@Override
+		public void onError(Response arg0) {
+			dismissLoadingDialog();
+		}
+	};
+    
     /**
      * 
      * initRoomsTypeViews:初始化房间类型视图. <br/>
@@ -337,7 +382,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             RoomTypeInfo info = model.mInfo;
             holder.more.setVisibility(model.isShowMore ? View.VISIBLE : View.GONE);
             holder.typeNameView.setText(info.getName() + "");
-            holder.discountView.setText(formatDiscount(info.getDiscount()));
+            holder.discountView.setText(DiscountUtils.formatDiscount(info.getDiscount()));
             holder.priceView.setText("￥" + (int) info.getPrice());
             int bebType = info.getBedType();
             String bedContent = "";
@@ -371,18 +416,6 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             return String.format(content, value);
         }
 
-        /**
-         * 
-         * formatDiscount:格式化折扣. <br/>
-         * 
-         * @author maple
-         * @param discount
-         * @return
-         * @since JDK 1.6
-         */
-        private String formatDiscount(double discount) {
-            return new DecimalFormat("0.##").format(discount);
-        }
     }
 
     static class RoomModel {
@@ -456,6 +489,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             mInDateView.setText(paramsInfo.getStartDate());
             // 离店日期
             mOutDateView.setText(paramsInfo.getEndDate());
+            
+            shopid = paramsInfo.getId();
         }
         initRoomsTypeViews(respInfo.getRoomTypeInfos());
 //        Controller.getApplication().loadThumbnailImage(GuoliApplication.PIC_PATH_PRE+File.separator+info.getPicPath()+info.getPicName(), m, R.drawable.hotel_default);
