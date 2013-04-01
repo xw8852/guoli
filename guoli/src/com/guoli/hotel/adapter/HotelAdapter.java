@@ -24,7 +24,8 @@ import android.widget.TextView;
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.HotelInfo;
 import com.guoli.hotel.utils.CallUtils;
-import com.guoli.hotel.utils.StringUtils;
+import com.guoli.hotel.utils.ImageUtil;
+import com.msx7.core.Controller;
 
 /**
  * ClassName:HotelAdapter <br/>
@@ -66,7 +67,8 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getDistrict());
         setStarLevelView(holder.levelView, info.getStarLavel());
-        loadHotelImg(info.getPicPath(), holder.imgView);
+        //TODO:加载图片
+        Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getFileName()), holder.imgView,R.drawable.hotel_default);
         int price = info.getPrice();
         if (price != 0) {
             holder.callView.setVisibility(View.GONE);
@@ -108,7 +110,7 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        ratingBar.setNumStars(num);
+        ratingBar.setRating(num);
     }
 
     /**
@@ -125,18 +127,7 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         return String.format(desc, price);
     }
 
-    /**
-     * 
-     * loadHotelImg:加载酒店图片. <br/>
-     * 
-     * @author maple
-     * @param picPath
-     * @param imgView
-     * @since JDK 1.6
-     */
-    private void loadHotelImg(String picPath, ImageView imgView) {
-        if (StringUtils.isBlank(picPath) || imgView == null) { return; }
-    }
+   
 
     private final class ViewHolder {
         /** 酒店缩略图 */

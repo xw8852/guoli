@@ -39,7 +39,9 @@ import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -356,6 +358,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         public void onError(Response response) {
             Log.i(TAG, "onError()---->");
             dismissLoadingDialog();
+            ToastUtil.show(ErrorCode.getErrorCodeString(response.errorCode));
         }
     };
 }

@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,14 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
@@ -49,7 +52,10 @@ import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.NetUtils;
+import com.guoli.hotel.utils.ToastUtil;
+import com.msx7.core.Controller;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -69,6 +75,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private HotelRoom mHotelRoom;
     private TextView mInDateView;
     private TextView mOutDateView;
+    private ImageView mImageView;
     private static final int DIALOG_IN_DATE = 1;
     private static final int DIALOG_OUT_DATE = 2;
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
@@ -135,6 +142,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         mInDateView = ((TextView) findViewById(R.id.inDateView));
         mOutDateView = ((TextView) findViewById(R.id.outDateView));
         mRoomsListView = (ListView) findViewById(R.id.listView1);
+        mImageView=(ImageView)findViewById(R.id.pic_view);
         collectBtn.setOnClickListener(this);
         picLayout.setOnClickListener(this);
         addressLayout.setOnClickListener(this);
@@ -417,6 +425,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         @Override
         public void onError(Response response) {
             dismissLoadingDialog();
+            ToastUtil.show(ErrorCode.getErrorCodeString(response.errorCode));
         }
     };
 
@@ -433,7 +442,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         HotelDetailInfo info = respInfo.getHotelInfo();
         if (info != null) {
             ((TextView) findViewById(R.id.name_view)).setText(info.getName());
-            ((RatingBar) findViewById(R.id.star_level)).setNumStars(info.getStar());
+            ((RatingBar) findViewById(R.id.star_level)).setRating(info.getStar());
             ((TextView) findViewById(R.id.address_textview)).setText(info.getAddress());
             String count = getResources().getString(R.string.pic_count);
             count = String.format(count, respInfo.getPicCount());
@@ -449,6 +458,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             mOutDateView.setText(paramsInfo.getEndDate());
         }
         initRoomsTypeViews(respInfo.getRoomTypeInfos());
+//        Controller.getApplication().loadThumbnailImage(GuoliApplication.PIC_PATH_PRE+File.separator+info.getPicPath()+info.getPicName(), m, R.drawable.hotel_default);
+
     }
 
     private void initHistoryViews(HotelDetailInfo info) {

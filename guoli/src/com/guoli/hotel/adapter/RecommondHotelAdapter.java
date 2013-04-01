@@ -10,11 +10,13 @@
 
 package com.guoli.hotel.adapter;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +24,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.RecommendHotelInfo;
+import com.guoli.hotel.utils.ImageUtil;
+import com.msx7.core.Controller;
 
 /**
  * ClassName:RecommondHotelAdapter <br/>
@@ -77,11 +82,12 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
             return;
         }
         //TODO 异步加载酒店图片
-        //holder.imgView
+        Log.d("MSG", GuoliApplication.PIC_PATH_PRE+File.separator+info.getPicPath()+info.getPicName());
+        Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(),info.getPicName()),holder.imgView,R.drawable.hotel_default);
         holder.nameView.setText(info.getName());
         initDateView(holder.dateView, info.getDate());
         initRecommandReasonView(holder.reasonView, info.getReason());
-        holder.ratingBar.setNumStars(info.getLevel());
+        holder.ratingBar.setRating(info.getLevel());
         holder.priceView.setText(info.getPrice() + "");
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getZone());

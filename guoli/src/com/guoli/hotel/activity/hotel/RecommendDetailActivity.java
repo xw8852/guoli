@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,8 +27,12 @@ import com.guoli.hotel.net.request.bean.HotelRecommendInfo;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RecommendRespInfo;
 import com.guoli.hotel.parse.RecommendRespParase;
+import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.NumberUtils;
+import com.guoli.hotel.utils.ToastUtil;
+import com.msx7.core.Controller;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -108,7 +113,7 @@ public class RecommendDetailActivity extends CallActivity {
         public void onError(Response resp) {
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
-
+            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
         }
     };
 
@@ -132,7 +137,9 @@ public class RecommendDetailActivity extends CallActivity {
             countText = String.format(res, mRespInfo.getCount());
         }
         ((TextView)findViewById(R.id.picCountView)).setText(countText);
-        ((RatingBar)findViewById(R.id.hotelLevelView)).setNumStars(info.getLevel());
+        ((RatingBar)findViewById(R.id.hotelLevelView)).setRating(info.getLevel());
+        ImageView mView=(ImageView)findViewById(R.id.hotelImgView);
         res = null;
+        Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(),info.getPicName()), mView, R.drawable.hotel_default);
     }
 }

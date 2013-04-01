@@ -13,12 +13,14 @@ import com.msx7.core.Controller;
 
 public class GuoliApplication extends Controller {
     public String packageName = "com.guoli.hotel";
+    public static final String PIC_PATH_PRE="http://www.guoli.com/attachments";
     
     Timer mTimer;
     @Override
     public void onCreate() {
         super.onCreate();
         startTimer();
+        mFetcher.setImageFadeIn(false);
     }
 
     public void startTimer(){

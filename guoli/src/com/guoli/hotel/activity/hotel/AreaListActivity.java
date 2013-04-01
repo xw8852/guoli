@@ -30,7 +30,9 @@ import com.guoli.hotel.bean.LocationInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.CityRequestParams;
 import com.guoli.hotel.parse.AreaParase;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
@@ -169,6 +171,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
+            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
         }
     };
 }

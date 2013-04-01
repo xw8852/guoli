@@ -31,7 +31,9 @@ import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.net.request.bean.CityRequestParams;
 import com.guoli.hotel.net.response.bean.CityResponseParams;
 import com.guoli.hotel.parse.CitysParse;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
@@ -160,6 +162,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
+            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
         }
     };
 }

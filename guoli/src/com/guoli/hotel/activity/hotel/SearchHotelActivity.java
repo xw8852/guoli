@@ -1,5 +1,7 @@
 package com.guoli.hotel.activity.hotel;
 
+import java.util.Date;
+
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -76,6 +78,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         super.onCreate(savedInstanceState);
         showRightBtn();
         new BottomTabbar(this, 0);
+        initDefault();
     }
 
     @Override
@@ -237,7 +240,26 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             break;
         }
     }
-
+    /**
+     * 设置默认值
+     */
+    private void initDefault(){
+        //TODO:TODO:设置默认城市
+        /**
+         *       "name":"上海","code":"310000","py":"S"
+         */
+        CityInfo info=new CityInfo();
+        info.setCityCode("310000");
+        info.setCityName("上海");
+        info.setFirstChar("S");
+        info.setChecked(true);
+        setViewText(mCityView, info.getCityName());
+        mCityView.setTag(info);
+        mOccupancyView.setText(DateUtils.getCurrentDate(DateUtils.FORMAT_DATE_YYMMDD));
+        mLeaveView.setText(DateUtils.long2Date(new Date().getTime()+24*60*60*1000, DateUtils.FORMAT_DATE_YYMMDD));
+        mPriceView.setText(getResources().getStringArray(R.array.price_value)[0]);
+        mLevelView.setText(getResources().getStringArray(R.array.price_value)[0]);
+    }
     /**
      * 
      * setViewText:设置textView的值. <br/>

@@ -35,7 +35,9 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.parse.HotelListInfoParse;
 import com.guoli.hotel.utils.ResourceUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -294,6 +296,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         public void onError(Response resp) {
             dismissLoadingDialog();
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
+            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
         }
     };
 
