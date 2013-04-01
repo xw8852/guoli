@@ -11,7 +11,6 @@
 package com.guoli.hotel.adapter;
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -137,7 +136,7 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
      */
     private String formatDiscount(double discount) {
 //        String dis = new DecimalFormat("0.##").format(discount);
-        String dis = new DecimalFormat("0.#").format(discount * 10);
+        String dis = discount +"";
         String desc = getResources().getString(R.string.discount_desc);
         return String.format(desc, dis);
     }
