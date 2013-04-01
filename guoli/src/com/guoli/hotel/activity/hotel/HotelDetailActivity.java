@@ -223,6 +223,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
 		@Override
 		public void onError(Response arg0) {
 			dismissLoadingDialog();
+			ToastUtil.show(ErrorCode.getErrorCodeString(arg0.errorCode));
 		}
 	};
     
