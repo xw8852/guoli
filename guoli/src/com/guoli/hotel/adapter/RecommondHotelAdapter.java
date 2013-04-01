@@ -10,19 +10,13 @@
 
 package com.guoli.hotel.adapter;
 
-<<<<<<< HEAD
 import java.io.File;
-=======
->>>>>>> favoritelist
 import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
 import android.text.TextUtils;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> favoritelist
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +24,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-<<<<<<< HEAD
 import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.RecommendHotelInfo;
 import com.guoli.hotel.utils.ImageUtil;
 import com.msx7.core.Controller;
-=======
-import com.guoli.hotel.R;
-import com.guoli.hotel.bean.RecommendHotelInfo;
->>>>>>> favoritelist
 
 /**
  * ClassName:RecommondHotelAdapter <br/>
@@ -93,20 +82,12 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
             return;
         }
         //TODO 异步加载酒店图片
-<<<<<<< HEAD
         Log.d("MSG", GuoliApplication.PIC_PATH_PRE+File.separator+info.getPicPath()+info.getPicName());
         Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(),info.getPicName()),holder.imgView,R.drawable.hotel_default);
         holder.nameView.setText(info.getName());
         initDateView(holder.dateView, info.getDate());
         initRecommandReasonView(holder.reasonView, info.getReason());
         holder.ratingBar.setRating(info.getLevel());
-=======
-        //holder.imgView
-        holder.nameView.setText(info.getName());
-        initDateView(holder.dateView, info.getDate());
-        initRecommandReasonView(holder.reasonView, info.getReason());
-        holder.ratingBar.setNumStars(info.getLevel());
->>>>>>> favoritelist
         holder.priceView.setText(info.getPrice() + "");
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getZone());
@@ -155,11 +136,8 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
      * @since JDK 1.6
      */
     private String formatDiscount(double discount) {
-<<<<<<< HEAD
-        String dis = new DecimalFormat("0.##").format(discount);
-=======
+//        String dis = new DecimalFormat("0.##").format(discount);
         String dis = new DecimalFormat("0.#").format(discount * 10);
->>>>>>> favoritelist
         String desc = getResources().getString(R.string.discount_desc);
         return String.format(desc, dis);
     }
