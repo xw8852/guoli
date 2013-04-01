@@ -215,6 +215,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				Toast.makeText(HotelDetailActivity.this, map.get("message").toString(),
 						Toast.LENGTH_SHORT).show();
+			}else if(map.containsKey("message")){
+			    ToastUtil.show(map.get("message")+"");
 			}
 		}
 		

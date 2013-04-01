@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
-import com.guoli.hotel.activity.hotel.HotelDetailActivity;
+import com.guoli.hotel.activity.hotel.SearchHotelActivity;
 
 /**
  * ClassName:CommitOrderSuccessActivity <br/>
@@ -55,6 +55,7 @@ public class CommitOrderSuccessActivity extends BaseActivity {
         switch (v.getId()) {
         case R.id.continue_reserve_btn:
             //跳转到酒店详情页面
+            startActivity(new Intent(this, SearchHotelActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
             break;
         case R.id.look_over_order_btn:
@@ -66,15 +67,6 @@ public class CommitOrderSuccessActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 
-     * enterToHotelDetailActivity:跳转到酒店详情页面. <br/>
-     * @author maple
-     * @since JDK 1.6
-     */
-    private void enterToHotelDetailActivity() {
-        startActivity(HotelDetailActivity.class, this);
-    }
 
     /***
      * 
