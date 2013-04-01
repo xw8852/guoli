@@ -281,4 +281,5 @@
     <string name="edit_user_info">编辑个人信息</string>
     <string name="loading_msg_commit">数据正在提交...</string>
     <string name="dialog_msg_commit_failed">数据提交失败,请重新尝试!</string>
+    <string name="order_commit_success_tips">订单编号%1$s\n恭喜你成功提交订单，我们将尽快确认您的订单，请保持手机畅通，稍后以短信的形式通知您。</string>
 </resources>

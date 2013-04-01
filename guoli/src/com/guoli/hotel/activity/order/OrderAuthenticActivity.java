@@ -27,17 +27,24 @@ import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
 public class OrderAuthenticActivity extends BaseActivity2 {
+    public static final String PARAM_AUTHER="login_for_result";
     EditText mPhoneEditText;
     EditText mValidateEditText;
     Dialog mDialog;
+    boolean isResult;
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.order_title_search);
+        isResult=getIntent().getBooleanExtra(PARAM_AUTHER, false);
         // 检查是否已经登录
         if (0 == LoginUtils.isLogin)
             startActivityForResult(new Intent(this, LoginActivity.class), 0);
-        else
+        else if(!isResult){
             onLoginSuccess();
+        }else {
+            setResult(LoginActivity.RESULT_LOGIN_OK);
+            finish();
+        }
         new BottomTabbar(this, 2);
         findViewById(R.id.search_btn).setOnClickListener(mSearchListener);
         mPhoneEditText = (EditText) findViewById(R.id.editText1);
@@ -62,6 +69,11 @@ public class OrderAuthenticActivity extends BaseActivity2 {
      * 登录成功之后的操作
      */
     public void onLoginSuccess() {
+        if(isResult){
+            setResult(LoginActivity.RESULT_LOGIN_OK);
+            finish();
+            return;
+        }
         Intent intent = new Intent(this, OrderHotelListAcivity.class);
         startActivity(intent);
         finish();

@@ -71,7 +71,10 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 				Toast.makeText(AddUserActivity.this, "null", Toast.LENGTH_SHORT).show();
 				return;
 			}
-
+			if(LoginUtils.isLogin==1){
+			    addUserSuccess(name, "-1");
+			    return;
+			}
 			Request request = new GuoliRequest("user_addperson", new FavoriteUserBean(LoginUtils.uid, name, null));
 			Manager.getInstance().executePoset(request, addUserListener);
 
@@ -100,12 +103,8 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 					}.getType());
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				String id = map.get("id").toString();
-				Intent data = new Intent();
-				data.putExtra("personname", name);
-				data.putExtra("id", id);
-				setResult(RESULT_OK, data);
 				Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
-				finish();
+				addUserSuccess(name,id);
 			}
 
 			Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -119,5 +118,13 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 			Log.d("MSG", "onError:" + response.toString());
 		}
 	};
+	
+	public void addUserSuccess(String name,String id){
+        Intent data = new Intent();
+        data.putExtra("personname", name);
+        data.putExtra("id", id);
+        setResult(RESULT_OK, data);
+        finish();
+	}
 
 }

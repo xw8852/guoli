@@ -46,16 +46,16 @@ public class CommitOrderSuccessActivity extends BaseActivity {
         
         TextView noticeView = (TextView) findViewById(R.id.commit_success_prompt);
         String notice = getIntent().getStringExtra(KEY_RESPONSE_NOTICE);
-        noticeView.setText(notice);
+        noticeView.setText(getString(R.string.order_commit_success_tips, notice));
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-        case R.id.condition_and_result_layout:
+        case R.id.continue_reserve_btn:
             //跳转到酒店详情页面
-            enterToHotelDetailActivity();
+            finish();
             break;
         case R.id.look_over_order_btn:
             //跳转到订单详情页面

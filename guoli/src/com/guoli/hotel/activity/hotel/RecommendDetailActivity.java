@@ -27,11 +27,8 @@ import com.guoli.hotel.net.request.bean.HotelRecommendInfo;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RecommendRespInfo;
 import com.guoli.hotel.parse.RecommendRespParase;
-<<<<<<< HEAD
 import com.guoli.hotel.utils.ImageUtil;
-=======
 import com.guoli.hotel.utils.DiscountUtils;
->>>>>>> favoritelist
 import com.guoli.hotel.utils.NumberUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Controller;

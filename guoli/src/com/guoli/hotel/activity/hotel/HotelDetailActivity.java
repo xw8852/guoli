@@ -10,11 +10,7 @@
 
 package com.guoli.hotel.activity.hotel;
 
-<<<<<<< HEAD
-import java.io.File;
-import java.text.DecimalFormat;
-=======
->>>>>>> favoritelist
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,14 +36,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-<<<<<<< HEAD
-import com.guoli.hotel.GuoliApplication;
-=======
+
 import com.google.gson.reflect.TypeToken;
->>>>>>> favoritelist
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
+import com.guoli.hotel.activity.order.OrderAuthenticActivity;
 import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.bean.HotelDetailInfo;
 import com.guoli.hotel.bean.HotelParamsInfo;
@@ -62,7 +56,6 @@ import com.guoli.hotel.utils.DiscountUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.NetUtils;
 import com.guoli.hotel.utils.ToastUtil;
-import com.msx7.core.Controller;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
@@ -85,7 +78,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private HotelRoom mHotelRoom;
     private TextView mInDateView;
     private TextView mOutDateView;
-    private ImageView mImageView;
+    public ImageView mImageView;
     private static final int DIALOG_IN_DATE = 1;
     private static final int DIALOG_OUT_DATE = 2;
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
@@ -356,7 +349,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                     }
                     //判断用户是否登录
                     if (LoginUtils.isLogin == 0) {  //未登录
-                        startActivityForResult(new Intent(HotelDetailActivity.this, LoginActivity.class), 0);
+                        startActivityForResult(new Intent(HotelDetailActivity.this, OrderAuthenticActivity.class)
+                        .putExtra(OrderAuthenticActivity.PARAM_AUTHER, true), 0);
                         return;
                     }
                     onLoginSuccess();
@@ -635,6 +629,5 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         intent.putExtra(EditOrderActivity.HOTEL_ROOM, new Gson().toJson(mHotelRoom));
         intent.putExtra(EditOrderActivity.ROOMI_TYPE, new Gson().toJson(mRoomInfo));
         startActivity(intent);
-        finish();
     }
 }

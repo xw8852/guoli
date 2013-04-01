@@ -266,7 +266,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         for (int index = 0 ; index < size ; index++) {
             buffer.append(list.get(index));
             if (index < size - 1) {
-                buffer.append("\n");
+                buffer.append(",");
             }
         }
         mCheckInUserView.setText(buffer.toString());

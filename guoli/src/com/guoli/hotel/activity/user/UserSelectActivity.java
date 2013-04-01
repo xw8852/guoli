@@ -75,7 +75,12 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		showLeftBtn();
-		getUser();
+		if(LoginUtils.isLogin==2)
+		    getUser();
+		else{
+		    adapter=new UserListAdapter(this,favoriteInfos);
+		    userListView.setAdapter(adapter);
+		}
 	}
 
 	@Override
@@ -108,7 +113,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-			if (response == null || response.result == null) {
+			if (response == null || response.result == null||"".equals(response.result.toString().trim())) {
 			    return;
 			}
 			Log.d("MSG", "onSuccess:" + response.getData().toString());
