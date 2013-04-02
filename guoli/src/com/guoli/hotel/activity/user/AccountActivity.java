@@ -95,7 +95,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 
 		@Override
 		public void onClick(View v) {
-			DialogUtils.showDialog(AccountActivity.this, "退出", "are you sure?", new DialogInterface.OnClickListener() {
+			DialogUtils.showDialog(AccountActivity.this, "退出", "确定退出吗?", new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {

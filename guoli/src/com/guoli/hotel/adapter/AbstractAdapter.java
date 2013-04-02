@@ -1,6 +1,5 @@
 /**   
  * @Title: AbstractAdapter.java 
- * @Package com.yhiker.playmate.ui.base 
  * @Description: TODO
  * @author xiaowei   
  * @date 2012-9-10 上午11:19:17 

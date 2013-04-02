@@ -103,7 +103,7 @@ public class RecommendDetailActivity extends CallActivity {
         public void onSuccess(Response resp) {
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
-             mRespInfo = new RecommendRespParase().parseResponse(resp);
+            mRespInfo = new RecommendRespParase().parseResponse(resp);
             if (mRespInfo == null) {
                 return;
             }

@@ -80,7 +80,7 @@ public class UserListAdapter extends BaseAdapter {
 
 				@Override
 				public void onClick(View v) {
-					DialogUtils.showDialog(context, "", "are you sure ?", new DialogInterface.OnClickListener() {
+					DialogUtils.showDialog(context, "", "确定删除?", new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {

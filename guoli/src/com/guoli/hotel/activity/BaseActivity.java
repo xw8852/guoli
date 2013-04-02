@@ -1,7 +1,4 @@
 /**
- * Project Name:OneByOne2.6
- * File Name:BaseDetailActivity.java
- * Package Name:com.yhiker.playmate.ui.citytour.scenicshops
  * Date:2012-12-31上午10:46:24
  * Copyright (c) 2012
  * Company:maple&&json&&abel
@@ -10,7 +7,6 @@
 
 package com.guoli.hotel.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
