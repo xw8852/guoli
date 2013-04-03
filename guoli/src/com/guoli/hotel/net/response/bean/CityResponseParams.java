@@ -30,6 +30,9 @@ public class CityResponseParams implements IResponseParams {
     @SerializedName("result")
     private List<CityInfo> list;
     
+    @SerializedName("result_hot")
+    public List<CityInfo> mHostList;
+    
     private int cityCount;
 
     public List<CityInfo> getList() {

@@ -3,54 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <include layout="@layout/title_bar"/>
+
+    <include layout="@layout/title_bar" />
     <!-- 搜索栏 -->
-    <RelativeLayout android:layout_width="fill_parent"
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/search_bg">
+        android:background="@drawable/search_bg" >
+
         <ImageView
-            android:id="@+id/searchBtn" 
+            android:id="@+id/searchBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_centerVertical="true"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/btn_seach_bg"
-            />
-        <EditText 
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_seach_bg" />
+
+        <EditText
             android:id="@+id/cityNameKey"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/searchBtn"
-            android:layout_toLeftOf="@+id/deleteBtn"
-            android:background="@null"
             android:layout_centerVertical="true"
-            />
+            android:layout_toLeftOf="@+id/deleteBtn"
+            android:layout_toRightOf="@+id/searchBtn"
+            android:background="@null" />
+
         <ImageView
-            android:id="@+id/deleteBtn" 
+            android:id="@+id/deleteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/btn_search_delete"
-            />
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_search_delete" />
     </RelativeLayout>
     <!-- 热门城市 -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:paddingLeft="10dp"
-        android:text="@string/city_hot"
-        android:gravity="center_vertical"
-        android:background="@drawable/city_select_notice_bg"/>
-   <!-- 城市列表 -->
-   <ListView 
-       android:id="@+id/cityListView"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:paddingLeft="10dp"
-       android:paddingRight="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.guoli.hotel.widget.SosUniversalListView
+            android:id="@+id/cityListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </com.guoli.hotel.widget.SosUniversalListView>
+
+        <include layout="@layout/city_list_item_title" />
+    </RelativeLayout>
+
+    <!-- 城市列表 -->
+
 </LinearLayout>
