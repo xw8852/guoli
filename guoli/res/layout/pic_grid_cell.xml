@@ -7,11 +7,10 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:gravity="center"
-        android:scaleType="centerInside"
-        android:layout_weight="1"
+        android:scaleType="centerCrop"
         android:src="@drawable/default_big_pic" />
 
     <TextView

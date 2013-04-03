@@ -9,9 +9,9 @@
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
         android:gravity="center"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:layout_weight="1"
         android:src="@drawable/default_big_pic" />
 
