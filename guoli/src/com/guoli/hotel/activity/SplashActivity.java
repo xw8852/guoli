@@ -85,6 +85,7 @@ public class SplashActivity extends Activity {
         @Override
         public void onError(Response response) {
             Log.i("SplashActivity", "response=" + (response == null ? null : response.result));
+            delayToNextPage();
             
         }
     };

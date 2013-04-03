@@ -79,7 +79,9 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/layout"
             android:layout_alignParentRight="true"
+            android:background="@drawable/identify_tips"
             android:layout_marginTop="@dimen/small_margin"
+            android:textColor="@android:color/white"
             android:text="@string/get_identify" />
     </RelativeLayout>
 

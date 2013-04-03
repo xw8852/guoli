@@ -1,10 +1,14 @@
 package com.guoli.hotel.activity;
 
 import com.guoli.hotel.R;
+import com.guoli.hotel.activity.hotel.SearchHotelActivity;
+import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.LoginUtils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -230,4 +234,38 @@ public abstract class BaseActivity2 extends Activity {
         }
 
     }
+    
+    /**
+     * 在标题栏右边显示退出按钮，即退出登录，返回查找酒店页面
+     */
+    public void showRightExit(){
+        setRightTitleBtn(R.string.exit  , mExitLoginListener);
+    }
+    
+    /**
+     * 在标题栏右边显示拨打电话按钮，即拨打客服电话
+     */
+    public void showRightCall(){
+        setRightBackgroundBtn(R.drawable.btn_top_phone, mCallListener);
+    }
+    View.OnClickListener mExitLoginListener =new View.OnClickListener() {
+        
+        @Override
+        public void onClick(View v) {
+            LoginUtils.isLogin=0;
+            LoginUtils.memberMobile="";
+            LoginUtils.mobile="";
+            LoginUtils.uid="";
+            LoginUtils.username="";
+            startActivity(new Intent(BaseActivity2.this, SearchHotelActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        }
+    };
+    
+    View.OnClickListener mCallListener=new View.OnClickListener() {
+        
+        @Override
+        public void onClick(View v) {
+            new CallUtils(v.getContext()).callServer();
+        }
+    };
 }

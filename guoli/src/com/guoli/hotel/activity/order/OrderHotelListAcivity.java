@@ -52,9 +52,11 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 
 		setTitle(R.string.order_list_title);
 		if (LoginUtils.isLogin==2) {
+		    showRightExit();
 			 request = new GuoliRequest(Action.Order.USER_ORDER_LIST,
 					new UserOderListBean(LoginUtils.uid));
 		}else if(LoginUtils.isLogin==1){
+		    showRightCall();
 			request=new GuoliRequest(Action.Order.UNLOGIN_SEARCH, new UnLoginBean(LoginUtils.mobile));
 		}
 	}
