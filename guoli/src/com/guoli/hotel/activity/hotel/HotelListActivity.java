@@ -60,7 +60,7 @@ public class HotelListActivity extends BaseActivity implements OnItemClickListen
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         new BottomTabbar(this, 1);
-        showLeftBtn();
+//        showLeftBtn();
         showRightBtn();
         syncData();
     }

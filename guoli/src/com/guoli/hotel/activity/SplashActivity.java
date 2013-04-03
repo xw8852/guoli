@@ -48,6 +48,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
         loadAppVersion();
+        delayToNextPage();
         ((GuoliApplication)getApplication()).startTimer();
     }
 
@@ -79,7 +80,7 @@ public class SplashActivity extends Activity {
             Log.i("SplashActivity", "response=" + (response == null ? null : response.result));
             Map<String, Object> map = JsonUtils.convertToMap((String) (response == null ? "" : response.result));
             LoginUtils.appVersion = (String) map.get("curver");
-            delayToNextPage();
+//            delayToNextPage();
         }
         
         @Override
