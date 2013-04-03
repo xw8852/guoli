@@ -10,6 +10,8 @@
 
 package com.guoli.hotel.bean;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -64,7 +66,7 @@ public class HotelDetailInfo {
     
     /**交通信息*/
     @SerializedName("trafficinfo")
-    private TrafficInfo trafficInfo;
+    private List<TrafficInfo> trafficInfos;
     
     /**客房设施*/
     @SerializedName("roomfacility")
@@ -98,6 +100,18 @@ public class HotelDetailInfo {
     @SerializedName("filename")
     private String picName;
     
+    /**提示*/
+    @SerializedName("prompt")
+    private String notice;
+    
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
     public String getId() {
         return id;
     }
@@ -178,12 +192,12 @@ public class HotelDetailInfo {
         this.mapy = mapy;
     }
 
-    public TrafficInfo getTrafficInfo() {
-        return trafficInfo;
+    public List<TrafficInfo> getTrafficInfos() {
+        return trafficInfos;
     }
 
-    public void setTrafficInfo(TrafficInfo trafficInfo) {
-        this.trafficInfo = trafficInfo;
+    public void setTrafficInfos(List<TrafficInfo> trafficInfos) {
+        this.trafficInfos = trafficInfos;
     }
 
     public String getRoomFacility() {

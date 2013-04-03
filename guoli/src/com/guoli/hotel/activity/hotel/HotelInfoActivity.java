@@ -14,6 +14,9 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
@@ -101,7 +104,7 @@ public class HotelInfoActivity extends BaseActivity {
         ((TextView)findViewById(R.id.hotelNameView)).setText(info.getName());
         ((TextView)findViewById(R.id.hotelPhoneView)).setText(info.getPhone());
         //特别提示
-//        ((TextView)findViewById(R.id.hotelNoticeView)).setText("");
+        ((TextView)findViewById(R.id.hotelNoticeView)).setText(info.getNotice());
         ((TextView)findViewById(R.id.hotelPhoneView)).setText(info.getPhone());
         //附加选项
 //        ((TextView)findViewById(R.id.attachedOperationsView)).setText("");
@@ -114,7 +117,7 @@ public class HotelInfoActivity extends BaseActivity {
         //信用卡
         ((TextView)findViewById(R.id.allowCreditcardView)).setText(info.getCreditCard());
         //交通位置
-        initTrafficView(info.getTrafficInfo());
+        initTrafficView(info.getTrafficInfos());
         //酒店简介&#160;
         String introduce = info.getIntroduce();
         if (introduce != null) {
@@ -130,36 +133,17 @@ public class HotelInfoActivity extends BaseActivity {
      * @param info
      * @since JDK 1.6
      */
-    private void initTrafficView(TrafficInfo info) {
-        if (info == null) {
+    private void initTrafficView(List<TrafficInfo> list) {
+        if (list == null) {
             return;
         }
-        StringBuilder buffer = new StringBuilder();
-        List<String> list = info.getCityCenter();
-        final String LINE = "\n";
-        if (list != null && list.size() > 0) {
-            for (String center : list) {
-                buffer.append(center).append(LINE);
-            }
+        LinearLayout parentView = (LinearLayout) findViewById(R.id.trafficLayout);
+        for (TrafficInfo info : list) {
+            View view = LayoutInflater.from(this).inflate(R.layout.hotel_traffic_item, null);
+            ((TextView)view.findViewById(R.id.locationView)).setText(info.getName());
+            ((TextView)view.findViewById(R.id.distanceView)).setText(info.getDistance());
+            parentView.addView(view);
         }
-        list = info.getAirPorts();
-        if (list != null && list.size() > 0) {
-            for (String desc : list) {
-                buffer.append(desc).append(LINE);
-            }
-        }
-        list = info.getRailwayStations();
-        if (list != null && list.size() > 0) {
-            int size = list.size();
-            for (int index = 0 ; index < size ; index++) {
-                if (index == size - 1) {
-                    buffer.append(list.get(index));
-                    continue;
-                }
-                buffer.append(list.get(index)).append(LINE);
-            }
-        }
-        ((TextView)findViewById(R.id.trafficView)).setText(buffer.toString());
     }
 }
 

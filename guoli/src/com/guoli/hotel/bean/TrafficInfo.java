@@ -10,9 +10,8 @@
 
 package com.guoli.hotel.bean;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
+
 
 /**
  * ClassName:TrafficInfo <br/>
@@ -24,41 +23,28 @@ import com.google.gson.annotations.SerializedName;
  * @see
  */
 public class TrafficInfo {
+    
+    /**位置名称*/
+    @SerializedName("add")
+    private String name;
+    
+    /**距离*/
+    @SerializedName("distance")
+    private String distance;
 
-    /** 市中心 */
-    @SerializedName("shizhongxin")
-    private List<String> cityCenter;
-
-    /** 机场 */
-    @SerializedName("jichang")
-    private List<String> airPorts;
-
-    /** 火车站 */
-    @SerializedName("huochezhan")
-    private List<String> railwayStations;
-
-    public List<String> getCityCenter() {
-        return cityCenter;
+    public String getName() {
+        return name;
     }
 
-    public void setCityCenter(List<String> cityCenter) {
-        this.cityCenter = cityCenter;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<String> getAirPorts() {
-        return airPorts;
+    public String getDistance() {
+        return distance;
     }
 
-    public void setAirPorts(List<String> airPorts) {
-        this.airPorts = airPorts;
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
-
-    public List<String> getRailwayStations() {
-        return railwayStations;
-    }
-
-    public void setRailwayStations(List<String> railwayStations) {
-        this.railwayStations = railwayStations;
-    }
-
 }

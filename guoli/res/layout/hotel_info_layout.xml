@@ -67,90 +67,15 @@
                 android:textSize="16sp"
                 android:text="@string/traffic_location" />
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/trafficLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp" >
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical"/>
 
-                <TextView
-                    android:id="@+id/trafficView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="" />
-                
-                <!-- 
-                <TextView
-                    android:id="@+id/trafficStationDistance1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="17.01公里" />
-
-                <TextView
-                    android:id="@+id/trafficStation2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/trafficStation1"
-                    android:text="上海火车站" />
-
-                <TextView
-                    android:id="@+id/trafficStationDistance2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/trafficStationDistance1"
-                    android:text="23.01公里" />
-
-                <TextView
-                    android:id="@+id/trafficStation3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/trafficStation2"
-                    android:text="上海浦东国际机场" />
-
-                <TextView
-                    android:id="@+id/trafficStationDistance3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/trafficStationDistance2"
-                    android:text="12.01公里" />
-
-                <TextView
-                    android:id="@+id/trafficStation4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/trafficStation3"
-                    android:text="上海虹桥火车站" />
-
-                <TextView
-                    android:id="@+id/trafficStationDistance4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/trafficStationDistance3"
-                    android:text="35.01公里" />
-
-                <TextView
-                    android:id="@+id/trafficStation5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/trafficStation4"
-                    android:text="人民广场" />
-
-                <TextView
-                    android:id="@+id/trafficStationDistance5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/trafficStationDistance4"
-                    android:text="22.01公里" /> -->
-            </RelativeLayout>
 
             <include layout="@layout/line_grey" />
             <!-- 酒店信息 -->
