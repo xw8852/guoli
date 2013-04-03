@@ -46,7 +46,7 @@
 
     <!-- 订单提交成功页面 -->
     <string name="commit_order_sucess_title">订单提交成功</string>
-    <string name="continue_reserve">继续预定</string>
+    <string name="continue_reserve">继续预订</string>
     <string name="look_over_order">查看订单</string>
 
     <!-- 订单详细页面 -->
@@ -118,7 +118,7 @@
     <string name="vantages">积分：200</string>
     <!-- 登陆 -->
     <string name="login_user">登&#160;录&#160;名&#160;:&#160;</string>
-    <string name="login_user_tips">请输入昵称或者手机号码</string>
+    <string name="login_user_tips">请输入手机号码</string>
     <string name="login_password">密&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
     <string name="login_password_tips">6&#8211;12位英文或数字</string>
     <string name="logon_regest">免费注册&gt;&gt;</string>
@@ -126,6 +126,7 @@
     <string name="login">登录</string>
     <string name="login_unregest_prompt">不是会员也能直接预订,享受快捷</string>
     <string name="login_unregest">非会员直接预订</string>
+    <string name="login_unregest_search">非会员订单查询</string>
     <string name="register_send">确认提交</string>
     <!-- 忘记密码 -->
     <string name="forget_phone">手机号码&#160;:&#160;</string>

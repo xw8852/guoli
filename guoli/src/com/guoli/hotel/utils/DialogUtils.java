@@ -39,8 +39,8 @@ public class DialogUtils {
 
 	public static void showDialog(String title, String message,
 			DialogInterface.OnClickListener sureClickListener, Context context) {
-		showDialog(title, message, context.getString(R.string.dialog_sure),
-				context.getString(R.string.dialog_cancel), sureClickListener,
+		showDialog(title, message,context.getString(R.string.dialog_cancel),
+		        context.getString(R.string.dialog_sure), sureClickListener,
 				context);
 	}
 

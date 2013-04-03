@@ -149,7 +149,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		TextView tv=(TextView)findViewById(R.id.textView4);
 		/** 0-未付款（未成交） 1-已付款（成交） 2-取消（放弃） 3-交易关闭4-已退款，6-退款中，8-交易成功) */
 		if ("0".equals(info.tradestatus)) {
-			tv.setText("已付款");
+			tv.setText("未付款");
 		}else if ("1".equals(info.tradestatus)) {
 			tv.setText("已付款");
 		} else if ("2".equals(info.tradestatus)) {
@@ -165,7 +165,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		}
 		//TODO:订单编号
 		tv=(TextView)findViewById(R.id.textView5);
-		tv.setText(info.productcode);
+		tv.setText(info.orderno);
 		//TODO:金额
 		tv=(TextView)findViewById(R.id.textView6);
 		tv.setText("￥"+info.paymentmoney);

@@ -356,7 +356,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                     //判断用户是否登录
                     if (LoginUtils.isLogin == 0) {  //未登录
                         startActivityForResult(new Intent(HotelDetailActivity.this, OrderAuthenticActivity.class)
-                        .putExtra(OrderAuthenticActivity.PARAM_AUTHER, true), 0);
+                        .putExtra(OrderAuthenticActivity.PARAM_AUTHER, true).putExtra(LoginActivity.PARAM_ORDER, true), 0);
                         return;
                     }
                     onLoginSuccess();

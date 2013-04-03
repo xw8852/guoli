@@ -346,7 +346,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             }
             Intent intent = new Intent();
             HashMap<String, String> map = JsonUtils.convertJsonToHashMap(response.getData().toString());
-            String notice = map.get("orderno");
+            String notice = map.get("message");
             intent.putExtra(CommitOrderSuccessActivity.KEY_RESPONSE_NOTICE, notice);
             Log.i(TAG, "onSuccess()----> notice=" + notice);
             intent.setClass(EditOrderActivity.this, CommitOrderSuccessActivity.class);
