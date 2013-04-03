@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.net.bean;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -24,7 +25,7 @@ import com.google.gson.annotations.SerializedName;
  * @since    JDK 1.6
  * @see 	 
  */
-public class CityInfo implements Parcelable {
+public class CityInfo implements Parcelable{
     /**城市名称*/
     @SerializedName("name")
     private String cityName;
@@ -106,5 +107,9 @@ public class CityInfo implements Parcelable {
             return info;
         }
     };
+
+  
+
+    
 }
 
