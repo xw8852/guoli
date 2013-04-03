@@ -124,15 +124,14 @@ public class RecommendDetailActivity extends CallActivity {
         String res = getResources().getString(R.string.address);
         ((TextView)findViewById(R.id.hotelAdressView)).setText(String.format(res, info.getAddress()));
         res = getResources().getString(R.string.price_desc);
-        ((TextView)findViewById(R.id.hotelPriceView)).setText(String.format(res, info.getGuoliPrice()));
+        ((TextView)findViewById(R.id.hotelPriceView)).setText(String.format(res, info.getPrice()));
         res = getResources().getString(R.string.discount_desc);
         String discount = NumberUtils.formatDiscount(info.getDiscount(), this);
-//        ((TextView)findViewById(R.id.hotelDiscountView)).setText(String.format(res, discount));
         ((TextView)findViewById(R.id.hotelDiscountView)).setText(
         		DiscountUtils.formatDiscount(res, discount));
         res = getResources().getString(R.string.period_date);
         ((TextView)findViewById(R.id.hotelBriefView)).setText(info.getBrief());
-        ((TextView)findViewById(R.id.hotelNoticeView)).setText("sfdfsfsdfsdf");
+        //TODO 
         ((TextView)findViewById(R.id.dateLifeView)).setText(String.format(res, info.getDate()));
         String countText = "";
         if (mRespInfo != null) {
@@ -140,7 +139,12 @@ public class RecommendDetailActivity extends CallActivity {
             countText = String.format(res, mRespInfo.getCount());
         }
         ((TextView)findViewById(R.id.picCountView)).setText(countText);
-        ((RatingBar)findViewById(R.id.hotelLevelView)).setRating(info.getLevel());
+        
+        //星级
+        int stars = info.getLevel();
+        RatingBar starBar = (RatingBar)findViewById(R.id.hotelLevelView);
+        starBar.setNumStars(stars);
+        starBar.setRating(stars);
         ImageView mView=(ImageView)findViewById(R.id.hotelImgView);
         res = null;
         Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(),info.getPicName()), mView, R.drawable.hotel_default);
