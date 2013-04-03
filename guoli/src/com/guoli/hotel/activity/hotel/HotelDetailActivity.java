@@ -383,15 +383,15 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             holder.more.setVisibility(model.isShowMore ? View.VISIBLE : View.GONE);
             holder.typeNameView.setText(info.getName() + "");
             holder.discountView.setText(DiscountUtils.formatDiscount(info.getDiscount()));
-            holder.priceView.setText("￥" + (int) info.getPrice());
+            holder.priceView.setText("￥" + (int) info.getActprice());
             int bebType = info.getBedType();
             String bedContent = "";
-            if (bebType - 1 > 0 && bebType - 1 < bedTypes.length) {
+            if (bebType - 1 >= 0 && bebType - 1 < bedTypes.length) {
                 bedContent = bedTypes[bebType - 1];
             }
             int breakfastType = info.getBreakfastType();
             String breakfastContent = "";
-            if (breakfastType - 1 > 0 && breakfastType - 1 < breakfastTypes.length) {
+            if (breakfastType - 1 >= 0 && breakfastType - 1 < breakfastTypes.length) {
                 breakfastContent = breakfastTypes[breakfastType - 1];
             }
             String bedBreakfast = getResources().getString(R.string.bed_and_breakfast);
@@ -475,7 +475,10 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         HotelDetailInfo info = respInfo.getHotelInfo();
         if (info != null) {
             ((TextView) findViewById(R.id.name_view)).setText(info.getName());
-            ((RatingBar) findViewById(R.id.star_level)).setRating(info.getStar());
+            int stars = info.getStar();
+            RatingBar starBar = (RatingBar) findViewById(R.id.star_level);
+            starBar.setNumStars(stars);
+            starBar.setRating(stars);
             ((TextView) findViewById(R.id.address_textview)).setText(info.getAddress());
             String count = getResources().getString(R.string.pic_count);
             count = String.format(count, respInfo.getPicCount());
@@ -502,7 +505,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private void initHistoryViews(HotelDetailInfo info) {
         if (info == null) { return; }
         String history = getResources().getString(R.string.history);
-        history = String.format(history, info.getOpendate(), info.getDecorationdate());
+        String decorationDate = info.getDecorationdate();
+        history = String.format(history, info.getOpendate(), decorationDate);
+        if (("0").equals(decorationDate)) {
+            int index = history.lastIndexOf("0");
+            history = history.substring(0, index);
+        }
         ((TextView) findViewById(R.id.history_layout)).setText(history);
     }
 

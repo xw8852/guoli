@@ -25,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="3dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:paddingRight="10dp" />
+            android:paddingRight="8dp" />
     </RelativeLayout>
 
     <!-- 排序过滤控件布局 -->

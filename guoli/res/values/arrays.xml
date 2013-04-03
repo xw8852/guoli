@@ -41,7 +41,7 @@
         <item >discount_asc</item>
     </string-array>
     <string-array name="room_breakfast">
-        <item >无</item>
+        <item >无早</item>
         <item >单早</item>
         <item >双早</item>
     </string-array>
