@@ -24,4 +24,6 @@ public final class LoginUtils {
 	 * 非会员登录的之后，保存的手机号码
 	 */
 	public static String mobile = null;
+	/**app版本号*/
+	public static String appVersion = null;
 }

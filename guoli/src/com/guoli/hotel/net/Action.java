@@ -40,6 +40,8 @@ public final class Action {
         public static final String MobileValidate="system_mobilecheck";
         /**意见反馈*/
         public static final String FEEDBACK="";
+        /**首页加载*/
+        public static final String SYSTEM_LOADING = "system_loading";
     }
     
     /**

@@ -30,6 +30,7 @@ import com.guoli.hotel.bean.LocationInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.CityRequestParams;
 import com.guoli.hotel.parse.AreaParase;
+import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
@@ -149,6 +150,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         showLoadingDialog(R.string.loading_msg);
         CityRequestParams params = new CityRequestParams();
         params.setCityCode(mCityCode);
+        params.setVersion(LoginUtils.appVersion);
         Request request = new GuoliRequest("system_arealist", params);
         Log.i("AreaListActivity", "request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mLoadListener);

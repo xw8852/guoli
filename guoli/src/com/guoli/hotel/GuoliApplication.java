@@ -39,6 +39,7 @@ public class GuoliApplication extends Controller {
                     LoginUtils.mobile="";
                     LoginUtils.uid="";
                     LoginUtils.username=""; 
+                    LoginUtils.appVersion = "";
                 }
             }
         }, 1000, 1000);

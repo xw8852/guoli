@@ -10,6 +10,8 @@
 
 package com.guoli.hotel.net.request.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * ClassName:CityRequestParams <br/>
  * 
@@ -22,7 +24,11 @@ package com.guoli.hotel.net.request.bean;
 public class CityRequestParams implements IRequestParams {
 
     /** 城市编号 */
+    @SerializedName("citycode")
     private String cityCode;
+    
+    @SerializedName("version")
+    private String version;
 
     public String getCityCode() {
         return cityCode;
@@ -32,8 +38,16 @@ public class CityRequestParams implements IRequestParams {
         this.cityCode = cityCode;
     }
 
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
-        return "[cityCode:" + cityCode + "]";
+        return "[cityCode:" + cityCode + ", version=" + version + "]";
     }
 }
