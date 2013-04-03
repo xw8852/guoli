@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -30,7 +31,9 @@ public class LoginActivity extends BaseActivity2 {
 
 	public static final int RESULT_LOGIN_OK = 0x0001;
 	public static final int RESULT_UN_LOGIN = 0x0002;
-
+	public static final String PARAM_SEACRCH="order_search";
+	public static final String PARAM_ORDER="order";
+	
 	private EditText passwordView;
 	private String password;
 	private EditText idView;
@@ -44,12 +47,18 @@ public class LoginActivity extends BaseActivity2 {
 		findViewById(R.id.textView6).setOnClickListener(onForgetPassword);
 		findViewById(R.id.textView7).setOnClickListener(onRegistUser);
 		findViewById(R.id.button2).setOnClickListener(onLoginListener);
-		findViewById(R.id.button1).setOnClickListener(onUnLogClickListener);
+		Button unLoginBtn = (Button)findViewById(R.id.button1);
+		unLoginBtn.setOnClickListener(onUnLogClickListener);
 
 		unregestLayout = (LinearLayout) findViewById(R.id.unregestLayout);
 		passwordView = (EditText) findViewById(R.id.textView5);
 		idView = (EditText) findViewById(R.id.textView3);
 		hideLayout();
+		if(getIntent().hasExtra(PARAM_SEACRCH)){
+		    unLoginBtn.setText(R.string.login_unregest_search);
+		}else if(getIntent().hasExtra(PARAM_ORDER)){
+		    unLoginBtn.setText(R.string.login_unregest);
+		}
 	}
 
 	@Override

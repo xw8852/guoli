@@ -28,6 +28,7 @@ import com.msx7.core.command.model.Response;
 
 public class OrderAuthenticActivity extends BaseActivity2 {
     public static final String PARAM_AUTHER="login_for_result";
+
     EditText mPhoneEditText;
     EditText mValidateEditText;
     Dialog mDialog;
@@ -37,9 +38,15 @@ public class OrderAuthenticActivity extends BaseActivity2 {
         setTitle(R.string.order_title_search);
         isResult=getIntent().getBooleanExtra(PARAM_AUTHER, false);
         // 检查是否已经登录
-        if (0 == LoginUtils.isLogin)
-            startActivityForResult(new Intent(this, LoginActivity.class), 0);
-        else if(!isResult){
+        if (0 == LoginUtils.isLogin){
+            Intent intent=new Intent(this, LoginActivity.class);
+            if(getIntent().hasExtra(LoginActivity.PARAM_ORDER)){
+                intent.putExtra(LoginActivity.PARAM_ORDER, true);
+            }else {
+                intent.putExtra(LoginActivity.PARAM_SEACRCH, true);
+            }
+            startActivityForResult(intent, 0);
+        }else if(!isResult){
             onLoginSuccess();
         }else {
             setResult(LoginActivity.RESULT_LOGIN_OK);

@@ -46,7 +46,7 @@ public class CommitOrderSuccessActivity extends BaseActivity {
         
         TextView noticeView = (TextView) findViewById(R.id.commit_success_prompt);
         String notice = getIntent().getStringExtra(KEY_RESPONSE_NOTICE);
-        noticeView.setText(getString(R.string.order_commit_success_tips, notice));
+        noticeView.setText(notice);
     }
 
     @Override
