@@ -53,32 +53,30 @@
                     android:singleLine="true"
                     android:text="" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/hotelAdressView"
-                    android:layout_toLeftOf="@+id/hotelImgView" >
-
-                    <TextView
+                <TextView
                         android:id="@+id/hotelPriceView"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_below="@+id/hotelAdressView"
+                        android:layout_toLeftOf="@+id/hotelDiscountView"
+                        android:layout_alignLeft="@+id/hotelAdressView"
                         android:text=""
                         android:textColor="#ed6800"
                         android:textSize="18sp" />
-
-                    <TextView
+                
+                <TextView
                         android:id="@+id/hotelDiscountView"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_toLeftOf="@+id/imgLayout"
+                        android:layout_alignTop="@+id/hotelPriceView"
+                        android:layout_marginRight="8dp"
                         android:text=""
                         android:textColor="#ed6800"
                         android:textSize="18sp" />
-                </LinearLayout>
 
                 <FrameLayout
+                    android:id="@+id/imgLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true" >
@@ -114,21 +112,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
-                android:text="" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/guoli_notice"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/hotelNoticeView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="4dp"
                 android:text="" />
         </LinearLayout>
     </ScrollView>
