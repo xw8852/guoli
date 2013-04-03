@@ -87,6 +87,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private RoomRespInfo info;
     private RoomTypeInfo mRoomInfo;
     
+    private double lat = 0;
+    private double lng = 0;
     private String shopid;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
@@ -177,7 +179,13 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             startActivity(intent);
             break;
         case R.id.address_layout:
+        	if (lat == 0 && lng == 0) {
+				ToastUtil.show("暂无数据");
+				return;
+			}
             intent = new Intent();
+            intent.putExtra(HotelLocationActivity.KEY_LONGITUDE, lng);
+            intent.putExtra(HotelLocationActivity.KEY_LATITUDE, lat);
             intent.setClass(this, HotelLocationActivity.class);
             startActivity(intent);
             break;
@@ -450,7 +458,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             if (response == null) {
             return;
             }
-             info = new HotelRoomParse().parseResponse(response);
+            info = new HotelRoomParse().parseResponse(response);
             
             initViews(info);
         }
@@ -485,6 +493,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             //酒店图片
             ImageView imgView = (ImageView)findViewById(R.id.pic_view);
             Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getPicName()), imgView, R.drawable.hotel_default);
+            lng = info.getMapx();
+            lat = info.getMapy();
         }
         HotelParamsInfo paramsInfo = respInfo.getParamsInfo();
         if (paramsInfo != null) {

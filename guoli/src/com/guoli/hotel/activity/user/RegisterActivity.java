@@ -18,6 +18,7 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.GetIdentifyBean;
 import com.guoli.hotel.net.request.bean.UserRegisterBean;
 import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
@@ -37,6 +38,7 @@ public class RegisterActivity extends BaseActivity2 {
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
+		setTitle(R.string.register);
 		passwordView = (EditText) findViewById(R.id.pwd);
 		phoneView = (EditText) findViewById(R.id.phone);
 		multiPwdView = (EditText) findViewById(R.id.multi_pwd);
@@ -55,11 +57,17 @@ public class RegisterActivity extends BaseActivity2 {
 		@Override
 		public void onClick(View v) {
 			phone = phoneView.getText().toString().trim();
+
+			if (!UserController.isMoblieNumber(phoneView)) {
+				ToastUtil.show("请输入正确的手机号码");
+				return;
+			}
+
 			if (!TextUtils.isEmpty(phone)) {
 				Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
 				Manager.getInstance().executePoset(request, getResponseListener);
-				
-				dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "注册中...");
+
+				dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "发送中...");
 			} else {
 				Toast.makeText(RegisterActivity.this, "null", Toast.LENGTH_SHORT).show();
 			}
@@ -73,7 +81,7 @@ public class RegisterActivity extends BaseActivity2 {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-			
+
 			if (null == response) {
 				return;
 			}
@@ -92,7 +100,7 @@ public class RegisterActivity extends BaseActivity2 {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-			
+
 			if (!(response.result instanceof Exception)) {
 				Log.d("MSG", "onError:" + response.toString());
 			}
@@ -146,8 +154,9 @@ public class RegisterActivity extends BaseActivity2 {
 					new TypeToken<HashMap<String, Object>>() {
 					}.getType());
 			if ("1".equals(map.get("success").toString())) {
-//				RegisterUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")),
-//						RegisterUserInfo.class);
+				// RegisterUserInfo info = new Gson().fromJson(new
+				// Gson().toJson(map.get("userinfo")),
+				// RegisterUserInfo.class);
 				setResult(RESULT_OK);
 				finish();
 			}
