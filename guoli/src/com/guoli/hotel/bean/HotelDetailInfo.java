@@ -94,6 +94,10 @@ public class HotelDetailInfo {
     @SerializedName("phone")
     private String phone;
     
+    /**酒店图片名称*/
+    @SerializedName("filename")
+    private String picName;
+    
     public String getId() {
         return id;
     }
@@ -236,6 +240,14 @@ public class HotelDetailInfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPicName() {
+        return picName;
+    }
+
+    public void setPicName(String picName) {
+        this.picName = picName;
     }
     
    /* @Override

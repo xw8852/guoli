@@ -60,4 +60,18 @@ public final class Action {
          */
         public static final String USER_UNLOGIN="user_mblogin";
     }
+    
+    /**
+     * ClassName: Hotel <br/>
+     * date: 2013-4-2 下午3:49:15 <br/>
+     * 
+     * @Description:    酒店接口
+     * @author maple
+     * @version Action
+     * @since JDK 1.6
+     */
+    public static final class Hotel{
+        /**酒店图片列表*/
+        public static final String HOTEL_PIC = "hotel_hotelpic";
+    }
 }

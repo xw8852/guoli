@@ -8,27 +8,32 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
-import com.guoli.hotel.activity.hotel.PicGridActivity.PicModel;
+import com.guoli.hotel.net.response.bean.PicInfo;
+import com.guoli.hotel.utils.ImageUtil;
+import com.msx7.core.Controller;
 
 public class BigPicActivity extends BaseActivity2 {
     ViewPager mPager;
-    ArrayList<PicModel> models;
+    ArrayList<PicInfo> models;
     ArrayList<View> views = new ArrayList<View>();
 
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         mPager = (ViewPager) findViewById(R.id.ViewPager1);
-        ArrayList<Parcelable> data = getIntent().getParcelableArrayListExtra("data");
+        ArrayList<Parcelable> list = getIntent().getParcelableArrayListExtra("data");
         int index = getIntent().getIntExtra("index", 0);
-        for (Parcelable parcelable : data) {
-            PicModel model=(PicModel)parcelable;
+        for (Parcelable parcelable : list) {
+            PicInfo info=(PicInfo)parcelable;
             View view = getLayoutInflater().inflate(R.layout.pic_big_cell, null);
             TextView name = (TextView)view.findViewById(R.id.name);
-            name.setText(model.name);
+            ImageView imgView = (ImageView) view.findViewById(R.id.icon);
+            initImageView(imgView, info);
+            name.setText(info.getName());
             views.add(view);
         }
         mPager.setAdapter(new PicAdapter());
@@ -50,6 +55,11 @@ public class BigPicActivity extends BaseActivity2 {
             }
         });
         mPager.setCurrentItem(index);
+    }
+    
+    private void initImageView(ImageView imgView, PicInfo info){
+        String picPath = getIntent().getStringExtra(PicGridActivity.KEY_PIC_PATH);
+        Controller.getApplication().loadThumbnailImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
     }
 
     @Override

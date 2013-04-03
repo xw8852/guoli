@@ -36,7 +36,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-
 import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
@@ -53,9 +52,11 @@ import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.DiscountUtils;
+import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.NetUtils;
 import com.guoli.hotel.utils.ToastUtil;
+import com.msx7.core.Controller;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
@@ -78,7 +79,6 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private HotelRoom mHotelRoom;
     private TextView mInDateView;
     private TextView mOutDateView;
-    public ImageView mImageView;
     private static final int DIALOG_IN_DATE = 1;
     private static final int DIALOG_OUT_DATE = 2;
     private static final String FORMAT_STYLE = "yyyy-MM-dd";
@@ -87,7 +87,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     private RoomRespInfo info;
     private RoomTypeInfo mRoomInfo;
     
-    String shopid;
+    private String shopid;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
 
@@ -147,7 +147,6 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         mInDateView = ((TextView) findViewById(R.id.inDateView));
         mOutDateView = ((TextView) findViewById(R.id.outDateView));
         mRoomsListView = (ListView) findViewById(R.id.listView1);
-        mImageView=(ImageView)findViewById(R.id.pic_view);
         collectBtn.setOnClickListener(this);
         picLayout.setOnClickListener(this);
         addressLayout.setOnClickListener(this);
@@ -171,6 +170,10 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             break;
         case R.id.pic_view:
             intent = new Intent(this, PicGridActivity.class);
+            intent.putExtra(PicGridActivity.KEY_HOTEL_ID, shopid);
+            HotelDetailInfo detailInfo = info.getHotelInfo();
+            String picPath = detailInfo == null ? "" : detailInfo.getPicPath();
+            intent.putExtra(PicGridActivity.KEY_PIC_PATH, picPath);
             startActivity(intent);
             break;
         case R.id.address_layout:
@@ -479,6 +482,9 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             ((TextView) findViewById(R.id.pic_count_view)).setText(count);
             // 酒店历史
             initHistoryViews(info);
+            //酒店图片
+            ImageView imgView = (ImageView)findViewById(R.id.pic_view);
+            Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getPicName()), imgView, R.drawable.hotel_default);
         }
         HotelParamsInfo paramsInfo = respInfo.getParamsInfo();
         if (paramsInfo != null) {
@@ -490,7 +496,6 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             shopid = paramsInfo.getId();
         }
         initRoomsTypeViews(respInfo.getRoomTypeInfos());
-//        Controller.getApplication().loadThumbnailImage(GuoliApplication.PIC_PATH_PRE+File.separator+info.getPicPath()+info.getPicName(), m, R.drawable.hotel_default);
 
     }
 
