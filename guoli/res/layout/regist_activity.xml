@@ -150,6 +150,8 @@
         android:layout_marginRight="@dimen/small_margin"
         android:layout_marginTop="@dimen/large_margin"
         android:background="@drawable/btn_commit"
-        android:text="@string/register_send" />
+        android:text="@string/register_send"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

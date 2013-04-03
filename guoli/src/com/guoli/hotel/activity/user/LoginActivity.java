@@ -22,7 +22,9 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.UserRegisterBean;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.LoginUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
@@ -146,6 +148,9 @@ public class LoginActivity extends BaseActivity2 {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
+			
+			Log.i("tag", "response=" + (response == null ? null : response.result));
+			ToastUtil.show(ErrorCode.getErrorCodeString(response.errorCode));
 		}
 	};
 
@@ -166,7 +171,6 @@ public class LoginActivity extends BaseActivity2 {
 		LoginUtils.uid = uid;
 		LoginUtils.username = username;
 		LoginUtils.memberMobile = mobile;
-		Log.w("login mobile", mobile);
 	}
 	
 	/**

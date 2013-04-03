@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <include layout="@layout/title_bar"/>
-    
-    <ImageView android:layout_width="fill_parent"
+
+    <include layout="@layout/title_bar" />
+
+    <com.baidu.mapapi.MapView
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/location_map"/>
+        android:background="@drawable/location_map" />
+
 </LinearLayout>
