@@ -59,8 +59,10 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		orderno=getIntent().getStringExtra(PARAM_ORDER_NO);
 		GuoliRequest request=null;
 		if(LoginUtils.isLogin==2){
+		    showRightExit();
 			request=new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(orderno, LoginUtils.uid));
 		}else{
+		    showRightCall();
 			mobile=LoginUtils.mobile;
 			request=new GuoliRequest(Action.Order.OrderDetail, OrderDetailBean.buildBean(orderno, mobile));
 		}
@@ -204,6 +206,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
 			if(!"1".equals(info.ispay)){
 				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.GONE);
+				findViewById(R.id.btn_view).findViewById(R.id.button3).setBackgroundResource(R.drawable.pay_order_btn);
 			}
 		}else if("1".equals(info.tradestatus)){
 			findViewById(R.id.button1).setVisibility(View.VISIBLE);

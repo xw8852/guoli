@@ -148,8 +148,8 @@
     <string name="order_search">查询</string>
     <string name="order_title_search">订单查询</string>
     <!-- 酒店列表 -->
-    <string name="order_list_timedate">%1$s至\n%2$s</string>
-    <string name="order_list_timedate_0">2012&#8211;01&#8211;02至\n2012&#8211;03&#8211;04</string>
+    <string name="order_list_timedate">%1$s至%2$s</string>
+    <string name="order_list_timedate_0">2012&#8211;01&#8211;02至2012&#8211;03&#8211;04</string>
     <string name="order_list_timedate_1">2012&#8211;01&#8211;02至2012&#8211;03&#8211;04</string>
 
     <!-- 酒店详细 -->

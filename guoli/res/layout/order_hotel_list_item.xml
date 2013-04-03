@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:padding="@dimen/small_margin"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:padding="@dimen/small_margin" >
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/small_margin"
         android:layout_weight="1" >
 
         <TextView
@@ -20,35 +21,27 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/font_grey" />
 
-        <LinearLayout
-            android:id="@+id/layout"
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView5"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:orientation="horizontal" >
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:text="上海浦东香格里拉大酒店"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:singleLine="true"
-                android:text="上海浦东香格里拉大酒店"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/small_margin"
-                android:singleLine="true"
-                android:text="平日房"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/font_grey" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:singleLine="true"
+            android:text="平日房"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/font_grey" />
 
         <TextView
             android:id="@+id/textView7"
@@ -57,50 +50,55 @@
             android:layout_alignBottom="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/textView8"
-            android:layout_below="@+id/layout"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="入住时间:"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+             android:textSize="14sp" 
             android:textColor="@color/font_grey" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout"
+            android:layout_below="@+id/textView6"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/textView7"
-            android:layout_marginLeft="@dimen/small_margin"
             android:text="@string/order_list_timedate_0"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+             android:textSize="14sp" 
             android:textColor="@color/font_grey" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/textView6"
+            android:drawableRight="@drawable/back_light"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toLeftOf="@+id/textView3"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="待确认"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/textView2"
+            android:gravity="center"
+            android:text="￥1056"
+            android:textColor="@color/orange"
+            android:textSize="16sp" />
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"   
-        android:layout_marginLeft="@dimen/small_margin"
-        android:text="￥1056"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/orange" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/small_margin"
-        android:text="待确认"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/back_light"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>
