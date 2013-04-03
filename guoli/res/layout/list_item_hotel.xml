@@ -84,6 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/hotel_address"
+            android:layout_marginRight="8dp"
+            android:textSize="18sp"
+            android:textColor="#F87817"
             android:text="1067起" />
         <!-- 折扣 -->
 
@@ -92,8 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
             android:layout_below="@+id/hotel_price"
             android:layout_alignTop="@+id/hotel_area"
+            android:textColor="#F87817"
             android:text="4.6折起" />
         <!-- 电询 -->
 

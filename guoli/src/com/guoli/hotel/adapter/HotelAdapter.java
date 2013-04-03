@@ -110,6 +110,7 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+        ratingBar.setNumStars(num);
         ratingBar.setRating(num);
     }
 

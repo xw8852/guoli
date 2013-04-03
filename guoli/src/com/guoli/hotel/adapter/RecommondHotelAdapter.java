@@ -64,10 +64,9 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
             holder.nameView = (TextView) convertView.findViewById(R.id.hotel_name);
             holder.dateView = (TextView) convertView.findViewById(R.id.hotelDate);
             holder.addressView = (TextView) convertView.findViewById(R.id.hotel_address);
-            holder.reasonView = (TextView) convertView.findViewById(R.id.hotelReason);
             holder.areaView = (TextView) convertView.findViewById(R.id.hotelAreaView);
             holder.priceView = (TextView) convertView.findViewById(R.id.hotelPriceView);
-            holder.discountView = (TextView) convertView.findViewById(R.id.hotel_discount);
+            holder.discountView = (TextView) convertView.findViewById(R.id.hotelDiscountView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -85,9 +84,11 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
         Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(),info.getPicName()),holder.imgView,R.drawable.hotel_default);
         holder.nameView.setText(info.getName());
         initDateView(holder.dateView, info.getDate());
-        initRecommandReasonView(holder.reasonView, info.getReason());
+        holder.ratingBar.setNumStars(info.getLevel());
         holder.ratingBar.setRating(info.getLevel());
-        holder.priceView.setText(info.getPrice() + "");
+        String price = getContext().getString(R.string.price_desc);
+        price = String.format(price, (int)info.getPrice());
+        holder.priceView.setText(price);
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getZone());
         holder.discountView.setText(formatDiscount(info.getDiscount()));
@@ -147,7 +148,6 @@ public class RecommondHotelAdapter extends AbstractAdapter<RecommendHotelInfo> {
         TextView nameView;
         TextView dateView;
         TextView addressView;
-        TextView reasonView;
         TextView areaView;
         TextView priceView;
         TextView discountView;
