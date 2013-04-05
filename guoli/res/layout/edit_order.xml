@@ -19,8 +19,7 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_round_rect_grey" 
-                >
+                android:background="@drawable/shape_round_rect_grey" >
 
                 <TextView
                     android:id="@+id/hotel_name"
@@ -29,6 +28,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="" />
 
                 <TextView
@@ -45,6 +45,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_date" />
 
                 <TextView
@@ -55,6 +56,7 @@
                     android:layout_toRightOf="@+id/date_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
+                    android:textSize="16sp"
                     android:text="" />
 
                 <TextView
@@ -71,6 +73,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_room_type" />
 
                 <TextView
@@ -81,6 +84,7 @@
                     android:layout_toRightOf="@+id/room_type_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
+                    android:textSize="16sp"
                     android:text="" />
 
                 <TextView
@@ -97,6 +101,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_room_count" />
 
                 <TextView
@@ -107,8 +112,8 @@
                     android:layout_toRightOf="@+id/room_count_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:text=""
-                    />
+                    android:textSize="16sp"
+                    android:text="1间" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,6 +138,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_more_require" />
 
                 <TextView
@@ -143,6 +149,7 @@
                     android:layout_toRightOf="@+id/more_require_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
+                    android:textSize="16sp"
                     android:text="" />
 
                 <TextView
@@ -168,6 +175,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_cost" />
 
                 <TextView
@@ -178,6 +186,7 @@
                     android:layout_toRightOf="@+id/order_cost_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
+                    android:textSize="16sp"
                     android:text="" />
 
                 <TextView
@@ -187,18 +196,21 @@
                     android:layout_alignBaseline="@+id/order_cost_view"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/title_bar_font_color"
-                    android:gravity="center_vertical|right"
                     android:background="@drawable/order_cost_detail"
-                    android:text="@string/order_detail_btn" 
-                    />
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:text="@string/order_detail_btn"
+                    android:visibility="gone"
+                    android:textColor="@color/title_bar_font_color" />
             </RelativeLayout>
             <!-- 入住人/联系人布局 -->
-            <RelativeLayout android:layout_width="fill_parent"
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/shape_round_rect_grey">
+                android:background="@drawable/shape_round_rect_grey" >
+
                 <TextView
                     android:id="@+id/add_btn"
                     android:layout_width="wrap_content"
@@ -206,234 +218,306 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text=""
-                    android:drawableLeft="@drawable/btn_add_bg" />
+                    android:drawableLeft="@drawable/btn_add_bg"
+                    android:text="" />
+
                 <TextView
                     android:id="@+id/guest_view"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_below="@+id/room_count_view"
-                    android:layout_alignTop="@+id/add_btn"
                     android:layout_alignBottom="@+id/add_btn"
+                    android:layout_alignTop="@+id/add_btn"
+                    android:layout_below="@+id/room_count_view"
                     android:gravity="center_vertical"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
                     android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:textSize="16sp"
                     android:text="@string/order_guest" />
 
                 <TextView
                     android:id="@+id/guest_content_view"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_toRightOf="@+id/guest_view"
-                    android:layout_centerVertical="true"
-                    android:text="@string/order_guest_name"
-                    android:layout_alignTop="@+id/add_btn"
                     android:layout_alignBottom="@+id/add_btn"
+                    android:layout_alignTop="@+id/add_btn"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/guest_view"
                     android:gravity="center_vertical"
-                    />
+                    android:textSize="16sp"
+                    android:hint="@string/order_guest_name" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/add_btn"
                     android:background="#E4E4E4" />
-                <TextView android:id="@+id/contact_view"
-                    android:layout_below="@+id/add_btn"
+
+                <TextView
+                    android:id="@+id/contact_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/add_btn"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
                     android:paddingRight="20dp"
-                    android:text="@string/order_contact"/>
-                <EditText android:id="@+id/contact_name_view"
+                    android:paddingTop="10dp"
+                    android:textSize="16sp"
+                    android:text="@string/order_contact" />
+
+                <EditText
+                    android:id="@+id/contact_name_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/contact_view"
                     android:layout_toRightOf="@+id/contact_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="@string/order_contact_name"/>
-                <EditText android:id="@+id/contact_phone_view"
+                    android:textSize="16sp"
+                    android:hint="@string/order_contact_name" />
+
+                <EditText
+                    android:id="@+id/contact_phone_view"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:layout_below="@+id/contact_view"
                     android:layout_alignLeft="@+id/contact_name_view"
+                    android:layout_below="@+id/contact_view"
                     android:background="@null"
+                    android:hint="@string/order_contact_phone"
                     android:inputType="phone"
-                    android:hint="@string/order_contact_phone"/>
+                    android:textSize="16sp"
+                    android:paddingBottom="10dp" />
             </RelativeLayout>
             <!-- 发票(invoice)相关 -->
-            <RelativeLayout android:layout_width="fill_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_round_rect_grey">
-                <RadioGroup android:id="@+id/invoice_potion_group"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="#F6A006"
+                android:text="@string/order_ask_for_invoice" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_rect_grey" >
+
+                <RadioGroup
+                    android:id="@+id/invoice_potion_group"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:orientation="horizontal"
-                    >
-                    <RadioButton android:id="@+id/invoice_false_btn"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/invoice_false_btn"
+                        style="@style/radiobutton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
-                        android:text="@string/text_false"
-                        style="@style/radiobutton"/>
-                    <RadioButton android:id="@+id/invoice_true_btn"
+                        android:checked="true"
+                        android:text="@string/text_false" />
+
+                    <RadioButton
+                        android:id="@+id/invoice_true_btn"
+                        style="@style/radiobutton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="@string/text_true"
-                        style="@style/radiobutton"
-                        />
+                        android:text="@string/text_true" />
                 </RadioGroup>
-                <TextView
-                    android:id="@+id/divider001"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/invoice_potion_group"
-                    android:background="#E4E4E4" />
-                <TextView android:id="@+id/invoice_title_view"
-                    android:layout_below="@+id/divider001"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/order_ivvoice_title"/>
-                <EditText android:id="@+id/invoice_title_content_view"
-                    android:layout_toRightOf="@+id/invoice_title_view"
-                    android:layout_alignTop="@+id/invoice_title_view"
-                    android:layout_alignBottom="@+id/invoice_title_view"
-                    android:paddingLeft="5dp"
+
+                <RelativeLayout
+                    android:id="@+id/invoiceDetailLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/order_ivvoice_title_notice"
-                    />
-                <TextView
-                    android:id="@+id/divider002"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/invoice_title_view"
-                    android:background="#E4E4E4" />
-                <TextView android:id="@+id/invoice_receiver_view"
-                    android:layout_below="@+id/divider002"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/order_receiver_name"/>
-                <EditText android:id="@+id/invoice_receiver_content_view"
-                    android:layout_toRightOf="@+id/invoice_receiver_view"
-                    android:layout_alignTop="@+id/invoice_receiver_view"
-                    android:layout_alignBottom="@+id/invoice_receiver_view"
-                    android:paddingLeft="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/order_receiver_name_notice"/>
-                <TextView
-                    android:id="@+id/divider003"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/invoice_receiver_view"
-                    android:background="#E4E4E4" />
-                <TextView android:id="@+id/invoice_receiver_phone_view"
-                    android:layout_below="@+id/divider003"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/order_receiver_phone"/>
-                <EditText android:id="@+id/invoice_receiver_phone_content_view"
-                    android:layout_toRightOf="@+id/invoice_receiver_phone_view"
-                    android:layout_alignTop="@+id/invoice_receiver_phone_view"
-                    android:layout_alignBottom="@+id/invoice_receiver_phone_view"
-                    android:paddingLeft="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:background="@null"
-                    android:hint="@string/order_receiver_phone_notice"/>
-                <TextView
-                    android:id="@+id/divider004"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/invoice_receiver_phone_view"
-                    android:background="#E4E4E4" />
-                <TextView android:id="@+id/invoice_mail_address_view"
-                    android:layout_below="@+id/divider004"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/order_mail_address"/>
-                <EditText android:id="@+id/invoice_mail_address_content_view"
-                    android:layout_toRightOf="@+id/invoice_mail_address_view"
-                    android:layout_alignTop="@+id/invoice_mail_address_view"
-                    android:layout_alignBottom="@+id/invoice_mail_address_view"
-                    android:paddingLeft="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/order_mail_address_notice"/>
-                <TextView
-                     android:id="@+id/divider005"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/invoice_mail_address_view"
-                    android:background="#E4E4E4" />
-                <TextView android:id="@+id/invoice_post_code_view"
-                    android:layout_below="@+id/divider005"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/order_post_code"/>
-                <EditText android:id="@+id/invoice_post_code_content_view"
-                    android:layout_toRightOf="@+id/invoice_post_code_view"
-                    android:layout_alignTop="@+id/invoice_post_code_view"
-                    android:layout_alignBottom="@+id/invoice_post_code_view"
-                    android:paddingLeft="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/order_post_code_notice"/>
+                    android:visibility="gone"
+                    android:layout_below="@+id/invoice_potion_group" >
+
+                    <TextView
+                        android:id="@+id/divider001"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E4E4E4" />
+
+                    <TextView
+                        android:id="@+id/invoice_title_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider001"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="@string/order_ivvoice_title" />
+
+                    <EditText
+                        android:id="@+id/invoice_title_content_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/invoice_title_view"
+                        android:layout_alignTop="@+id/invoice_title_view"
+                        android:layout_toRightOf="@+id/invoice_title_view"
+                        android:background="@null"
+                        android:hint="@string/order_ivvoice_title_notice"
+                        android:textSize="16sp"
+                        android:paddingLeft="5dp" />
+
+                    <TextView
+                        android:id="@+id/divider002"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/invoice_title_view"
+                        android:background="#E4E4E4" />
+
+                    <TextView
+                        android:id="@+id/invoice_receiver_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider002"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="@string/order_receiver_name" />
+
+                    <EditText
+                        android:id="@+id/invoice_receiver_content_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/invoice_receiver_view"
+                        android:layout_alignTop="@+id/invoice_receiver_view"
+                        android:layout_toRightOf="@+id/invoice_receiver_view"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:hint="@string/order_receiver_name_notice"
+                        android:paddingLeft="5dp" />
+
+                    <TextView
+                        android:id="@+id/divider003"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/invoice_receiver_view"
+                        android:background="#E4E4E4" />
+
+                    <TextView
+                        android:id="@+id/invoice_receiver_phone_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider003"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="@string/order_receiver_phone" />
+
+                    <EditText
+                        android:id="@+id/invoice_receiver_phone_content_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/invoice_receiver_phone_view"
+                        android:layout_alignTop="@+id/invoice_receiver_phone_view"
+                        android:layout_toRightOf="@+id/invoice_receiver_phone_view"
+                        android:background="@null"
+                        android:hint="@string/order_receiver_phone_notice"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:paddingLeft="5dp" />
+
+                    <TextView
+                        android:id="@+id/divider004"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/invoice_receiver_phone_view"
+                        android:background="#E4E4E4" />
+
+                    <TextView
+                        android:id="@+id/invoice_mail_address_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider004"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="@string/order_mail_address" />
+
+                    <EditText
+                        android:id="@+id/invoice_mail_address_content_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/invoice_mail_address_view"
+                        android:layout_alignTop="@+id/invoice_mail_address_view"
+                        android:layout_toRightOf="@+id/invoice_mail_address_view"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:hint="@string/order_mail_address_notice"
+                        android:paddingLeft="5dp" />
+
+                    <TextView
+                        android:id="@+id/divider005"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/invoice_mail_address_view"
+                        android:background="#E4E4E4" />
+
+                    <TextView
+                        android:id="@+id/invoice_post_code_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider005"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="@string/order_post_code" />
+
+                    <EditText
+                        android:id="@+id/invoice_post_code_content_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/invoice_post_code_view"
+                        android:layout_alignTop="@+id/invoice_post_code_view"
+                        android:layout_toRightOf="@+id/invoice_post_code_view"
+                        android:background="@null"
+                        android:textSize="16sp"
+                        android:hint="@string/order_post_code_notice"
+                        android:paddingLeft="5dp" />
+                </RelativeLayout>
             </RelativeLayout>
             <!-- 特别提示(notice) -->
-            <TextView android:layout_width="wrap_content"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
-                android:text="@string/order_special_notice"
-                />
+                android:paddingLeft="10dp"
+                android:textSize="16sp"
+                android:text="@string/order_special_notice" />
+
             <TextView
                 android:id="@+id/specialNoticeView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:background="@drawable/shape_round_rect_grey"
-                android:text="@string/order_notice"
-                />
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:text="@string/order_notice" />
             <!-- 提交按钮 -->
-            <TextView android:id="@+id/commitBtn"
+
+            <TextView
+                android:id="@+id/commitBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/btn_commit"
                 android:gravity="center"
                 android:text="@string/order_commit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/title_bar_font_color"
-                android:background="@drawable/btn_commit"
-                />
+                android:textColor="@color/title_bar_font_color" />
         </LinearLayout>
     </ScrollView>
 

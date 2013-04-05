@@ -37,6 +37,7 @@
     <string name="default_sort">默认排序</string>
     <string name="price_filter">价格筛选</string>
     <string name="location_filter">位置筛选</string>
+    <string name="no_result_found">很抱歉,暂时无法找到符合您要求的酒店,您可以试试更改搜索条件重新搜索,或致电021-51021638预订.</string>
 
     <!-- 新增入住人页面 -->
     <string name="add_user">新增入住人</string>
@@ -185,8 +186,9 @@
     <string name="order_guest_name">姓名</string>
     <string name="order_contact">联系人</string>
     <string name="order_contact_name">姓名</string>
-    <string name="order_contact_phone">联系电话</string>
+    <string name="order_contact_phone">手机号码</string>
     <string name="order_special_notice">特别提示</string>
+    <string name="order_ask_for_invoice">索要发票</string>
     <string name="order_ivvoice_title">抬头 :</string>
     <string name="order_ivvoice_title_notice">客户姓名或公司名称为抬头</string>
     <string name="order_receiver_name">收件人名称 :</string>

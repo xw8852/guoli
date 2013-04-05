@@ -119,6 +119,8 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         case R.id.cityName:
             // 入住城市
             intent = new Intent();
+            CityInfo info = (CityInfo) mCityView.getTag();
+            intent.putExtra(CitySelectActivity.KEY_CITYINFO, info);
             intent.setClass(this, CitySelectActivity.class);
             startActivityForResult(intent, PAGE_CITY);
             break;
@@ -244,7 +246,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      * 设置默认值
      */
     private void initDefault(){
-        //TODO:TODO:设置默认城市
+        //TODO:设置默认城市
         /**
          *       "name":"上海","code":"310000","py":"S"
          */

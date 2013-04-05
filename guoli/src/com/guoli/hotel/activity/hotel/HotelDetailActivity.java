@@ -652,6 +652,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         Intent intent = new Intent();
         intent.setClass(HotelDetailActivity.this, EditOrderActivity.class);
         intent.putExtra("HOTEL_NAME", info.getHotelInfo().getName());
+        mHotelRoom.setStartDate((String) mInDateView.getText());
+        mHotelRoom.setEndDate((String) mOutDateView.getText());
         intent.putExtra(EditOrderActivity.HOTEL_ROOM, new Gson().toJson(mHotelRoom));
         intent.putExtra(EditOrderActivity.ROOMI_TYPE, new Gson().toJson(mRoomInfo));
         startActivity(intent);

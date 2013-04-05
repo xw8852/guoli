@@ -13,11 +13,9 @@ package com.guoli.hotel.activity.hotel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -29,7 +27,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.guoli.hotel.R;
@@ -118,12 +115,16 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         if (info == null) {
             return;
         }
+        backToSearchHotelActivity(info);
+        finish();
+    }
+    
+    private void backToSearchHotelActivity(CityInfo info){
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_CITYINFO, info);
         intent.putExtras(bundle);
         setResult(SearchHotelActivity.PAGE_CITY, intent);
-        finish();
     }
 
     @Override
@@ -139,6 +140,13 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         default:
             break;
         }
+    }
+    
+    @Override
+    public void onBackPressed() {
+        CityInfo info = getIntent().getParcelableExtra(KEY_CITYINFO);
+        backToSearchHotelActivity(info);
+        super.onBackPressed();
     }
 
     /**
@@ -175,9 +183,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             if (respParams == null) {
                 return;
             }
-            List<CityInfo> list = respParams.getList();
             // 刷新listView
-            // refreshListView(list);
             refreshListView(onSortList(respParams.mHostList, respParams.getList()));
             Editor editor = PreferenceManager.getDefaultSharedPreferences(CitySelectActivity.this).edit();
             editor.putString("CityList", new Gson().toJson(resp));

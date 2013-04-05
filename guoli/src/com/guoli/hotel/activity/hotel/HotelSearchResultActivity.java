@@ -263,7 +263,11 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
      * @since JDK 1.6
      */
     private void updateListView(List<HotelInfo> list) {
-        if (list == null) { return; }
+        if (list == null || list.size() == 0) {
+            findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.GONE);
+            return; 
+        }
         if (mListAdapter == null) {
             mListAdapter = new HotelAdapter(list, this);
             mListView.setAdapter(mListAdapter);
