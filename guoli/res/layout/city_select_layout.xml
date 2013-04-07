@@ -51,7 +51,7 @@
         <com.guoli.hotel.widget.SosUniversalListView
             android:id="@+id/cityListView"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent">
         </com.guoli.hotel.widget.SosUniversalListView>
 
         <include layout="@layout/city_list_item_title" />

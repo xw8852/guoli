@@ -17,9 +17,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.parse.HotelListInfoParse;
+import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.ResourceUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
@@ -70,10 +74,15 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private TextView mLocationFilterView;
     /** 商家列表适配器 */
     private HotelAdapter mListAdapter;
+    
+    private TextView mLoadMoreBtn;
+    private LinearLayout mLoadingLayout;
+    private LinearLayout mFooterView;
     /** 区域过滤标记 */
     public static final int ORDER_FILTER = 1;
     public static final int PRICE_FILTER = 3;
     public static final int LOCATION_FILTER = 5;
+    private static final int PAGE_DATA_COUNT = 30;
     /** 搜索条件对象 */
     public static final String KEY_SEARCHINFO = "searchInfo";
 
@@ -172,6 +181,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         mSortFilterView.setOnClickListener(this);
         mPriceFilterView.setOnClickListener(this);
         mLocationFilterView.setOnClickListener(this);
+
+        mFooterView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.load_more_foot, null);
+        mLoadMoreBtn = (TextView) mFooterView.findViewById(R.id.loadMoreBtn);
+        mLoadingLayout = (LinearLayout) mFooterView.findViewById(R.id.loading);
+        mLoadMoreBtn.setOnClickListener(mLoadMoreDataLisenter);
+        mListView.addFooterView(mFooterView);
     }
 
     @Override
@@ -208,6 +223,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             break;
         case R.id.area_filter:
             intent = new Intent();
+            intent.putExtra(AreaListActivity.KEY_CITY_CODE, (mSearchInfo == null ? "" : mSearchInfo.getCityCode()));
             intent.setClass(this, AreaListActivity.class);
             startActivityForResult(intent, LOCATION_FILTER);
             break;
@@ -263,16 +279,24 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
      * @since JDK 1.6
      */
     private void updateListView(List<HotelInfo> list) {
+        mLoadingLayout.setVisibility(View.GONE);
         if (list == null || list.size() == 0) {
             findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
             mListView.setVisibility(View.GONE);
             return; 
         }
+        Log.i(TAG, "updateListView()---> list.size=" + list.size());
+        if (list.size() < PAGE_DATA_COUNT) {
+            mListView.removeFooterView(mFooterView);
+        } else {
+            mLoadMoreBtn.setText(R.string.load_more_data);
+            mLoadMoreBtn.setVisibility(View.VISIBLE);
+        }
         if (mListAdapter == null) {
             mListAdapter = new HotelAdapter(list, this);
             mListView.setAdapter(mListAdapter);
         } else {
-            mListAdapter.clear();
+//            mListAdapter.clear();
             mListAdapter.addMore(list);
         }
     }
@@ -298,6 +322,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
         @Override
         public void onError(Response resp) {
+            mLoadMoreBtn.setText(R.string.loading_failed);
             dismissLoadingDialog();
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
@@ -404,4 +429,15 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         if (view == null) { return; }
         view.setText(text == null ? "" : text);
     }
+    
+    private OnClickListener mLoadMoreDataLisenter = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            v.setVisibility(View.GONE);
+            mLoadingLayout.setVisibility(View.VISIBLE);
+            int pageNumber = DigitalUtils.convertToInt(mSearchInfo.getPageNum()) + 1;
+            mSearchInfo.setPageNum(pageNumber + "");
+            filterData(mSearchInfo);
+        }
+    };
 }
