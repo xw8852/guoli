@@ -10,16 +10,20 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.adapter.SingleTextAdapter;
+import com.guoli.hotel.bean.MapInfo;
 
 /**
  * ClassName:PriceListActivity <br/>
@@ -36,7 +40,7 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     
     private ListView mListView;
     
-    private String[] mPrices;
+    private SingleTextAdapter mAdapter;
     
     public PriceListActivity(){
         mLayoutId = R.layout.price_list_layout;
@@ -53,9 +57,9 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.priceListView);
         mListView.setOnItemClickListener(this);
-        mPrices = getResources().getStringArray(R.array.price_value);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mPrices);
-        mListView.setAdapter(adapter);
+        String value = getIntent().getStringExtra(KEY_PRICE);
+        mAdapter = new SingleTextAdapter(convertToList(), this, value);
+        mListView.setAdapter(mAdapter);
     }
 
     
@@ -65,19 +69,36 @@ public class PriceListActivity extends BaseActivity implements OnItemClickListen
      * @author maple
      * @since JDK 1.6
      */
-    private void commit(String price){
+    private void commit(MapInfo info){
+        if (info == null) {
+            return;
+        }
         Intent intent = new Intent();
-        intent.putExtra(KEY_PRICE, price);
+        intent.putExtra(KEY_PRICE, info.getValue());
         setResult(SearchHotelActivity.PAGE_PRICE, intent);
         finish();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mPrices == null || !(mPrices.length > position)) {
-            return;
+        commit(mAdapter == null ? null : mAdapter.getItem(position));
+    }
+    
+    private List<MapInfo> convertToList(){
+        String[] keys = getResources().getStringArray(R.array.price_key);
+        String[] values = getResources().getStringArray(R.array.price_value);
+        if (keys == null || values == null || keys.length != values.length) {
+            return null;
         }
-        commit(mPrices[position]);
+        List<MapInfo> list = new ArrayList<MapInfo>();
+        int length = keys.length;
+        for (int index = 0 ; index < length ; index++) {
+            MapInfo info = new MapInfo();
+            info.setKey(keys[index]);
+            info.setValue(values[index]);
+            list.add(info);
+        }
+        return list;
     }
 }
 

@@ -5,4 +5,5 @@
     <color name="bg_grey">#F3F3F3</color>
     <color name="color_grey">#BEBEBE</color>
     <color name="orange">#ff7500</color>
+    <color name="selected_item_bg">#F8C045</color>
 </resources>

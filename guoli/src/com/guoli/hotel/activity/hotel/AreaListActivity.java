@@ -136,7 +136,8 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         if (list == null) {
             return;
         }
-        mAdapter = new AreaInfoAdapter(list, this);
+        String name = getIntent().getStringExtra(KEY_AREA);
+        mAdapter = new AreaInfoAdapter(list, this, name);
         mListView.setAdapter(mAdapter);
     }
     

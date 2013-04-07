@@ -160,7 +160,8 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         if (mListView == null) {
             return;
         }
-        CityInfoListAdapter adapter = new CityInfoListAdapter(map, this);
+        CityInfo info = getIntent().getParcelableExtra(KEY_CITYINFO);
+        CityInfoListAdapter adapter = new CityInfoListAdapter(map, this, info);
         mListView.setPinnedHeaderView(findViewById(R.id.nameTitle));
         mListView.setAdapter(adapter);
         // if (adapter == null) {

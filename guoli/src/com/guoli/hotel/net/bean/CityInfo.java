@@ -74,6 +74,15 @@ public class CityInfo implements Parcelable{
     }
     
     @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CityInfo)) {
+            return false;
+        }
+        CityInfo info = (CityInfo) o;
+        return info.getCityCode() != null && info.getCityCode().equals(cityCode);
+    }
+    
+    @Override
     public String toString() {
         return "{cityName:"+ cityName + ", cityCode:" + cityCode + ", firstChar:" + firstChar
                 + ", isChecked:" + isChecked + "}";

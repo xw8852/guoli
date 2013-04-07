@@ -135,12 +135,14 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         case R.id.priceBtn:
             // 价格
             intent = new Intent();
+            intent.putExtra(PriceListActivity.KEY_PRICE, mPriceView.getText());
             intent.setClass(this, PriceListActivity.class);
             startActivityForResult(intent, PAGE_PRICE);
             break;
         case R.id.starBtn:
             // 星级
             intent = new Intent();
+            intent.putExtra(LevelListActivity.KEY_LEVEL, mLevelView.getText());
             intent.setClass(this, LevelListActivity.class);
             startActivityForResult(intent, PAGE_LEVEL);
             break;
@@ -159,6 +161,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     
     private void enterToAreaListActivity(){
         Intent intent = new Intent();
+        intent.putExtra(AreaListActivity.KEY_AREA, mAreaView.getText());
         intent.setClass(this, AreaListActivity.class);
         CityInfo info = (CityInfo) mCityView.getTag();
         //接口文档中规定城市编码/入住/离开时间为必填
@@ -227,12 +230,22 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         case PAGE_LEAVE_DATE:
             break;
         case PAGE_PRICE:
-            String price = data == null ? "" : data.getStringExtra(PriceListActivity.KEY_PRICE);
-            setViewText(mPriceView, price);
+            if (data == null) {
+                break;
+            }
+            String price = data.getStringExtra(PriceListActivity.KEY_PRICE);
+            if (!TextUtils.isEmpty(price)) {
+                setViewText(mPriceView, price);
+            }
             break;
         case PAGE_LEVEL:
-            String level = data == null ? "" : data.getStringExtra(LevelListActivity.KEY_LEVEL);
-            setViewText(mLevelView, level);
+            if (data == null) {
+                return;
+            }
+            String level = data.getStringExtra(LevelListActivity.KEY_LEVEL);
+            if (!TextUtils.isEmpty(level)) {
+                setViewText(mLevelView, level);
+            }
             break;
         case PAGE_AREA:
             setAreaView(data);

@@ -1,14 +1,18 @@
 package com.guoli.hotel.activity.hotel;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.adapter.SingleTextAdapter;
+import com.guoli.hotel.bean.MapInfo;
 
 /**
  * Project Name:SplashActivity
@@ -35,7 +39,7 @@ public class LevelListActivity extends BaseActivity implements OnItemClickListen
     
     private ListView mListView;
     
-    private String[] mLevels;
+    private SingleTextAdapter mAdapter;
     
     public LevelListActivity(){
         mTitleTextId = R.string.hotel_level;
@@ -52,21 +56,38 @@ public class LevelListActivity extends BaseActivity implements OnItemClickListen
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.levelListView);
         mListView.setOnItemClickListener(this);
-        mLevels = getResources().getStringArray(R.array.level_value);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mLevels);
-        mListView.setAdapter(adapter);
+        String value = getIntent().getStringExtra(KEY_LEVEL);
+        mAdapter = new SingleTextAdapter(convertToList(), this, value);
+        mListView.setAdapter(mAdapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mLevels == null || !(mLevels.length > position)) {
+        if (mAdapter == null) {
             return;
         }
+        MapInfo info = mAdapter.getItem(position);
         Intent intent = new Intent();
-        intent.putExtra(KEY_LEVEL, mLevels[position]);
+        intent.putExtra(KEY_LEVEL, info == null ? "" : info.getValue());
         setResult(SearchHotelActivity.PAGE_LEVEL, intent);
         finish();
     }
 
+    private List<MapInfo> convertToList(){
+        String[] keys = getResources().getStringArray(R.array.level_key);
+        String[] values = getResources().getStringArray(R.array.level_value);
+        if (keys == null || values == null || keys.length != values.length) {
+            return null;
+        }
+        List<MapInfo> list = new ArrayList<MapInfo>();
+        int length = keys.length;
+        for (int index = 0 ; index < length ; index++) {
+            MapInfo info = new MapInfo();
+            info.setKey(keys[index]);
+            info.setValue(values[index]);
+            list.add(info);
+        }
+        return list;
+    }
 }
 

@@ -10,9 +10,7 @@
 
 package com.guoli.hotel.adapter;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
@@ -36,13 +34,15 @@ import com.guoli.hotel.widget.SosUniversalAdapter;
  */
 public class CityInfoListAdapter extends SosUniversalAdapter {
 
-    public HashMap<String, List<CityInfo>> map;
-    public Context ctx;
+    private HashMap<String, List<CityInfo>> map;
+    private Context ctx;
+    private CityInfo mInfo;
 
-    public CityInfoListAdapter(HashMap<String, List<CityInfo>> map, Context ctx) {
+    public CityInfoListAdapter(HashMap<String, List<CityInfo>> map, Context ctx, CityInfo info) {
         super();
         this.map = map;
         this.ctx = ctx;
+        mInfo = info;
     }
 
     private class ViewHolder {
@@ -94,6 +94,12 @@ public class CityInfoListAdapter extends SosUniversalAdapter {
             ViewHolder holder = new ViewHolder();
             holder.nameView = (TextView) convertView.findViewById(R.id.nameView);
             convertView.setTag(holder);
+        }
+        //为当前选中的城市设置背景色
+        if (mInfo != null && mInfo.equals(info)) {
+            convertView.setBackgroundResource(R.color.selected_item_bg);
+        } else {
+            convertView.setBackgroundResource(android.R.color.transparent);
         }
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.nameView.setText(info.getCityName());
