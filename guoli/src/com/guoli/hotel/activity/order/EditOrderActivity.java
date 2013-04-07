@@ -160,6 +160,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         }
         mContactNameView.setText(LoginUtils.username);
         mContactPhoneView.setText(LoginUtils.memberMobile);
+        //初始化总额
+        setTotalCostView();
     }
 
     @Override
@@ -280,7 +282,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         float actPrice = mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getActprice();
         Log.i(TAG, "setTotalCostView()---> actPrice=" + actPrice + ", price=" + (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getPrice()));
         int cost = (int) (count * actPrice);
-        mTotalCostView.setText(cost + "");
+        mTotalCostView.setText("￥" + cost + "");
     }
     /**
      * 

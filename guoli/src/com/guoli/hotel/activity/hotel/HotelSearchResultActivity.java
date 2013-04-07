@@ -78,6 +78,11 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private TextView mLoadMoreBtn;
     private LinearLayout mLoadingLayout;
     private LinearLayout mFooterView;
+    
+    private int operationType = OPERATION_DEFAULT;
+    
+    private static final int OPERATION_DEFAULT = 0;
+    private static final int OPERATION_FILTER = 1;
     /** 区域过滤标记 */
     public static final int ORDER_FILTER = 1;
     public static final int PRICE_FILTER = 3;
@@ -132,9 +137,10 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     protected void initViews() {
     }
 
-    private void initBusinessCountView(int count) {
+    private void initBusinessCountView(String count) {
+        int total = DigitalUtils.convertToInt(count);
         String desc = getResources().getString(R.string.business_count_desc);
-        desc = String.format(desc, count);
+        desc = String.format(desc, total);
         mCountView.setText(desc);
     }
 
@@ -157,6 +163,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         }
         showLoadingDialog(R.string.loading_msg);
         GuoliRequest request = new GuoliRequest("hotel_qry", info);
+        Log.i(TAG, "filterData()---> request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mListener);
     }
 
@@ -212,16 +219,22 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         Intent intent = null;
         switch (v.getId()) {
         case R.id.sort_type:
+            operationType = OPERATION_FILTER;
+            mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
             intent.setClass(this, SortListActivity.class);
             startActivityForResult(intent, ORDER_FILTER);
             break;
         case R.id.price_filter:
+            operationType = OPERATION_FILTER;
+            mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
             intent.setClass(this, PriceListActivity.class);
             startActivityForResult(intent, PRICE_FILTER);
             break;
         case R.id.area_filter:
+            operationType = OPERATION_FILTER;
+            mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
             intent.putExtra(AreaListActivity.KEY_CITY_CODE, (mSearchInfo == null ? "" : mSearchInfo.getCityCode()));
             intent.setClass(this, AreaListActivity.class);
@@ -287,8 +300,10 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         }
         Log.i(TAG, "updateListView()---> list.size=" + list.size());
         if (list.size() < PAGE_DATA_COUNT) {
-            mListView.removeFooterView(mFooterView);
+//            mListView.removeFooterView(mFooterView);
+            mFooterView.setVisibility(View.GONE);
         } else {
+            mFooterView.setVisibility(View.VISIBLE);
             mLoadMoreBtn.setText(R.string.load_more_data);
             mLoadMoreBtn.setVisibility(View.VISIBLE);
         }
@@ -296,7 +311,9 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             mListAdapter = new HotelAdapter(list, this);
             mListView.setAdapter(mListAdapter);
         } else {
-//            mListAdapter.clear();
+            if (OPERATION_FILTER == operationType) {
+                mListAdapter.clear();
+            }
             mListAdapter.addMore(list);
         }
     }
@@ -317,12 +334,15 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             mCityView.setText(mSearchInfo.getCityName());
             mOccupancyView.setText(mSearchInfo.getStartDate());
             mLeaveView.setText(mSearchInfo.getEndDate());
-            initBusinessCountView(list == null ? 0 : list.size());
+            initBusinessCountView(info.getTotal());
         }
 
         @Override
         public void onError(Response resp) {
+            mLoadingLayout.setVisibility(View.GONE);
+            mLoadMoreBtn.setVisibility(View.VISIBLE);
             mLoadMoreBtn.setText(R.string.loading_failed);
+            mSearchInfo.setPageNum(""+(DigitalUtils.convertToInt(mSearchInfo.getPageNum()) - 1));
             dismissLoadingDialog();
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
@@ -351,9 +371,8 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             return;
         }
         int type = info instanceof BussinessInfo ? 2 : 1;
-        String code = ResourceUtils.getInstance(this).getKey(R.array.order_key, R.array.order_value, value);
         mSearchInfo.setAreaType(type + "");
-        mSearchInfo.setArea(code);
+        mSearchInfo.setArea(info.getCode());
         filterData(mSearchInfo); 
     }
     
@@ -433,6 +452,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private OnClickListener mLoadMoreDataLisenter = new OnClickListener() {
         @Override
         public void onClick(View v) {
+            operationType = OPERATION_DEFAULT;
             v.setVisibility(View.GONE);
             mLoadingLayout.setVisibility(View.VISIBLE);
             int pageNumber = DigitalUtils.convertToInt(mSearchInfo.getPageNum()) + 1;

@@ -24,6 +24,18 @@ import com.google.gson.annotations.SerializedName;
  * @see
  */
 public class HotelListInfo {
+    
+    @SerializedName("resulttotal")
+    private String total;
+    
+    @SerializedName("pageno")
+    private String pageNum;
+    
+    @SerializedName("pagecount")
+    private String pageCount;
+    
+    @SerializedName("pagesize")
+    private String pageSize;
 
     @SerializedName("result")
     private List<HotelInfo> list;
@@ -34,5 +46,37 @@ public class HotelListInfo {
 
     public void setList(List<HotelInfo> list) {
         this.list = list;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(String pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public String getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(String pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(String pageSize) {
+        this.pageSize = pageSize;
     }
 }

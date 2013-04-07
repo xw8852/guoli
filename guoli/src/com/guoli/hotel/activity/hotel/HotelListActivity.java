@@ -22,6 +22,7 @@ import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.adapter.RecommondHotelAdapter;
 import com.guoli.hotel.bean.RecommendHotelInfo;
 import com.guoli.hotel.bean.RecommendsInfo;
@@ -43,7 +44,7 @@ import com.msx7.core.command.model.Response;
  * @since    JDK 1.6
  * @see 	 
  */
-public class HotelListActivity extends BaseActivity implements OnItemClickListener {
+public class HotelListActivity extends CallActivity implements OnItemClickListener {
     
     private ListView mListView;
     private RecommondHotelAdapter mAdapter;

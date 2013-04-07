@@ -27,8 +27,8 @@ import com.guoli.hotel.net.request.bean.HotelRecommendInfo;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.response.bean.RecommendRespInfo;
 import com.guoli.hotel.parse.RecommendRespParase;
-import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.DiscountUtils;
+import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.NumberUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Controller;
@@ -79,6 +79,7 @@ public class RecommendDetailActivity extends CallActivity {
     @Override
     protected void findViews() {
         findViewById(R.id.nowBookBtn).setOnClickListener(mBookLisenter);
+        findViewById(R.id.hotelImgView).setOnClickListener(mPicClickLisenter);
     }
     
     private OnClickListener mBookLisenter = new OnClickListener() {
@@ -93,6 +94,23 @@ public class RecommendDetailActivity extends CallActivity {
             bundle.putParcelable(HotelDetailActivity.KEY_REQUEST, room);
             intent.putExtras(bundle);
             intent.setClass(RecommendDetailActivity.this, HotelDetailActivity.class);
+            startActivity(intent);
+        }
+    };
+    
+    private OnClickListener mPicClickLisenter = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mRespInfo == null) {
+                return;
+            }
+            RecommendInfo info = mRespInfo.getRecommendInfo();
+            if (info == null) {
+                return;
+            }
+            Intent intent = new Intent(RecommendDetailActivity.this, PicGridActivity.class);
+            intent.putExtra(PicGridActivity.KEY_HOTEL_ID, info.getId());
+            intent.putExtra(PicGridActivity.KEY_PIC_PATH, info.getPicPath());
             startActivity(intent);
         }
     };
@@ -130,7 +148,7 @@ public class RecommendDetailActivity extends CallActivity {
         ((TextView)findViewById(R.id.hotelDiscountView)).setText(
         		DiscountUtils.formatDiscount(res, discount));
         res = getResources().getString(R.string.period_date);
-        ((TextView)findViewById(R.id.hotelBriefView)).setText(info.getBrief());
+        ((TextView)findViewById(R.id.hotelBriefView)).setText(info.getReason());
         //TODO 
         ((TextView)findViewById(R.id.dateLifeView)).setText(String.format(res, info.getDate()));
         String countText = "";

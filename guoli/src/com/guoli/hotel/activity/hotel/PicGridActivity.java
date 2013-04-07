@@ -46,8 +46,10 @@ public class PicGridActivity extends BaseActivity2 implements OnItemClickListene
 
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
+        setTitle(R.string.hotel_pic_grid_title);
         mGridView = (GridView) findViewById(R.id.gridView1);
         mGridView.setOnItemClickListener(this);
+        showLeftReturnBtn(false, -1);
         loadImages();
     }
 
@@ -132,6 +134,7 @@ public class PicGridActivity extends BaseActivity2 implements OnItemClickListene
     }
     
     private void updateListView(){
+        Log.i(TAG, "updateListView()--->//////.......");
         if (mGridAdapter == null) {
             mGridAdapter = new PicGridAdapter(this, mPicInfos);
             mGridView.setAdapter(mGridAdapter);
