@@ -10,11 +10,17 @@ public class AboutUsActivity extends BaseActivity2{
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.about_item);
         showLeftReturnBtn(false, -1);
+        showRightCall();
+        loadData();
     }
+
 
     @Override
     public int getContentId() {
         return R.layout.about_us;
     }
 
+    private void loadData() {
+        
+    }
 }

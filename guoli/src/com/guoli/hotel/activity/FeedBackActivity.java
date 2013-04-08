@@ -2,6 +2,7 @@ package com.guoli.hotel.activity;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import com.msx7.core.command.model.Response;
 public class FeedBackActivity extends BaseActivity2{
     
     private Dialog mProgressDialog;
+    private static final String TAG = FeedBackActivity.class.getSimpleName();
     
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
@@ -52,8 +54,9 @@ public class FeedBackActivity extends BaseActivity2{
         showDialog();
         FeedbackInfo info = new FeedbackInfo();
         info.setContent(getFeedbackContent());
-        info.setAddress(getMailAddress());
+//        info.setAddress(getMailAddress());
         GuoliRequest request = new GuoliRequest(Action.General.FEEDBACK, info);
+        Log.i(TAG, "request=" + request.Params.toParams());
         Manager.getInstance().executePoset(request, mFeedbackCommitListener);
     }
     
@@ -68,9 +71,9 @@ public class FeedBackActivity extends BaseActivity2{
      * @return
      * @since JDK 1.6
      */
-    private String getMailAddress(){
+    /*private String getMailAddress(){
         return ((EditText)findViewById(R.id.feedbackMailAddressView)).getText().toString();
-    }
+    }*/
     
     /**反馈按钮监听*/
     private OnClickListener mFeedbackListener = new OnClickListener() {
@@ -84,13 +87,15 @@ public class FeedBackActivity extends BaseActivity2{
     private IResponseListener mFeedbackCommitListener = new IResponseListener() {
         
         @Override
-        public void onSuccess(Response arg0) {
+        public void onSuccess(Response resp) {
+            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             dismissDialog();
             finish();
         }
         
         @Override
-        public void onError(Response arg0) {
+        public void onError(Response resp) {
+            Log.i(TAG, "onError()---> response=" + (resp == null ? null : resp.result));
             dismissDialog();
             String msg = getResources().getString(R.string.dialog_msg_commit_failed);
             DialogUtils.showDialog("", msg, FeedBackActivity.this);

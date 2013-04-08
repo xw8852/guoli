@@ -24,20 +24,20 @@ import com.google.gson.annotations.SerializedName;
 public class FeedbackInfo {
 
     /***/
-    @SerializedName("")
-    private String address;
+//    @SerializedName("")
+//    private String address;
     
     /***/
-    @SerializedName("")
+    @SerializedName("feedback")
     private String content;
 
-    public String getAddress() {
+    /*public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
+    }*/
 
     public String getContent() {
         return content;
@@ -49,7 +49,7 @@ public class FeedbackInfo {
     
     @Override
     public String toString() {
-        return "{address=" + address + ", content=" + content +"}";
+        return /*"{address=" + address +*/ ", content=" + content +"}";
     }
 }
 

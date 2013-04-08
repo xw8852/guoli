@@ -39,7 +39,7 @@ public final class Action {
         /**手机验证码*/
         public static final String MobileValidate="system_mobilecheck";
         /**意见反馈*/
-        public static final String FEEDBACK="";
+        public static final String FEEDBACK="system_feedback";
         /**首页加载*/
         public static final String SYSTEM_LOADING = "system_loading";
         /**帮助*/
