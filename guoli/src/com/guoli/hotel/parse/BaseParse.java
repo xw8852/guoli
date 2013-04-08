@@ -33,7 +33,7 @@ public class BaseParse<T> {
      * @return
      * @since JDK 1.6
      */
-    protected T parse(Response resp, Class<T> cls){
+    public T parse(Response resp, Class<T> cls){
         if (resp == null || cls == null) {
             return null;
         }

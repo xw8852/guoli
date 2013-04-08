@@ -42,6 +42,8 @@ public final class Action {
         public static final String FEEDBACK="";
         /**首页加载*/
         public static final String SYSTEM_LOADING = "system_loading";
+        /**帮助*/
+        public static final String SYSTEM_HELP = "system_help";
     }
     
     /**

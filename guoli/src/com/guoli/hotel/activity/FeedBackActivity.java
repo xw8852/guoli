@@ -9,7 +9,10 @@ import android.widget.EditText;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.FeedbackInfo;
+import com.guoli.hotel.net.Action;
+import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.utils.DialogUtils;
+import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -49,9 +52,9 @@ public class FeedBackActivity extends BaseActivity2{
         showDialog();
         FeedbackInfo info = new FeedbackInfo();
         info.setContent(getFeedbackContent());
-        info.setAddress(info.getAddress());
-        /*GuoliRequest request = new GuoliRequest(Action.General.FEEDBACK, info);
-        Manager.getInstance().executePoset(request, mFeedbackCommitListener);*/
+        info.setAddress(getMailAddress());
+        GuoliRequest request = new GuoliRequest(Action.General.FEEDBACK, info);
+        Manager.getInstance().executePoset(request, mFeedbackCommitListener);
     }
     
     private String getFeedbackContent(){
@@ -83,6 +86,7 @@ public class FeedBackActivity extends BaseActivity2{
         @Override
         public void onSuccess(Response arg0) {
             dismissDialog();
+            finish();
         }
         
         @Override
@@ -98,7 +102,7 @@ public class FeedBackActivity extends BaseActivity2{
      }
      
      private void dismissDialog(){
-         if (mProgressDialog != null) {
+         if (mProgressDialog != null && !isFinishing()) {
              mProgressDialog.dismiss();
          }
      }
