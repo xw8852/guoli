@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
 import com.guoli.hotel.adapter.HotelAdapter;
@@ -199,8 +200,10 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     @Override
     protected void rightBtnClickEvent() {
         super.rightBtnClickEvent();
-        // TODO 进入地图模式
+        //进入地图模式
         Intent intent = new Intent();
+        List<HotelInfo> list = mListAdapter == null ? null : mListAdapter.getList();
+        intent.putExtra(HotelsMapActivity.KEY_HOTEL_LIST, new Gson().toJson(list));
         intent.setClass(this, HotelsMapActivity.class);
         startActivity(intent);
     }

@@ -10,11 +10,16 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
+import com.guoli.hotel.bean.HotelInfo;
 
 /**
  * ClassName:HotelsMapActivity <br/>
@@ -34,6 +39,9 @@ public class HotelsMapActivity extends UpdateActivity {
     private TextView mLeaveView;
     /**商家数*/
     private TextView mCountView;
+    
+    public static final String KEY_HOTEL_LIST = "holtelList";
+    private static final String TAG = HotelsMapActivity.class.getSimpleName();
     public HotelsMapActivity(){
         mLayoutId = R.layout.hotels_map_mode;
         mTitleTextId = R.string.hotels_map_title;
@@ -43,6 +51,10 @@ public class HotelsMapActivity extends UpdateActivity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         showLeftBtn();
+        String json = getIntent().getStringExtra(KEY_HOTEL_LIST);
+//        Log.i(TAG, "onCreate()---> json=" + json);
+        ArrayList<HotelInfo> hotleList = new Gson().fromJson(json, new TypeToken<ArrayList<HotelInfo>>(){}.getType());
+        //TODO 酒店信息列表供地图显示酒店位置使用
     }
 
     @Override

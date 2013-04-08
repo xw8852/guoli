@@ -91,4 +91,7 @@ public abstract class AbstractAdapter<T> extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 	
+	public List<T> getList(){
+	    return data;
+	}
 }
