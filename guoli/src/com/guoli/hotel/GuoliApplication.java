@@ -20,7 +20,6 @@ public class GuoliApplication extends Controller {
     public void onCreate() {
         super.onCreate();
         startTimer();
-        mFetcher.setImageFadeIn(false);
     }
 
     public void startTimer(){
