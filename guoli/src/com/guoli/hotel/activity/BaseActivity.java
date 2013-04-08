@@ -201,7 +201,7 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
      * @since JDK 1.6
      */
     protected void dismissLoadingDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+        if (mProgressDialog != null && mProgressDialog.isShowing() && !isFinishing()) {
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }

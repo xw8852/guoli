@@ -16,7 +16,8 @@ public class MoreActivity extends BaseActivity2 {
         findViewById(R.id.item2).setOnClickListener(mItemListener_1);
         findViewById(R.id.item3).setOnClickListener(mItemListener_2);
         new BottomTabbar(this, 4);
-        showLeftReturnBtn(true, R.string.dialog_exit_message);
+//        showLeftReturnBtn(true, R.string.dialog_exit_message);
+        showRightCall();
     }
 
     @Override

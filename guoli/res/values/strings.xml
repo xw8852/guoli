@@ -136,7 +136,7 @@
     <string name="forget_password">忘记密码</string>
     <string name="forget_phone">手机号码&#160;:&#160;</string>
     <string name="identify_code">输入验证码&#160;:&#160;</string>
-    <string name="forget_phone_tips">请填写绑定的手机号码</string>
+    <string name="forget_phone_tips">请填写登录名</string>
     <string name="identify_code_tips">6位字符</string>
     <string name="forget_password_tips">重置密码每天限制三次</string>
     <string name="send_password">发送密码至手机</string>
@@ -146,7 +146,7 @@
     <string name="multi_password">确认密码&#160;:&#160;</string>
     <string name="regist_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;码&#160;:&#160;</string>
     <string name="register_password_tips">6&#8211;12位英文或数字</string>
-    <string name="register_phone_tips">请输入手机号码作为登录名</string>
+    <string name="register_phone_tips">请输入手机号码</string>
     <!-- 订单查询 非登陆 -->
     <string name="identify_code_2">验&#160;证&#160;码&#160;:&#160;</string>
     <string name="identify_code_tips_2">请输入验证码</string>

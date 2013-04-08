@@ -302,14 +302,6 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             return; 
         }
         Log.i(TAG, "updateListView()---> list.size=" + list.size());
-        if (list.size() < PAGE_DATA_COUNT) {
-//            mListView.removeFooterView(mFooterView);
-            mFooterView.setVisibility(View.GONE);
-        } else {
-            mFooterView.setVisibility(View.VISIBLE);
-            mLoadMoreBtn.setText(R.string.load_more_data);
-            mLoadMoreBtn.setVisibility(View.VISIBLE);
-        }
         if (mListAdapter == null) {
             mListAdapter = new HotelAdapter(list, this);
             mListView.setAdapter(mListAdapter);
@@ -318,6 +310,19 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
                 mListAdapter.clear();
             }
             mListAdapter.addMore(list);
+        }
+        String count = mCountView.getText().toString().trim();
+        int hotelTotal = DigitalUtils.convertToInt(count.substring(0, count.length() - 1));
+        int loadCount = mListAdapter == null ? 0 : mListAdapter.getCount();
+        if (loadCount == hotelTotal) {
+            mListView.removeFooterView(mFooterView);
+        } else {
+            if (mListView.getFooterViewsCount() == 0) {
+                mListView.addFooterView(mFooterView);
+            }
+            mFooterView.setVisibility(View.VISIBLE);
+            mLoadMoreBtn.setText(R.string.load_more_data);
+            mLoadMoreBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -332,12 +337,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             if (info == null) {
             return;
             }
-            List<HotelInfo> list = info.getList();
-            updateListView(list);
             mCityView.setText(mSearchInfo.getCityName());
             mOccupancyView.setText(mSearchInfo.getStartDate());
             mLeaveView.setText(mSearchInfo.getEndDate());
             initBusinessCountView(info.getTotal());
+            List<HotelInfo> list = info.getList();
+            updateListView(list);
         }
 
         @Override
