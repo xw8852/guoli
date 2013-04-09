@@ -35,6 +35,7 @@ public class LoginActivity extends BaseActivity2 {
 	public static final int RESULT_UN_LOGIN = 0x0002;
 	public static final String PARAM_SEACRCH="order_search";
 	public static final String PARAM_ORDER="order";
+	public static final int PAGE_ORDER = 3;
 	
 	private EditText passwordView;
 	private String password;
@@ -42,6 +43,7 @@ public class LoginActivity extends BaseActivity2 {
 	private String id;
 	private Dialog dialog;
 	private LinearLayout unregestLayout;
+	
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
