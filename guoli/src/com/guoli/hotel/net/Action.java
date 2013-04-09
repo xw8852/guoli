@@ -44,6 +44,8 @@ public final class Action {
         public static final String SYSTEM_LOADING = "system_loading";
         /**帮助*/
         public static final String SYSTEM_HELP = "system_help";
+        /**关于我们*/
+        public static final String SYSTEM_ABOUT = "system_about";
     }
     
     /**
