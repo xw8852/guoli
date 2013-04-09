@@ -15,9 +15,9 @@
         android:layout_below="@+id/titel_bar" >
 
         <!-- 地图图层 -->
-        <!-- 演示demo中设置为静态图片 实际开发时需替换掉该层 -->
 
-        <ImageView
+        <com.baidu.mapapi.MapView
+            android:id="@+id/mapview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@drawable/demo_map" />
@@ -36,8 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingLeft="2dp"
                 android:textColor="@color/title_bar_font_color" />
 
             <LinearLayout
@@ -46,8 +45,8 @@
                 android:layout_toLeftOf="@+id/count_view"
                 android:layout_toRightOf="@+id/city_text"
                 android:baselineAligned="false"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,7 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:paddingRight="5dp"
+                android:paddingRight="2dp"
                 android:textColor="@color/title_bar_font_color" />
         </RelativeLayout>
     </FrameLayout>

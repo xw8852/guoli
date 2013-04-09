@@ -86,6 +86,7 @@
     <!-- 酒店列表地图模式页面 -->
     <string name="hotels_map_title">酒店地图</string>
     <string name="result_count_desc">%1$d个结果</string>
+    <string name="hotel_map_price">￥%1$d</string>
     <!-- 更多 -->
     <string name="help_item">帮助</string>
     <string name="about_item">关于我们</string>
