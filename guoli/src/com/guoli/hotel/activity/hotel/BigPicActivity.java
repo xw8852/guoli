@@ -59,7 +59,8 @@ public class BigPicActivity extends BaseActivity2 {
     
     private void initImageView(ImageView imgView, PicInfo info){
         String picPath = getIntent().getStringExtra(PicGridActivity.KEY_PIC_PATH);
-        Controller.getApplication().loadThumbnailImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
+//        Controller.getApplication().loadThumbnailImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
+        Controller.getApplication().loadImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
     }
 
     @Override
