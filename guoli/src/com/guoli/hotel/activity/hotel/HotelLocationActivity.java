@@ -36,10 +36,10 @@ import com.guoli.hotel.R;
  */
 public class HotelLocationActivity extends MapActivity {
 
-	protected static final String MAP_KEY = "367475E851403E3CC39168413BB81978F3353E49";
+	public static final String MAP_KEY = "367475E851403E3CC39168413BB81978F3353E49";
 	public static final String KEY_LONGITUDE = "longitude";
 	public static final String KEY_LATITUDE = "latitude";
-	private static final int ZOOM_LEVEL = 15;
+	public static final int ZOOM_LEVEL = 14;
 
 	private MapController controller;
 	private GeoPoint geoPoint;

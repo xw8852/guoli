@@ -363,8 +363,9 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                     }
                     //判断用户是否登录
                     if (LoginUtils.isLogin == 0) {  //未登录
-                        startActivityForResult(new Intent(HotelDetailActivity.this, OrderAuthenticActivity.class)
-                        .putExtra(OrderAuthenticActivity.PARAM_AUTHER, true).putExtra(LoginActivity.PARAM_ORDER, true), 0);
+                        Intent intent = new Intent();
+                        intent.setClass(HotelDetailActivity.this, LoginActivity.class);
+                        startActivityForResult(intent, LoginActivity.PAGE_ORDER);
                         return;
                     }
                     onLoginSuccess();
@@ -640,8 +641,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == LoginActivity.RESULT_LOGIN_OK) {
+        switch (requestCode) {
+        case LoginActivity.PAGE_ORDER:
             onLoginSuccess();
+            break;
+        default:
+            break;
         }
     }
     

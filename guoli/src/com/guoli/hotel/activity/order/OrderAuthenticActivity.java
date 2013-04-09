@@ -33,6 +33,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
     EditText mValidateEditText;
     Dialog mDialog;
     boolean isResult;
+    
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.order_title_search);
