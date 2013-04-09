@@ -203,6 +203,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         //进入地图模式
         Intent intent = new Intent();
         List<HotelInfo> list = mListAdapter == null ? null : mListAdapter.getList();
+        intent.putExtra("SearchInfo", mSearchInfo);
         intent.putExtra(HotelsMapActivity.KEY_HOTEL_LIST, new Gson().toJson(list));
         intent.setClass(this, HotelsMapActivity.class);
         startActivity(intent);
