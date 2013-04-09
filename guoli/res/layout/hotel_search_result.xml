@@ -101,28 +101,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/filter_ull"
+            android:background="@drawable/filter_backgroud"
+            android:drawableRight="@drawable/ic_filter_small"
             android:gravity="center"
             android:text="@string/default_sort" />
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/filter_divider_lien" />
 
         <TextView
             android:id="@+id/price_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/filter_ull"
+            android:background="@drawable/filter_backgroud"
+            android:drawableRight="@drawable/ic_filter_small"
             android:gravity="center"
             android:text="@string/price_filter" />
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/filter_divider_lien" />
 
         <TextView
             android:id="@+id/area_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableRight="@drawable/filter_ull"
+            android:background="@drawable/filter_backgroud"
+            android:drawableRight="@drawable/ic_filter_small"
             android:gravity="center"
             android:text="@string/location_filter" />
     </LinearLayout>
@@ -137,11 +147,11 @@
 
     <TextView
         android:id="@+id/noResultFoundView"
-        android:layout_below="@+id/filter_layout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/filter_layout"
         android:gravity="center"
-        android:visibility="gone"
-        android:text="@string/no_result_found" />
+        android:text="@string/no_result_found"
+        android:visibility="gone" />
 
 </RelativeLayout>
