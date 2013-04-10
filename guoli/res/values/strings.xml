@@ -253,7 +253,7 @@
     <string name="detail_hotal_address">酒店地址&#160;:&#160;</string>
     <string name="detail_hotal_phone">酒店电话&#160;:&#160;</string>
     <string name="detail_hotal_type">入住房型&#160;:&#160;</string>
-    <string name="detail_hotal_book">预定间树&#160;:&#160;</string>
+    <string name="detail_hotal_book">预定间数&#160;:&#160;</string>
     <string name="detail_hotal_date">住店日期&#160;:&#160;</string>
     <string name="detail_hotal_people">入住人&#160;:&#160;</string>
     <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
