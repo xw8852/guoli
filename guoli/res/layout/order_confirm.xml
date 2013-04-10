@@ -73,7 +73,7 @@
                 android:layout_marginLeft="@dimen/default_margin"
                 android:layout_marginRight="@dimen/default_margin"
                 android:background="@drawable/shape_round_rect_grey"
-                android:padding="@dimen/default_margin">
+                android:padding="@dimen/default_margin" >
 
                 <TextView
                     android:id="@+id/textView08"
@@ -209,44 +209,34 @@
                 android:background="@drawable/shape_round_rect_grey"
                 android:orientation="vertical" >
 
-                <RadioButton
-                    android:id="@+id/creditCardPay"
-                    style="@style/radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:checked="true"
-                    android:text="@string/credit_card_pay" />
-
-                <View
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
                     android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:background="@color/color_grey" />
+                    android:layout_height="wrap_content" >
 
-                <RadioButton
-                    android:id="@+id/tenpay"
-                    style="@style/radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:checked="false"
-                    android:text="@string/tenpay" />
+                    <RadioButton
+                        android:id="@+id/creditCardPay"
+                        style="@style/radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:text="@string/credit_card_pay" />
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:background="@color/color_grey" />
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:background="@color/color_grey" />
 
-                <RadioButton
-                    android:id="@+id/moneyPay"
-                    style="@style/radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:checked="false"
-                    android:text="@string/money_pay" />
+                    <RadioButton
+                        android:id="@+id/moneyPay"
+                        style="@style/radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:checked="true"
+                        android:text="@string/money_pay" />
+                </RadioGroup>
 
                 <View
                     android:layout_width="fill_parent"
@@ -257,88 +247,23 @@
                 <!-- 账号信息 -->
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:id="@+id/banks"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/default_margin">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textColor="#959595"
-                        android:text="账号" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:textColor="#959595"
-                        android:text="开户行" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:textColor="#959595"
-                        android:text="开户人" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/default_margin">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="6222 0210 0102 111 1234" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="工商银行" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="张三丰" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/default_margin">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="6222 0210 0102 111 1234" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="招商银行" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="张三丰" />
+                    android:orientation="vertical" >
                 </LinearLayout>
             </LinearLayout>
-            <TextView android:id="@+id/commitBtn"
+
+            <TextView
+                android:id="@+id/commitBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/btn_paymeny"
                 android:gravity="center"
                 android:text="@string/confirm_commit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/title_bar_font_color"
-                android:background="@drawable/btn_commit"
-                />  
+                android:textColor="@color/title_bar_font_color" />
         </LinearLayout>
     </ScrollView>
 
