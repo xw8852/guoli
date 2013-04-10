@@ -68,7 +68,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == LoginActivity.RESULT_LOGIN_OK) {
+        if (LoginUtils.isLogin==2) {
             onLoginSuccess();
         }
     }
