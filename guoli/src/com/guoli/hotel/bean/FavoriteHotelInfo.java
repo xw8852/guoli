@@ -15,7 +15,7 @@ public class FavoriteHotelInfo {
 
 	@SerializedName("id")
 	public String id;
-	
+
 	@SerializedName("userid")
 	public String userid;
 
@@ -34,4 +34,15 @@ public class FavoriteHotelInfo {
 	@SerializedName("creationdate")
 	public String creationdate;
 
+	@SerializedName("indate")
+	public String startDate;
+
+	@SerializedName("outdate")
+	public String endDate;
+
+	@SerializedName("picpath")
+	public String picpath;
+
+	@SerializedName("filename")
+	public String filename;
 }

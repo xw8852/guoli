@@ -142,7 +142,9 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				ToastUtil.show(map.get("message").toString());
 				finish();
+				return;
 			}
+			ToastUtil.show("修改失败");
 		}
 
 		@Override
@@ -175,7 +177,9 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				Toast.makeText(EditPasswordActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 				finish();
+				return;
 			}
+			ToastUtil.show("修改失败");
 		}
 
 		@Override
