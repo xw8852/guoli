@@ -155,7 +155,7 @@ public class OrderConfirmActivity extends BaseActivity2 implements OnClickListen
 
             break;
         case R.id.commitBtn:
-            Uri uri=Uri.parse("http://m.guoli.com/"+mInfo.payfile);
+            Uri uri=Uri.parse("http://m.guoli.com/pay/"+mInfo.payfile);
             Intent intent=new Intent(Intent.ACTION_VIEW,uri);
             startActivity(intent);
             onBackPressed();
