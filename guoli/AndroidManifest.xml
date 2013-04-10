@@ -19,7 +19,7 @@
     <application
         android:name=".GuoliApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity android:name=".activity.SplashActivity"
@@ -138,6 +138,10 @@
         </activity>
         <activity
             android:name=".activity.order.OrderHotelListAcivity"
+            android:screenOrientation="portrait" >
+        </activity>
+           <activity
+            android:name=".activity.order.OrderCancelActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
