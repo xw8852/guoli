@@ -77,6 +77,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 
 	@Override
 	public void onClick(View v) {
+	    Intent intent;
 		switch (v.getId()) {
 		case R.id.left_btn:
 			finish();
@@ -86,25 +87,9 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			break;
 		case R.id.button1:
 			// TODO 退订
-			DialogUtils.showDialog("", "确认退订？", new  DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					HashMap<String,String> map=new HashMap<String, String>();
-					map.put("orderno", orderno);
-					if(isLogin&&LoginUtils.isLogin==1){
-						map.put("uid", "0");
-						map.put("mobile", LoginUtils.mobile);
-					}else {
-						map.put("uid", LoginUtils.uid);
-						map.put("mobile", LoginUtils.mobile);
-					}
-					map.put("content", "");
-					Request request=new GuoliRequest(Action.Order.OrderUnSubScribe, map);
-					mDialog=DialogUtils.showProgressDialog(OrderHotelDetailActivity.this, "正在退订..");
-					Manager.getInstance().executePoset(request, mOrderCacelResponseListener);
-				}
-			}, this);
+		    intent=new Intent(this, OrderCancelActivity.class);
+		    intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
+		    startActivity(intent);
 			break;
 		case R.id.button2:
 		    if(mOrderIndo==null){
@@ -114,7 +99,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		        return;
 		    }
 			// TODO 跳转到订单确认页面
-			Intent intent = new Intent();
+			 intent = new Intent();
 			intent.setClass(this, OrderConfirmActivity.class);
 			intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
 			startActivity(intent);

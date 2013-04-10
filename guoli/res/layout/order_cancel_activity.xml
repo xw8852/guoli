@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_weight="1"
+        android:background="@drawable/shape_round_rect_grey" >
+
+        <TextView
+            android:id="@+id/orderNoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="订单编号 : "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/orderNo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/orderNoTitle"
+            android:layout_toRightOf="@+id/orderNoTitle"
+            android:paddingLeft="@dimen/small_margin"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderNoTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderHotelTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider1"
+            android:text="酒店名称 : "
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderHotelTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderRoomTypeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider2"
+            android:text="房        型 : "
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderRoomTypeTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderTimeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider3"
+            android:text="入住/离店时间:"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderTimeTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderCheckInPeopleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider4"
+            android:text="入  住  人 : "
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderCheckInPeopleTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderPayTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider5"
+            android:text="金        额 : "
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/orderPayTitle"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_grey" />
+
+        <TextView
+            android:id="@+id/orderContentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNoTitle"
+            android:layout_below="@+id/divider6"
+            android:text="理        由 : "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/orderHotel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderNo"
+            android:layout_below="@+id/divider1"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/roomType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderHotel"
+            android:layout_below="@+id/divider2"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/divider4"
+            android:layout_toRightOf="@+id/orderTimeTitle"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/checkInPeople"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderHotel"
+            android:layout_below="@+id/divider4"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/pay"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/orderHotel"
+            android:layout_below="@+id/divider5"
+            android:singleLine="true"
+            android:textColor="#ff0000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignLeft="@+id/orderHotel"
+            android:layout_alignTop="@+id/orderContentTitle"
+            android:background="@android:color/transparent"
+            android:gravity="top|left"
+            android:hint="请输入您的理由"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_order_btn"
+            android:text="确认退订" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cancel_order_btn"
+            android:text="取消" />
+    </LinearLayout>
+
+</LinearLayout>
