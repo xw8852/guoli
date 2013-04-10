@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.FavoriteHotelInfo;
+import com.guoli.hotel.utils.ImageUtil;
+import com.msx7.core.Controller;
 
 /**
  * ClassName:FavoriteAdapter <br/>
@@ -49,7 +51,7 @@ public class FavoriteAdapter extends AbstractAdapter<FavoriteHotelInfo> {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.item_favorite, null);
-			holder.hotelImgView = (ImageView) convertView.findViewById(R.id.hotel_img);
+			holder.imageView = (ImageView) convertView.findViewById(R.id.hotel_img);
 			holder.nameView = (TextView) convertView.findViewById(R.id.hotel_name);
 			holder.addressView = (TextView) convertView.findViewById(R.id.hotel_address);
 			convertView.setTag(holder);
@@ -60,12 +62,14 @@ public class FavoriteAdapter extends AbstractAdapter<FavoriteHotelInfo> {
 		if (info != null) {
 			holder.nameView.setText(info.shopname);
 			holder.addressView.setText(info.address);
+			Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.picpath, info.filename),
+					holder.imageView, R.drawable.hotel_default);
 		}
 		return convertView;
 	}
 
 	private class ViewHolder {
-		ImageView hotelImgView;
+		ImageView imageView;
 		TextView nameView;
 		TextView addressView;
 	}

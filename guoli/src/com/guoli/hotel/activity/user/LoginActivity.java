@@ -140,7 +140,7 @@ public class LoginActivity extends BaseActivity2 {
 				finish();
 			}
 
-			Toast.makeText(LoginActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
+			ToastUtil.show(map.get("message").toString());
 		}
 
 		@Override

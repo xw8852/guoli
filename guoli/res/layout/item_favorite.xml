@@ -14,14 +14,15 @@
         android:id="@+id/hotel_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:src="@drawable/hotel_default" />
 
     <RelativeLayout
         android:id="@+id/hotel_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/hotel_img"
-        android:layout_alignTop="@+id/hotel_img"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/rightBtn"
         android:layout_toRightOf="@+id/hotel_img"
         android:gravity="center_vertical" >
 
@@ -33,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="13sp"
-            android:text="酒店名称" />
+            android:text="酒店名称"
+            android:textSize="13sp" />
         <!-- 酒店地址 -->
 
         <TextView
@@ -44,12 +45,13 @@
             android:layout_below="@+id/hotel_name"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="13sp"
             android:text="地址"
-            android:textColor="@color/font_grey" />
+            android:textColor="@color/font_grey"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/rightBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
