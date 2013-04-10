@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.hotel.HotelDetailActivity;
+import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.adapter.FavoriteAdapter;
 import com.guoli.hotel.bean.FavoriteHotelInfo;
 import com.guoli.hotel.bean.FavoriteInfo;
@@ -267,6 +269,19 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 			int pageNumber = DigitalUtils.convertToInt(favoriteInfo.getPageno());
 			requetFavoriteData(setBean(pageNumber + 1));
 		}
+	};
+
+	protected void rightBtnClickEvent() {
+		DialogUtils.showDialog(FavoriteActivity.this, "退出", "确定退出吗?", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				LoginUtils.isLogin = 0;
+				LoginUtils.username = "";
+				startActivity(new Intent(FavoriteActivity.this, LoginActivity.class));
+				finish();
+			}
+		});
 	};
 
 }
