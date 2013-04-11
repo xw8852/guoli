@@ -24,9 +24,13 @@ public class BigPicActivity extends BaseActivity2 {
 
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
+        showLeftReturnBtn(false, -1);
         mPager = (ViewPager) findViewById(R.id.ViewPager1);
         ArrayList<Parcelable> list = getIntent().getParcelableArrayListExtra("data");
+        int size = list.size();
         int index = getIntent().getIntExtra("index", 0);
+        String titleRes = getString(R.string.big_pic_title);
+        setTitle(String.format(titleRes, index+1, size));
         for (Parcelable parcelable : list) {
             PicInfo info=(PicInfo)parcelable;
             View view = getLayoutInflater().inflate(R.layout.pic_big_cell, null);
@@ -59,7 +63,6 @@ public class BigPicActivity extends BaseActivity2 {
     
     private void initImageView(ImageView imgView, PicInfo info){
         String picPath = getIntent().getStringExtra(PicGridActivity.KEY_PIC_PATH);
-//        Controller.getApplication().loadThumbnailImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
         Controller.getApplication().loadImage(ImageUtil.getImageUrl(picPath, info.getPicName()), imgView, R.drawable.default_big_pic);
     }
 

@@ -78,6 +78,18 @@ public class RoomTypeInfo {
     /**加床价格*/
     @SerializedName("addchuangprice")
     private float addchuangPrice;
+    
+    /**楼层*/
+    @SerializedName("louceng")
+    private String floor;
+    
+    /**床宽*/
+    @SerializedName("chuangkuan")
+    private String bedWidth;
+    
+    /**是否是无烟房*/
+    @SerializedName("wuyanfang")
+    private String allowSmoking;
 
     public String getPid() {
         return pid;
@@ -191,6 +203,30 @@ public class RoomTypeInfo {
         this.addchuangPrice = addchuangPrice;
     }
     
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getBedWidth() {
+        return bedWidth;
+    }
+
+    public void setBedWidth(String bedWidth) {
+        this.bedWidth = bedWidth;
+    }
+
+    public String getAllowSmoking() {
+        return allowSmoking;
+    }
+
+    public void setAllowSmoking(String allowSmoking) {
+        this.allowSmoking = allowSmoking;
+    }
+
     @Override
     public String toString() {
         return "{pid=" + pid + ", actprice=" + actprice + ", name=" + name + ", price=" + price

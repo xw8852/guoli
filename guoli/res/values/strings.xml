@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Guoli</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">果粒特惠酒店</string>
     <string name="menu_settings">Settings</string>
     <string name="back_btn">返回</string>
     <string name="text_true">是</string>
@@ -13,7 +12,7 @@
     <string name="loading_failed">加载失败</string>
 
     <!-- 酒店搜索页面 -->
-    <string name="search_hotel_title">果粒特惠酒店</string>
+    <string name="search_hotel_title">酒店查找结果</string>
     <string name="occupancy_city">入住城市</string>
     <string name="occupancy_date">入住日期</string>
     <string name="leave_date">离店日期</string>
@@ -64,7 +63,7 @@
     <string name="hotel_adress">酒店地址 :</string>
     <string name="hotel_phone">酒店电话 :</string>
     <string name="room_type">入住房型 :</string>
-    <string name="room_count">预定间数 :</string>
+    <string name="room_count">预订间数 :</string>
     <string name="period">住店日期 :</string>
     <string name="occupancy_user">入住人 :</string>
     <string name="contact">联系人 :</string>
@@ -94,7 +93,7 @@
     <string name="ques_1">如何查询订单?</string>
     <string name="answer_1">请登录后，选择“订单”选项或账户“酒店订单”即可看到</string>
     <string name="ques_2">如何退款？</string>
-    <string name="answer_2">当日预定不可退款，如需退款请过两个工作日后再进行退款</string>
+    <string name="answer_2">当日预订不可退款，如需退款请过两个工作日后再进行退款</string>
     <!-- 对话框 -->
     <string name="dialog_sure">确定</string>
     <string name="dialog_cancel">取消</string>
@@ -253,7 +252,7 @@
     <string name="detail_hotal_address">酒店地址&#160;:&#160;</string>
     <string name="detail_hotal_phone">酒店电话&#160;:&#160;</string>
     <string name="detail_hotal_type">入住房型&#160;:&#160;</string>
-    <string name="detail_hotal_book">预定间数&#160;:&#160;</string>
+    <string name="detail_hotal_book">预订间数&#160;:&#160;</string>
     <string name="detail_hotal_date">住店日期&#160;:&#160;</string>
     <string name="detail_hotal_people">入住人&#160;:&#160;</string>
     <string name="detail_hotal_contact">联系人&#160;:&#160;</string>
@@ -293,4 +292,5 @@
     <string name="order_commit_success_tips">订单编号%1$s\n恭喜你成功提交订单，我们将尽快确认您的订单，请保持手机畅通，稍后以短信的形式通知您。</string>
     <!-- 酒店图片 -->
     <string name="hotel_pic_grid_title">酒店图片</string>
+    <string name="big_pic_title">第%1$s张(共%2$s张)</string>
 </resources>

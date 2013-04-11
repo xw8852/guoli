@@ -13,7 +13,9 @@ package com.guoli.hotel.activity.hotel;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.baidu.mapapi.BMapManager;
@@ -59,6 +61,14 @@ public class HotelLocationActivity extends MapActivity {
 	private void initView() {
 		TextView title = (TextView) findViewById(R.id.title_text);
 		title.setText(R.string.hotel_location_map);
+		TextView backBtn = (TextView) findViewById(R.id.left_btn);
+		backBtn.setVisibility(View.VISIBLE);
+		backBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 		BMapManager mapManager = new BMapManager(getApplication());
 		mapManager.init(MAP_KEY, null);

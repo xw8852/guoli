@@ -40,7 +40,6 @@ import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
-import com.guoli.hotel.activity.order.OrderAuthenticActivity;
 import com.guoli.hotel.activity.user.LoginActivity;
 import com.guoli.hotel.bean.HotelDetailInfo;
 import com.guoli.hotel.bean.HotelParamsInfo;
@@ -163,6 +162,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         Intent intent = null;
         switch (v.getId()) {
         case R.id.collection_btn:
+            if (LoginUtils.isLogin == 0) {
+                intent = new Intent();
+                intent.setClass(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            }
         	HashMap<String, String> map = new HashMap<String, String>();
         	map.put("uid", LoginUtils.uid);
         	map.put("shopid", shopid);
@@ -409,11 +414,12 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             // 初始化隐藏视图内容
             holder.areaView.setText(formatContent(R.string.room_area, info.getArea() + ""));
             holder.addBedView.setText(formatContent(R.string.add_bed, addBed[info.getIsAddBed()]));
-            holder.allowSmokingView.setText(formatContent(R.string.allow_smoking, "否"));
             holder.networkView.setText(formatContent(R.string.have_net, netwrok[info.getBroadbandType() - 1]));
-            holder.floorView.setText(formatContent(R.string.floor_num, "8"));
-            holder.bedWithView.setText(formatContent(R.string.bed_width, "1.8"));
+            holder.floorView.setText(formatContent(R.string.floor_num, info.getFloor()));
+            holder.bedWithView.setText(formatContent(R.string.bed_width, info.getBedWidth()));
             holder.numView.setText(formatContent(R.string.pople_num, info.getCheckNum() + ""));
+            //是否无烟房
+            holder.allowSmokingView.setText(formatContent(R.string.allow_smoking, "否"));
 
             String btnTex = getResources().getString(info.getActprice() < 1 ? R.string.call : R.string.book);
             holder.button.setText(btnTex);
