@@ -28,7 +28,7 @@ public class CityResponseParams implements IResponseParams {
 
     /**城市数据集合*/
     @SerializedName("result")
-    private List<CityInfo> list;
+    public List<CityInfo> list;
     
     @SerializedName("result_hot")
     public List<CityInfo> mHostList;

@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -95,10 +97,39 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         mListView = (SosUniversalListView) findViewById(R.id.cityListView);
         mKeyWordView = (EditText) findViewById(R.id.cityNameKey);
         ImageView deleteBtn = (ImageView) findViewById(R.id.deleteBtn);
-        ImageView searchBtn = (ImageView) findViewById(R.id.searchBtn);
         deleteBtn.setOnClickListener(this);
-        searchBtn.setOnClickListener(this);
         mListView.setOnItemClickListener(this);
+        mKeyWordView.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (respParams == null)
+                    return;
+                List<CityInfo> list = respParams.list;
+                List<CityInfo> list2 = new ArrayList<CityInfo>();
+                if (s.toString().equals("")) {
+                    refreshListView(onSortList(respParams.mHostList, respParams.getList()));
+                    return;
+                } else
+                    for (CityInfo cityInfo : list) {
+                        if (cityInfo.getCityName().contains(s.toString())) {
+                            list2.add(cityInfo);
+                        }
+                    }
+                refreshListView(onSortList(null, list2));
+            }
+
+        });
     }
 
     @Override
@@ -118,8 +149,8 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         backToSearchHotelActivity(info);
         finish();
     }
-    
-    private void backToSearchHotelActivity(CityInfo info){
+
+    private void backToSearchHotelActivity(CityInfo info) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_CITYINFO, info);
@@ -136,12 +167,18 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             break;
         case R.id.deleteBtn:
             mKeyWordView.setText("");
+            if (PreferenceManager.getDefaultSharedPreferences(CitySelectActivity.this).contains("CityList")) {
+                String str = PreferenceManager.getDefaultSharedPreferences(CitySelectActivity.this).getString("CityList", "");
+                if (!"".equals(str)) {
+                    mLoadListener.onSuccess(new Gson().fromJson(str, Response.class));
+                }
+            }
             break;
         default:
             break;
         }
     }
-    
+
     @Override
     public void onBackPressed() {
         CityInfo info = getIntent().getParcelableExtra(KEY_CITYINFO);
@@ -172,6 +209,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
         // adapter.changeData(citys);
     }
 
+    CityResponseParams respParams;
     IResponseListener mLoadListener = new IResponseListener() {
 
         @Override
@@ -180,7 +218,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             dismissLoadingDialog();
 
             // 解析服务器返回结果为数组类型
-            CityResponseParams respParams = new CitysParse().parseResponse(resp);
+            respParams = new CitysParse().parseResponse(resp);
             if (respParams == null) {
                 return;
             }
@@ -197,7 +235,7 @@ public class CitySelectActivity extends CallActivity implements OnItemClickListe
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
             if (PreferenceManager.getDefaultSharedPreferences(CitySelectActivity.this).contains("CityList")) {
                 String str = PreferenceManager.getDefaultSharedPreferences(CitySelectActivity.this).getString("CityList", "");
-                if(!"".equals(str)){
+                if (!"".equals(str)) {
                     onSuccess(new Gson().fromJson(str, Response.class));
                 }
             }
