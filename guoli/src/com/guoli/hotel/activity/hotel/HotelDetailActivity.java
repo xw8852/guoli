@@ -135,7 +135,6 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     }
 
     protected void loadLocalData() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -623,18 +622,35 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     }
 
     private OnDateSetListener mInDateListener = new OnDateSetListener() {
+        
+        private boolean fired;
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            if (fired) {
+                fired = false;
+                return;
+            }
             String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
             mInDateView.setText(date);
+            mHotelRoom.setStartDate(date);
+            loadData();
+            fired = true;
         }
     };
 
     private OnDateSetListener mOutDateListener = new OnDateSetListener() {
+        private boolean fired;
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            if (fired) {
+                fired = false;
+                return;
+            }
             String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
             mOutDateView.setText(date);
+            mHotelRoom.setEndDate(date);
+            loadData();
+            fired = true;
         }
     };
 
