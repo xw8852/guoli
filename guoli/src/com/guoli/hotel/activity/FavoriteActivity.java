@@ -154,7 +154,6 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 		if (adapter == null) {
 			adapter = new FavoriteAdapter(hotelInfos, this);
 			mListView.setAdapter(adapter);
-			return;
 		} else {
 			adapter.addMore(hotelInfos);
 		}
