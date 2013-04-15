@@ -31,7 +31,6 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.UpdateActivity;
 import com.guoli.hotel.adapter.HotelAdapter;
 import com.guoli.hotel.bean.AreaInfo;
-import com.guoli.hotel.bean.BussinessInfo;
 import com.guoli.hotel.bean.HotelInfo;
 import com.guoli.hotel.bean.HotelListInfo;
 import com.guoli.hotel.bean.SearchInfo;
@@ -88,7 +87,6 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     public static final int ORDER_FILTER = 1;
     public static final int PRICE_FILTER = 3;
     public static final int LOCATION_FILTER = 5;
-    private static final int PAGE_DATA_COUNT = 30;
     /** 搜索条件对象 */
     public static final String KEY_SEARCHINFO = "searchInfo";
 
@@ -379,7 +377,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         if (mSearchInfo == null) {
             return;
         }
-        int type = info instanceof BussinessInfo ? 2 : 1;
+        int type = intent.getIntExtra(AreaListActivity.KEY_TYPE, 0);
         mSearchInfo.setAreaType(type + "");
         mSearchInfo.setArea(info.getCode());
         filterData(mSearchInfo); 

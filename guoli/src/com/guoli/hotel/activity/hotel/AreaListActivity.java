@@ -59,6 +59,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     private List<AreaInfo> mBusinessInfos;
     
     public static final String KEY_AREA = "area";
+    public static final String KEY_TYPE = "type";
     public static final String KEY_CITY_CODE = "areaCityCode";
     
     public AreaListActivity(){
@@ -78,18 +79,21 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int checkedId = mTabBar.getCheckedRadioButtonId();
         AreaInfo info = null;
+        int type = 0;
         switch (checkedId) {
         case R.id.areaAdminRadioBtn:
             if (mZoneInfos == null || !(mZoneInfos.size() > position)) {
                 break;
             }
             info = mZoneInfos.get(position);
+            type = 1;
             break;
         case R.id.areaShoppingRadioBtn:
             if (mBusinessInfos == null || !(mBusinessInfos.size() > position)) {
                 break;
             }
             info = mBusinessInfos.get(position);
+            type = 2;
             break;
         default:
             break;
@@ -97,6 +101,7 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_AREA, info);
+        bundle.putInt(KEY_TYPE, type);
         intent.putExtras(bundle);
         setResult(SearchHotelActivity.PAGE_AREA, intent);
         finish();
