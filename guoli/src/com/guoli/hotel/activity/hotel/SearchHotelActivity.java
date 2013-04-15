@@ -65,7 +65,12 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     /**搜索关键字*/
     private EditText mKeyWordView;
     /***/
-    /***/
+    private int mAreaType = AREA_TYPE_DEFAULT;
+    /**行政区域*/
+    private static final int AREA_TYPE_DEFAULT = 1;
+    /**商圈*/
+    private static final int AREA_TYPE_SHOPPING = 2;
+    
 
     public SearchHotelActivity() {
         mLayoutId = R.layout.search_hotel;
@@ -167,6 +172,8 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         //接口文档中规定城市编码/入住/离开时间为必填
         if (info != null && !TextUtils.isEmpty(info.getCityCode())) {
             intent.putExtra(AreaListActivity.KEY_CITY_CODE, info.getCityCode());
+            intent.putExtra(AreaListActivity.KEY_TYPE, mAreaType);
+            
         }
         startActivityForResult(intent, PAGE_AREA);
     }
@@ -323,6 +330,10 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         AreaInfo info = (AreaInfo) obj;
         setViewText(mAreaView, info.getName());
         mAreaView.setTag(info);
+        obj = getObject(intent, AreaListActivity.KEY_TYPE);
+        if (obj instanceof Integer) {
+            mAreaType = (Integer) obj;
+        }
     }
 
     @Override
@@ -493,8 +504,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
             return info;
         }
         AreaInfo areaInfo = (AreaInfo) obj;
-        int type = areaInfo instanceof ZoneInfo ? 1 : 2;
-        info.setAreaType(String.valueOf(type));
+        info.setAreaType(String.valueOf(mAreaType));
         info.setArea(areaInfo.getCode());
         return info;
     }

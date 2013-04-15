@@ -113,7 +113,8 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
         mListView.setOnItemClickListener(this);
         mTabBar = (RadioGroup) findViewById(R.id.radioGroup);
         mTabBar.setOnCheckedChangeListener(this);
-        mTabBar.check(R.id.areaAdminRadioBtn);
+        int type = getIntent().getIntExtra(KEY_TYPE, 1);
+        mTabBar.check(type == 2 ? R.id.areaShoppingRadioBtn : R.id.areaAdminRadioBtn);
     }
 
     @Override
@@ -173,7 +174,8 @@ public class AreaListActivity extends BaseActivity implements OnItemClickListene
             }
             mZoneInfos = info.getZoneInfos();
             mBusinessInfos = info.getBusinessInfos();
-            updateListView(mZoneInfos);
+            int type = getIntent().getIntExtra(KEY_TYPE, 1);
+            updateListView(type == 1 ? mZoneInfos : mBusinessInfos);
         }
         
         @Override
