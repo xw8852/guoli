@@ -10,17 +10,22 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
 import com.guoli.hotel.activity.order.EditOrderActivity;
+import com.guoli.hotel.adapter.SingleTextAdapter;
+import com.guoli.hotel.bean.MapInfo;
 
 /**
  * ClassName:HotelCountActivity <br/>
@@ -54,7 +59,8 @@ public class HotelCountActivity extends BaseActivity implements OnItemClickListe
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.roomCountListView);
         mListView.setOnItemClickListener(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mRooms);
+        String value = getIntent().getStringExtra("roomCount");
+        SingleTextAdapter adapter = new SingleTextAdapter(convertToList(mRooms), this, value);
         mListView.setAdapter(adapter);
     }
 
@@ -69,4 +75,20 @@ public class HotelCountActivity extends BaseActivity implements OnItemClickListe
         finish();
     }
 
+
+    private List<MapInfo> convertToList(String[] rooms){
+        if (rooms == null || rooms.length == 0) {
+            return null;
+        }
+        List<MapInfo> list = new ArrayList<MapInfo>();
+        for (String room : rooms) {
+            if (TextUtils.isEmpty(room)) {
+                continue;
+            }
+            MapInfo info = new MapInfo();
+            info.setValue(room);
+            list.add(info);
+        }
+        return list;
+    }
 }

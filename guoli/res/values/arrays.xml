@@ -48,7 +48,7 @@
     <string-array name="room_bed">
         <item >大床</item>
         <item >双床</item>
-        <item >床型不定</item>
+        <item >大/双</item>
     </string-array>
     <string-array name="add_bed">
         <item >否</item>

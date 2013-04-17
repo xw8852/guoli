@@ -186,6 +186,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         switch (v.getId()) {
         case R.id.room_count_content_view:
             intent = new Intent();
+            intent.putExtra("roomCount", mRoomCountView.getText());
             intent.setClass(this, HotelCountActivity.class);
             startActivityForResult(intent, PAGE_ROOM_COUNT);
             break;

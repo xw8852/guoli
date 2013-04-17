@@ -342,6 +342,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             HotelListInfo info = new HotelListInfoParse().parseResponse(resp);
             if (info == null) {
+                showDefaultNoticeView();
             return;
             }
             mCityView.setText(mSearchInfo.getCityName());
