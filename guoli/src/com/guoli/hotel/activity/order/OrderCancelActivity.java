@@ -19,12 +19,14 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
 
+import android.text.TextUtils;
 import android.view.View;
 
 public class OrderCancelActivity extends BaseActivity2 implements View.OnClickListener {
@@ -40,7 +42,18 @@ public class OrderCancelActivity extends BaseActivity2 implements View.OnClickLi
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
         mContent = (EditText) findViewById(R.id.content);
-        showRightCall();
+        if (LoginUtils.isLogin == 2) {
+            showRightExit();
+        } else {
+            showRightCall();
+        }
+        setLeftTitleBtn(R.string.back_btn, new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
@@ -67,6 +80,10 @@ public class OrderCancelActivity extends BaseActivity2 implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.button2:
+            if (TextUtils.isEmpty(mContent.getText().toString())) {
+                ToastUtil.show("请填写您的退订原因");
+                return;
+            }
             DialogUtils.showDialog("", "确认退订？", new DialogInterface.OnClickListener() {
 
                 @Override
@@ -88,7 +105,8 @@ public class OrderCancelActivity extends BaseActivity2 implements View.OnClickLi
             }, this);
             break;
         case R.id.button3:
-            onBackPressed();
+            startActivity(new Intent(OrderCancelActivity.this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
             break;
         default:
 
