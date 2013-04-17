@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.guoli.hotel.R;
 import com.guoli.hotel.bean.HotelInfo;
 import com.guoli.hotel.utils.CallUtils;
+import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.ImageUtil;
 import com.msx7.core.Controller;
 
@@ -67,7 +68,7 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
         holder.addressView.setText(info.getAddress());
         holder.areaView.setText(info.getDistrict());
         setStarLevelView(holder.levelView, info.getStarLavel());
-        //TODO:加载图片
+        //加载图片
         Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getFileName()), holder.imgView,R.drawable.hotel_default);
         int price = info.getPrice();
         if (price != 0) {
@@ -75,8 +76,15 @@ public class HotelAdapter extends AbstractAdapter<HotelInfo> {
             holder.priceView.setVisibility(View.VISIBLE);
             holder.discountView.setVisibility(View.VISIBLE);
             holder.priceView.setText(formatPrice(price));
-            String desc = getResources().getString(R.string.discount_desc);
-            holder.discountView.setText(String.format(desc, info.getDiscount()));
+            //折扣
+            double discount = info.getDiscount();
+            if (discount >= 9.8) {
+                holder.discountView.setText("");
+            } else {
+                String desc = getResources().getString(R.string.discount_desc);
+                String temp = DigitalUtils.convertToString(info.getDiscount(), 1);
+                holder.discountView.setText(String.format(desc, temp));
+            }
             return convertView;
         }
         holder.priceView.setVisibility(View.GONE);

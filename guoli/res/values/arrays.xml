@@ -17,9 +17,9 @@
     
     <string-array name="level_value">
         <item >不限</item>
-        <item >五星</item>
-        <item >四星</item>
-        <item >三星以下</item>
+        <item >五星/豪华</item>
+        <item >四星/高档</item>
+        <item >三星以下/经济</item>
     </string-array>
     <string-array name="level_key">
         <item ></item>
