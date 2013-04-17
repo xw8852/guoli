@@ -60,11 +60,12 @@ public class OrderConfirmActivity extends BaseActivity2 implements OnClickListen
         setLeftTitleBtn(R.string.back_btn, this);
         setRightTitleBtn(R.string.exit, this);
         mInfo = (OrderPayInfo) new Gson().fromJson(getIntent().getStringExtra("ORDER"), OrderPayInfo.class);
-         confirmPayBtn = (TextView) findViewById(R.id.commitBtn);
+        confirmPayBtn = (TextView) findViewById(R.id.commitBtn);
         confirmPayBtn.setOnClickListener(this);
         showOrder(mInfo);
         getPaymentInfo();
         mBankViews = (LinearLayout) findViewById(R.id.banks);
+        mBankViews.setVisibility(View.GONE);
         group = (RadioGroup) findViewById(R.id.radioGroup1);
         group.setOnCheckedChangeListener(mChangeListener);
     }
@@ -98,7 +99,6 @@ public class OrderConfirmActivity extends BaseActivity2 implements OnClickListen
         public void onSuccess(Response arg0) {
             if (mDialog != null && mDialog.isShowing())
                 mDialog.cancel();
-            System.out.println("mPaymentResponseListener:" + arg0.result);
             try {
                 HashMap<String, String> maps = JsonUtils.convertJsonToHashMap(arg0.result.toString());
                 if (maps.containsKey("message")) {
@@ -117,9 +117,9 @@ public class OrderConfirmActivity extends BaseActivity2 implements OnClickListen
                         TextView tv = (TextView) view.findViewById(R.id.bankNo);
                         tv.setText("账号: " + banks.get(i).cardno);
                         tv = (TextView) view.findViewById(R.id.bankName);
-                        tv.setText("账号: " + banks.get(i).bank);
+                        tv.setText("开户行: " + banks.get(i).bank);
                         tv = (TextView) view.findViewById(R.id.name);
-                        tv.setText("账号: " + banks.get(i).name);
+                        tv.setText("开户人: " + banks.get(i).name);
                         mBankViews.addView(view);
                         if(i%2!=0){
                             view.setBackgroundColor(0xf2f2f2);

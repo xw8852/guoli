@@ -122,13 +122,13 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 			if ("1".equals(getItem(position).tradestatus)) {
 				holder.status.setText("已付款");
 			} else if ("2".equals(getItem(position).tradestatus)) {
-				holder.status.setText("取消");
+				holder.status.setText("已取消");
 			} else if ("3".equals(getItem(position).tradestatus)) {
 				holder.status.setText("交易关闭");
 			} else if ("4".equals(getItem(position).tradestatus)) {
-				holder.status.setText("已退款");
+				holder.status.setText("退订中");
 			}  else if ("6".equals(getItem(position).tradestatus)) {
-				holder.status.setText("退款中");
+				holder.status.setText("退订中");
 			} else if ("8".equals(getItem(position).tradestatus)) {
 				holder.status.setText("已入住");
 			}

@@ -227,14 +227,14 @@
                         android:layout_height="1dp"
                         android:layout_marginBottom="@dimen/small_margin"
                         android:layout_marginTop="@dimen/small_margin"
-                        android:background="@color/color_grey" />
+                        android:background="@color/color_grey"
+                        android:checked="true" />
 
                     <RadioButton
                         android:id="@+id/moneyPay"
                         style="@style/radiobutton"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:checked="true"
                         android:text="@string/money_pay" />
                 </RadioGroup>
 
