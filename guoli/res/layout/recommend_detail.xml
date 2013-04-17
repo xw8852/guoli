@@ -36,7 +36,7 @@
                     android:id="@+id/hotelLevelView"
                     style="@style/ratingbar_small"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/hotelNameView"
                     android:numStars="0"

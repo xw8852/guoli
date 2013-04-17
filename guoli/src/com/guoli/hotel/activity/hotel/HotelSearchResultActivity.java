@@ -193,6 +193,10 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         mLoadingLayout = (LinearLayout) mFooterView.findViewById(R.id.loading);
         mLoadMoreBtn.setOnClickListener(mLoadMoreDataLisenter);
         mListView.addFooterView(mFooterView);
+        
+        TextView rightBtn = getRightButton();
+        rightBtn.setTextSize(14);
+        rightBtn.setPadding(10, 0, 10, 0);
     }
 
     @Override
@@ -284,6 +288,11 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         intent.setClass(this, HotelDetailActivity.class);
         startActivity(intent);
     }
+    
+    private void showDefaultNoticeView(){
+        findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.GONE);
+    }
 
     /**
      * 
@@ -296,8 +305,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private void updateListView(List<HotelInfo> list) {
         mLoadingLayout.setVisibility(View.GONE);
         if (list == null || list.size() == 0) {
-            findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
+            showDefaultNoticeView();
             return; 
         }
         Log.i(TAG, "updateListView()---> list.size=" + list.size());
@@ -346,11 +354,15 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
         @Override
         public void onError(Response resp) {
+            dismissLoadingDialog();
+            if (mListAdapter != null && mListAdapter.getCount() == 0) {
+                showDefaultNoticeView();
+                return;
+            }
             mLoadingLayout.setVisibility(View.GONE);
             mLoadMoreBtn.setVisibility(View.VISIBLE);
             mLoadMoreBtn.setText(R.string.loading_failed);
             mSearchInfo.setPageNum(""+(DigitalUtils.convertToInt(mSearchInfo.getPageNum()) - 1));
-            dismissLoadingDialog();
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
         }
