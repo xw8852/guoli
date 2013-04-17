@@ -1,7 +1,5 @@
 package com.guoli.hotel.activity.hotel;
 
-import java.util.Date;
-
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -21,7 +19,6 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.bean.AreaInfo;
 import com.guoli.hotel.bean.SearchInfo;
-import com.guoli.hotel.bean.ZoneInfo;
 import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.ResourceUtils;
@@ -277,8 +274,10 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         info.setChecked(true);
         setViewText(mCityView, info.getCityName());
         mCityView.setTag(info);
-        mOccupancyView.setText(DateUtils.getCurrentDate(DateUtils.FORMAT_DATE_YYMMDD));
-        mLeaveView.setText(DateUtils.long2Date(new Date().getTime()+24*60*60*1000, DateUtils.FORMAT_DATE_YYMMDD));
+        String date = DateUtils.addDateWithCurrentDate(1, DateUtils.FORMAT_DATE_YYMMDD);
+        mOccupancyView.setText(date);
+        date = DateUtils.addDateWithCurrentDate(2, DateUtils.FORMAT_DATE_YYMMDD);
+        mLeaveView.setText(date);
         mPriceView.setText(getResources().getStringArray(R.array.price_value)[0]);
         mLevelView.setText(getResources().getStringArray(R.array.price_value)[0]);
     }
@@ -324,7 +323,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     private void setAreaView(Intent intent){
         Object obj = getObject(intent, AreaListActivity.KEY_AREA);
         if (!(obj instanceof AreaInfo)) {
-            mCityView.setText("");
+            mAreaView.setText("");
             return;
         }
         AreaInfo info = (AreaInfo) obj;
@@ -424,7 +423,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
      */
     private DateInfo getOccupancyDateInfo(){
         CharSequence dateChar = mOccupancyView.getText();
-        String date = (TextUtils.isEmpty(dateChar) ? DateUtils.getCurrentDate(FORMAT_STYLE)
+        String date = (TextUtils.isEmpty(dateChar) ? DateUtils.addDateWithCurrentDate(1, FORMAT_STYLE)
                 : (String) dateChar);
         return convertToDateInfo(date);
     }
@@ -441,7 +440,7 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         CharSequence endDate = mLeaveView.getText();
         String date = null;
         if (TextUtils.isEmpty(startDate) && TextUtils.isEmpty(endDate)) {
-            date = DateUtils.getCurrentDate(FORMAT_STYLE);
+            date = DateUtils.addDateWithCurrentDate(2, FORMAT_STYLE);
             return convertToDateInfo(date);
         }
         if (TextUtils.isEmpty(endDate) && !TextUtils.isEmpty(startDate)) {

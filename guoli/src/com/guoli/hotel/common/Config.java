@@ -21,6 +21,6 @@ package com.guoli.hotel.common;
 public class Config {
 
     /**客服号码*/
-    public static final String CALL_NUMBER = "021-51021638";
+    public static final String CALL_NUMBER = "40000-17940";
 }
 
