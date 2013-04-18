@@ -146,6 +146,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         mInDateView = ((TextView) findViewById(R.id.inDateView));
         mOutDateView = ((TextView) findViewById(R.id.outDateView));
         mRoomsListView = (MyListView) findViewById(R.id.listView1);
+        mRoomsListView.setOnItemClickListener(mRoomOnItemClickListener);
         collectBtn.setOnClickListener(this);
         picLayout.setOnClickListener(this);
         addressLayout.setOnClickListener(this);
@@ -250,10 +251,19 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
      * @since JDK 1.6
      */
     private void initRoomsTypeViews(List<RoomTypeInfo> roomInfos) {
-        if (roomInfos == null || roomInfos.size() < 1) { return; }
-        mAdapter = new RoomAdapter(roomInfos);
-        mRoomsListView.setAdapter(mAdapter);
-        mRoomsListView.setOnItemClickListener(mRoomOnItemClickListener);
+        if (roomInfos == null || roomInfos.size() < 1) {
+            if (mAdapter != null) {
+                mAdapter.clear();
+            }
+            return; 
+        }
+        if (mAdapter == null) {
+            mAdapter = new RoomAdapter(roomInfos);
+            mRoomsListView.setAdapter(mAdapter);
+            return;
+        }
+        mAdapter.clear();
+        mAdapter.addMore(roomInfos);
     }
 
     AdapterView.OnItemClickListener mRoomOnItemClickListener = new AdapterView.OnItemClickListener() {
@@ -285,12 +295,17 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             breakfastTypes = getResources().getStringArray(R.array.room_breakfast);
             addBed = getResources().getStringArray(R.array.add_bed);
             netwrok = getResources().getStringArray(R.array.network);
-            models = new ArrayList<HotelDetailActivity.RoomModel>();
+            models = convertToList(roomInfos);
+        }
+        
+        private  List<RoomModel> convertToList(List<RoomTypeInfo> roomInfos){
+            List<RoomModel> list = new ArrayList<HotelDetailActivity.RoomModel>();
             for (RoomTypeInfo roomInfo : roomInfos) {
                 RoomModel model = new RoomModel();
                 model.mInfo = roomInfo;
-                models.add(model);
+                list.add(model);
             }
+            return list;
         }
 
         @Override
@@ -427,6 +442,22 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         private String formatContent(int resId, String value) {
             String content = getResources().getString(resId);
             return String.format(content, value);
+        }
+        
+        private void clear(){
+            if (models == null) {
+                return;
+            }
+            models.clear();
+            notifyDataSetChanged();
+        }
+        
+        private void addMore(List<RoomTypeInfo> list){
+            if (list == null || list.size() == 0) {
+                return;
+            }
+            models.addAll(convertToList(list));
+            notifyDataSetChanged();
         }
 
     }
