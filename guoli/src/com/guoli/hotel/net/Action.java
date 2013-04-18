@@ -79,5 +79,7 @@ public final class Action {
     public static final class Hotel{
         /**酒店图片列表*/
         public static final String HOTEL_PIC = "hotel_hotelpic";
+        /**酒店清单列表*/
+        public static final String ORDER_ORDPRICE = "order_ordprice";
     }
 }

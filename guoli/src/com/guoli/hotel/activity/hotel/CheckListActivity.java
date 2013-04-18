@@ -10,11 +10,12 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,19 @@ import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
 import com.guoli.hotel.adapter.AbstractAdapter;
 import com.guoli.hotel.bean.CheckInfo;
+import com.guoli.hotel.net.Action;
+import com.guoli.hotel.net.GuoliRequest;
+import com.guoli.hotel.net.request.bean.OrderPriceRequest;
+import com.guoli.hotel.net.response.bean.OrderPriceResponse;
+import com.guoli.hotel.parse.BaseParse;
+import com.guoli.hotel.utils.DigitalUtils;
+import com.guoli.hotel.utils.ResourceUtils;
+import com.guoli.hotel.utils.ToastUtil;
+import com.msx7.core.Manager;
+import com.msx7.core.command.ErrorCode;
+import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
+import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:OccupancyListActivity <br/>
@@ -38,6 +52,9 @@ import com.guoli.hotel.bean.CheckInfo;
 public class CheckListActivity extends BaseActivity {
     
     private ListView mListView;
+    private OrderPriceRequest mRequest;
+    private String[] mBreakfasts;
+    private static final String TAG = CheckListActivity.class.getSimpleName();
     
     public CheckListActivity(){
         mTitleTextId = R.string.occupancy_list;
@@ -48,27 +65,48 @@ public class CheckListActivity extends BaseActivity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         showLeftBtn();
-        List<CheckInfo> list = getList();
-        updateListView(list);
+        mBreakfasts = getResources().getStringArray(R.array.breakfast);
+        mRequest = getIntent().getParcelableExtra("orderPriceRequest");
+        Log.i(TAG, "onCreate()---> mRequest=" + (mRequest == null ? null : mRequest.toString()));
+        loadNetworkData();
     }
 
     @Override
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.occupancyListView);
     }
-
-    private List<CheckInfo> getList(){
-        ArrayList<CheckInfo> list = new ArrayList<CheckInfo>();
-        for (int index = 0 ; index < 10 ; index++) {
-            CheckInfo info = new CheckInfo();
-            info.setDate("12-11 (星期二)");
-            info.setPrice("￥999");
-            info.setName("双早");
-            list.add(info);
-        }
-        return list;
+    
+    private void loadNetworkData(){
+        showLoadingDialog(R.string.loading_msg);
+        Request request = new GuoliRequest(Action.Hotel.ORDER_ORDPRICE, mRequest);
+        Log.i(TAG, "request=" + request.Params.toParams());
+        Manager.getInstance().executePoset(request, mLoadListener);
     }
     
+    private IResponseListener mLoadListener = new IResponseListener() {
+        
+        @Override
+        public void onSuccess(Response resp) {
+            Log.i(TAG, "onSuccess()---> response=" + (resp == null ? null : resp.result));
+            dismissLoadingDialog();
+            if (resp == null || resp.result == null) {
+                return;
+            }
+            OrderPriceResponse info = new BaseParse<OrderPriceResponse>().parse(resp, OrderPriceResponse.class);
+            if (info == null) {
+                return;
+            }
+            updateListView(info.getList());
+        }
+        
+        @Override
+        public void onError(Response resp) {
+            Log.i(TAG, "onError()---> response=" + (resp == null ? null : resp.result));
+            dismissLoadingDialog();
+            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
+        }
+    };
+
     /**
      * 
      * updateListView:更新列表数据. <br/>
@@ -114,9 +152,12 @@ public class CheckListActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.dateView.setText(info.getDate());
-            holder.priceView.setText(info.getPrice());
-            holder.nameView.setText(info.getName());
+            //日期
+            initDateView(holder.dateView, info);
+            //价格
+            initPriceView(holder.priceView, info);
+            //餐饮
+            initBreakfastView(holder.nameView, info);
             return convertView;
         }
         
@@ -124,6 +165,48 @@ public class CheckListActivity extends BaseActivity {
             TextView dateView;
             TextView priceView;
             TextView nameView;
+        }
+        
+        private void initDateView(TextView view, CheckInfo info){
+            if (view == null || info == null) {
+                return;
+            }
+            ResourceUtils utils = ResourceUtils.getInstance(CheckListActivity.this);
+            String value = utils.getValue(R.array.week_key, R.array.week_value, info.getWeek());
+            String date = info.getDate();
+            if (TextUtils.isEmpty(value)) {
+                view.setText(date);
+                return;
+            }
+            view.setText(date + String.format(getString(R.string.date_weekday), value));
+        }
+        
+        private void initPriceView(TextView view, CheckInfo info){
+            if (view == null || info == null) {
+                return;
+            }
+            double price = DigitalUtils.convertToDouble(info.getPrice());
+            if (price == -1) {
+                return;
+            }
+            int intPrice = (int) price;
+            String desc = getString(R.string.order_money_content);
+            view.setText(String.format(desc, intPrice+""));
+        }
+        
+        private void initBreakfastView(TextView view, CheckInfo info){
+            if (view == null || info == null) {
+                return;
+            }
+            String breakfast = info.getBreakfast();
+            if (TextUtils.isEmpty(breakfast)) {
+                return;
+            }
+            int index = DigitalUtils.convertToInt(breakfast);
+            if (index < 0 || index > mBreakfasts.length - 1) {
+                return;
+            }
+            view.setText(mBreakfasts[index]);
         }
     }
     

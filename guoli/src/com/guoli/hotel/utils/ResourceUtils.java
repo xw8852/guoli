@@ -11,7 +11,6 @@
 package com.guoli.hotel.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.content.Context;
@@ -87,6 +86,31 @@ public class ResourceUtils {
         }
         if (index < keys.length) {
             return keys[index];
+        }
+        return "";
+    }
+    /**
+     * 
+     * getValue:获取指定key对应的value. <br/>
+     * @author maple
+     * @param keyArrayId
+     * @param valueArrayId
+     * @param key
+     * @return
+     * @since JDK 1.6
+     */
+    public String getValue(int keyArrayId, int valueArrayId, String key){
+        String[] values = mCtx.getResources().getStringArray(valueArrayId);
+        String[] keys = mCtx.getResources().getStringArray(keyArrayId);
+        if (values == null || keys == null) {
+            return "";
+        }
+        int index = searchAtIndex(keys, key);
+        if (index < 0) {
+            return "";
+        }
+        if  (index < values.length) {
+            return values[index];
         }
         return "";
     }
