@@ -30,7 +30,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,7 +72,7 @@ import com.msx7.core.command.model.Response;
  */
 public class HotelDetailActivity extends CallActivity implements OnClickListener {
 
-    private ListView mRoomsListView;
+    private MyListView mRoomsListView;
     private RoomAdapter mAdapter;
     private HotelRoom mHotelRoom;
     private TextView mInDateView;
@@ -146,7 +145,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
         View historyLayout = findViewById(R.id.history_layout);
         mInDateView = ((TextView) findViewById(R.id.inDateView));
         mOutDateView = ((TextView) findViewById(R.id.outDateView));
-        mRoomsListView = (ListView) findViewById(R.id.listView1);
+        mRoomsListView = (MyListView) findViewById(R.id.listView1);
         collectBtn.setOnClickListener(this);
         picLayout.setOnClickListener(this);
         addressLayout.setOnClickListener(this);

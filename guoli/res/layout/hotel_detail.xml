@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <!-- 标题栏 -->
-
-    <include
-        android:id="@+id/title_bar"
-        layout="@layout/title_bar" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/title_bar"
-        android:layout_marginLeft="10dp"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_marginRight="10dp" >
+        android:layout_height="fill_parent" >
+
+        <!-- 标题栏 -->
+
+        <include
+            android:id="@+id/title_bar"
+            layout="@layout/title_bar" />
 
         <RelativeLayout
-            android:id="@+id/base_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_below="@+id/title_bar"
-            android:layout_marginTop="10dp" >
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:descendantFocusability="blocksDescendants" >
 
             <!-- 酒店名称 -->
 
@@ -58,153 +55,202 @@
                 android:textColor="@color/title_bar_font_color" />
             <!-- 酒店图片 -->
 
-            <FrameLayout
-                android:id="@+id/pic_layout"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/base_layout"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true" >
+                android:layout_below="@+id/title_bar"
+                android:layout_marginTop="10dp" >
+
+                <!-- 酒店名称 -->
+
+                <TextView
+                    android:id="@+id/name_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="" />
+                <!-- 星级 -->
+
+                <RatingBar
+                    android:id="@+id/star_level"
+                    style="@style/ratingbar_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/name_view"
+                    android:layout_marginTop="8dp"
+                    android:numStars="0"
+                    android:rating="0" />
+                <!-- 收藏按钮 -->
+
+                <TextView
+                    android:id="@+id/collection_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/star_level"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_btn_collection"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="15dp"
+                    android:text="@string/collect"
+                    android:textColor="@color/title_bar_font_color" />
+                <!-- 酒店图片 -->
+
+                <FrameLayout
+                    android:id="@+id/pic_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true" >
+
+                    <ImageView
+                        android:id="@+id/pic_view"
+                        android:layout_width="96dp"
+                        android:layout_height="72dp"
+                        android:background="@drawable/hotel_default" />
+
+                    <TextView
+                        android:id="@+id/pic_count_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:layout_gravity="bottom"
+                        android:background="#30000000"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/title_bar_font_color" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <!-- 酒店地址/历史 -->
+
+            <LinearLayout
+                android:id="@+id/address_and_history_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/base_layout"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_rect_grey"
+                android:orientation="vertical" >
+
+                <!-- 酒店地址 -->
+
+                <RelativeLayout
+                    android:id="@+id/address_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/address_textview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@drawable/mark_icon"
+                        android:drawablePadding="@dimen/small_margin"
+                        android:drawableRight="@drawable/back_light"
+                        android:gravity="center_vertical"
+                        android:paddingRight="@dimen/small_margin"
+                        android:text="" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/address_textview"
+                        android:background="@color/color_grey" />
+
+                    <TextView
+                        android:id="@+id/history_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="@dimen/small_margin"
+                        android:drawableRight="@drawable/back_light"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="@dimen/max_margin"
+                        android:paddingRight="@dimen/small_margin"
+                        android:text="" />
+                    <!-- 酒店历史 -->
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- 入住/离店时间 -->
+
+            <LinearLayout
+                android:id="@+id/occupancy_and_leave_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address_and_history_layout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_rect_grey"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
 
                 <ImageView
-                    android:id="@+id/pic_view"
-                    android:layout_width="96dp"
-                    android:layout_height="72dp"
-                    android:background="@drawable/hotel_default" />
+                    android:id="@+id/mark_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mark_icon"
+                    android:visibility="invisible" />
+                <!-- 入住日期 -->
 
                 <TextView
-                    android:id="@+id/pic_count_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:gravity="center"
-                    android:background="#30000000"
-                    android:text=""
-                    android:textColor="@color/title_bar_font_color" />
-            </FrameLayout>
-        </RelativeLayout>
+                    android:id="@+id/inDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_date" />
 
-        <!-- 酒店地址/历史 -->
+                <TextView
+                    android:id="@+id/inDateView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <!-- 离店日期 -->
 
-        <LinearLayout
-            android:id="@+id/address_and_history_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/base_layout"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_round_rect_grey"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/outDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/end_date" />
 
-            <!-- 酒店地址 -->
+                <TextView
+                    android:id="@+id/outDateView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:text="" />
 
-            <RelativeLayout
-                android:id="@+id/address_layout"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/back_light" />
+            </LinearLayout>
+            <!-- 房型介绍 -->
+
+            <com.guoli.hotel.activity.hotel.MyListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/occupancy_and_leave_layout"
+                android:background="@drawable/shape_round_rect_grey"
+                android:padding="@dimen/small_margin" >
+            </com.guoli.hotel.activity.hotel.MyListView>
+            
+            <View 
+                android:layout_below="@+id/listView1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/address_textview"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/mark_icon"
-                    android:drawablePadding="@dimen/small_margin"
-                    android:drawableRight="@drawable/back_light"
-                    android:gravity="center_vertical"
-                    android:paddingRight="@dimen/small_margin"
-                    android:text="" />
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/address_textview"
-                    android:background="@color/color_grey" />
-
-                <TextView
-                    android:id="@+id/history_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/divider"
-                    android:layout_marginTop="10dp"
-                    android:drawablePadding="@dimen/small_margin"
-                    android:drawableRight="@drawable/back_light"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="@dimen/max_margin"
-                    android:paddingRight="@dimen/small_margin"
-                    android:text="" />
-                <!-- 酒店历史 -->
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <!-- 入住/离店时间 -->
-
-        <LinearLayout
-            android:id="@+id/occupancy_and_leave_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/address_and_history_layout"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_round_rect_grey"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp" >
-
-            <ImageView
-                android:id="@+id/mark_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/mark_icon"
-                android:visibility="invisible" />
-            <!-- 入住日期 -->
-
-            <TextView
-                android:id="@+id/inDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_date" />
-            <TextView
-                android:id="@+id/inDateView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="" />
-            <!-- 离店日期 -->
-
-            <TextView
-                android:id="@+id/outDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="@string/end_date" />
-
-            <TextView
-                android:id="@+id/outDateView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:text="" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/back_light" />
-        </LinearLayout>
-        <!-- 房型介绍 -->
-
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/occupancy_and_leave_layout"
-            android:padding="@dimen/small_margin"
-            android:background="@drawable/shape_round_rect_grey"
-            android:layout_marginBottom="15dp">
-        </ListView>
+                android:background="@android:color/transparent"
+                android:layout_height="15dp"/>
+        </RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>
