@@ -10,16 +10,20 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity;
+import com.guoli.hotel.adapter.SingleTextAdapter;
+import com.guoli.hotel.bean.MapInfo;
 
 /**
  * ClassName:OrderListActivity <br/>
@@ -32,7 +36,7 @@ import com.guoli.hotel.activity.BaseActivity;
  */
 public class SortListActivity extends BaseActivity implements OnItemClickListener {
 
-    private String[] mOrders;
+    private List<MapInfo> mOrders;
     private ListView mListView;
     public static final String KEY_ORDER = "order";
     
@@ -51,17 +55,18 @@ public class SortListActivity extends BaseActivity implements OnItemClickListene
     protected void findViews() {
         mListView = (ListView) findViewById(R.id.orderListView);
         mListView.setOnItemClickListener(this);
-        mOrders = getResources().getStringArray(R.array.order_value);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_single_layout, mOrders);
+        mOrders = convertToList();
+        String value = getIntent().getStringExtra(KEY_ORDER);
+        SingleTextAdapter adapter = new SingleTextAdapter(mOrders, this, value);
         mListView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View parent, int position, long id) {
-        if (mOrders == null || !(mOrders.length > position)) {
+        if (mOrders == null || !(mOrders.size() > position)) {
             return;
         }
-        commit(mOrders[position]);
+        commit(mOrders.get(position));
     }
     
     /**
@@ -70,12 +75,28 @@ public class SortListActivity extends BaseActivity implements OnItemClickListene
      * @author maple
      * @since JDK 1.6
      */
-    private void commit(String order){
+    private void commit(MapInfo info){
         Intent intent = new Intent();
-        intent.putExtra(KEY_ORDER, order);
+        intent.putExtra(KEY_ORDER, info.getValue());
         setResult(HotelSearchResultActivity.ORDER_FILTER, intent);
         finish();
     }
 
+    private List<MapInfo> convertToList(){
+        String[] keys = getResources().getStringArray(R.array.order_key);
+        String[] values = getResources().getStringArray(R.array.order_value);
+        if (keys == null || values == null || keys.length != values.length) {
+            return null;
+        }
+        List<MapInfo> list = new ArrayList<MapInfo>();
+        int length = keys.length;
+        for (int index = 0 ; index < length ; index++) {
+            MapInfo info = new MapInfo();
+            info.setKey(keys[index]);
+            info.setValue(values[index]);
+            list.add(info);
+        }
+        return list;
+    }
 }
 
