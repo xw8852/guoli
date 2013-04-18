@@ -48,7 +48,23 @@ public class DigitalUtils {
      */
     public static int convertToInt(String numberChar){
         try {
-            return Integer.parseInt(numberChar);
+            return Integer.valueOf(numberChar);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    /***
+     * 
+     * convertToInt:把字符串对象转换为对应的double值. <br/>
+     * @author maple
+     * @param numberChar
+     * @return
+     * @since JDK 1.6
+     */
+    public static double convertToDouble(String numberChar){
+        try {
+            return Double.valueOf(numberChar);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return -1;

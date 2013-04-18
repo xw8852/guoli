@@ -9,6 +9,9 @@
 */
 
 package com.guoli.hotel.bean;
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * ClassName:CheckInfo <br/>
  * @Description:    入住日期清单bean
@@ -21,13 +24,20 @@ package com.guoli.hotel.bean;
 public class CheckInfo {
 
     /**日期*/
+    @SerializedName("date")
     private String date;
     
     /**价格*/
+    @SerializedName("actprice")
     private String price;
     
-    /**双早餐*/
-    private String name;
+    /**周几*/
+    @SerializedName("week")
+    private String week;
+    
+    /**早餐安排 0-无1-单2-双*/
+    @SerializedName("breakfast")
+    private String breakfast;
 
     public String getDate() {
         return date;
@@ -45,12 +55,20 @@ public class CheckInfo {
         this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public String getWeek() {
+        return week;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWeek(String week) {
+        this.week = week;
+    }
+
+    public String getBreakfast() {
+        return breakfast;
+    }
+
+    public void setBreakfast(String breakfast) {
+        this.breakfast = breakfast;
     }
 }
 

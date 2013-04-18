@@ -36,6 +36,7 @@ import com.guoli.hotel.bean.RoomTypeInfo;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
+import com.guoli.hotel.net.request.bean.OrderPriceRequest;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.JsonUtils;
@@ -197,6 +198,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             break;
         case R.id.orderCostDetailView:
             intent = new Intent();
+            intent.putExtra("orderPriceRequest", getOrderPriceRequest());
             intent.setClass(this, CheckListActivity.class);
             startActivity(intent);
             break;
@@ -213,6 +215,15 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         default:
             break;
         }
+    }
+    
+    private OrderPriceRequest getOrderPriceRequest(){
+        OrderPriceRequest request = new OrderPriceRequest();
+        request.setId(mHotelRoom.getId());
+        request.setPid(mRoomTypeInfo.getPid());
+        request.setInDate(mHotelRoom.getStartDate());
+        request.setEndDate(mHotelRoom.getEndDate());
+        return request;
     }
 
     /**
