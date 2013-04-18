@@ -89,6 +89,12 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     public static final int LOCATION_FILTER = 5;
     /** 搜索条件对象 */
     public static final String KEY_SEARCHINFO = "searchInfo";
+    /***/
+    private int mAreaType = AREA_TYPE_DEFAULT;
+    /**行政区域*/
+    private static final int AREA_TYPE_DEFAULT = 1;
+    /**商圈*/
+    private static final int AREA_TYPE_SHOPPING = 2;
 
     private static final String TAG = HotelSearchResultActivity.class.getSimpleName();
 
@@ -228,6 +234,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             operationType = OPERATION_FILTER;
             mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
+            intent.putExtra(SortListActivity.KEY_ORDER, mSortFilterView.getText().toString());
             intent.setClass(this, SortListActivity.class);
             startActivityForResult(intent, ORDER_FILTER);
             break;
@@ -235,6 +242,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             operationType = OPERATION_FILTER;
             mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
+            intent.putExtra(PriceListActivity.KEY_PRICE, mPriceFilterView.getText().toString());
             intent.setClass(this, PriceListActivity.class);
             startActivityForResult(intent, PRICE_FILTER);
             break;
@@ -243,6 +251,8 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             mSearchInfo.setPageNum(String.valueOf(1));
             intent = new Intent();
             intent.putExtra(AreaListActivity.KEY_CITY_CODE, (mSearchInfo == null ? "" : mSearchInfo.getCityCode()));
+            intent.putExtra(AreaListActivity.KEY_AREA, mLocationFilterView.getText().toString());
+            intent.putExtra(AreaListActivity.KEY_TYPE, mAreaType);
             intent.setClass(this, AreaListActivity.class);
             startActivityForResult(intent, LOCATION_FILTER);
             break;
@@ -393,7 +403,8 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         int type = intent.getIntExtra(AreaListActivity.KEY_TYPE, 0);
         mSearchInfo.setAreaType(type + "");
         mSearchInfo.setArea(info.getCode());
-        filterData(mSearchInfo); 
+        filterData(mSearchInfo);
+        mAreaType = intent == null ? 1 : intent.getIntExtra(AreaListActivity.KEY_TYPE, 1);
     }
     
     /**
