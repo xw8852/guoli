@@ -145,13 +145,52 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/filter_layout" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/noResultFoundView"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/filter_layout"
         android:gravity="center"
-        android:text="@string/no_result_found"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:text="@string/no_result_found"
+            android:textColor="#ffC3C3C3"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/bg_line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/phone_notice"
+            android:textColor="#ffC3C3C3"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/noticePhoneBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerInside"
+            android:src="@drawable/phone_btn" />
+    </LinearLayout>
 
 </RelativeLayout>
