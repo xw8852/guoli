@@ -105,8 +105,8 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 				String id = map.get("id").toString();
 				Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 				addUserSuccess(name,id);
+				return;
 			}
-
 			Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 		}
 

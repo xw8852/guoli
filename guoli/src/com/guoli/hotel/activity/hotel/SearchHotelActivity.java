@@ -21,6 +21,7 @@ import com.guoli.hotel.bean.AreaInfo;
 import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.ResourceUtils;
 import com.guoli.hotel.widget.BottomTabbar;
 
@@ -186,6 +187,11 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         SearchInfo info = getSearchInfo();
         if (info == null) {
             Log.i(TAG, "enterHotelSearchResultActivity()--->搜索条件对象不能为空.....");
+            return;
+        }
+        if (DateUtils.compareDate(info.getEndDate(), info.getStartDate(), FORMAT_STYLE) != 1) {
+            String msg = getString(R.string.dialog_date_check_msg);
+            DialogUtils.showDialog("", msg, SearchHotelActivity.this);
             return;
         }
         // 跳转到酒店搜索结果页�?
@@ -381,17 +387,23 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
     };
 
     private OnDateSetListener leaveDateListener = new OnDateSetListener() {
+        
+        private boolean isRunned;
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
-            mLeaveView.setText(date);
-            //TODO 此处系统默认的执行两次,待确认.
-            /*if (checkLeaveDate((String) mOccupancyView.getText(), date)) {
-                mLeaveView.setText(date);
+            if (isRunned) {
+                isRunned = false;
+                return;
+            }
+            isRunned = true;
+            String endDate = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
+            String startDate = mOccupancyView.getText().toString();
+            if (DateUtils.compareDate(endDate, startDate, FORMAT_STYLE) == 1) {
+                mLeaveView.setText(endDate);
                 return;
             }
             String msg = getString(R.string.dialog_date_check_msg);
-            DialogUtils.showDialog("", msg, SearchHotelActivity.this);*/
+            DialogUtils.showDialog("", msg, SearchHotelActivity.this);
         }
     };
 
@@ -448,17 +460,6 @@ public class SearchHotelActivity extends CallActivity implements OnItemSelectedL
         }
         return convertToDateInfo((String) endDate);
     }
-    
-    /*private boolean checkLeaveDate(String startDate, String endDate){
-        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
-            long startTime = DateUtils.getTime((String) startDate, FORMAT_STYLE);
-            long endTime = DateUtils.getTime((String) endDate, FORMAT_STYLE);
-            Log.i("DEBUG", "checkLeaveDate()---> startDate=" + startDate + ", endDate=" + endDate
-                    + ", startTime=" + startTime + ", endTime=" + endTime);
-            return startTime <= endTime;
-        }
-        return true;
-    }*/
 
     private class DateInfo {
         int year;

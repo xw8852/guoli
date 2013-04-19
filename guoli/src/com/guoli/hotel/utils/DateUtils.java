@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.util.Log;
+
 public class DateUtils {
     
     public static final String FORMAT_TIME_HHMM = "HH:mm";
@@ -436,4 +438,24 @@ public class DateUtils {
         }
 	    return date.getTime();
 	}
+	
+	/***
+	 * 
+	 * compareDate:比较两个时间的先后. <br/>
+	 * @author maple
+	 * @param date 指定时间
+	 * @param targetDate   比较目标时间
+	 * @param style    时间指定格式
+	 * @return 1 指定时间大于目标时间,0相等,-1指定时间小于目标时间
+	 * @since JDK 1.6
+	 */
+    public static int compareDate(String date, String targetDate, String style) {
+        long time = DateUtils.getTime((String) date, style);
+        long targetTime = DateUtils.getTime((String) targetDate, style);
+        Log.i("DEBUG", "checkLeaveDate()---> date=" + date + ", targetDate=" + targetDate
+                + ", time=" + time + ", targetTime=" + targetTime);
+        if (time > targetTime) { return 1; }
+        if (time == targetTime) { return 0; }
+        return -1;
+    }
 }

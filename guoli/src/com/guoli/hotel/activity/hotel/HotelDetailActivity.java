@@ -49,6 +49,7 @@ import com.guoli.hotel.net.response.bean.RoomRespInfo;
 import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.DiscountUtils;
 import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.LoginUtils;
@@ -117,6 +118,14 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     }
 
     private void loadData() {
+        if (mHotelRoom == null) {
+            return;
+        }
+        if (DateUtils.compareDate(mHotelRoom.getEndDate(), mHotelRoom.getStartDate(), FORMAT_STYLE) != 1) {
+            String msg = getString(R.string.dialog_date_check_msg);
+            DialogUtils.showDialog("", msg, HotelDetailActivity.this);
+            return;
+        }
         // TODO 有本地缓存的情况下,合理的逻辑应该是先查询本地数据,如果本地数据没有查询到再判断网络是否可用
         // 网络如果可以用则查询网络数据
         if (!NetUtils.isNetworkWell(this)) {
@@ -660,11 +669,17 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                 fired = false;
                 return;
             }
-            String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
-            mInDateView.setText(date);
-            mHotelRoom.setStartDate(date);
-            loadData();
+            String startDate = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
+            String endDate = mOutDateView.getText().toString();
             fired = true;
+            if (DateUtils.compareDate(endDate, startDate, FORMAT_STYLE) == 1) {
+                mInDateView.setText(startDate);
+                mHotelRoom.setStartDate(startDate);
+                loadData();
+                return;
+            }
+            String msg = getString(R.string.dialog_date_check_msg);
+            DialogUtils.showDialog("", msg, HotelDetailActivity.this);
         }
     };
 
@@ -676,11 +691,17 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                 fired = false;
                 return;
             }
-            String date = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
-            mOutDateView.setText(date);
-            mHotelRoom.setEndDate(date);
-            loadData();
             fired = true;
+            String endDate = DateUtils.getDateWithFormat(year, monthOfYear, dayOfMonth, FORMAT_STYLE);
+            String targetDate = mInDateView.getText().toString();
+            if (DateUtils.compareDate(endDate, targetDate, FORMAT_STYLE) == 1) {
+                mOutDateView.setText(endDate);
+                mHotelRoom.setEndDate(endDate);
+                loadData();
+                return;
+            }
+            String msg = getString(R.string.dialog_date_check_msg);
+            DialogUtils.showDialog("", msg, HotelDetailActivity.this);
         }
     };
 
