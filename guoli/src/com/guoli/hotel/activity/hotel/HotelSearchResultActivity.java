@@ -37,6 +37,7 @@ import com.guoli.hotel.bean.SearchInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.parse.HotelListInfoParse;
+import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.ResourceUtils;
 import com.guoli.hotel.utils.ToastUtil;
@@ -83,6 +84,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     
     private static final int OPERATION_DEFAULT = 0;
     private static final int OPERATION_FILTER = 1;
+    private static final int OPERATION_LOADING_MORE = 2;
     /** 区域过滤标记 */
     public static final int ORDER_FILTER = 1;
     public static final int PRICE_FILTER = 3;
@@ -104,7 +106,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         mLayoutId = R.layout.hotel_search_result;
         mRightDrawableId = R.drawable.return_btn_bg;
         mRightTextId = R.string.map_mode;
-        mTitleTextId = R.string.search_hotel_title;
+        mTitleTextId = R.string.search_hotel_result_title;
     }
 
     @Override
@@ -199,6 +201,13 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         mLoadingLayout = (LinearLayout) mFooterView.findViewById(R.id.loading);
         mLoadMoreBtn.setOnClickListener(mLoadMoreDataLisenter);
         mListView.addFooterView(mFooterView);
+        findViewById(R.id.noticePhoneBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CallUtils utils = new CallUtils(HotelSearchResultActivity.this);
+                utils.callServer();
+            }
+        });
         
         TextView rightBtn = getRightButton();
         rightBtn.setTextSize(14);
@@ -300,6 +309,10 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     }
     
     private void showDefaultNoticeView(){
+        if (mSearchInfo != null) {
+            mOccupancyView.setText(mSearchInfo.getStartDate());
+            mLeaveView.setText(mSearchInfo.getEndDate());
+        }
         findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
         mListView.setVisibility(View.GONE);
     }
@@ -349,7 +362,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
         @Override
         public void onSuccess(Response resp) {
             dismissLoadingDialog();
-            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
+            Log.i(TAG, "onSuccess()---> response=" + (resp == null ? null : resp.result));
             HotelListInfo info = new HotelListInfoParse().parseResponse(resp);
             if (info == null) {
                 showDefaultNoticeView();
@@ -365,17 +378,16 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
         @Override
         public void onError(Response resp) {
+            Log.i(TAG, "onError()---> response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
-            if (mListAdapter != null && mListAdapter.getCount() == 0) {
-                showDefaultNoticeView();
+            if (operationType == OPERATION_LOADING_MORE) {
+                mLoadingLayout.setVisibility(View.GONE);
+                mLoadMoreBtn.setVisibility(View.VISIBLE);
+                mLoadMoreBtn.setText(R.string.loading_failed);
+                mSearchInfo.setPageNum(""+(DigitalUtils.convertToInt(mSearchInfo.getPageNum()) - 1));
                 return;
             }
-            mLoadingLayout.setVisibility(View.GONE);
-            mLoadMoreBtn.setVisibility(View.VISIBLE);
-            mLoadMoreBtn.setText(R.string.loading_failed);
-            mSearchInfo.setPageNum(""+(DigitalUtils.convertToInt(mSearchInfo.getPageNum()) - 1));
-            Log.i(TAG, "response=" + (resp == null ? null : resp.result));
-            ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
+            showDefaultNoticeView();
         }
     };
 
@@ -483,7 +495,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     private OnClickListener mLoadMoreDataLisenter = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            operationType = OPERATION_DEFAULT;
+            operationType = OPERATION_LOADING_MORE;
             v.setVisibility(View.GONE);
             mLoadingLayout.setVisibility(View.VISIBLE);
             int pageNumber = DigitalUtils.convertToInt(mSearchInfo.getPageNum()) + 1;
