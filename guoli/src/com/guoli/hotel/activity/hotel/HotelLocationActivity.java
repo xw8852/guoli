@@ -10,24 +10,20 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.GeoPoint;
-import com.baidu.mapapi.ItemizedOverlay;
 import com.baidu.mapapi.MapActivity;
 import com.baidu.mapapi.MapController;
 import com.baidu.mapapi.MapView;
-import com.baidu.mapapi.OverlayItem;
 import com.guoli.hotel.R;
 
 /**
@@ -121,50 +117,6 @@ public class HotelLocationActivity extends MapActivity {
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
-	}
-
-	public class MarkerOverlay extends ItemizedOverlay<OverlayItem> {
-
-		@SuppressWarnings("unused")
-		private GeoPoint geoPoint;
-		private OverlayItem item;
-
-		public MarkerOverlay(Drawable drawable, GeoPoint geoPoint) {
-			super(boundCenterBottom(drawable));
-			this.geoPoint = geoPoint;
-			item = new OverlayItem(geoPoint, "", "");
-			updateOverlay();
-		}
-
-		public void updateOverlay() {
-			populate();
-		}
-
-		@Override
-		public void draw(Canvas canvas, MapView mapView, boolean b) {
-			super.draw(canvas, mapView, b);
-		}
-
-		@Override
-		protected OverlayItem createItem(int i) {
-			return item;
-		}
-
-		@Override
-		public int size() {
-			return 1;
-		}
-
-		@Override
-		protected boolean onTap(int i) {
-			return super.onTap(i);
-		}
-
-		@Override
-		public boolean onTap(GeoPoint geoPoint, MapView mapView) {
-			return super.onTap(geoPoint, mapView);
-		}
-
 	}
 
 }
