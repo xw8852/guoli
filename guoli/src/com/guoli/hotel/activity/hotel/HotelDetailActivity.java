@@ -88,6 +88,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     
     private double lat = 0;
     private double lng = 0;
+    private String hotelAdr;
+    private String hotelName;
     private String shopid;
 
     private static final String TAG = HotelDetailActivity.class.getSimpleName();
@@ -197,8 +199,10 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
 				return;
 			}
             intent = new Intent();
-            intent.putExtra(HotelLocationActivity.KEY_LONGITUDE, lng);
             intent.putExtra(HotelLocationActivity.KEY_LATITUDE, lat);
+            intent.putExtra(HotelLocationActivity.KEY_LONGITUDE, lng);
+            intent.putExtra(HotelLocationActivity.KEY_HOTLE_ADR, hotelAdr);
+            intent.putExtra(HotelLocationActivity.KEY_HOTEL_NAME, hotelName);
             intent.setClass(this, HotelLocationActivity.class);
             startActivity(intent);
             break;
@@ -543,6 +547,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getPicName()), imgView, R.drawable.hotel_default);
             lng = info.getMapx();
             lat = info.getMapy();
+            hotelAdr = info.getAddress();
+            hotelName = info.getName();
         }
         HotelParamsInfo paramsInfo = respInfo.getParamsInfo();
         if (paramsInfo != null) {

@@ -13,9 +13,12 @@ package com.guoli.hotel.activity.hotel;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.BMapManager;
@@ -39,15 +42,19 @@ import com.guoli.hotel.R;
 public class HotelLocationActivity extends MapActivity {
 
 	public static final String MAP_KEY = "367475E851403E3CC39168413BB81978F3353E49";
-	public static final String KEY_LONGITUDE = "longitude";
 	public static final String KEY_LATITUDE = "latitude";
+	public static final String KEY_LONGITUDE = "longitude";
+	public static final String KEY_HOTLE_ADR = "hotelAdr";
+	public static final String KEY_HOTEL_NAME = "hotelName";
 	public static final int ZOOM_LEVEL = 14;
 
 	private MapController controller;
 	private GeoPoint geoPoint;
 	private MapView mapView;
-	private double lng;
 	private double lat;
+	private double lng;
+	private String hotelAdr;
+	private String hotelName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,32 +71,50 @@ public class HotelLocationActivity extends MapActivity {
 		TextView backBtn = (TextView) findViewById(R.id.left_btn);
 		backBtn.setVisibility(View.VISIBLE);
 		backBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
 
 		BMapManager mapManager = new BMapManager(getApplication());
 		mapManager.init(MAP_KEY, null);
 		super.initMapActivity(mapManager);
 		mapManager.start();
 		mapView = (MapView) findViewById(R.id.mapview);
-		mapView.setBuiltInZoomControls(false);
+		mapView.setBuiltInZoomControls(true);
 		controller = mapView.getController();
 		controller.setZoom(ZOOM_LEVEL);
 
-		lng = getIntent().getDoubleExtra(KEY_LONGITUDE, 0);
 		lat = getIntent().getDoubleExtra(KEY_LATITUDE, 0);
+		lng = getIntent().getDoubleExtra(KEY_LONGITUDE, 0);
+		hotelAdr = getIntent().getStringExtra(KEY_HOTLE_ADR);
+		hotelName = getIntent().getStringExtra(KEY_HOTEL_NAME);
+
 	}
 
 	private void mapOVerlay() {
+
+		LinearLayout overlay = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.loca_map_dialog, null);
+		TextView hotelAdrView = (TextView) overlay.findViewById(R.id.hotel_adr);
+		TextView hotelNameView = (TextView) overlay.findViewById(R.id.hotel_name);
+
+		if (!"".equalsIgnoreCase(hotelAdr)) {
+			hotelAdrView.setText(hotelAdr);
+		}
+
+		if (!"".equalsIgnoreCase(hotelName)) {
+			hotelNameView.setText(hotelName);
+		}
+
 		if (lat != 0 && lng != 0) {
 			geoPoint = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
+			mapView.addView(overlay, new MapView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,
+					null, MapView.LayoutParams.BOTTOM_CENTER));
+			MapView.LayoutParams mapviewParams = (MapView.LayoutParams) overlay.getLayoutParams();
+			mapviewParams.point = geoPoint;
+			mapView.updateViewLayout(overlay, mapviewParams);
 			controller.animateTo(geoPoint);
-			Drawable drawable = getResources().getDrawable(R.drawable.iconmarker);
-			MarkerOverlay markerOverlay = new MarkerOverlay(drawable, geoPoint);
-			mapView.getOverlays().add(markerOverlay);
 		}
 	}
 
