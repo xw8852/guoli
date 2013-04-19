@@ -331,6 +331,8 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
             showDefaultNoticeView();
             return; 
         }
+        findViewById(R.id.noResultFoundView).setVisibility(View.GONE);
+        mListView.setVisibility(View.VISIBLE);
         Log.i(TAG, "updateListView()---> list.size=" + list.size());
         if (mListAdapter == null) {
             mListAdapter = new HotelAdapter(list, this);

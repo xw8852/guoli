@@ -145,25 +145,29 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/filter_layout" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/noResultFoundView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/filter_layout"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical" >
+        android:visibility="gone" >
 
         <ImageView
+            android:id="@+id/noticeErrorImgView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerInside"
             android:src="@drawable/icon_notice" />
 
         <TextView
+            android:id="@+id/noticeContentView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/noticeErrorImgView"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:paddingBottom="10dp"
             android:text="@string/no_result_found"
@@ -171,26 +175,35 @@
             android:textSize="16sp" />
 
         <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:id="@+id/dividerView"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignLeft="@+id/noticeContentView"
+            android:layout_alignRight="@+id/noticeContentView"
+            android:layout_below="@+id/noticeContentView"
             android:background="@drawable/bg_line" />
 
         <TextView
+            android:id="@+id/phoneNoticeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_alignLeft="@+id/noticeContentView"
+            android:layout_below="@+id/dividerView"
+            android:layout_centerHorizontal="true"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/phone_notice"
             android:textColor="#ffC3C3C3"
             android:textSize="16sp" />
+
         <ImageView
             android:id="@+id/noticePhoneBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/phoneNoticeView"
+            android:layout_centerHorizontal="true"
             android:scaleType="centerInside"
             android:src="@drawable/phone_btn" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
