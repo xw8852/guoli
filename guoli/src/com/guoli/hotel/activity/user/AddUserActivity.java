@@ -68,10 +68,10 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 		case R.id.commit_btn:
 			name = nameView.getText().toString().trim();
 			if (TextUtils.isEmpty(name)) {
-				Toast.makeText(AddUserActivity.this, "null", Toast.LENGTH_SHORT).show();
+				Toast.makeText(AddUserActivity.this, "不能为空", Toast.LENGTH_SHORT).show();
 				return;
 			}
-			if(LoginUtils.isLogin==1){
+			if (LoginUtils.isLogin != 2) {
 			    addUserSuccess(name, "-1");
 			    return;
 			}
@@ -105,8 +105,8 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 				String id = map.get("id").toString();
 				Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 				addUserSuccess(name,id);
-				return;
 			}
+
 			Toast.makeText(AddUserActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
 		}
 
