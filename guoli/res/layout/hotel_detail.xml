@@ -21,6 +21,13 @@
             android:layout_marginRight="10dp"
             android:descendantFocusability="blocksDescendants" >
 
+            <RelativeLayout
+            android:id="@+id/base_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_bar"
+            android:layout_marginTop="10dp" >
+
             <!-- 酒店名称 -->
 
             <TextView
@@ -44,10 +51,10 @@
 
             <TextView
                 android:id="@+id/collection_btn"
-                android:layout_width="80dp"
-                android:layout_height="24dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/star_level"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/selector_btn_collection"
                 android:gravity="right|center_vertical"
                 android:paddingRight="15dp"
@@ -55,71 +62,30 @@
                 android:textColor="@color/title_bar_font_color" />
             <!-- 酒店图片 -->
 
-            <RelativeLayout
-                android:id="@+id/base_layout"
-                android:layout_width="fill_parent"
+            <FrameLayout
+                android:id="@+id/pic_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title_bar"
-                android:layout_marginTop="10dp" >
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true" >
 
-                <!-- 酒店名称 -->
+                <ImageView
+                    android:id="@+id/pic_view"
+                    android:layout_width="96dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/hotel_default" />
 
                 <TextView
-                    android:id="@+id/name_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="" />
-                <!-- 星级 -->
-
-                <RatingBar
-                    android:id="@+id/star_level"
-                    style="@style/ratingbar_small"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/pic_count_view"
+                    android:layout_width="fill_parent"
                     android:layout_height="20dp"
-                    android:layout_below="@+id/name_view"
-                    android:layout_marginTop="8dp"
-                    android:numStars="0"
-                    android:rating="0" />
-                <!-- 收藏按钮 -->
-
-                <TextView
-                    android:id="@+id/collection_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/star_level"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/selector_btn_collection"
-                    android:gravity="right|center_vertical"
-                    android:paddingRight="15dp"
-                    android:text="@string/collect"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:background="#30000000"
+                    android:text=""
                     android:textColor="@color/title_bar_font_color" />
-                <!-- 酒店图片 -->
-
-                <FrameLayout
-                    android:id="@+id/pic_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true" >
-
-                    <ImageView
-                        android:id="@+id/pic_view"
-                        android:layout_width="96dp"
-                        android:layout_height="72dp"
-                        android:background="@drawable/hotel_default" />
-
-                    <TextView
-                        android:id="@+id/pic_count_view"
-                        android:layout_width="fill_parent"
-                        android:layout_height="20dp"
-                        android:layout_gravity="bottom"
-                        android:background="#30000000"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="@color/title_bar_font_color" />
-                </FrameLayout>
-            </RelativeLayout>
+            </FrameLayout>
+        </RelativeLayout>
 
             <!-- 酒店地址/历史 -->
 
