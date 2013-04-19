@@ -291,9 +291,14 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         if (count < 0) {
             return;
         }
+        long days = DateUtils.reduceDate(mHotelRoom.getStartDate(), mHotelRoom.getEndDate(), DateUtils.FORMAT_DATE_YYMMDD);
+        Log.i(TAG, "setTotalCostView()---> days=" + days);
+        if (days < 1) {
+            return;
+        }
         float actPrice = mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getActprice();
         Log.i(TAG, "setTotalCostView()---> actPrice=" + actPrice + ", price=" + (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getPrice()));
-        int cost = (int) (count * actPrice);
+        int cost = (int) (count * actPrice * days);
         mTotalCostView.setText("￥" + cost + "");
     }
     /**
