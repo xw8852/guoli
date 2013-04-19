@@ -57,7 +57,7 @@ public class RoomTypeInfo {
     
     /**房间面积*/
     @SerializedName("area")
-    private int area;
+    private String area;
     
     /**宽带类型1-免费,2-付费*/
     @SerializedName("broadbandtype")
@@ -155,11 +155,11 @@ public class RoomTypeInfo {
         this.breakfastType = breakfastType;
     }
 
-    public int getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
