@@ -87,7 +87,7 @@ public class HotelsMapActivity extends MapActivity {
 		super.initMapActivity(mapManager);
 		mapManager.start();
 		mapView = (MapView) findViewById(R.id.mapview);
-		mapView.setBuiltInZoomControls(false);
+		mapView.setBuiltInZoomControls(true);
 		controller = mapView.getController();
 		controller.setZoom(HotelLocationActivity.ZOOM_LEVEL);
 	}
