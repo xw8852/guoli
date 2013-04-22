@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">果粒特惠酒店</string>
+    <string name="app_name">果粒特惠</string>
     <string name="menu_settings">Settings</string>
     <string name="back_btn">返回</string>
     <string name="text_true">是</string>
@@ -248,6 +248,7 @@
     <string name="now_book">立即预订</string>
     <!-- 收藏夹页面 -->
     <string name="my_favorite">我的收藏</string>
+    <string name="no_favorite_found">您还没有收藏</string>
     <!-- 订单详情 -->
     <string name="detail_order_state">订单状态&#160;:&#160;</string>
     <string name="detail_order_number">订单编号&#160;:&#160;</string>
@@ -298,4 +299,6 @@
     <!-- 酒店图片 -->
     <string name="hotel_pic_grid_title">酒店图片</string>
     <string name="big_pic_title">第%1$s张(共%2$s张)</string>
+    <!-- 订单列表 -->
+    <string name="no_order_found">您还没有订单</string>
 </resources>

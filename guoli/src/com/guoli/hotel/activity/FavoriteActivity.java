@@ -29,6 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -72,6 +73,7 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 	private LinearLayout loadMoreLayout;
 	private TextView loadMoreBtn;
 	private LinearLayout loadingLayout;
+	private RelativeLayout mDefaultLayout;
 
 	private static final int PAGE_NUMBER = 1;
 
@@ -107,6 +109,7 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 		mListView.setOnItemLongClickListener(mItemLongClickLisenter);
 		mListView.setOnCreateContextMenuListener(listener);
 		mListView.setOnItemClickListener(this);
+		mDefaultLayout = (RelativeLayout) findViewById(R.id.noResultFoundView);
 
 		loadMoreLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.load_more_foot, null);
 		loadingLayout = (LinearLayout) loadMoreLayout.findViewById(R.id.loading);
@@ -148,9 +151,14 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 		loadingLayout.setVisibility(View.GONE);
 		hotelInfos = favoriteInfo.getHotelInfos();
 		if (hotelInfos == null || hotelInfos.size() < 1) {
+		    showDefaultViews();
+		    if (adapter != null) {
+		        adapter.clear();
+		    }
 			return;
 		}
 
+		hiddenDefaultViews();
 		if (adapter == null) {
 			adapter = new FavoriteAdapter(hotelInfos, this);
 			mListView.setAdapter(adapter);
@@ -189,6 +197,7 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 		@Override
 		public void onError(Response response) {
 			dismissLoadingDialog();
+			showDefaultViews();
 		}
 	};
 
@@ -244,7 +253,7 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 					}.getType());
 
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
-				ToastUtil.show(map.get("message").toString());
+			    ToastUtil.show(map.get("message").toString());
 				adapter.remove(hotelInfo);
 				adapter.notifyDataSetChanged();
 			} else {
@@ -283,4 +292,12 @@ public class FavoriteActivity extends BaseActivity implements OnItemClickListene
 		});
 	};
 
+	private void showDefaultViews(){
+	    mListView.setVisibility(View.GONE);
+	    mDefaultLayout.setVisibility(View.VISIBLE);
+	}
+	private void hiddenDefaultViews(){
+	    mListView.setVisibility(View.VISIBLE);
+	    mDefaultLayout.setVisibility(View.GONE);
+	}
 }

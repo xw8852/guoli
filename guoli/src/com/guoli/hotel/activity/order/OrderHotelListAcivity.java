@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 	OrderAdapter mAdapter;
 	List<OrderItemInfo> mOrderItemInfos;
 	Dialog mDialog;
+	private RelativeLayout mDefaultLayout;
 	
 
 	GuoliRequest request;
@@ -49,6 +51,7 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 	public void onAfterCreate(Bundle savedInstanceState) {
 		new BottomTabbar(this, 2);
 		mListView = (ListView) findViewById(R.id.listView1);
+		mDefaultLayout = (RelativeLayout) findViewById(R.id.noResultFoundView);
 
 		setTitle(R.string.order_list_title);
 		if (LoginUtils.isLogin==2) {
@@ -180,6 +183,14 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 					new TypeToken<GuoliResponse<List<OrderItemInfo>>>() {
 					}.getType());
 			mOrderItemInfos = infos.result;
+			if (mOrderItemInfos == null || mOrderItemInfos.size() < 1) {
+			    showDefaultViews();
+			    if (mAdapter != null) {
+			        mAdapter.clear();
+			    }
+			    return;
+			}
+			hiddenDefaultViews();
 			mAdapter = new OrderAdapter(OrderHotelListAcivity.this,
 					mOrderItemInfos);
 			mListView.setAdapter(mAdapter);
@@ -189,11 +200,22 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 		@Override
 		public void onError(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			showDefaultViews();
 			Toast.makeText(OrderHotelListAcivity.this,
 					ErrorCode.getErrorCodeString(arg0.errorCode),
 					Toast.LENGTH_SHORT).show();
 		}
 	};
+	
+	private void showDefaultViews(){
+	    mListView.setVisibility(View.GONE);
+	    mDefaultLayout.setVisibility(View.VISIBLE);
+	}
+	
+	private void hiddenDefaultViews(){
+	    mListView.setVisibility(View.VISIBLE);
+	    mDefaultLayout.setVisibility(View.GONE);
+	}
 
 	static class Holder {
 		TextView creat;
