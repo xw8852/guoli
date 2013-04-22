@@ -16,6 +16,8 @@ public final class LoginUtils {
 	 * 会员用户登录之后保存的username
 	 */
 	public static String username = "";
+	/**会员用户登录之后保存的nickname*/
+	public static String nickName = "";
 	/**
 	 * 会员用户登录之后保存的moblie
 	 */

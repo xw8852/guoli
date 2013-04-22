@@ -38,6 +38,7 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.net.request.bean.OrderPriceRequest;
 import com.guoli.hotel.utils.DateUtils;
+import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
@@ -159,7 +160,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             int stopDays = getStopAtDays();
             findViewById(R.id.orderCostDetailView).setVisibility(stopDays > 1 ? View.VISIBLE : View.GONE);
         }
-        mContactNameView.setText(LoginUtils.username);
+        mContactNameView.setText(LoginUtils.nickName);
         mContactPhoneView.setText(LoginUtils.memberMobile);
         //初始化总额
         setTotalCostView();
@@ -235,6 +236,11 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     private void commitOrder() {
         OrderSubmitInfo info = getOrderSubmitInfo();
         if (info == null) {
+            return;
+        }
+        if (TextUtils.isEmpty(info.getContactName()) || TextUtils.isEmpty(info.getContactPhone()) || TextUtils.isEmpty(info.getInPeople())) {
+            String msg = getString(R.string.dialog_order_info_not_null);
+            DialogUtils.showDialog("", msg, this);
             return;
         }
         showLoadingDialog(R.string.loading_msg_commit);

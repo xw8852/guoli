@@ -16,6 +16,7 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -101,6 +102,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 
 	private void getUser() {
 		Request request = new GuoliRequest("user_myperson", new FavoriteUserBean(LoginUtils.uid, 1));
+		Log.i("UserSelectActivity", "request=" + request.Params.toParams());
 		Manager.getInstance().executePoset(request, getUserlistener);
 
 		dialog = DialogUtils.showProgressDialog(UserSelectActivity.this, "获取中...");
@@ -110,13 +112,15 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 
 		@Override
 		public void onSuccess(Response response) {
+		    Log.i("UserSelectActivity", "response=" + (response == null ? null : response.result));
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
 			if (response == null || response.result == null||"".equals(response.result.toString().trim())) {
 			    return;
 			}
-			Log.d("MSG", "onSuccess:" + response.getData().toString());
+			String data = response.getData().toString();
+			Log.d("MSG", "onSuccess:" + data);
 			GuoliResponse<List<FavoriteUserInfo>> infos = new Gson().fromJson(response.result.toString(),
 					new TypeToken<GuoliResponse<List<FavoriteUserInfo>>>() {
 					}.getType());

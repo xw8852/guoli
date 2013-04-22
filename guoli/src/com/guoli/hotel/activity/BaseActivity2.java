@@ -257,6 +257,7 @@ public abstract class BaseActivity2 extends Activity {
             LoginUtils.mobile="";
             LoginUtils.uid="";
             LoginUtils.username="";
+            LoginUtils.nickName = "";
             startActivity(new Intent(BaseActivity2.this, SearchHotelActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }
     };
