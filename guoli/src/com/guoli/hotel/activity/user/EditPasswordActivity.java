@@ -45,6 +45,7 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.modify_password);
+		showLeftReturnBtn(false, -1);
 		confirmBtn = (Button) findViewById(R.id.confirm_edit);
 		oldPasswordView = (EditText) findViewById(R.id.old_password);
 		newPasswordView = (EditText) findViewById(R.id.new_password);

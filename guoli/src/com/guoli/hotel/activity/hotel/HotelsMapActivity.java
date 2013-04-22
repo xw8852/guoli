@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class HotelsMapActivity extends MapActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.hotels_map_mode);
+		showLeftBtn();
 		findViews();
 		String json = getIntent().getStringExtra(KEY_HOTEL_LIST);
 		ArrayList<HotelInfo> hotleList = new Gson().fromJson(json, new TypeToken<ArrayList<HotelInfo>>() {
@@ -162,4 +164,40 @@ public class HotelsMapActivity extends MapActivity {
 		return false;
 	}
 
+	/**
+     * 
+     * showReturnBtn:显示左侧的返回按钮. <br/>
+     * @author maple
+     * @since JDK 1.6
+     */
+    private void showLeftBtn(){
+        TextView view = getLeftButton();
+        if (view == null) {
+            return;
+        }
+        view.setVisibility(View.VISIBLE);
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        if (R.drawable.return_btn_bg != 0) {
+            view.setBackgroundResource(R.drawable.return_btn_bg);
+        }
+        if (R.string.back_btn != 0) {
+            view.setText(R.string.back_btn);
+        }
+    }
+    
+    /**
+     * 
+     * getLeftButton:获取标题栏左侧的button. <br/>
+     * @author maple
+     * @return
+     * @since JDK 1.6
+     */
+    private TextView getLeftButton(){
+        return (TextView) findViewById(R.id.left_btn);
+    }
 }
