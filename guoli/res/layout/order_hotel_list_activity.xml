@@ -10,6 +10,7 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/small_margin"
         android:layout_weight="1"
+        android:visibility="gone"
         android:background="@drawable/shape_round_rect_grey"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@color/color_grey"
@@ -24,7 +25,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:visibility="gone" >
+         >
 
         <ImageView
             android:id="@+id/noticeErrorImgView"

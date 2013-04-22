@@ -23,6 +23,7 @@ import com.guoli.hotel.net.request.bean.UserRegisterBean;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.utils.ToastUtil;
+import com.guoli.hotel.widget.BottomTabbar;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
@@ -48,6 +49,7 @@ public class LoginActivity extends BaseActivity2 {
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.login);
+		new BottomTabbar(this, -1);
 		findViewById(R.id.textView6).setOnClickListener(onForgetPassword);
 		findViewById(R.id.textView7).setOnClickListener(onRegistUser);
 		findViewById(R.id.button2).setOnClickListener(onLoginListener);

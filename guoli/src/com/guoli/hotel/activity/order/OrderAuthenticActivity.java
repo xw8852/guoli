@@ -3,6 +3,7 @@ package com.guoli.hotel.activity.order;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.activity.user.LoginActivity;
@@ -21,6 +23,7 @@ import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.JsonUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.BottomTabbar;
+import com.msx7.core.Controller;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
@@ -37,6 +40,12 @@ public class OrderAuthenticActivity extends BaseActivity2 {
     @Override
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.order_title_search);
+        GuoliApplication application=  ((GuoliApplication)Controller.getApplication());
+        for (Activity activity : application.activities) {
+            activity.finish();
+        }
+        application.activities.clear();
+        application.activities.add(this);
         isResult=getIntent().getBooleanExtra(PARAM_AUTHER, false);
         // 检查是否已经登录
         if (0 == LoginUtils.isLogin){

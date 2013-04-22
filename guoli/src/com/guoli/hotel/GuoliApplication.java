@@ -1,9 +1,11 @@
 package com.guoli.hotel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
@@ -21,6 +23,7 @@ public class GuoliApplication extends Controller {
         super.onCreate();
         startTimer();
     }
+    public static ArrayList<Activity> activities=new ArrayList<Activity>();
 
     public void startTimer(){
         if(mTimer!=null)return;

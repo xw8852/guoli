@@ -1,11 +1,13 @@
 package com.guoli.hotel.activity.user;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
 import com.guoli.hotel.activity.FavoriteActivity;
@@ -14,6 +16,7 @@ import com.guoli.hotel.activity.order.OrderAuthenticActivity;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.LoginUtils;
 import com.guoli.hotel.widget.BottomTabbar;
+import com.msx7.core.Controller;
 
 public class AccountActivity extends BaseActivity2 implements View.OnClickListener {
 	BottomTabbar mTabbar;
@@ -30,7 +33,12 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 		mTabbar = new BottomTabbar(this, 3);
 		showLeftReturnBtn(true, R.string.dialog_exit_message);
 		setRightTitleBtn(R.string.exit, logoutListener);
-
+		GuoliApplication application=  ((GuoliApplication)Controller.getApplication());
+        for (Activity activity : application.activities) {
+            activity.finish();
+        }
+        application.activities.clear();
+        application.activities.add(this);
 		nicknameTitle = getResources().getString(R.string.nickname_title);
 		nickNameView = (TextView) findViewById(R.id.textView1);
 		nickNameView.setOnClickListener(this);

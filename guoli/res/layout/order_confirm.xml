@@ -32,7 +32,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:text="@string/order_number"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/orderNumber"
@@ -41,7 +41,7 @@
                     android:layout_alignTop="@+id/textView1"
                     android:layout_toRightOf="@+id/textView1"
                     android:text="101010101100"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
                 <!-- 订单编号 -->
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_marginBottom="@dimen/default_margin"
                     android:layout_marginTop="@dimen/default_margin"
                     android:text="@string/order_total"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/orderTotal"
@@ -63,7 +63,7 @@
                     android:layout_toRightOf="@+id/textView2"
                     android:singleLine="true"
                     android:text="￥1067"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
             </RelativeLayout>
             <!-- 酒店信息 -->
 
@@ -82,7 +82,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:text="@string/detail_hotal_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView09"
@@ -92,7 +92,7 @@
                     android:layout_toRightOf="@+id/textView08"
                     android:singleLine="true"
                     android:text="上海浦东香格里拉大酒店"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -103,7 +103,7 @@
                     android:layout_marginBottom="@dimen/default_margin"
                     android:layout_marginTop="@dimen/default_margin"
                     android:text="@string/detail_hotal_address"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -113,7 +113,7 @@
                     android:layout_toRightOf="@+id/textView10"
                     android:singleLine="true"
                     android:text="陆家嘴"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -122,7 +122,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/textView10"
                     android:text="@string/detail_hotal_phone"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -131,7 +131,7 @@
                     android:layout_alignTop="@+id/textView12"
                     android:layout_toRightOf="@+id/textView12"
                     android:text="021-5566789"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <View
                     android:id="@+id/divider"
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/divider"
                     android:text="@string/detail_hotal_type"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -157,7 +157,7 @@
                     android:layout_alignTop="@+id/textView14"
                     android:layout_toRightOf="@+id/textView14"
                     android:text="豪华大床房"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -168,7 +168,7 @@
                     android:layout_marginBottom="@dimen/default_margin"
                     android:layout_marginTop="@dimen/default_margin"
                     android:text="@string/detail_hotal_book"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -178,7 +178,7 @@
                     android:layout_toRightOf="@+id/textView16"
                     android:singleLine="true"
                     android:text="1间"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -187,7 +187,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/textView16"
                     android:text="@string/detail_hotal_date"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -196,7 +196,7 @@
                     android:layout_alignTop="@+id/textView18"
                     android:layout_toRightOf="@+id/textView18"
                     android:text="@string/order_list_timedate_1"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="16sp" />
             </RelativeLayout>
             <!-- 支付信息 -->
 
@@ -220,22 +220,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginTop="@dimen/small_margin"
-                        android:text="@string/credit_card_pay" />
+                        android:checked="true"
+                        android:text="@string/credit_card_pay"
+                        android:textSize="16sp" />
 
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:layout_marginBottom="@dimen/small_margin"
                         android:layout_marginTop="@dimen/small_margin"
-                        android:background="@color/color_grey"
-                        android:checked="true" />
+                        android:background="@color/color_grey" />
 
                     <RadioButton
                         android:id="@+id/moneyPay"
                         style="@style/radiobutton"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:text="@string/money_pay" />
+                        android:text="@string/money_pay"
+                        android:textSize="16sp" />
                 </RadioGroup>
 
                 <View
@@ -262,8 +264,8 @@
                 android:background="@drawable/btn_paymeny"
                 android:gravity="center"
                 android:text="@string/confirm_commit"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/title_bar_font_color" />
+                android:textColor="@color/title_bar_font_color"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 

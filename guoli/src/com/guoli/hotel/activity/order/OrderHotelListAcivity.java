@@ -179,6 +179,10 @@ public class OrderHotelListAcivity extends BaseActivity2 implements
 		public void onSuccess(Response arg0) {
 			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
 			GuoliResponse<List<OrderItemInfo>> infos = null;
+			if(arg0==null||arg0.result==null||"".equals(arg0.result.toString().trim())){
+			    showDefaultViews();
+			    return;
+			}
 			infos = new Gson().fromJson(arg0.result.toString(),
 					new TypeToken<GuoliResponse<List<OrderItemInfo>>>() {
 					}.getType());
