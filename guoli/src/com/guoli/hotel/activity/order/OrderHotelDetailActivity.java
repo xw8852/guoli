@@ -61,8 +61,9 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		if(LoginUtils.isLogin==2){
 		    showRightExit();
 			request=new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(orderno, LoginUtils.uid));
-		}else{
+		}else if(LoginUtils.isLogin==1){
 		    showRightCall();
+		    getRightButton().setText("");
 			mobile=LoginUtils.mobile;
 			request=new GuoliRequest(Action.Order.OrderDetail, OrderDetailBean.buildBean(orderno, mobile));
 		}
