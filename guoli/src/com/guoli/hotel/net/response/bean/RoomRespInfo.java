@@ -38,7 +38,7 @@ public class RoomRespInfo {
     
     /**酒店图片张数*/
     @SerializedName("piccount")
-    private int picCount;
+    private String picCount;
     
     /**酒店ID、入住/离店时间*/
     @SerializedName("param")
@@ -52,11 +52,11 @@ public class RoomRespInfo {
         this.hotelInfo = hotelInfo;
     }
 
-    public int getPicCount() {
+    public String getPicCount() {
         return picCount;
     }
 
-    public void setPicCount(int picCount) {
+    public void setPicCount(String picCount) {
         this.picCount = picCount;
     }
 

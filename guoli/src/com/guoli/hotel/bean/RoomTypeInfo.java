@@ -37,7 +37,7 @@ public class RoomTypeInfo {
     
     /***/
     @SerializedName("price")
-    private float price;
+    private String price;
     
     /**折扣*/
     @SerializedName("zheke")
@@ -45,11 +45,11 @@ public class RoomTypeInfo {
     
     /**减少的价格*/
     @SerializedName("reduceprice")
-    private float reducePrice;
+    private String reducePrice;
     
     /**床型 1-大床,2-双人床,3-床型不定*/
     @SerializedName("chuangtype")
-    private int bedType;
+    private String bedType;
     
     /**早餐类型 1-无,2-单早,3-双早*/
     @SerializedName("breakfasttype")
@@ -61,23 +61,23 @@ public class RoomTypeInfo {
     
     /**宽带类型1-免费,2-付费*/
     @SerializedName("broadbandtype")
-    private int broadbandType;
+    private String broadbandType;
     
     /**可住人数*/
     @SerializedName("checknum")
-    private int checkNum;
+    private String checkNum;
     
     /**是否可用加床 1-可加,0-不可加*/
     @SerializedName("isjiachuang")
-    private int isAddBed;
+    private String isAddBed;
     
     /**早餐价格*/
     @SerializedName("breakfastprice")
-    private float breakfastPrice;
+    private String breakfastPrice;
     
     /**加床价格*/
     @SerializedName("addchuangprice")
-    private float addchuangPrice;
+    private String addchuangPrice;
     
     /**楼层*/
     @SerializedName("louceng")
@@ -115,11 +115,11 @@ public class RoomTypeInfo {
         this.name = name;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -131,19 +131,19 @@ public class RoomTypeInfo {
         this.discount = discount;
     }
 
-    public float getReducePrice() {
+    public String getReducePrice() {
         return reducePrice;
     }
 
-    public void setReducePrice(float reducePrice) {
+    public void setReducePrice(String reducePrice) {
         this.reducePrice = reducePrice;
     }
 
-    public int getBedType() {
+    public String getBedType() {
         return bedType;
     }
 
-    public void setBedType(int bedType) {
+    public void setBedType(String bedType) {
         this.bedType = bedType;
     }
 
@@ -163,43 +163,43 @@ public class RoomTypeInfo {
         this.area = area;
     }
 
-    public int getBroadbandType() {
+    public String getBroadbandType() {
         return broadbandType;
     }
 
-    public void setBroadbandType(int broadbandType) {
+    public void setBroadbandType(String broadbandType) {
         this.broadbandType = broadbandType;
     }
 
-    public int getCheckNum() {
+    public String getCheckNum() {
         return checkNum;
     }
 
-    public void setCheckNum(int checkNum) {
+    public void setCheckNum(String checkNum) {
         this.checkNum = checkNum;
     }
 
-    public int getIsAddBed() {
+    public String getIsAddBed() {
         return isAddBed;
     }
 
-    public void setIsAddBed(int isAddBed) {
+    public void setIsAddBed(String isAddBed) {
         this.isAddBed = isAddBed;
     }
 
-    public float getBreakfastPrice() {
+    public String getBreakfastPrice() {
         return breakfastPrice;
     }
 
-    public void setBreakfastPrice(float breakfastPrice) {
+    public void setBreakfastPrice(String breakfastPrice) {
         this.breakfastPrice = breakfastPrice;
     }
 
-    public float getAddchuangPrice() {
+    public String getAddchuangPrice() {
         return addchuangPrice;
     }
 
-    public void setAddchuangPrice(float addchuangPrice) {
+    public void setAddchuangPrice(String addchuangPrice) {
         this.addchuangPrice = addchuangPrice;
     }
     

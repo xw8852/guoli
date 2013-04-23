@@ -58,11 +58,11 @@ public class HotelDetailInfo {
     
     /**地图经度*/
     @SerializedName("mapx")
-    private double mapx;
+    private String mapx;
     
     /**地图纬度*/
     @SerializedName("mapy")
-    private double mapy;
+    private String mapy;
     
     /**交通信息*/
     @SerializedName("trafficinfo")
@@ -86,11 +86,11 @@ public class HotelDetailInfo {
     
     /***/
     @SerializedName("isbrand")
-    private int isBrand;
+    private String isBrand;
     
     /***/
     @SerializedName("ispark")
-    private int isPark;
+    private String isPark;
     
     /**电话*/
     @SerializedName("phone")
@@ -176,19 +176,19 @@ public class HotelDetailInfo {
         this.decorationdate = decorationdate;
     }
 
-    public double getMapx() {
+    public String getMapx() {
         return mapx;
     }
 
-    public void setMapx(double mapx) {
+    public void setMapx(String mapx) {
         this.mapx = mapx;
     }
 
-    public double getMapy() {
+    public String getMapy() {
         return mapy;
     }
 
-    public void setMapy(double mapy) {
+    public void setMapy(String mapy) {
         this.mapy = mapy;
     }
 
@@ -232,19 +232,19 @@ public class HotelDetailInfo {
         this.creditCard = creditCard;
     }
 
-    public int getIsBrand() {
+    public String getIsBrand() {
         return isBrand;
     }
 
-    public void setIsBrand(int isBrand) {
+    public void setIsBrand(String isBrand) {
         this.isBrand = isBrand;
     }
 
-    public int getIsPark() {
+    public String getIsPark() {
         return isPark;
     }
 
-    public void setIsPark(int isPark) {
+    public void setIsPark(String isPark) {
         this.isPark = isPark;
     }
 
