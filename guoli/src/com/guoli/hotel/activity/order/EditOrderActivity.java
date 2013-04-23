@@ -252,13 +252,19 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode) {
         case PAGE_ROOM_COUNT:
-            String area = data == null ? "" : data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
+            if (data == null) {
+                return;
+            }
+            String area = data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
             setViewText(mRoomCountView, area);
             setTotalCostView();
             //用户只住一天,则订单总额详细不出现
             break;
         case PAGE_MORE_REQUIRE:
-            String content = data == null ? "" : data.getStringExtra(MoreRequireActivity.KEY_MORE_REQUIRE);
+            if (data == null) {
+                return;
+            }
+            String content = data.getStringExtra(MoreRequireActivity.KEY_MORE_REQUIRE);
             setViewText(mMoreRequireView, content);
             break;
         case PAGE_USER_ADD:

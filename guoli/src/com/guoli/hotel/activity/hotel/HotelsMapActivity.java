@@ -67,6 +67,7 @@ public class HotelsMapActivity extends MapActivity {
 		setContentView(R.layout.hotels_map_mode);
 		showLeftBtn();
 		findViews();
+		titleView.setText(R.string.hotels_map_title);
 		String json = getIntent().getStringExtra(KEY_HOTEL_LIST);
 		ArrayList<HotelInfo> hotleList = new Gson().fromJson(json, new TypeToken<ArrayList<HotelInfo>>() {
 		}.getType());
@@ -96,7 +97,6 @@ public class HotelsMapActivity extends MapActivity {
 
 	private void initViews(ArrayList<HotelInfo> hotleList) {
 		parseData(hotleList);
-		titleView.setText(R.string.hotels_map_title);
 		mCityView.setText(searchInfo.getCityName());
 		mOccyView.setText(searchInfo.getStartDate());
 		mLeaveView.setText(searchInfo.getEndDate());

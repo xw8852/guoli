@@ -50,6 +50,7 @@ import com.guoli.hotel.parse.HotelRoomParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DateUtils;
 import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.DiscountUtils;
 import com.guoli.hotel.utils.ImageUtil;
 import com.guoli.hotel.utils.LoginUtils;
@@ -424,7 +425,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             holder.typeNameView.setText(info.getName() + "");
             holder.discountView.setText(DiscountUtils.formatDiscount(info.getDiscount()));
             holder.priceView.setText("￥" + (int) info.getActprice());
-            int bebType = info.getBedType();
+            int bebType = DigitalUtils.convertToInt(info.getBedType());
             String bedContent = "";
             if (bebType - 1 >= 0 && bebType - 1 < bedTypes.length) {
                 bedContent = bedTypes[bebType - 1];
@@ -439,8 +440,10 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             holder.bedBreakfastView.setText(bedBreakfast);
             // 初始化隐藏视图内容
             holder.areaView.setText(formatContent(R.string.room_area, info.getArea() + ""));
-            holder.addBedView.setText(formatContent(R.string.add_bed, addBed[info.getIsAddBed()]));
-            holder.networkView.setText(formatContent(R.string.have_net, netwrok[info.getBroadbandType() - 1]));
+            int index = DigitalUtils.convertToInt(info.getIsAddBed());
+            holder.addBedView.setText(formatContent(R.string.add_bed, addBed[index]));
+            index = DigitalUtils.convertToInt(info.getBroadbandType()) - 1;
+            holder.networkView.setText(formatContent(R.string.have_net, netwrok[index]));
             holder.floorView.setText(formatContent(R.string.floor_num, info.getFloor()));
             holder.bedWithView.setText(formatContent(R.string.bed_width, info.getBedWidth()));
             holder.numView.setText(formatContent(R.string.pople_num, info.getCheckNum() + ""));
@@ -545,8 +548,8 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             //酒店图片
             ImageView imgView = (ImageView)findViewById(R.id.pic_view);
             Controller.getApplication().loadThumbnailImage(ImageUtil.getThumbnailImageUrl(info.getPicPath(), info.getPicName()), imgView, R.drawable.hotel_default);
-            lng = info.getMapx();
-            lat = info.getMapy();
+            lng = DigitalUtils.convertToDouble(info.getMapx());
+            lat = DigitalUtils.convertToDouble(info.getMapy());
             hotelAdr = info.getAddress();
             hotelName = info.getName();
         }

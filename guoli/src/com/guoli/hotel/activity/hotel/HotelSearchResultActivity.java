@@ -40,9 +40,7 @@ import com.guoli.hotel.parse.HotelListInfoParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DigitalUtils;
 import com.guoli.hotel.utils.ResourceUtils;
-import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
-import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
 
@@ -310,11 +308,24 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
     
     private void showDefaultNoticeView(){
         if (mSearchInfo != null) {
+            mCityView.setText(mSearchInfo.getCityName());
             mOccupancyView.setText(mSearchInfo.getStartDate());
             mLeaveView.setText(mSearchInfo.getEndDate());
         }
         findViewById(R.id.noResultFoundView).setVisibility(View.VISIBLE);
         mListView.setVisibility(View.GONE);
+        getRightButton().setVisibility(View.GONE);
+    }
+    
+    private void hiddenDefaultNoticeView(){
+        if (mSearchInfo != null) {
+            mCityView.setText(mSearchInfo.getCityName());
+            mOccupancyView.setText(mSearchInfo.getStartDate());
+            mLeaveView.setText(mSearchInfo.getEndDate());
+        }
+        findViewById(R.id.noResultFoundView).setVisibility(View.GONE);
+        mListView.setVisibility(View.VISIBLE);
+        getRightButton().setVisibility(View.VISIBLE);
     }
 
     /**
@@ -370,6 +381,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
                 showDefaultNoticeView();
             return;
             }
+            hiddenDefaultNoticeView();
             mCityView.setText(mSearchInfo.getCityName());
             mOccupancyView.setText(mSearchInfo.getStartDate());
             mLeaveView.setText(mSearchInfo.getEndDate());
