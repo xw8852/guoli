@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -54,38 +53,44 @@ public class ForgetPasswordActivity extends BaseActivity2 implements OnClickList
 	@Override
 	public void onClick(View v) {
 		phone = phoneView.getText().toString().trim();
-		
+
 		switch (v.getId()) {
 		case R.id.get_identify:
-			if (!UserController.isMoblieNumber(phoneView)) {
-				ToastUtil.show("请输入正确的手机号码");
+			if (TextUtils.isEmpty(phone)) {
+				DialogUtils.showDialog("提示", "请输入手机号码", ForgetPasswordActivity.this);
 				return;
 			}
 
-			if (!TextUtils.isEmpty(phone)) {
-				Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
-				Manager.getInstance().executePoset(request, getResponseListener);
-
-				dialog = DialogUtils.showProgressDialog(ForgetPasswordActivity.this, "发送中...");
-			} else {
-				Toast.makeText(ForgetPasswordActivity.this, "null", Toast.LENGTH_SHORT).show();
+			if (!UserController.isMoblieNumber(phoneView)) {
+				DialogUtils.showDialog("提示", "手机号码格式不正确", ForgetPasswordActivity.this);
+				return;
 			}
+
+			Request getRequest = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
+			Manager.getInstance().executePoset(getRequest, getResponseListener);
+			dialog = DialogUtils.showProgressDialog(ForgetPasswordActivity.this, "发送中...");
+
 			break;
 		case R.id.send:
 			inputIdentify = identifyView.getText().toString();
 
-			if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(inputIdentify)) {
-				ToastUtil.show("不能为空");
+			if (TextUtils.isEmpty(phone)) {
+				DialogUtils.showDialog("提示", "请输入手机号码", ForgetPasswordActivity.this);
+				return;
+			}
+
+			if (TextUtils.isEmpty(inputIdentify)) {
+				DialogUtils.showDialog("提示", "请输入验证码", ForgetPasswordActivity.this);
 				return;
 			}
 
 			if (inputIdentify.length() != 6) {
-				ToastUtil.show("验证码位数不对");
+				DialogUtils.showDialog("提示", "验证码不正确", ForgetPasswordActivity.this);
 				return;
 			}
 
-			Request request = new GuoliRequest("system_checkidcode", new UserRegisterBean(phone, inputIdentify));
-			Manager.getInstance().executePoset(request, sendResponseListener);
+			Request sendRequest = new GuoliRequest("system_checkidcode", new UserRegisterBean(phone, inputIdentify));
+			Manager.getInstance().executePoset(sendRequest, sendResponseListener);
 			dialog = DialogUtils.showProgressDialog(ForgetPasswordActivity.this, "验证中...");
 
 			break;
@@ -114,7 +119,7 @@ public class ForgetPasswordActivity extends BaseActivity2 implements OnClickList
 					}.getType());
 			String success = map.get("success").toString();
 			if ("1".equalsIgnoreCase(success)) {
-				Toast.makeText(ForgetPasswordActivity.this, "短信已发送", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "短信已发送", ForgetPasswordActivity.this);
 			}
 		}
 

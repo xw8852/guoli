@@ -31,7 +31,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.account_title);
 		mTabbar = new BottomTabbar(this, 3);
-		showLeftReturnBtn(true, R.string.dialog_exit_message);
+//		showLeftReturnBtn(true, R.string.dialog_exit_message);
 		setRightTitleBtn(R.string.exit, logoutListener);
 		GuoliApplication application=  ((GuoliApplication)Controller.getApplication());
         for (Activity activity : application.activities) {

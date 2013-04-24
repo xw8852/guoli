@@ -131,8 +131,13 @@ public class OrderAuthenticActivity extends BaseActivity2 {
 
         @Override
         public void onClick(View v) {
+        	if (TextUtils.isEmpty(mPhoneEditText.getText().toString().trim())) {
+        		DialogUtils.showDialog("提示", "请输入手机号码", v.getContext());
+                return ;
+			}
+        	
             if(!validatePhone(mPhoneEditText.getText().toString())){
-                DialogUtils.showDialog("提示", "请输入正确的手机号码", v.getContext());
+                DialogUtils.showDialog("提示", "手机号码格式不正确", v.getContext());
                 return ;
             }
             HashMap<String, String> map=new HashMap<String, String>();
