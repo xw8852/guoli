@@ -166,7 +166,7 @@
     <string name="hotel_detail">酒店详情</string>
     <string name="start_date">入住&#160;:</string>
     <string name="end_date">离店&#160;:</string>
-    <string name="pic_count">%1$d张</string>
+    <string name="pic_count">%1$s张</string>
     <string name="discount">折扣</string>
     <string name="book">预订</string>
     <string name="bed_and_breakfast">%1$s&#160;&#160;&#160;&#160;%2$s</string>
