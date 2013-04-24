@@ -21,7 +21,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.guoli.hotel.R;
-import com.guoli.hotel.activity.BaseActivity;
 import com.guoli.hotel.activity.CallActivity;
 import com.guoli.hotel.adapter.RecommondHotelAdapter;
 import com.guoli.hotel.bean.RecommendHotelInfo;
