@@ -24,8 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forget_phone"
-                android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/phone"
@@ -34,8 +34,8 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/register_phone_tips"
                 android:inputType="phone"
-                android:textSize="16sp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <Button
@@ -69,18 +69,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/regist_password"
-                android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/pwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
+                android:digits="0123456789xyzXYZ"
                 android:hint="@string/register_password_tips"
                 android:inputType="textPassword"
-                android:textSize="16sp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <View
@@ -101,18 +102,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/multi_password"
-                android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/multi_pwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
+                android:digits="0123456789xyzXYZ"
                 android:hint="@string/register_password_tips"
                 android:inputType="textPassword"
-                android:textSize="16sp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <View
@@ -133,8 +135,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/identify_code"
-                android:textSize="18sp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/identify"
@@ -143,8 +145,8 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/identify_code_tips"
                 android:inputType="number"
-                android:textSize="16sp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 

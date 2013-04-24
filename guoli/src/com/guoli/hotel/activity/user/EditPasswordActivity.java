@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -79,23 +78,34 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 		int tag = (Integer) v.getTag();
 		newPassword = newPasswordView.getText().toString().trim();
 		surePassword = surePasswordView.getText().toString().trim();
+		if (TextUtils.isEmpty(newPassword)) {
+			DialogUtils.showDialog("提示", "请输入新密码", EditPasswordActivity.this);
+			return;
+		}
+
+		if (TextUtils.isEmpty(surePassword)) {
+			DialogUtils.showDialog("提示", "请输入密码", EditPasswordActivity.this);
+			return;
+		}
+
 		if (newPassword.length() < 6 || newPassword.length() > 12) {
-			Toast.makeText(EditPasswordActivity.this, "新密码位数不对", Toast.LENGTH_SHORT).show();
+			DialogUtils.showDialog("提示", "密码长度不正确", EditPasswordActivity.this);
+			return;
+		}
+
+		if (surePassword.length() < 6 || surePassword.length() > 12) {
+			DialogUtils.showDialog("提示", "确认密码长度不正确", EditPasswordActivity.this);
 			return;
 		}
 
 		if (!surePassword.equalsIgnoreCase(newPassword)) {
-			Toast.makeText(EditPasswordActivity.this, "确认密码和新密码不一致", Toast.LENGTH_SHORT).show();
+			DialogUtils.showDialog("提示", "确认密码与密码不一致", EditPasswordActivity.this);
 			return;
 		}
 
 		switch (tag) {
 		case IS_FORGET_ACT:
 			String mobile = getIntent().getStringExtra("mobile");
-			if (TextUtils.isEmpty(newPassword) || TextUtils.isEmpty(surePassword)) {
-				Toast.makeText(EditPasswordActivity.this, "不能为空", Toast.LENGTH_SHORT).show();
-				return;
-			}
 
 			Request request1 = new GuoliRequest("user_newpwd", new EditPasswordBean(mobile, newPassword));
 			Manager.getInstance().executePoset(request1, editPswListener1);
@@ -103,14 +113,13 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 			break;
 		case IS_EDIT_ACT:
 			String oldPassword = oldPasswordView.getText().toString().trim();
-
-			if (TextUtils.isEmpty(oldPassword) || TextUtils.isEmpty(newPassword) || TextUtils.isEmpty(surePassword)) {
-				Toast.makeText(EditPasswordActivity.this, "不能为空", Toast.LENGTH_SHORT).show();
+			if (TextUtils.isEmpty(oldPassword)) {
+				DialogUtils.showDialog("提示", "请输入旧密码", EditPasswordActivity.this);
 				return;
 			}
 
 			if (oldPassword.length() < 6 || oldPassword.length() > 12) {
-				Toast.makeText(EditPasswordActivity.this, "旧密码位数不对", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "密码长度不正确", EditPasswordActivity.this);
 				return;
 			}
 
@@ -145,7 +154,7 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 				finish();
 				return;
 			}
-			ToastUtil.show("修改失败");
+			ToastUtil.show(map.get("message").toString());
 		}
 
 		@Override
@@ -176,11 +185,11 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
 					new TypeToken<HashMap<String, Object>>() {
 					}.getType());
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
-				Toast.makeText(EditPasswordActivity.this, map.get("message").toString(), Toast.LENGTH_SHORT).show();
+				ToastUtil.show(map.get("message").toString());
 				finish();
 				return;
 			}
-			ToastUtil.show("修改失败");
+			ToastUtil.show(map.get("message").toString());
 		}
 
 		@Override

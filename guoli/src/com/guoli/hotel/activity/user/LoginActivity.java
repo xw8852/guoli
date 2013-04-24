@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,17 +33,16 @@ public class LoginActivity extends BaseActivity2 {
 
 	public static final int RESULT_LOGIN_OK = 0x0001;
 	public static final int RESULT_UN_LOGIN = 0x0002;
-	public static final String PARAM_SEACRCH="order_search";
-	public static final String PARAM_ORDER="order";
+	public static final String PARAM_SEACRCH = "order_search";
+	public static final String PARAM_ORDER = "order";
 	public static final int PAGE_ORDER = 3;
-	
+
 	private EditText passwordView;
 	private String password;
 	private EditText idView;
 	private String id;
 	private Dialog dialog;
 	private LinearLayout unregestLayout;
-	
 
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
@@ -53,17 +51,17 @@ public class LoginActivity extends BaseActivity2 {
 		findViewById(R.id.textView6).setOnClickListener(onForgetPassword);
 		findViewById(R.id.textView7).setOnClickListener(onRegistUser);
 		findViewById(R.id.button2).setOnClickListener(onLoginListener);
-		Button unLoginBtn = (Button)findViewById(R.id.button1);
+		Button unLoginBtn = (Button) findViewById(R.id.button1);
 		unLoginBtn.setOnClickListener(onUnLogClickListener);
 
 		unregestLayout = (LinearLayout) findViewById(R.id.unregestLayout);
 		passwordView = (EditText) findViewById(R.id.textView5);
 		idView = (EditText) findViewById(R.id.textView3);
 		hideLayout();
-		if(getIntent().hasExtra(PARAM_SEACRCH)){
-		    unLoginBtn.setText(R.string.login_unregest_search);
-		}else if(getIntent().hasExtra(PARAM_ORDER)){
-		    unLoginBtn.setText(R.string.login_unregest);
+		if (getIntent().hasExtra(PARAM_SEACRCH)) {
+			unLoginBtn.setText(R.string.login_unregest_search);
+		} else if (getIntent().hasExtra(PARAM_ORDER)) {
+			unLoginBtn.setText(R.string.login_unregest);
 		}
 	}
 
@@ -106,8 +104,13 @@ public class LoginActivity extends BaseActivity2 {
 			password = passwordView.getText().toString();
 			id = idView.getText().toString();
 
-			if (TextUtils.isEmpty(password) || TextUtils.isEmpty(id)) {
-				Toast.makeText(LoginActivity.this, "null", Toast.LENGTH_SHORT).show();
+			if (TextUtils.isEmpty(id)) {
+				DialogUtils.showDialog("提示", "请输入登录名", LoginActivity.this);
+				return;
+			}
+
+			if (TextUtils.isEmpty(password)) {
+				DialogUtils.showDialog("提示", "请输入密码", LoginActivity.this);
 				return;
 			}
 
@@ -152,7 +155,7 @@ public class LoginActivity extends BaseActivity2 {
 			if (null != dialog && dialog.isShowing()) {
 				dialog.cancel();
 			}
-			
+
 			Log.i("tag", "response=" + (response == null ? null : response.result));
 			ToastUtil.show(ErrorCode.getErrorCodeString(response.errorCode));
 		}
@@ -170,14 +173,14 @@ public class LoginActivity extends BaseActivity2 {
 		}
 	};
 
-	private void saveLogin(String uid, String username, String mobile,String nickName) {
+	private void saveLogin(String uid, String username, String mobile, String nickName) {
 		LoginUtils.isLogin = 2;
 		LoginUtils.uid = uid;
 		LoginUtils.username = username;
 		LoginUtils.memberMobile = mobile;
 		LoginUtils.nickName = nickName;
 	}
-	
+
 	/**
 	 * 隐藏非会员登陆
 	 */

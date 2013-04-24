@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,19 +57,20 @@ public class RegisterActivity extends BaseActivity2 {
 		public void onClick(View v) {
 			phone = phoneView.getText().toString().trim();
 
-			if (!UserController.isMoblieNumber(phoneView)) {
-				ToastUtil.show("请输入正确的手机号码");
+			if (TextUtils.isEmpty(phone)) {
+				DialogUtils.showDialog("提示", "请输入手机号码", RegisterActivity.this);
 				return;
 			}
 
-			if (!TextUtils.isEmpty(phone)) {
-				Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
-				Manager.getInstance().executePoset(request, getResponseListener);
-
-				dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "发送中...");
-			} else {
-				Toast.makeText(RegisterActivity.this, "null", Toast.LENGTH_SHORT).show();
+			if (!UserController.isMoblieNumber(phoneView)) {
+				DialogUtils.showDialog("提示", "手机号码号码格式不正确", RegisterActivity.this);
+				return;
 			}
+
+			Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
+			Manager.getInstance().executePoset(request, getResponseListener);
+
+			dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "发送中...");
 		}
 	};
 
@@ -91,7 +91,7 @@ public class RegisterActivity extends BaseActivity2 {
 					}.getType());
 			String success = map.get("success").toString();
 			if ("1".equalsIgnoreCase(success)) {
-				Toast.makeText(RegisterActivity.this, "短信已发送", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "短信已发送", RegisterActivity.this);
 			}
 		}
 
@@ -116,24 +116,38 @@ public class RegisterActivity extends BaseActivity2 {
 			multiPwd = multiPwdView.getText().toString().trim();
 			password = passwordView.getText().toString().trim();
 
-			if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(multiPwd)
-					|| TextUtils.isEmpty(identify)) {
-				Toast.makeText(RegisterActivity.this, "null", Toast.LENGTH_SHORT).show();
+			if (TextUtils.isEmpty(phone)) {
+				DialogUtils.showDialog("提示", "请输入手机号码", RegisterActivity.this);
+				return;
+			}
+
+			if (TextUtils.isEmpty(password)) {
+				DialogUtils.showDialog("提示", "请输入密码", RegisterActivity.this);
 				return;
 			}
 
 			if (password.length() < 6 || password.length() > 12) {
-				Toast.makeText(RegisterActivity.this, "pwd error", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "密码长度不正确", RegisterActivity.this);
+				return;
+			}
+
+			if (TextUtils.isEmpty(multiPwd)) {
+				DialogUtils.showDialog("提示", "请输入密码", RegisterActivity.this);
 				return;
 			}
 
 			if (multiPwd.length() < 6 || multiPwd.length() > 12) {
-				Toast.makeText(RegisterActivity.this, "multiPwd error", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "确认密码长度不正确", RegisterActivity.this);
 				return;
 			}
 
 			if (!password.equalsIgnoreCase(multiPwd)) {
-				Toast.makeText(RegisterActivity.this, "pwd different", Toast.LENGTH_SHORT).show();
+				DialogUtils.showDialog("提示", "确认密码与密码不一致", RegisterActivity.this);
+				return;
+			}
+
+			if (TextUtils.isEmpty(identify)) {
+				DialogUtils.showDialog("提示", "请输入验证码", RegisterActivity.this);
 				return;
 			}
 
@@ -157,6 +171,7 @@ public class RegisterActivity extends BaseActivity2 {
 				// RegisterUserInfo info = new Gson().fromJson(new
 				// Gson().toJson(map.get("userinfo")),
 				// RegisterUserInfo.class);
+				ToastUtil.show(map.get("message").toString());
 				setResult(RESULT_OK);
 				finish();
 			}
@@ -166,6 +181,7 @@ public class RegisterActivity extends BaseActivity2 {
 		public void onError(Response response) {
 			if (!(response.result instanceof Exception)) {
 				Log.d("MSG", "onError:" + response.toString());
+				ToastUtil.show("注册失败");
 			}
 		}
 	};
