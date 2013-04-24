@@ -111,12 +111,16 @@ public class OrderAuthenticActivity extends BaseActivity2 {
 
         @Override
         public void onClick(View v) {
+            if(TextUtils.isEmpty(mPhoneEditText.getText().toString())){
+                DialogUtils.showDialog("提示", "请输入手机号码", v.getContext());
+                return ;
+            }
             if(!validatePhone(mPhoneEditText.getText().toString())){
-                DialogUtils.showDialog("提示", "请输入正确的手机号码", v.getContext());
+                DialogUtils.showDialog("提示", "手机号码格式不正确", v.getContext());
                 return ;
             }
             if(TextUtils.isEmpty(mValidateEditText.getText().toString())){
-                Toast.makeText(OrderAuthenticActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderAuthenticActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
                 return;
             }
             mDialog=DialogUtils.showProgressDialog(v.getContext(), "正在登录中...");
@@ -132,7 +136,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
         @Override
         public void onClick(View v) {
             if(!validatePhone(mPhoneEditText.getText().toString())){
-                DialogUtils.showDialog("提示", "请输入正确的手机号码", v.getContext());
+                DialogUtils.showDialog("提示", "手机号码格式不正确", v.getContext());
                 return ;
             }
             HashMap<String, String> map=new HashMap<String, String>();
@@ -151,6 +155,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
               LoginUtils.mobile=mPhoneEditText.getText().toString();
               onLoginSuccess();
           }else{
+              DialogUtils.showDialog("提示", "验证码不正确", OrderAuthenticActivity.this);
               Toast.makeText(OrderAuthenticActivity.this, "您输入的验证码有误", Toast.LENGTH_SHORT).show();
           }
           if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();

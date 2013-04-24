@@ -18,6 +18,7 @@ import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.parse.BaseParse;
 import com.guoli.hotel.utils.DialogUtils;
 import com.guoli.hotel.utils.NetUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -42,6 +43,7 @@ public class HelpActivity extends BaseActivity2 {
 
     private void loadData(){
         if (!NetUtils.isNetworkWell(this)) {
+            ToastUtil.show("网络异常，请重试");
             Log.w(TAG, "网络连接不可用......");
             return;
         }
@@ -59,6 +61,7 @@ public class HelpActivity extends BaseActivity2 {
             Log.i(TAG, "response=" + json);
             HelpResponse helpResponse = new BaseParse<HelpResponse>().parse(resp, HelpResponse.class);
             if (helpResponse == null) {
+                ToastUtil.show("网络异常，请重试");
                 return;
             }
             initViews(helpResponse.getList());
@@ -67,6 +70,7 @@ public class HelpActivity extends BaseActivity2 {
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
+            ToastUtil.show("网络异常，请重试");
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             
         }

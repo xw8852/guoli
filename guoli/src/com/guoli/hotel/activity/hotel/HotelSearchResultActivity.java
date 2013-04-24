@@ -39,7 +39,9 @@ import com.guoli.hotel.net.request.bean.HotelRoom;
 import com.guoli.hotel.parse.HotelListInfoParse;
 import com.guoli.hotel.utils.CallUtils;
 import com.guoli.hotel.utils.DigitalUtils;
+import com.guoli.hotel.utils.NetUtils;
 import com.guoli.hotel.utils.ResourceUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -164,6 +166,11 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
      */
     private void filterData(SearchInfo info){
         if (info == null) {
+            return;
+        }
+        if(!NetUtils.isNetworkWell(this)){
+            ToastUtil.show("网络异常，请重试");
+            showDefaultNoticeView();
             return;
         }
         showLoadingDialog(R.string.loading_msg);
@@ -392,6 +399,7 @@ public class HotelSearchResultActivity extends UpdateActivity implements OnItemC
 
         @Override
         public void onError(Response resp) {
+            ToastUtil.show("网络异常，请重试");
             Log.i(TAG, "onError()---> response=" + (resp == null ? null : resp.result));
             dismissLoadingDialog();
             if (operationType == OPERATION_LOADING_MORE) {

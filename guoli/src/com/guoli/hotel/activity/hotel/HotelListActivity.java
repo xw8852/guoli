@@ -10,6 +10,7 @@
 
 package com.guoli.hotel.activity.hotel;
 
+import java.io.UTFDataFormatException;
 import java.util.List;
 
 import android.content.Intent;
@@ -28,6 +29,7 @@ import com.guoli.hotel.bean.RecommendHotelInfo;
 import com.guoli.hotel.bean.RecommendsInfo;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.parse.RecommandHotelParse;
+import com.guoli.hotel.utils.NetUtils;
 import com.guoli.hotel.utils.ToastUtil;
 import com.guoli.hotel.widget.BottomTabbar;
 import com.msx7.core.Manager;
@@ -135,6 +137,10 @@ public class HotelListActivity extends CallActivity implements OnItemClickListen
      * @since JDK 1.6
      */
     private void syncData(){
+        if(!NetUtils.isNetworkWell(this)){
+            ToastUtil.show("网络异常，请重试");
+            return;
+        }
         showLoadingDialog(R.string.loading_msg);
         GuoliRequest request = new GuoliRequest("hotel_recommen", null);
         Log.i(TAG, "request=" + request.Params.toParams());
@@ -154,6 +160,7 @@ public class HotelListActivity extends CallActivity implements OnItemClickListen
         @Override
         public void onError(Response resp) {
             dismissLoadingDialog();
+          
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             ToastUtil.show(ErrorCode.getErrorCodeString(resp.errorCode));
 
