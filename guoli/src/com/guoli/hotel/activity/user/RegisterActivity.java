@@ -132,7 +132,7 @@ public class RegisterActivity extends BaseActivity2 {
 			}
 
 			if (TextUtils.isEmpty(multiPwd)) {
-				DialogUtils.showDialog("提示", "请输入密码", RegisterActivity.this);
+				DialogUtils.showDialog("提示", "请输入确认密码", RegisterActivity.this);
 				return;
 			}
 

@@ -13,6 +13,7 @@ package com.guoli.hotel.activity;
 import android.os.Bundle;
 
 import com.guoli.hotel.utils.NetUtils;
+import com.guoli.hotel.utils.ToastUtil;
 
 /**
  * ClassName:UpdateActivity <br/>
@@ -42,6 +43,7 @@ public abstract class UpdateActivity extends BaseActivity {
         //TODO 有本地缓存的情况下,合理的逻辑应该是先查询本地数据,如果本地数据没有查询到再判断网络是否可用
         //网络如果可以用则查询网络数据
         if (!NetUtils.isNetworkWell(this)) {
+            ToastUtil.show("网络异常，请重试");
             loadLocalData();
             initViews();
             return;
