@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
+import com.guoli.hotel.GuoliApplication;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.MoreActivity;
 import com.guoli.hotel.activity.hotel.HotelListActivity;
 import com.guoli.hotel.activity.hotel.SearchHotelActivity;
 import com.guoli.hotel.activity.order.OrderAuthenticActivity;
 import com.guoli.hotel.activity.user.AccountActivity;
+import com.msx7.core.Controller;
 
 /**
  * 
@@ -118,9 +120,13 @@ public class BottomTabbar {
     };
     
     private void startActivity(Context c,Class<? extends Activity> cls){
-        c.startActivity(new Intent(c, cls));
+        c.startActivity(new Intent(c, cls).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         if(c instanceof Activity){
             ((Activity)c).finish();
+        }
+        GuoliApplication application=  ((GuoliApplication)Controller.getApplication());
+        for (Activity activity : application.activities) {
+            activity.finish();
         }
     }
     

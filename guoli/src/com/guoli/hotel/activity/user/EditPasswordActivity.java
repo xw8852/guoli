@@ -79,6 +79,10 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
         newPassword = newPasswordView.getText().toString().trim();
         surePassword = surePasswordView.getText().toString().trim();
         oldPassword = oldPasswordView.getText().toString().trim();
+        if (TextUtils.isEmpty(oldPassword)&&isForget==IS_EDIT_ACT) {
+            DialogUtils.showDialog("提示", "请输入旧密码", EditPasswordActivity.this);
+            return;
+        }
         if (TextUtils.isEmpty(newPassword)) {
             DialogUtils.showDialog("提示", "请输入新密码", EditPasswordActivity.this);
             return;
@@ -113,12 +117,6 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
             dialog = DialogUtils.showProgressDialog(EditPasswordActivity.this, "提交中...");
             break;
         case IS_EDIT_ACT:
-            String oldPassword = oldPasswordView.getText().toString().trim();
-            if (TextUtils.isEmpty(oldPassword)) {
-                DialogUtils.showDialog("提示", "请输入旧密码", EditPasswordActivity.this);
-                return;
-            }
-
             if (oldPassword.length() < 6 || oldPassword.length() > 12) {
                 DialogUtils.showDialog("提示", "密码长度不正确", EditPasswordActivity.this);
                 return;
