@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -115,4 +116,21 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 		}
 	};
 
+	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+		super.onKeyDown(keyCode, event);
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			DialogUtils.showDialog(R.string.dialog_title, R.string.dialog_exit_message, exitListener, this);
+			break;
+		}
+		return true;
+	};
+	
+	private DialogInterface.OnClickListener exitListener = new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			finish();
+		}
+ }; 
+	
 }
