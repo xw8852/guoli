@@ -83,11 +83,17 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 		    userListView.setAdapter(adapter);
 		}
 	}
+	
+	@Override
+	protected void leftBtnClickEvent() {
+	    backToEditOrderPage();
+	}
 
 	@Override
 	protected void findViews() {
 		TextView addBtn = (TextView) findViewById(R.id.add_new_user);
 		addBtn.setOnClickListener(this);
+		
 		Button commitBtn = (Button) findViewById(R.id.commitBtn);
 		int fromPageIndex = getIntent().getIntExtra(KEY_FROM_PAGE, 0);
 		if (fromPageIndex == FROM_PAGE_EDIT_ORDER) {
@@ -146,6 +152,10 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 			}
 		}
 	};
+	
+	public void onBackPressed() {
+	    backToEditOrderPage();
+	}
 
 	@Override
 	public void onClick(View v) {

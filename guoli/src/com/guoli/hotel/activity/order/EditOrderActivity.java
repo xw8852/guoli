@@ -205,7 +205,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             intent.setClass(this, CheckListActivity.class);
             startActivity(intent);
             break;
-        case R.id.add_btn:
+        case R.id.add_btn://添加入住人
             intent = new Intent();
             intent.setClass(this, UserSelectActivity.class);
             if (list != null && list.size() > 0) {
@@ -241,6 +241,11 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     private void commitOrder() {
         OrderSubmitInfo info = getOrderSubmitInfo();
         if (info == null) {
+            return;
+        }
+        if (info.getCount() != getUserCount()) {
+            String msg = getString(R.string.dialog_order_room_user);
+            DialogUtils.showDialog("", msg, this);
             return;
         }
         if (TextUtils.isEmpty(info.getContactName()) || TextUtils.isEmpty(info.getContactPhone()) || TextUtils.isEmpty(info.getInPeople())) {
@@ -347,6 +352,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
      */
     private void setCheckInUsersView(List<String> list){
         if (list == null || list.size() < 1) {
+            mCheckInUserView.setText("");
             return;
         }
         int size = list.size();
@@ -419,6 +425,16 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         String userNames = mCheckInUserView.getText().toString();
         userNames.replaceAll("\n", ",");
         return userNames;
+    }
+    
+    /**
+     * 获取入住人总数
+     * @return
+     */
+    private int getUserCount(){
+        String userNames = mCheckInUserView.getText().toString();
+        String[] names = userNames.split(",");
+        return names.length;
     }
     
     private IResponseListener mCommitLisenter = new IResponseListener() {

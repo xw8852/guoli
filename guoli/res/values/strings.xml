@@ -211,6 +211,7 @@
     <string name="recommended_hotel_detail_more_exp_0">建筑面积：54\n盖房型不可加床\n无烟房：该房可无烟处理\n宽带：免费</string>
     <string name="recommended_hotel_detail_more_exp_1">楼层：10&#8211;13、18\n床宽：标准床型1.80米\n可住人数：2</string>
     <string name="dialog_order_info_not_null">入住人/联系人信息不能为空!</string>
+    <string name="dialog_order_room_user">人住人数目必须与预订房间数一致!</string>
 
     <!-- 酒店位置地图 -->
     <string name="hotel_location_map">酒店地图</string>
