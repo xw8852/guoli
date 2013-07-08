@@ -99,6 +99,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     public static final int PAGE_CHECK_LIST = 2;
     public static final int PAGE_USER_ADD = 3;
     
+    private ArrayList<String> list = new ArrayList<String>();
+    
     private static final String TAG = EditOrderActivity.class.getSimpleName();
     
     public EditOrderActivity(){
@@ -206,6 +208,9 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         case R.id.add_btn:
             intent = new Intent();
             intent.setClass(this, UserSelectActivity.class);
+            if (list != null && list.size() > 0) {
+				intent.putStringArrayListExtra("selectUsers", list);
+			}
             intent.putExtra(UserSelectActivity.KEY_FROM_PAGE, UserSelectActivity.FROM_PAGE_EDIT_ORDER);
             startActivityForResult(intent, PAGE_USER_ADD);
             break;
@@ -268,7 +273,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             setViewText(mMoreRequireView, content);
             break;
         case PAGE_USER_ADD:
-            ArrayList<String> list = data == null ? null : data.getStringArrayListExtra(UserSelectActivity.KEY_CHECK_IN_USER);
+            list = data == null ? null : data.getStringArrayListExtra(UserSelectActivity.KEY_CHECK_IN_USER);
             setCheckInUsersView(list);
             break;
         default:

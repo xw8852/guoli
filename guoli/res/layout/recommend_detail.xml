@@ -30,7 +30,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <RatingBar
                     android:id="@+id/hotelLevelView"
@@ -48,9 +48,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/hotelLevelView"
-                    android:layout_toLeftOf="@+id/hotelImgView"
+                    android:layout_toLeftOf="@+id/imgLayout"
                     android:ellipsize="end"
-                    android:singleLine="true"
                     android:text="" />
 
                 <TextView

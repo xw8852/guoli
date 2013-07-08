@@ -36,6 +36,7 @@ public class FeedBackActivity extends BaseActivity2{
     public void onAfterCreate(Bundle savedInstanceState) {
         setTitle(R.string.feedback);
         showLeftReturnBtn(false, -1);
+        showRightCall();
         ((Button)findViewById(R.id.feedbackBtn)).setOnClickListener(mFeedbackListener);
     }
 

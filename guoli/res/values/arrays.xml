@@ -19,13 +19,11 @@
         <item >不限</item>
         <item >五星/豪华</item>
         <item >四星/高档</item>
-        <item >三星及以下/经济</item>
     </string-array>
     <string-array name="level_key">
         <item ></item>
         <item >2</item>
         <item >3</item>
-        <item >4</item>
     </string-array>
     
     <string-array name="order_value">

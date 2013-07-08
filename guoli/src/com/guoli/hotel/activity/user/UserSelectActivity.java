@@ -16,7 +16,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,7 +53,7 @@ import com.msx7.core.command.model.Response;
 public class UserSelectActivity extends BaseActivity implements OnItemClickListener {
 
 	private List<FavoriteUserInfo> favoriteInfos = new ArrayList<FavoriteUserInfo>();
-	private ArrayList<String> selectNames = new ArrayList<String>();
+	private ArrayList<String> selectNames;
 	public static final String KEY_USERS = "users";
 	private static final int ACTIVITY_CREATE = 0;
 	private UserListAdapter adapter;
@@ -67,6 +66,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 	public static final String KEY_FROM_PAGE = "fromPage";
 	public static final int FROM_PAGE_EDIT_ORDER = 11;
 
+	ArrayList<Integer> users = new ArrayList<Integer>();
 	public UserSelectActivity() {
 		mTitleTextId = R.string.user_select;
 		mLayoutId = R.layout.user_select_list_layout;
@@ -79,7 +79,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 		if(LoginUtils.isLogin==2)
 		    getUser();
 		else{
-		    adapter=new UserListAdapter(this,favoriteInfos);
+		    adapter=new UserListAdapter(this,favoriteInfos, selectNames);
 		    userListView.setAdapter(adapter);
 		}
 	}
@@ -98,6 +98,13 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 		}
 		userListView = (ListView) findViewById(R.id.user_list);
 		userListView.setOnItemClickListener(this);
+		
+		if (getIntent().getStringArrayListExtra("selectUsers") == null) {
+			selectNames = new ArrayList<String>();
+		} else {
+			selectNames = getIntent().getStringArrayListExtra("selectUsers");
+		}
+		
 	}
 
 	private void getUser() {
@@ -125,7 +132,7 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 					new TypeToken<GuoliResponse<List<FavoriteUserInfo>>>() {
 					}.getType());
 			favoriteInfos = infos.result;
-			adapter = new UserListAdapter(UserSelectActivity.this, favoriteInfos);
+			adapter = new UserListAdapter(UserSelectActivity.this, favoriteInfos, selectNames);
 			userListView.setAdapter(adapter);
 		}
 
@@ -184,7 +191,6 @@ public class UserSelectActivity extends BaseActivity implements OnItemClickListe
 	public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg0) {
 		ViewHolder holder = (ViewHolder) view.getTag();
 		name = holder.nameView.getText().toString();
-
 		if (holder.selectBtn.getVisibility() == View.INVISIBLE
 				&& (Integer) holder.selectBtn.getTag() == TAG_IS_INVISIBLE) {
 			holder.selectBtn.setVisibility(View.VISIBLE);

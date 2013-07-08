@@ -55,6 +55,7 @@ public class AddUserActivity extends BaseActivity2 implements OnClickListener {
 		findViewById(R.id.commit_btn).setOnClickListener(this);
 		nameView = (EditText) findViewById(R.id.user_name);
 		setTitle(R.string.user_new);
+		showLeftReturnBtn(false, 1);
 	}
 
 	@Override

@@ -259,6 +259,9 @@
                 android:paddingBottom="@dimen/large_margin"
                 android:paddingTop="@dimen/large_margin"
                 android:text="200000"
+                android:maxLength="6"
+                android:digits="0123456798"
+                android:inputType="number"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/color_grey" />
         </RelativeLayout>

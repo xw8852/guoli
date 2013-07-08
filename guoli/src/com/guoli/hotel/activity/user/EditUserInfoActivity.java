@@ -68,6 +68,8 @@ public class EditUserInfoActivity extends BaseActivity2 {
 		phoneView = (TextView) findViewById(R.id.phone);
 		postCodeView = (EditText) findViewById(R.id.postcode);
 		setTitle(R.string.edit_user_info);
+		showLeftReturnBtn(false, 1);
+		showRightExit();
 		getUserInfo();
 	}
 

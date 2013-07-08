@@ -44,6 +44,7 @@ public class RegisterActivity extends BaseActivity2 {
 		identifyView = (EditText) findViewById(R.id.identify);
 		findViewById(R.id.send).setOnClickListener(onRegisterClickListener);
 		findViewById(R.id.get_identify).setOnClickListener(getIdentifyClickListener);
+		showLeftReturnBtn(false, 1);
 	}
 
 	@Override
@@ -174,7 +175,9 @@ public class RegisterActivity extends BaseActivity2 {
 				ToastUtil.show(map.get("message").toString());
 				setResult(RESULT_OK);
 				finish();
+				return;
 			}
+			ToastUtil.show(map.get("message").toString());
 		}
 
 		@Override

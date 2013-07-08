@@ -1,5 +1,6 @@
 package com.guoli.hotel.activity.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,10 +35,12 @@ public class UserListAdapter extends BaseAdapter {
 	private Dialog mDialog;
 	private Context context;
 	private List<FavoriteUserInfo> infos;
+	private ArrayList<String> users;
 
-	public UserListAdapter(Context context, List<FavoriteUserInfo> infos) {
+	public UserListAdapter(Context context, List<FavoriteUserInfo> infos, ArrayList<String> users) {
 		this.context = context;
 		this.infos = infos;
+		this.users = users;
 	}
 
 	@Override
@@ -60,7 +63,14 @@ public class UserListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		if (infos == null) {
+			return convertView;
+		}
+		FavoriteUserInfo info = infos.get(position);
+		if (info == null) {
+			return convertView;
+		}
+		ViewHolder holder = null;
 		if (null == convertView) {
 			holder = new ViewHolder();
 			convertView = LayoutInflater.from(context).inflate(R.layout.user_select_item, null);
@@ -70,6 +80,19 @@ public class UserListAdapter extends BaseAdapter {
 			holder.selectBtn.setTag(UserSelectActivity.TAG_IS_INVISIBLE);
 
 			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+
+		
+		if (users != null) {
+			for (int i = 0; i < users.size(); i++) {
+				if (users.get(i).trim().equalsIgnoreCase(info.personname.trim())) {
+					holder.selectBtn.setVisibility(View.VISIBLE);
+					break;
+				}
+				holder.selectBtn.setVisibility(View.INVISIBLE);
+			}
 		}
 
 		holder = (ViewHolder) convertView.getTag();
