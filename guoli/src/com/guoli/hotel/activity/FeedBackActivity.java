@@ -13,6 +13,7 @@ import com.guoli.hotel.bean.FeedbackInfo;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
@@ -52,6 +53,11 @@ public class FeedBackActivity extends BaseActivity2{
      * @since JDK 1.6
      */
     private void feedbackCommit(){
+		if ("".equalsIgnoreCase(getFeedbackContent().trim())) {
+			DialogUtils.showDialog(getResources().getString(R.string.dialog_title),
+					getResources().getString(R.string.feedback_null), FeedBackActivity.this);
+			return;
+		}
         showDialog();
         FeedbackInfo info = new FeedbackInfo();
         info.setContent(getFeedbackContent());
@@ -91,6 +97,7 @@ public class FeedBackActivity extends BaseActivity2{
         public void onSuccess(Response resp) {
             Log.i(TAG, "response=" + (resp == null ? null : resp.result));
             dismissDialog();
+            ToastUtil.show(getResources().getString(R.string.feedback_success));
             finish();
         }
         

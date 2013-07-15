@@ -78,6 +78,8 @@
     <string name="send">发送</string>
     <string name="feedback_prompt">请留下您的宝贵意见,我们会进一步完善.</string>
     <string name="email_prompt">请输入您的邮箱</string>
+    <string name="feedback_null">反馈内容不能为空</string>
+    <string name="feedback_success">反馈成功</string>
     <!-- 标题 -->
     <string name="special_title">推荐</string>
     <string name="search_title">查找</string>
