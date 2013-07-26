@@ -451,6 +451,13 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             holder.allowSmokingView.setText(formatContent(R.string.allow_smoking, "否"));
 
             String btnTex = getResources().getString(info.getActprice() < 1 ? R.string.call : R.string.book);
+            if (info.getActprice() < 1) {
+                holder.priceView.setVisibility(View.GONE);
+                holder.discountView.setVisibility(View.GONE);
+            } else {
+                holder.priceView.setVisibility(View.VISIBLE);
+                holder.discountView.setVisibility(View.VISIBLE);
+            }
             holder.button.setText(btnTex);
             holder.button.setTag(info);
         }
