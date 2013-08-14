@@ -124,7 +124,7 @@
     <string name="account_order">酒店订单</string>
     <string name="account_favorite">收藏夹</string>
     <string name="commonly_used">常用入住人</string>
-    <string name="ac_balance">抵用卷余额</string>
+    <string name="ac_balance">抵用劵余额</string>
     <string name="vantages">积分：200</string>
     <!-- 登陆 -->
     <string name="login_user">登&#160;录&#160;名&#160;:&#160;</string>
