@@ -140,7 +140,7 @@ public class LoginActivity extends BaseActivity2 {
 
 			if ("1".equalsIgnoreCase(map.get("success").toString())) {
 				LoginUserInfo info = new Gson().fromJson(new Gson().toJson(map.get("userinfo")), LoginUserInfo.class);
-				saveLogin(info.uid, info.username, info.mobile, info.nickName);
+				saveLogin(info.uid, info.username, info.mobile, info.nickName,info.ticketnum);
 				Intent data = new Intent();
 				data.putExtra("username", info.username);
 				setResult(AccountActivity.ACCOUNT_LOGIN, data);
@@ -173,12 +173,13 @@ public class LoginActivity extends BaseActivity2 {
 		}
 	};
 
-	private void saveLogin(String uid, String username, String mobile, String nickName) {
+	private void saveLogin(String uid, String username, String mobile, String nickName,String ticketnum) {
 		LoginUtils.isLogin = 2;
 		LoginUtils.uid = uid;
 		LoginUtils.username = username;
 		LoginUtils.memberMobile = mobile;
 		LoginUtils.nickName = nickName;
+		LoginUtils.ticketnum=ticketnum;
 	}
 
 	/**

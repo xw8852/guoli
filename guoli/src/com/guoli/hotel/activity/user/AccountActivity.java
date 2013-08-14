@@ -60,6 +60,7 @@ public class AccountActivity extends BaseActivity2 implements View.OnClickListen
 	protected void onResume() {
 		super.onResume();
 		nickNameView.setText(nicknameTitle + LoginUtils.username);
+		((TextView)findViewById(R.id.textView7)).setText(LoginUtils.ticketnum+"元");
 	}
 
 	@Override

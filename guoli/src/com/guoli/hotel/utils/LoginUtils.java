@@ -19,6 +19,10 @@ public final class LoginUtils {
 	/**会员用户登录之后保存的nickname*/
 	public static String nickName = "";
 	/**
+	 * 用户抵用卷余额
+	 */
+	public static String ticketnum = "";
+	/**
 	 * 会员用户登录之后保存的moblie
 	 */
 	public static String memberMobile = "";

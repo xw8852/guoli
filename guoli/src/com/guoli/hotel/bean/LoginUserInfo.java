@@ -18,5 +18,7 @@ public class LoginUserInfo {
 	
 	@SerializedName("nickname")
 	public String nickName;
+	@SerializedName("ticketnum")
+	public String ticketnum;
 
 }
