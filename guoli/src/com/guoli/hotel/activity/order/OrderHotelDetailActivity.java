@@ -145,7 +145,7 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		} else if ("3".equals(info.tradestatus)) {
 			tv.setText("交易关闭");
 		} else if ("4".equals(info.tradestatus)) {
-			tv.setText("退订中");
+			tv.setText("已退订");
 		}  else if ("6".equals(info.tradestatus)) {
 			tv.setText("退订中");
 		} else if ("8".equals(info.tradestatus)) {
