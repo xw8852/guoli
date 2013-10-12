@@ -439,7 +439,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
             bedBreakfast = String.format(bedBreakfast, bedContent, breakfastContent);
             holder.bedBreakfastView.setText(bedBreakfast);
             // 初始化隐藏视图内容
-            holder.areaView.setText(formatContent(R.string.room_area, info.getArea() + ""));
+            holder.areaView.setText(formatContent(R.string.room_area, info.getArea() + "平方米"));
             int index = DigitalUtils.convertToInt(info.getIsAddBed());
             holder.addBedView.setText(formatContent(R.string.add_bed, addBed[index]));
             index = DigitalUtils.convertToInt(info.getBroadbandType()) - 1;
