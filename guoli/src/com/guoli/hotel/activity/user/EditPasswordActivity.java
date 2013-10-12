@@ -3,6 +3,7 @@ package com.guoli.hotel.activity.user;
 import java.util.HashMap;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
+import com.guoli.hotel.activity.FavoriteActivity;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.EditPasswordBean;
 import com.guoli.hotel.utils.DialogUtils;
@@ -182,6 +184,7 @@ public class EditPasswordActivity extends BaseActivity2 implements OnClickListen
             }.getType());
             if ("1".equalsIgnoreCase(map.get("success").toString())) {
                 ToastUtil.show(map.get("message").toString());
+                startActivity(new Intent(EditPasswordActivity.this, LoginActivity.class));
                 finish();
                 return;
             }
