@@ -198,8 +198,8 @@
     <string name="order_contact_phone">手机号码</string>
     <string name="order_special_notice">特别提示</string>
     <string name="order_ask_for_invoice">索要发票</string>
-    <string name="order_ivvoice_title">抬头 :</string>
-    <string name="order_ivvoice_title_notice">客户姓名或公司名称为抬头</string>
+    <string name="order_ivvoice_title">发票抬头 :</string>
+    <string name="order_ivvoice_title_notice">客户姓名或公司名称</string>
     <string name="order_receiver_name">收件人名称 :</string>
     <string name="order_receiver_name_notice">请输入姓名</string>
     <string name="order_receiver_phone">收件人手机号码 :</string>
@@ -208,7 +208,7 @@
     <string name="order_mail_address_notice">请输入详细地址</string>
     <string name="order_post_code">邮编 :</string>
     <string name="order_post_code_notice">请输入邮编</string>
-    <string name="order_notice">一经付款,不可取消或者修改订单,否则酒店则会扣除您的全部房费.</string>
+    <string name="order_notice">一经付款,不可取消或者修改订单,否则酒店将会扣除您的全部房费.</string>
     <string name="order_commit">提交订单</string>
     <string name="order_date_period">%1$s至%2$s</string>
     <string name="recommended_hotel_detail_more_exp_0">建筑面积：54\n盖房型不可加床\n无烟房：该房可无烟处理\n宽带：免费</string>

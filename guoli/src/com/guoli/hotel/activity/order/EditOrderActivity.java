@@ -6,7 +6,7 @@
  * Copyright (c) 2013
  * Company:maple&&json&&abel
  *
-*/
+ */
 
 package com.guoli.hotel.activity.order;
 
@@ -50,78 +50,78 @@ import com.msx7.core.command.model.Response;
 
 /**
  * ClassName:EditOrderActivity <br/>
- * @Description:    订单编辑页面
- * Date:     2013-1-22 下午12:15:03 <br/>
- * @author   maple
- * @version  
- * @since    JDK 1.6
- * @see 	 
+ * 
+ * @Description: 订单编辑页面 Date: 2013-1-22 下午12:15:03 <br/>
+ * @author maple
+ * @version
+ * @since JDK 1.6
+ * @see
  */
 public class EditOrderActivity extends CallActivity implements OnCheckedChangeListener {
-    public static final String HOTEL_ROOM="HOTELROOM";
-    public static final String ROOMI_TYPE="ROOMTYPE";
-    
-    /**房间数*/
+    public static final String HOTEL_ROOM = "HOTELROOM";
+    public static final String ROOMI_TYPE = "ROOMTYPE";
+
+    /** 房间数 */
     private TextView mRoomCountView;
-    /**日期*/
+    /** 日期 */
     private TextView mDateView;
-    /**房型*/
+    /** 房型 */
     private TextView mRoomTypeView;
-    /**更多要求*/
+    /** 更多要求 */
     private TextView mMoreRequireView;
-    /**订单总额*/
+    /** 订单总额 */
     private TextView mTotalCostView;
-    /**入住人*/
+    /** 入住人 */
     private TextView mCheckInUserView;
-    /**联系人*/
+    /** 联系人 */
     private TextView mContactNameView;
     private TextView mContactPhoneView;
-    /**是否开发票*/
+    /** 是否开发票 */
     private RadioGroup mRadioGroup;
-    /**抬头*/
+    /** 抬头 */
     private EditText mInvoiceTitleView;
-    /**收件人名称*/
+    /** 收件人名称 */
     private EditText mRecipientNameView;
-    /**收件人手机号码*/
+    /** 收件人手机号码 */
     private EditText mRecipientPoneView;
-    /**邮寄地址*/
+    /** 邮寄地址 */
     private EditText mRecipientAddessView;
-    /**邮编*/
+    /** 邮编 */
     private EditText mRecipientPostCodeView;
-    /**特别提示*/
-    private TextView mSpecialNoticeView; 
-    
+    /** 特别提示 */
+    private TextView mSpecialNoticeView;
+
     private HotelRoom mHotelRoom;
     private RoomTypeInfo mRoomTypeInfo;
-    
+
     public static final int PAGE_ROOM_COUNT = 0;
     public static final int PAGE_MORE_REQUIRE = 1;
     public static final int PAGE_CHECK_LIST = 2;
     public static final int PAGE_USER_ADD = 3;
-    
+
     private ArrayList<String> list = new ArrayList<String>();
-    
+
     private static final String TAG = EditOrderActivity.class.getSimpleName();
-    
-    public EditOrderActivity(){
+
+    public EditOrderActivity() {
         mTitleTextId = R.string.order_edit_title;
         mLayoutId = R.layout.edit_order;
         mRightDrawableId = R.drawable.btn_top_phone;
     }
-    
+
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         showLeftBtn();
         showRightBtn();
-        mRoomTypeInfo=new Gson().fromJson(getIntent().getStringExtra(ROOMI_TYPE), RoomTypeInfo.class);
-        mHotelRoom=new Gson().fromJson(getIntent().getStringExtra(HOTEL_ROOM), HotelRoom.class);
+        mRoomTypeInfo = new Gson().fromJson(getIntent().getStringExtra(ROOMI_TYPE), RoomTypeInfo.class);
+        mHotelRoom = new Gson().fromJson(getIntent().getStringExtra(HOTEL_ROOM), HotelRoom.class);
         initViews();
     }
 
     @Override
     protected void findViews() {
-        TextView tv=(TextView)findViewById(R.id.hotel_name);
+        TextView tv = (TextView) findViewById(R.id.hotel_name);
         tv.setText(getIntent().getStringExtra("HOTEL_NAME"));
         mDateView = (TextView) findViewById(R.id.date_content_view);
         mRoomTypeView = (TextView) findViewById(R.id.room_type_content_view);
@@ -130,18 +130,18 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         mTotalCostView = (TextView) findViewById(R.id.order_cost_cost_view);
         mContactNameView = (TextView) findViewById(R.id.contact_name_view);
         mContactPhoneView = (TextView) findViewById(R.id.contact_phone_view);
-        
+
         mCheckInUserView = (TextView) findViewById(R.id.guest_content_view);
-        
+
         mRadioGroup = (RadioGroup) findViewById(R.id.invoice_potion_group);
         mInvoiceTitleView = (EditText) findViewById(R.id.invoice_title_content_view);
         mRecipientNameView = (EditText) findViewById(R.id.invoice_receiver_content_view);
         mRecipientPoneView = (EditText) findViewById(R.id.invoice_receiver_phone_content_view);
         mRecipientAddessView = (EditText) findViewById(R.id.invoice_mail_address_content_view);
         mRecipientPostCodeView = (EditText) findViewById(R.id.invoice_post_code_content_view);
-         
+
         mSpecialNoticeView = (TextView) findViewById(R.id.specialNoticeView);
-        
+
         mRoomCountView.setOnClickListener(this);
         mMoreRequireView.setOnClickListener(this);
         mRadioGroup.setOnCheckedChangeListener(this);
@@ -151,8 +151,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         TextView commitBtn = (TextView) findViewById(R.id.commitBtn);
         commitBtn.setOnClickListener(this);
     }
-    
-    private void initViews(){
+
+    private void initViews() {
         if (mRoomTypeInfo != null) {
             mRoomTypeView.setText(mRoomTypeInfo.getName());
         }
@@ -162,9 +162,11 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             int stopDays = getStopAtDays();
             findViewById(R.id.orderCostDetailView).setVisibility(stopDays > 1 ? View.VISIBLE : View.GONE);
         }
+        // 设置联系人名称
         mContactNameView.setText(LoginUtils.nickName);
+        // 设置联系人电话
         mContactPhoneView.setText(LoginUtils.memberMobile);
-        //初始化总额
+        // 初始化总额
         setTotalCostView();
     }
 
@@ -176,13 +178,17 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             break;
         case R.id.invoice_true_btn:
             findViewById(R.id.invoiceDetailLayout).setVisibility(View.VISIBLE);
+         // 设置发票收件人名称
+            mRecipientNameView.setText(mContactNameView.getText());
+            // 设置发票收件人电话
+            mRecipientPoneView.setText(mContactPhoneView.getText());
             break;
 
         default:
             break;
         }
     }
-    
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -205,12 +211,12 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             intent.setClass(this, CheckListActivity.class);
             startActivity(intent);
             break;
-        case R.id.add_btn://添加入住人
+        case R.id.add_btn:// 添加入住人
             intent = new Intent();
             intent.setClass(this, UserSelectActivity.class);
             if (list != null && list.size() > 0) {
-				intent.putStringArrayListExtra("selectUsers", list);
-			}
+                intent.putStringArrayListExtra("selectUsers", list);
+            }
             intent.putExtra(UserSelectActivity.KEY_FROM_PAGE, UserSelectActivity.FROM_PAGE_EDIT_ORDER);
             startActivityForResult(intent, PAGE_USER_ADD);
             break;
@@ -222,8 +228,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             break;
         }
     }
-    
-    private OrderPriceRequest getOrderPriceRequest(){
+
+    private OrderPriceRequest getOrderPriceRequest() {
         OrderPriceRequest request = new OrderPriceRequest();
         request.setId(mHotelRoom.getId());
         request.setPid(mRoomTypeInfo.getPid());
@@ -235,6 +241,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
     /**
      * 
      * commitOrder:提交订单. <br/>
+     * 
      * @author maple
      * @since JDK 1.6
      */
@@ -248,7 +255,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             DialogUtils.showDialog("", msg, this);
             return;
         }
-        if (TextUtils.isEmpty(info.getContactName()) || TextUtils.isEmpty(info.getContactPhone()) || TextUtils.isEmpty(info.getInPeople())) {
+        if (TextUtils.isEmpty(info.getContactName()) || TextUtils.isEmpty(info.getContactPhone())
+                || TextUtils.isEmpty(info.getInPeople())) {
             String msg = getString(R.string.dialog_order_info_not_null);
             DialogUtils.showDialog("", msg, this);
             return;
@@ -268,7 +276,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             String area = data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
             setViewText(mRoomCountView, area);
             setTotalCostView();
-            //用户只住一天,则订单总额详细不出现
+            // 用户只住一天,则订单总额详细不出现
             break;
         case PAGE_MORE_REQUIRE:
             if (data == null) {
@@ -285,15 +293,16 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             break;
         }
     }
-    
+
     /**
      * 
      * getRoomCount:获取预定的房间数. <br/>
+     * 
      * @author maple
      * @return
      * @since JDK 1.6
      */
-    private int getRoomCount(){
+    private int getRoomCount() {
         String text = (String) mRoomCountView.getText();
         if (TextUtils.isEmpty(text)) {
             return -1;
@@ -301,36 +310,41 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         text = text.substring(0, text.length() - 1);
         return DigitalUtils.convertToInt(text);
     }
-    
+
     /**
      * 
      * setTotalCostView:设置订单总额. <br/>
+     * 
      * @author maple
      * @since JDK 1.6
      */
-    private void setTotalCostView(){
+    private void setTotalCostView() {
         int count = getRoomCount();
         if (count < 0) {
             return;
         }
-        long days = DateUtils.reduceDate(mHotelRoom.getStartDate(), mHotelRoom.getEndDate(), DateUtils.FORMAT_DATE_YYMMDD);
+        long days = DateUtils.reduceDate(mHotelRoom.getStartDate(), mHotelRoom.getEndDate(),
+                DateUtils.FORMAT_DATE_YYMMDD);
         Log.i(TAG, "setTotalCostView()---> days=" + days);
         if (days < 1) {
             return;
         }
         float actPrice = mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getActprice();
-        Log.i(TAG, "setTotalCostView()---> actPrice=" + actPrice + ", price=" + (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getPrice()));
+        Log.i(TAG, "setTotalCostView()---> actPrice=" + actPrice + ", price="
+                + (mRoomTypeInfo == null ? 0 : mRoomTypeInfo.getPrice()));
         int cost = (int) (count * actPrice * days);
         mTotalCostView.setText("￥" + cost + "");
     }
+
     /**
      * 
      * getStopAtDays:获取入住天数. <br/>
+     * 
      * @author maple
      * @return
      * @since JDK 1.6
      */
-    private int getStopAtDays(){
+    private int getStopAtDays() {
         if (mHotelRoom == null) {
             return 0;
         }
@@ -340,24 +354,25 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         if (endTimes <= startTimes) {
             return 0;
         }
-        return (int) (increment/DateUtils.MILLIS_FOR_ONE_DAY);
+        return (int) (increment / DateUtils.MILLIS_FOR_ONE_DAY);
     }
-    
+
     /**
      * 
      * setCheckInUsersView:设置入住人信息. <br/>
+     * 
      * @author maple
      * @param list
      * @since JDK 1.6
      */
-    private void setCheckInUsersView(List<String> list){
+    private void setCheckInUsersView(List<String> list) {
         if (list == null || list.size() < 1) {
             mCheckInUserView.setText("");
             return;
         }
         int size = list.size();
         StringBuilder buffer = new StringBuilder();
-        for (int index = 0 ; index < size ; index++) {
+        for (int index = 0; index < size; index++) {
             buffer.append(list.get(index));
             if (index < size - 1) {
                 buffer.append(",");
@@ -365,7 +380,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         }
         mCheckInUserView.setText(buffer.toString());
     }
-    
+
     /**
      * 
      * setViewText:设置textView的值. <br/>
@@ -376,18 +391,21 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
      * @since JDK 1.6
      */
     private void setViewText(TextView view, String text) {
-        if (view == null) { return; }
+        if (view == null) {
+            return;
+        }
         view.setText(text == null ? "" : text);
     }
-    
+
     /***
      * 
      * getInvoiceState:是否需要开发票. <br/>
+     * 
      * @author maple
      * @return
      * @since JDK 1.6
      */
-    private int getInvoiceState(){
+    private int getInvoiceState() {
         if (mRadioGroup.getCheckedRadioButtonId() == R.id.invoice_true_btn) {
             return 1;
         }
@@ -396,8 +414,8 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         }
         return -1;
     }
-    
-    private OrderSubmitInfo getOrderSubmitInfo(){
+
+    private OrderSubmitInfo getOrderSubmitInfo() {
         if (mHotelRoom == null || mRoomTypeInfo == null) {
             return null;
         }
@@ -406,7 +424,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         info.setStartDate(mHotelRoom.getStartDate());
         info.setEndDate(mHotelRoom.getEndDate());
         info.setRoomId(mRoomTypeInfo.getPid());
-        info.setCount(DigitalUtils.convertToInt(getRoomCount()+""));
+        info.setCount(DigitalUtils.convertToInt(getRoomCount() + ""));
         info.setMoreRequire((String) mMoreRequireView.getText());
         info.setInPeople(getCheckInUsers());
         info.setContactName(mContactNameView.getText().toString());
@@ -420,25 +438,26 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         info.setUid(LoginUtils.uid);
         return info;
     }
-    
-    private String getCheckInUsers(){
+
+    private String getCheckInUsers() {
         String userNames = mCheckInUserView.getText().toString();
         userNames.replaceAll("\n", ",");
         return userNames;
     }
-    
+
     /**
      * 获取入住人总数
+     * 
      * @return
      */
-    private int getUserCount(){
+    private int getUserCount() {
         String userNames = mCheckInUserView.getText().toString();
         String[] names = userNames.split(",");
         return names.length;
     }
-    
+
     private IResponseListener mCommitLisenter = new IResponseListener() {
-        
+
         @Override
         public void onSuccess(Response response) {
             dismissLoadingDialog();
@@ -455,7 +474,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             startActivity(intent);
             finish();
         }
-        
+
         @Override
         public void onError(Response response) {
             Log.i(TAG, "onError()---->");
@@ -464,4 +483,3 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
         }
     };
 }
-
