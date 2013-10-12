@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity2 {
 	public static final int RESULT_UN_LOGIN = 0x0002;
 	public static final String PARAM_SEACRCH = "order_search";
 	public static final String PARAM_ORDER = "order";
-	public static final int PAGE_ORDER = 3;
+	public static final int PAGE_FROM_HOTEL_DETAIL = 10003;
 
 	private EditText passwordView;
 	private String password;

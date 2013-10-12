@@ -81,6 +81,7 @@ public class OrderAuthenticActivity extends BaseActivity2 {
             onLoginSuccess();
         }
     }
+    
 
     /**
      * 登录成功之后的操作

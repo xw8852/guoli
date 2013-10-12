@@ -397,7 +397,7 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
                     if (LoginUtils.isLogin == 0) {  //未登录
                         Intent intent = new Intent();
                         intent.setClass(HotelDetailActivity.this, LoginActivity.class);
-                        startActivityForResult(intent, LoginActivity.PAGE_ORDER);
+                        startActivityForResult(intent, LoginActivity.PAGE_FROM_HOTEL_DETAIL);
                         return;
                     }
                     onLoginSuccess();
@@ -729,14 +729,17 @@ public class HotelDetailActivity extends CallActivity implements OnClickListener
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
         switch (requestCode) {
-        case LoginActivity.PAGE_ORDER:
+        case LoginActivity.PAGE_FROM_HOTEL_DETAIL:
             onLoginSuccess();
             break;
         default:
             break;
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
     
     /**
