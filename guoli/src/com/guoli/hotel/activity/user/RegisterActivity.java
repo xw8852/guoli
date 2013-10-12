@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -71,40 +72,51 @@ public class RegisterActivity extends BaseActivity2 {
 			Request request = new GuoliRequest("system_mobilecheck", new GetIdentifyBean(phone, null));
 			Manager.getInstance().executePoset(request, getResponseListener);
 
-			dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "发送中...");
+			dialog = DialogUtils.showProgressDialog(RegisterActivity.this, "请求正在发送中,请稍等...");
 		}
 	};
+	
+	private Handler mHandler = new Handler();
 
 	IResponseListener getResponseListener = new IResponseListener() {
 
 		@Override
-		public void onSuccess(Response response) {
-			if (null != dialog && dialog.isShowing()) {
-				dialog.cancel();
-			}
-
-			if (null == response) {
-				return;
-			}
-			Log.d("MSG", "onSuccess:" + response.getData().toString());
-			HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
-					new TypeToken<HashMap<String, Object>>() {
-					}.getType());
-			String success = map.get("success").toString();
-			if ("1".equalsIgnoreCase(success)) {
-				DialogUtils.showDialog("提示", "短信已发送", RegisterActivity.this);
-			}
+		public void onSuccess(final Response response) {
+		    mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (null != dialog && dialog.isShowing()) {
+                        dialog.cancel();
+                    }
+                    if (null == response) {
+                        return;
+                    }
+                    Log.d("MSG", "onSuccess:" + response.getData().toString());
+                    HashMap<String, Object> map = new Gson().fromJson(response.result.toString(),
+                            new TypeToken<HashMap<String, Object>>() {
+                            }.getType());
+                    String success = map.get("success").toString();
+                    if ("1".equalsIgnoreCase(success)) {
+                        DialogUtils.showDialog("提示", "短信已发送", RegisterActivity.this);
+                    }
+                }
+            }, 1000);
 		}
 
 		@Override
-		public void onError(Response response) {
-			if (null != dialog && dialog.isShowing()) {
-				dialog.cancel();
-			}
-
-			if (!(response.result instanceof Exception)) {
-				Log.d("MSG", "onError:" + response.toString());
-			}
+		public void onError(final Response response) {
+		    mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (null != dialog && dialog.isShowing()) {
+                        dialog.cancel();
+                    }
+                    if (!(response.result instanceof Exception)) {
+                        Log.d("MSG", "onError:" + response.toString());
+                    }
+                }
+            }, 1000);
+			
 		}
 	};
 
