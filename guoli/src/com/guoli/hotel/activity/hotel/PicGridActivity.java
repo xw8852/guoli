@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -64,6 +65,7 @@ public class PicGridActivity extends BaseActivity2 implements OnItemClickListene
             super(context, data);
         }
 
+        LayoutParams params=null;
         @Override
         public View CreateView(int position, View convertView, LayoutInflater inflater) {
             if (convertView == null) {
@@ -71,8 +73,10 @@ public class PicGridActivity extends BaseActivity2 implements OnItemClickListene
             }
             ((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getName());
             ImageView imageView = (ImageView)convertView.findViewById(R.id.icon);
+            if(params==null) params=imageView.getLayoutParams();
             String key = ImageUtil.getThumbnailImageUrl(mPicPath, getItem(position).getPicName());
             Controller.getApplication().loadThumbnailImage(key, imageView, R.drawable.default_big_pic);
+            imageView.setLayoutParams(params);
             return convertView;
         }
 
