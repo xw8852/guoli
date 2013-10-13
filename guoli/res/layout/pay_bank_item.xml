@@ -30,7 +30,6 @@
          android:layout_marginTop="@dimen/small_margin"
         android:layout_marginBottom="@dimen/small_margin"
         android:textColor="@color/font_grey"
-        android:singleLine="true"
         android:textSize="14sp" />
 
     <TextView
@@ -39,7 +38,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/max_margin"
         android:textColor="@color/font_grey"
-        android:singleLine="true"
         android:layout_marginBottom="@dimen/small_margin"
          android:textSize="14sp"  />
 
