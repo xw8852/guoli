@@ -84,7 +84,7 @@
                         android:id="@+id/hotelImgView"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitEnd"
                         android:src="@drawable/hotel_default" />
 
                     <TextView

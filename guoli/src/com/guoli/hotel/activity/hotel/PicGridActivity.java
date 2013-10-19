@@ -73,10 +73,8 @@ public class PicGridActivity extends BaseActivity2 implements OnItemClickListene
             }
             ((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getName());
             ImageView imageView = (ImageView)convertView.findViewById(R.id.icon);
-            if(params==null) params=imageView.getLayoutParams();
             String key = ImageUtil.getThumbnailImageUrl(mPicPath, getItem(position).getPicName());
             Controller.getApplication().loadThumbnailImage(key, imageView, R.drawable.default_big_pic);
-            imageView.setLayoutParams(params);
             return convertView;
         }
 

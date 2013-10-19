@@ -144,9 +144,9 @@ public class LoginActivity extends BaseActivity2 {
 				Intent data = new Intent();
 				data.putExtra("username", info.username);
 				setResult(AccountActivity.ACCOUNT_LOGIN, data);
+				ToastUtil.show("登陆成功");
 				finish();
-			}
-
+			}else
 			ToastUtil.show(map.get("message").toString());
 		}
 

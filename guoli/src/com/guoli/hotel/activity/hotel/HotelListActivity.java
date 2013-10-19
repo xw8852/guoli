@@ -10,7 +10,6 @@
 
 package com.guoli.hotel.activity.hotel;
 
-import java.io.UTFDataFormatException;
 import java.util.List;
 
 import android.content.Intent;

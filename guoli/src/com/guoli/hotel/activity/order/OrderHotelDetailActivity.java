@@ -193,10 +193,17 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 			if(!"1".equals(info.ispay)){
 				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.GONE);
 				findViewById(R.id.btn_view).findViewById(R.id.button3).setBackgroundResource(R.drawable.pay_order_btn);
+			
 			}
+			
 		}else if("1".equals(info.tradestatus)){
+		    findViewById(R.id.btn_view).setVisibility(View.GONE);
 			findViewById(R.id.button1).setVisibility(View.VISIBLE);
+		}else{
+		    findViewById(R.id.btn_view).setVisibility(View.GONE);
+		    findViewById(R.id.button1).setVisibility(View.GONE);
 		}
+		    
 		findViewById(R.id.scrollView1).setVisibility(View.VISIBLE);
 	}
 
