@@ -13,6 +13,7 @@ package com.guoli.hotel.activity.order;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import com.guoli.hotel.utils.ToastUtil;
 import com.msx7.core.Manager;
 import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
+import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
 
 /**
@@ -178,7 +180,7 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             break;
         case R.id.invoice_true_btn:
             findViewById(R.id.invoiceDetailLayout).setVisibility(View.VISIBLE);
-         // 设置发票收件人名称
+            // 设置发票收件人名称
             mRecipientNameView.setText(mContactNameView.getText());
             // 设置发票收件人电话
             mRecipientPoneView.setText(mContactPhoneView.getText());
@@ -275,8 +277,9 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             }
             String area = data.getStringExtra(HotelCountActivity.KEY_ROOM_COUNT);
             setViewText(mRoomCountView, area);
-            setTotalCostView();
+//            setTotalCostView();
             // 用户只住一天,则订单总额详细不出现
+            getTotalPrice();
             break;
         case PAGE_MORE_REQUIRE:
             if (data == null) {
@@ -480,6 +483,60 @@ public class EditOrderActivity extends CallActivity implements OnCheckedChangeLi
             Log.i(TAG, "onError()---->");
             dismissLoadingDialog();
             ToastUtil.show(ErrorCode.getErrorCodeString(response.errorCode));
+        }
+    };
+
+    private void getTotalPrice() {
+        String value = mRoomCountView.getText().toString();
+        value = value.substring(0, value.length() - 1);
+        int count = DigitalUtils.convertToInt(value);
+        if (count <= 0) {
+            return;
+        }
+        if (mHotelRoom == null) {
+            return;
+        }
+        if (mRoomTypeInfo == null) {
+            return;
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("shopid", mHotelRoom.getId());
+        map.put("pid", mRoomTypeInfo.getPid());
+        map.put("indate", mHotelRoom.getStartDate());
+        map.put("outdate", mHotelRoom.getEndDate());
+        map.put("num", count);
+        Request request = new GuoliRequest("order_ordsumpri", map);
+        Log.i("HotelCountActivity", "request=" + request.Params.toParams());
+        Manager.getInstance().executePoset(request, mLoadListener);
+    }
+
+    private IResponseListener mLoadListener = new IResponseListener() {
+        @Override
+        public void onSuccess(Response resp) {
+            Log.i(TAG, "onSuccess()---->" + (resp == null ? null : resp.getData().toString()));
+            if (resp == null || resp.getData() == null) {
+                return;
+            }
+            Object object = resp.getData();
+            if (!(object instanceof String)) {
+                return;
+            }
+            Map<String, Object> map = JsonUtils.convertToMap((String)object);
+            if (map == null) {
+                return;
+            }
+            object = map.get("pritotal");
+            if (!(object instanceof String)) {
+                return;
+            }
+            int totalPrice = DigitalUtils.convertToInt((String) object);
+            mTotalCostView.setText("￥" + totalPrice + "");
+        }
+
+        @Override
+        public void onError(Response arg0) {
+            // TODO Auto-generated method stub
+
         }
     };
 }

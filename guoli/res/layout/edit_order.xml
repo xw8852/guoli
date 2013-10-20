@@ -28,8 +28,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -45,8 +45,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_date" />
+                    android:text="@string/order_date"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/date_content_view"
@@ -56,8 +56,8 @@
                     android:layout_toRightOf="@+id/date_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:textSize="16sp"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -73,8 +73,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_room_type" />
+                    android:text="@string/order_room_type"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/room_type_content_view"
@@ -84,8 +84,8 @@
                     android:layout_toRightOf="@+id/room_type_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:textSize="16sp"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -101,8 +101,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_room_count" />
+                    android:text="@string/order_room_count"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/room_count_content_view"
@@ -112,8 +112,8 @@
                     android:layout_toRightOf="@+id/room_count_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:textSize="16sp"
-                    android:text="1间" />
+                    android:text="1间"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,8 +138,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_more_require" />
+                    android:text="@string/order_more_require"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/more_require_content_view"
@@ -149,8 +149,8 @@
                     android:layout_toRightOf="@+id/more_require_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:textSize="16sp"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,9 +175,9 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
+                    android:text="@string/order_cost"
                     android:textColor="#EE0000"
-                    android:text="@string/order_cost" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/order_cost_cost_view"
@@ -187,9 +187,9 @@
                     android:layout_toRightOf="@+id/order_cost_view"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
-                    android:textSize="16sp"
+                    android:text=""
                     android:textColor="#EE0000"
-                    android:text="" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/orderCostDetailView"
@@ -202,8 +202,8 @@
                     android:gravity="center_vertical|right"
                     android:paddingRight="10dp"
                     android:text="@string/order_detail_btn"
-                    android:visibility="gone"
-                    android:textColor="@color/title_bar_font_color" />
+                    android:textColor="@color/title_bar_font_color"
+                    android:visibility="gone" />
             </RelativeLayout>
             <!-- 入住人/联系人布局 -->
 
@@ -235,8 +235,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_guest" />
+                    android:text="@string/order_guest"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/guest_content_view"
@@ -247,8 +247,8 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/guest_view"
                     android:gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:hint="@string/order_guest_name" />
+                    android:hint="@string/order_guest_name"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -265,8 +265,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"
                     android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:text="@string/order_contact" />
+                    android:text="@string/order_contact"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/contact_name_view"
@@ -275,8 +275,8 @@
                     android:layout_alignBaseline="@+id/contact_view"
                     android:layout_toRightOf="@+id/contact_view"
                     android:background="@null"
-                    android:textSize="16sp"
-                    android:hint="@string/order_contact_name" />
+                    android:hint="@string/order_contact_name"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/contact_phone_view"
@@ -287,8 +287,8 @@
                     android:background="@null"
                     android:hint="@string/order_contact_phone"
                     android:inputType="phone"
-                    android:textSize="16sp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textSize="16sp" />
             </RelativeLayout>
             <!-- 发票(invoice)相关 -->
 
@@ -297,9 +297,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
-                android:textSize="16sp"
+                android:text="@string/order_ask_for_invoice"
                 android:textColor="#F6A006"
-                android:text="@string/order_ask_for_invoice" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -335,8 +335,8 @@
                     android:id="@+id/invoiceDetailLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_below="@+id/invoice_potion_group" >
+                    android:layout_below="@+id/invoice_potion_group"
+                    android:visibility="gone" >
 
                     <TextView
                         android:id="@+id/divider001"
@@ -352,8 +352,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
-                        android:text="@string/order_ivvoice_title" />
+                        android:text="@string/order_ivvoice_title"
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/invoice_title_content_view"
@@ -364,8 +364,8 @@
                         android:layout_toRightOf="@+id/invoice_title_view"
                         android:background="@null"
                         android:hint="@string/order_ivvoice_title_notice"
-                        android:textSize="16sp"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/divider002"
@@ -382,8 +382,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
-                        android:text="@string/order_receiver_name" />
+                        android:text="@string/order_receiver_name"
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/invoice_receiver_content_view"
@@ -393,9 +393,9 @@
                         android:layout_alignTop="@+id/invoice_receiver_view"
                         android:layout_toRightOf="@+id/invoice_receiver_view"
                         android:background="@null"
-                        android:textSize="16sp"
                         android:hint="@string/order_receiver_name_notice"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/divider003"
@@ -412,8 +412,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
-                        android:text="@string/order_receiver_phone" />
+                        android:text="@string/order_receiver_phone"
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/invoice_receiver_phone_content_view"
@@ -425,8 +425,8 @@
                         android:background="@null"
                         android:hint="@string/order_receiver_phone_notice"
                         android:inputType="phone"
-                        android:textSize="16sp"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/divider004"
@@ -443,8 +443,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
-                        android:text="@string/order_mail_address" />
+                        android:text="@string/order_mail_address"
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/invoice_mail_address_content_view"
@@ -454,9 +454,9 @@
                         android:layout_alignTop="@+id/invoice_mail_address_view"
                         android:layout_toRightOf="@+id/invoice_mail_address_view"
                         android:background="@null"
-                        android:textSize="16sp"
                         android:hint="@string/order_mail_address_notice"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/divider005"
@@ -473,8 +473,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
-                        android:text="@string/order_post_code" />
+                        android:text="@string/order_post_code"
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/invoice_post_code_content_view"
@@ -484,9 +484,9 @@
                         android:layout_alignTop="@+id/invoice_post_code_view"
                         android:layout_toRightOf="@+id/invoice_post_code_view"
                         android:background="@null"
-                        android:textSize="16sp"
                         android:hint="@string/order_post_code_notice"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="16sp" />
                 </RelativeLayout>
             </RelativeLayout>
             <!-- 特别提示(notice) -->
@@ -497,8 +497,8 @@
                 android:layout_marginTop="20dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
-                android:textSize="16sp"
-                android:text="@string/order_special_notice" />
+                android:text="@string/order_special_notice"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/specialNoticeView"
@@ -506,8 +506,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_round_rect_grey"
                 android:padding="10dp"
-                android:textSize="16sp"
-                android:text="@string/order_notice" />
+                android:text="@string/order_notice"
+                android:textSize="16sp" />
             <!-- 提交按钮 -->
 
             <TextView
