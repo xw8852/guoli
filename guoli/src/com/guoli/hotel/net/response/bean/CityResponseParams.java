@@ -32,6 +32,8 @@ public class CityResponseParams implements IResponseParams {
     
     @SerializedName("result_hot")
     public List<CityInfo> mHostList;
+    @SerializedName("result_aisa")
+    public List<CityInfo> mAisaList;
     
     private int cityCount;
 

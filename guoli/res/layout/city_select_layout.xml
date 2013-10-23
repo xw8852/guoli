@@ -43,6 +43,33 @@
             android:background="@drawable/btn_search_delete" />
     </RelativeLayout>
     <!-- 热门城市 -->
+<RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/insideCity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_area"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="国内城市" />
+
+        <RadioButton
+            android:id="@+id/outSideCity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_area"
+            android:button="@null"
+            android:gravity="center"
+            android:text="亚洲城市" />
+    </RadioGroup>
 
     <RelativeLayout
         android:layout_width="match_parent"
