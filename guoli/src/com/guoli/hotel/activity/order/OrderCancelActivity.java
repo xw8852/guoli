@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +27,6 @@ import com.msx7.core.command.ErrorCode;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Request;
 import com.msx7.core.command.model.Response;
-
-import android.text.TextUtils;
-import android.view.View;
 
 public class OrderCancelActivity extends BaseActivity2 implements View.OnClickListener {
     OrderInfo mInfo;

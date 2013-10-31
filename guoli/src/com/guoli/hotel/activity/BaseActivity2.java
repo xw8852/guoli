@@ -1,11 +1,5 @@
 package com.guoli.hotel.activity;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.activity.hotel.SearchHotelActivity;
-import com.guoli.hotel.utils.CallUtils;
-import com.guoli.hotel.utils.DialogUtils;
-import com.guoli.hotel.utils.LoginUtils;
-
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +8,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.activity.hotel.SearchHotelActivity;
+import com.guoli.hotel.utils.CallUtils;
+import com.guoli.hotel.utils.DialogUtils;
+import com.guoli.hotel.utils.LoginUtils;
 
 public abstract class BaseActivity2 extends Activity {
     private LinearLayout root;

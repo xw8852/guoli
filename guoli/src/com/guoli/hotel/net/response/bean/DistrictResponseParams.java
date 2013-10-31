@@ -12,8 +12,8 @@ package com.guoli.hotel.net.response.bean;
 
 import java.util.List;
 
-import com.guoli.hotel.net.bean.CityInfo;
 import com.guoli.hotel.net.bean.BusinessDistrictInfo;
+import com.guoli.hotel.net.bean.CityInfo;
 
 /**
  * ClassName:AreaResponseParams <br/>

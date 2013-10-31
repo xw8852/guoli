@@ -1,5 +1,10 @@
 package com.guoli.hotel.activity;
 
+import android.app.Dialog;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
 import com.guoli.hotel.R;
 import com.guoli.hotel.net.Action;
 import com.guoli.hotel.net.GuoliRequest;
@@ -8,11 +13,6 @@ import com.guoli.hotel.utils.DialogUtils;
 import com.msx7.core.Manager;
 import com.msx7.core.command.IResponseListener;
 import com.msx7.core.command.model.Response;
-
-import android.app.Dialog;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 public class AboutUsActivity extends BaseActivity2{
     

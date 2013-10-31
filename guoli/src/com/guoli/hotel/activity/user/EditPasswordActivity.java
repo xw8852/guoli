@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.guoli.hotel.R;
 import com.guoli.hotel.activity.BaseActivity2;
-import com.guoli.hotel.activity.FavoriteActivity;
 import com.guoli.hotel.net.GuoliRequest;
 import com.guoli.hotel.net.request.bean.EditPasswordBean;
 import com.guoli.hotel.utils.DialogUtils;

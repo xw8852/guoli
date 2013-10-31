@@ -1,13 +1,13 @@
 package com.guoli.hotel.widget;
 
-import com.guoli.hotel.widget.SosUniversalAdapter.HasMorePagesListener;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.guoli.hotel.widget.SosUniversalAdapter.HasMorePagesListener;
 
  
 

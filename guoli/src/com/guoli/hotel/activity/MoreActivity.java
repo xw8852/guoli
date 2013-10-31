@@ -1,11 +1,11 @@
 package com.guoli.hotel.activity;
 
-import com.guoli.hotel.R;
-import com.guoli.hotel.widget.BottomTabbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.guoli.hotel.R;
+import com.guoli.hotel.widget.BottomTabbar;
 
 public class MoreActivity extends BaseActivity2 {
 

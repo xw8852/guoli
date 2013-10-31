@@ -38,10 +38,11 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 	Button pay_btn;
 	Dialog mDialog;
 	OrderInfo mOrderIndo;
-	
+
 	boolean isLogin;
 	String mobile;
 	String orderno;
+
 	@Override
 	public void onAfterCreate(Bundle savedInstanceState) {
 		setTitle(R.string.order_detail);
@@ -56,19 +57,22 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		pay_btn.setOnClickListener(this);
 		cancel_btn.setOnClickListener(this);
 		findViewById(R.id.scrollView1).setVisibility(View.GONE);
-		orderno=getIntent().getStringExtra(PARAM_ORDER_NO);
-		GuoliRequest request=null;
-		if(LoginUtils.isLogin==2){
-		    showRightExit();
-			request=new GuoliRequest(Action.Order.OrderDetail, new OrderDetailBean(orderno, LoginUtils.uid));
-		}else if(LoginUtils.isLogin==1){
-		    showRightCall();
-		    getRightButton().setText("");
-			mobile=LoginUtils.mobile;
-			request=new GuoliRequest(Action.Order.OrderDetail, OrderDetailBean.buildBean(orderno, mobile));
+		orderno = getIntent().getStringExtra(PARAM_ORDER_NO);
+		GuoliRequest request = null;
+		if (LoginUtils.isLogin == 2) {
+			showRightExit();
+			request = new GuoliRequest(Action.Order.OrderDetail,
+					new OrderDetailBean(orderno, LoginUtils.uid));
+		} else if (LoginUtils.isLogin == 1) {
+			showRightCall();
+			getRightButton().setText("");
+			mobile = LoginUtils.mobile;
+			request = new GuoliRequest(Action.Order.OrderDetail,
+					OrderDetailBean.buildBean(orderno, mobile));
 		}
-		Manager.getInstance().executePoset(request, mOrderDetailIResponseListener);
-		mDialog=DialogUtils.showProgressDialog(this, "正在加载数据中...");
+		Manager.getInstance().executePoset(request,
+				mOrderDetailIResponseListener);
+		mDialog = DialogUtils.showProgressDialog(this, "正在加载数据中...");
 	}
 
 	@Override
@@ -78,60 +82,63 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 
 	@Override
 	public void onClick(View v) {
-	    Intent intent;
+		Intent intent;
 		switch (v.getId()) {
 		case R.id.left_btn:
 			finish();
 			break;
 		case R.id.right_btn:
-			
+
 			break;
 		case R.id.button1:
 			// TODO 退订
-		    intent=new Intent(this, OrderCancelActivity.class);
-		    intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
-		    startActivity(intent);
+			intent = new Intent(this, OrderCancelActivity.class);
+			intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
+			startActivity(intent);
 			break;
 		case R.id.button2:
-		    if(mOrderIndo==null){
-		        Toast.makeText(OrderHotelDetailActivity.this,
-                        "无效订单",
-                        Toast.LENGTH_SHORT).show();
-		        return;
-		    }
+			if (mOrderIndo == null) {
+				Toast.makeText(OrderHotelDetailActivity.this, "无效订单",
+						Toast.LENGTH_SHORT).show();
+				return;
+			}
 			// TODO 跳转到订单确认页面
-			 intent = new Intent();
+			intent = new Intent();
 			intent.setClass(this, OrderConfirmActivity.class);
 			intent.putExtra("ORDER", new Gson().toJson(mOrderIndo));
 			startActivity(intent);
 			break;
 		case R.id.button3:
-		 // TODO: 取消订单
-			DialogUtils.showDialog("", "确认取消订单？", new  DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					HashMap<String,String> map=new HashMap<String, String>();
-					map.put("orderno", orderno);
-					if(isLogin&&LoginUtils.isLogin==1){
-						map.put("uid", "0");
-						map.put("mobile", LoginUtils.mobile);
-					}else {
-						map.put("uid", LoginUtils.uid);
-						map.put("mobile", LoginUtils.mobile);
-					}
-					map.put("content", "");
-					Request request=new GuoliRequest(Action.Order.Ordercancel, map);
-					mDialog=DialogUtils.showProgressDialog(OrderHotelDetailActivity.this, "正在取消订单..");
-					Manager.getInstance().executePoset(request, mOrderCacelResponseListener);
-				}
-			}, this);
-		    break;
+			// TODO: 取消订单
+			DialogUtils.showDialog("", "确认取消订单？",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							HashMap<String, String> map = new HashMap<String, String>();
+							map.put("orderno", orderno);
+							if (isLogin && LoginUtils.isLogin == 1) {
+								map.put("uid", "0");
+								map.put("mobile", LoginUtils.mobile);
+							} else {
+								map.put("uid", LoginUtils.uid);
+								map.put("mobile", LoginUtils.mobile);
+							}
+							map.put("content", "");
+							Request request = new GuoliRequest(
+									Action.Order.Ordercancel, map);
+							mDialog = DialogUtils.showProgressDialog(
+									OrderHotelDetailActivity.this, "正在取消订单..");
+							Manager.getInstance().executePoset(request,
+									mOrderCacelResponseListener);
+						}
+					}, this);
+			break;
 		default:
 			break;
 		}
 	}
-	
+
 	public void showInfo(OrderInfo info){
 		//TODO:订单状态
 		TextView tv=(TextView)findViewById(R.id.textView4);
@@ -186,23 +193,42 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		tv.setText(info.mobile);	
 //		未付款-可以显示“付款”、取消订单；已付款-“退订”；交易关闭、已退款、退款中、交易成功-则什么都不显示 
 		/**
-		 * 0-未付款（未成交） 1-已付款（成交） 2-取消（放弃） 3-交易关闭4-已退款，6-退款中，8-交易成功)
+		 * 0-未付款（未成交） 1-已付款（成交） 2-取消（放弃） 3-交易关闭4-已退款，6-退款中，8-已入住)
 		 */
-		if("0".equals(info.tradestatus)){
-			findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
-			if(!"1".equals(info.ispay)){
-				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.GONE);
-				findViewById(R.id.btn_view).findViewById(R.id.button3).setBackgroundResource(R.drawable.pay_order_btn);
-			
+		//隐藏退订按钮
+		findViewById(R.id.button1).setVisibility(View.GONE);
+		int tradestatus=Integer.parseInt(info.tradestatus);
+		int ispay=Integer.parseInt(info.ispay);
+		if(tradestatus==8){//已入住
+			if(ispay==1){
+				//显示“去付款“按钮
+				findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
+				findViewById(R.id.btn_view).findViewById(R.id.button3).setVisibility(View.GONE);
+				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.VISIBLE);
+			}else{
+				//隐藏 去付款 和 取消订单按钮
+				findViewById(R.id.btn_view).setVisibility(View.GONE);
 			}
-			
-		}else if("1".equals(info.tradestatus)){
-		    findViewById(R.id.btn_view).setVisibility(View.GONE);
+		}else if(tradestatus==0){//未付款
+			if(ispay==1){
+				//出现“去付款”按钮 和“取消订单”按钮
+				findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
+				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.VISIBLE);
+				findViewById(R.id.btn_view).findViewById(R.id.button3).setVisibility(View.VISIBLE);
+			}else{
+				//不出现“去付款”，但出现“取消订单”按钮
+				findViewById(R.id.btn_view).setVisibility(View.VISIBLE);
+				findViewById(R.id.btn_view).findViewById(R.id.button2).setVisibility(View.GONE);
+				findViewById(R.id.btn_view).findViewById(R.id.button3).setVisibility(View.VISIBLE);
+			}
+		}else if(tradestatus ==1){
+			//已付款 出现“退订”按钮
 			findViewById(R.id.button1).setVisibility(View.VISIBLE);
-		}else{
-		    findViewById(R.id.btn_view).setVisibility(View.GONE);
-		    findViewById(R.id.button1).setVisibility(View.GONE);
+		}else {
+			//不要出现任何按钮
+			findViewById(R.id.btn_view).setVisibility(View.GONE);
 		}
+		
 		    
 		findViewById(R.id.scrollView1).setVisibility(View.VISIBLE);
 	}
@@ -212,80 +238,92 @@ public class OrderHotelDetailActivity extends BaseActivity2 implements
 		@Override
 		public void onSuccess(Response arg0) {
 			Log.d("MSG", arg0.result.toString());
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
-			HashMap<String, Object> map=new Gson().fromJson(arg0.result.toString(), new TypeToken<HashMap<String,Object>>(){}.getType());
-			mOrderIndo=new Gson().fromJson(new Gson().toJson(map.get("orderinfo")),OrderInfo.class);
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
+			HashMap<String, Object> map = new Gson().fromJson(
+					arg0.result.toString(),
+					new TypeToken<HashMap<String, Object>>() {
+					}.getType());
+			mOrderIndo = new Gson().fromJson(
+					new Gson().toJson(map.get("orderinfo")), OrderInfo.class);
 			showInfo(mOrderIndo);
 		}
 
 		@Override
 		public void onError(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
 			Toast.makeText(OrderHotelDetailActivity.this,
 					ErrorCode.getErrorCodeString(arg0.errorCode),
 					Toast.LENGTH_SHORT).show();
 		}
 	};
-	
-	IResponseListener mOrderCacelResponseListener=new IResponseListener() {
-		
+
+	IResponseListener mOrderCacelResponseListener = new IResponseListener() {
+
 		@Override
 		public void onSuccess(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
-			if(arg0.result!=null){
-			    HashMap<String, String> maps=JsonUtils.convertJsonToHashMap(arg0.result.toString());
-			    if("1".equals(maps.get("success"))){
-			        Toast.makeText(OrderHotelDetailActivity.this,
-	                        "操作成功",
-	                        Toast.LENGTH_SHORT).show();
-			        startActivity(new Intent(OrderHotelDetailActivity.this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-			        finish();
-			        return;
-			    }
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
+			if (arg0.result != null) {
+				HashMap<String, String> maps = JsonUtils
+						.convertJsonToHashMap(arg0.result.toString());
+				if ("1".equals(maps.get("success"))) {
+					Toast.makeText(OrderHotelDetailActivity.this, "操作成功",
+							Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(OrderHotelDetailActivity.this,
+							OrderAuthenticActivity.class)
+							.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+					finish();
+					return;
+				}
 			}
-			
-			    Toast.makeText(OrderHotelDetailActivity.this,
-	                    "未知网络异常",
-	                    Toast.LENGTH_SHORT).show();
+
+			Toast.makeText(OrderHotelDetailActivity.this, "未知网络异常",
+					Toast.LENGTH_SHORT).show();
 		}
-		
+
 		@Override
 		public void onError(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
 			Toast.makeText(OrderHotelDetailActivity.this,
-                    ErrorCode.getErrorCodeString(arg0.errorCode),
-                    Toast.LENGTH_SHORT).show();
+					ErrorCode.getErrorCodeString(arg0.errorCode),
+					Toast.LENGTH_SHORT).show();
 		}
 	};
-	
-	IResponseListener mUnsubResponseListener=new IResponseListener() {
-		
+
+	IResponseListener mUnsubResponseListener = new IResponseListener() {
+
 		@Override
 		public void onSuccess(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
-			if(arg0.result!=null){
-                HashMap<String, String> maps=JsonUtils.convertJsonToHashMap(arg0.result.toString());
-                if("1".equals(maps.get("success"))){
-                    Toast.makeText(OrderHotelDetailActivity.this,
-                            "操作成功",
-                            Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(OrderHotelDetailActivity.this, OrderAuthenticActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                    finish();
-                    return;
-                }
-            }
-            
-                Toast.makeText(OrderHotelDetailActivity.this,
-                        "未知网络异常",
-                        Toast.LENGTH_SHORT).show();
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
+			if (arg0.result != null) {
+				HashMap<String, String> maps = JsonUtils
+						.convertJsonToHashMap(arg0.result.toString());
+				if ("1".equals(maps.get("success"))) {
+					Toast.makeText(OrderHotelDetailActivity.this, "操作成功",
+							Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(OrderHotelDetailActivity.this,
+							OrderAuthenticActivity.class)
+							.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+					finish();
+					return;
+				}
+			}
+
+			Toast.makeText(OrderHotelDetailActivity.this, "未知网络异常",
+					Toast.LENGTH_SHORT).show();
 		}
-		
+
 		@Override
 		public void onError(Response arg0) {
-			if(mDialog!=null&&mDialog.isShowing())mDialog.cancel();
+			if (mDialog != null && mDialog.isShowing())
+				mDialog.cancel();
 			Toast.makeText(OrderHotelDetailActivity.this,
-                    ErrorCode.getErrorCodeString(arg0.errorCode),
-                    Toast.LENGTH_SHORT).show();
+					ErrorCode.getErrorCodeString(arg0.errorCode),
+					Toast.LENGTH_SHORT).show();
 		}
 	};
 }
